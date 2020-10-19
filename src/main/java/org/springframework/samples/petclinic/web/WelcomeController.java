@@ -17,49 +17,47 @@ import java.util.List;
 @Controller
 public class WelcomeController {
 
-	
-	
-	  @GetMapping({"/","/welcome"})
+	@GetMapping({ "/", "/welcome" })
 
-	  public String welcome(Map<String, Object> model) {	  
-		  
-		  List<Person> personas = new ArrayList<>();
+	public String welcome(Map<String, Object> model) {
 
-	        Person fer = new Person();
-	        fer.setFirstName("Fernando");
-	        fer.setLastName(" Calvo");
+		List<Person> personas = new ArrayList<>();
 
-	        Person javi = new Person();
-	        javi.setFirstName("Javier");
-	        javi.setLastName(" Rodriguez");
+		Person fer = new Person();
+		fer.setFirstName("Fernando");
+		fer.setLastName(" Calvo");
 
-	        Person pablo = new Person();
-	        pablo.setFirstName("Pablo");
-	        pablo.setLastName(" Santos");
+		Person javi = new Person();
+		javi.setFirstName("Javier");
+		javi.setLastName(" Rodriguez");
 
-	        Person enrq = new Person();
-	        enrq.setFirstName("Enrique");
-	        enrq.setLastName(" Gonzalez");
+		Person pablo = new Person();
+		pablo.setFirstName("Pablo");
+		pablo.setLastName(" Santos");
 
-	        Person ale = new Person();
-	        ale.setFirstName("Alejandro");
-	        ale.setLastName(" Manzano");
+		Person enrq = new Person();
+		enrq.setFirstName("Enrique");
+		enrq.setLastName(" Gonzalez");
 
-	        Person manu = new Person();
-	        manu.setFirstName("Manuel");
-	        manu.setLastName(" Bueno");
+		Person ale = new Person();
+		ale.setFirstName("Alejandro");
+		ale.setLastName(" Manzano");
 
-	        personas.add(pablo);
-	        personas.add(ale);
-	        personas.add(enrq);
-	        personas.add(manu);
-	        personas.add(fer);
-	        personas.add(javi);
+		Person manu = new Person();
+		manu.setFirstName("Manuel");
+		manu.setLastName(" Bueno");
 
-	        model.put("personas", personas);
-	        model.put("title", "dp-2020");
-	        model.put("Grupo", "G3-11");
-      
-	    return "welcome";
-	  }
+		personas.add(pablo);
+		personas.add(ale);
+		personas.add(enrq);
+		personas.add(manu);
+		personas.add(fer);
+		personas.add(javi);
+
+		model.put("personas", personas);
+		model.put("title", "dp-2020");
+		model.put("Grupo", "G3-11");
+
+		return "welcome";
+	}
 }
