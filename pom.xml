@@ -50,7 +50,16 @@
 				<role>leader</role>
 			</roles>
 		</developer>
- 	</developers>
+		<developer>
+			<id>manbuegom</id>
+			<name>Manuel Bueno</name>
+			<email>manbuegom@alum.us.es</email>
+			<url>http://www.tmht.com/leo</url>
+			<roles>
+				<role>leader</role>
+			</roles>
+		</developer>
+		</developers>
 	
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
@@ -133,7 +142,6 @@
             <artifactId>bootstrap</artifactId>
             <version>${webjars-bootstrap.version}</version>
         </dependency>
-
 
 			<!-- Testing -->
 			<dependency>
