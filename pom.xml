@@ -31,6 +31,17 @@
         <spring-format.version>0.0.19</spring-format.version>
 
     </properties>
+     <developers>
+    <developer>
+ 	  <id>fercaldur</id>
+ 	  <name>Fernando</name>
+ 	  <email>fercaldur@us.es</email>
+ 	  <url>https://github.com/fercadu</url>
+ 	  <roles>
+ 	  <role>leader</role>
+ 	  </roles>
+ 	  </developer>
+ 	  </developers>
 
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
