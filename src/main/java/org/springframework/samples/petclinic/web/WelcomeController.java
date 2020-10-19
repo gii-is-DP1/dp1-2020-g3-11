@@ -19,6 +19,7 @@ public class WelcomeController {
 	
 	
 	  @GetMapping({"/","/welcome"})
+
 	  public String welcome(Map<String, Object> model) {	  
 		  
 		  List<Person> personas = new ArrayList<>();
@@ -57,8 +58,7 @@ public class WelcomeController {
 	        model.put("personas", personas);
 	        model.put("title", "dp-2020");
 	        model.put("Grupo", "G3-11");
-
-
+      
 	    return "welcome";
 	  }
 }
