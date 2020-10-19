@@ -51,6 +51,15 @@
 				<role>leader</role>
 			</roles>
 		</developer>
+    <developer>
+			<id>Javi</id>
+			<name>Javier</name>
+			<email>javrodsan5@alum.us.es</email>
+			<url>http://www.tmht.com/leo</url>
+			<roles>
+				<role>leader</role>
+			</roles>
+		</developer>  
 		<developer>
 			<id>manbuegom</id>
 			<name>Manuel Bueno</name>
