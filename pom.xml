@@ -41,6 +41,15 @@
 				<role>leader</role>
 			</roles>
 		</developer>
+		<developer>
+			<id>manbuegom</id>
+			<name>Manuel Bueno</name>
+			<email>manbuegom@alum.us.es</email>
+			<url>http://www.tmht.com/leo</url>
+			<roles>
+				<role>leader</role>
+			</roles>
+		</developer>
 		</developers>
 
 		<dependencies>
