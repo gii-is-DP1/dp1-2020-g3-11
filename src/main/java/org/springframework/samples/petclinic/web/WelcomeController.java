@@ -16,6 +16,7 @@ import java.util.List;
 
 @Controller
 public class WelcomeController {
+
 	
 	
 	  @GetMapping({"/","/welcome"})
