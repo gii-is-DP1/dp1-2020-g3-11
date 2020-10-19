@@ -31,7 +31,18 @@
         <spring-format.version>0.0.19</spring-format.version>
 
     </properties>
-
+    <developers>
+ 	  <developer>
+ 	  <id>enrgonboz</id>
+ 	  <name>Enrique</name>
+ 	  <email>enrgonboz@us.es</email>
+ 	  <url>http://www.https://github.com/enrgonboz</url>
+ 	  <roles>
+ 	  <role>leader</role>
+ 	  </roles>
+ 	  </developer>
+ 	</developers>
+	
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
         <dependency>
