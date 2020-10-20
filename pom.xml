@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -26,7 +27,6 @@
 		<webjars-jquery-ui.version>1.11.4</webjars-jquery-ui.version>
 		<webjars-jquery.version>2.2.4</webjars-jquery.version>
 		<wro4j.version>1.8.0</wro4j.version>
-
 		<jacoco.version>0.8.5</jacoco.version>
 		<spring-format.version>0.0.19</spring-format.version>
     
@@ -47,10 +47,6 @@
 			<name>Alejandro Manzano</name>
 			<email>alemandor1@alum.us.es</email>
 			<url>https://github.com/alemandor1</url>
-			<roles>
-				<role>leader</role>
-			</roles>
-		</developer>
     <developer>
 			<id>Javi</id>
 			<name>Javier</name>
@@ -78,6 +74,11 @@
  	 			 <role>leader</role>
  		    </roles>
  		  </developer>
+      <developer>
+			<id>pabsanort2</id>
+			<name>Pablo Santos</name>
+			<email>pabsanort2@alum.us.es</email>
+        </developer>
  	  </developers>
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
@@ -301,7 +302,6 @@
 				<url>https://www.apache.org/licenses/LICENSE-2.0</url>
 			</license>
 		</licenses>
-
 
 
 </project>
