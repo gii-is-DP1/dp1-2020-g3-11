@@ -28,10 +28,10 @@
 					<span>Home</span>
 				</petclinic:menuItem>
 
-				<petclinic:menuItem active="${name eq 'owners'}" url="/owners/find"
-					title="find owners">
+				<petclinic:menuItem active="${name eq 'festivales'}" url="/festivales"
+					title="find festivales">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					<span>Find owners</span>
+					<span>Mis festivales</span>
 				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'vets'}" url="/vets"
@@ -40,12 +40,27 @@
 					<span>Veterinarians</span>
 				</petclinic:menuItem>
 
-				<petclinic:menuItem active="${name eq 'error'}" url="/oups"
-					title="trigger a RuntimeException to see how it is handled">
-					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-					<span>Error</span>
-				</petclinic:menuItem>
 
+				<petclinic:menuItem active="${name eq 'vademecum'}" url="/diseases"
+					title="vademecum" dropdown="${true}">
+					<ul class="dropdown-menu">
+						<li>
+							<div class="row">
+								<div class="text-center">
+									<a href="<c:url value="/diseases" />">Diseases</a>
+								</div>
+							</div>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<div class="row">
+								<div class="text-center">
+									<a href="<c:url value="#" />">Symptoms</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</petclinic:menuItem>
 			</ul>
 
 
@@ -84,7 +99,7 @@
 								</div>
 							</li>
 							<li class="divider"></li>
-<!-- 							
+							<!-- 							
                             <li> 
 								<div class="navbar-login navbar-login-session">
 									<div class="row">
