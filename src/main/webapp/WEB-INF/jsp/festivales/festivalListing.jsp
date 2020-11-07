@@ -9,7 +9,7 @@
 <petclinic:layout pageName="festivales">
 
 
-<h2>Diseases</h2>
+<h2>Festivales</h2>
 	  <table id="festivalTable" class="table table-striped">
 		<thead>
 			<tr>
@@ -41,7 +41,7 @@
 		</tbody>
 	</table>
 
-<a href="/festivales/new" class="btn  btn-success"><span
-			class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add
+<a href="/festivales/new" class="btn btn-default"><span
+			class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir
 			festival</a>
 </petclinic:layout>

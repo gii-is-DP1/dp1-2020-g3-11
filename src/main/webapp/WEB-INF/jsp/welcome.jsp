@@ -5,18 +5,14 @@
 <!-- %@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %-->
 
 <petclinic:layout pageName="home">
-	<h2>
-		<fmt:message key="welcome" />
-	</h2>
+	<center><h1>
+		Bienvenido a SpringFest
+	</h1></center>
 	<div class="row">
 		<div class="col-md-12">
-			<center>
-
-				<spring:url value="/resources/images/logo_mainSpringFest.png" htmlEscape="true"
-					var="logoImage" />
-				<img class="img-responsive" src="${logoImage}" />
-
-			</center>
+			<center><spring:url value="/resources/images/logo_mainSpringFest.png" htmlEscape="true"
+					var="logoImage"/>
+				<img class="img-responsive" src="${logoImage}" width="721" height="583"/></center>
 		</div>
 	</div>
 </petclinic:layout>
