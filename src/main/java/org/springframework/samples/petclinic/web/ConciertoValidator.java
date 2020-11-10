@@ -25,8 +25,8 @@ import org.springframework.validation.Validator;
 /**
  * <code>Validator</code> for <code>Pet</code> forms.
  * <p>
- * We're not using Bean Validation annotations here because it is easier to define such
- * validation rule in Java.
+ * We're not using Bean Validation annotations here because it is easier to
+ * define such validation rule in Java.
  * </p>
  *
  * @author Ken Krebs
@@ -43,36 +43,33 @@ public class ConciertoValidator implements Validator {
 		LocalDateTime horaCom = concierto.getHoraCom();
 		LocalDateTime horaFin = concierto.getHoraFin();
 
-		if(fecha!=null || horaCom!=null || horaFin!=null) {
-		// fecha validation
-		if (fecha.isBefore(LocalDate.now())) {
-			errors.rejectValue("fecha", "La fecha tiene que ser posterior a la actualidad", "La fecha tiene que ser posterior a la actualidad");
-		}
-
-		// horas validation
-		if (horaFin.isBefore(horaCom)) {
-					errors.rejectValue("horaCom", "La fecha comienzo tiene que ser anterior a la hora final", "La fecha comienzo tiene que ser anterior a la hora final");
-				}
-				
-		// horas validation
-		if (horaFin.isBefore(horaCom)) {
-					errors.rejectValue("horaCom", "La fecha comienzo tiene que ser anterior a la hora final", "La fecha comienzo tiene que ser anterior a la hora final");
-		}
-		
-		//hora de comienzo igual a la fecha de concierto
-		
-		if (!horaCom.toLocalDate().isEqual(fecha)) {
-			errors.rejectValue("fecha", "La fecha del concierto debe ser igual a la fecha de inicio", "La fecha del concierto debe ser igual a la fecha de inicio");
+		if (fecha != null || horaCom != null || horaFin != null) {
+			// fecha validation
+			if (fecha.isBefore(LocalDate.now())) {
+				errors.rejectValue("fecha", "La fecha tiene que ser posterior a la actualidad",
+						"La fecha tiene que ser posterior a la actualidad");
 			}
-		
+
+			// horas validation
+			if (horaFin.isBefore(horaCom) || horaFin.equals(horaCom)) {
+				errors.rejectValue("horaCom", "La fecha comienzo tiene que ser anterior a la hora final",
+						"La fecha comienzo tiene que ser anterior a la hora final");
+			}
+
+			// hora de comienzo igual a la fecha de concierto
+
+			if (!horaCom.toLocalDate().isEqual(fecha)) {
+				errors.rejectValue("fecha", "La fecha del concierto debe ser igual a la fecha de inicio",
+						"La fecha del concierto debe ser igual a la fecha de inicio");
+			}
+
 		} else {
 			errors.rejectValue("fecha", "Existe algún campo sin completar", "Existe algún campo sin completar");
 			errors.rejectValue("horaCom", "Existe algún campo sin completar", "Existe algún campo sin completar");
 			errors.rejectValue("horaFin", "Existe algún campo sin completar", "Existe algún campo sin completar");
 
 		}
-		
-		
+
 	}
 
 	/**
