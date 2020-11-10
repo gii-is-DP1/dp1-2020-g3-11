@@ -8,7 +8,7 @@
 
 <petclinic:layout pageName="festivales">
     <h2>
-        <c:if test="${festival['new']}">New </c:if> Festival
+        <c:if test="${festival['new']}">Nuevo </c:if> Festival
     </h2>
     <form:form modelAttribute="festival" class="form-horizontal" id="add-festival-form">
         <div class="form-group has-feedback">
