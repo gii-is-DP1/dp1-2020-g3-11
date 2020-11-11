@@ -25,51 +25,26 @@
 				<petclinic:menuItem active="${name eq 'home'}" url="/"
 					title="home page">
 					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-					<span>Home</span>
-				</petclinic:menuItem>   
-				<petclinic:menuItem active="${name eq 'festivales'}" url="/festivales"
-					title="find festivales">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					<span>Mis festivales</span>
+					<span>Inicio</span>
 				</petclinic:menuItem>
-				
-				<petclinic:menuItem active="${name eq 'vets'}" url="/vets"
-					title="veterinarians">
+				<petclinic:menuItem active="${name eq 'festivales'}"
+					url="/festivales" title="find festivales">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					<span>Mi festival</span>
+				</petclinic:menuItem>
+
+				<petclinic:menuItem active="${name eq 'about'}" url="/about"
+					title="about">
 					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>Veterinarians</span>
+					<span>Sobre nosotros</span>
 				</petclinic:menuItem>
 
-				<petclinic:menuItem active="${name eq 'conciertos'}" url="/conciertos"
-					title="find conciertos">
+				<petclinic:menuItem active="${name eq 'artistas'}"
+					url="/artistas" title="find artistas">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					<span>Conciertos</span>
-				</petclinic:menuItem>
-
-				<petclinic:menuItem active="${name eq 'vademecum'}" url="/diseases"
-					title="vademecum" dropdown="${true}">
-					<ul class="dropdown-menu">
-						<li>
-							<div class="row">
-								<div class="text-center">
-									<a href="<c:url value="/diseases" />">Diseases</a>
-								</div>
-							</div>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<div class="row">
-								<div class="text-center">
-									<a href="<c:url value="#" />">Symptoms</a>
-								</div>
-							</div>
-						</li>
-					</ul>
+					<span>Artistas</span>
 				</petclinic:menuItem>
 			</ul>
-
-
-
-
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="!isAuthenticated()">
 					<li><a href="<c:url value="/login" />">Login</a></li>
