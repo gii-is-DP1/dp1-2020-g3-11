@@ -1,44 +1,44 @@
-INSERT INTO users(username,password,enabled) VALUES ('enrgonboz','enrique',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (85,'enrgonboz','admin');
-
-INSERT INTO users(username,password,enabled) VALUES ('Javier','javi',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (84,'Javier','admin');
-
-INSERT INTO users(username,password,enabled) VALUES ('Alejandro','ale',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (80,'Alejandro','admin');
-
-INSERT INTO users(username,password,enabled) VALUES ('Manuel','manu',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (81,'Manuel','admin');
-
-INSERT INTO users(username,password,enabled) VALUES ('Fernando','fer',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (82,'Fernando','admin');
-
-INSERT INTO users(username,password,enabled) VALUES ('pabsanort2','pablo',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (83,'pabsanort2','admin');
-
-INSERT INTO vets VALUES (1, 'James', 'Carter');
-INSERT INTO vets VALUES (2, 'Helen', 'Leary');
-INSERT INTO vets VALUES (3, 'Linda', 'Douglas');
-INSERT INTO vets VALUES (4, 'Rafael', 'Ortega');
-INSERT INTO vets VALUES (5, 'Henry', 'Stevens');
-INSERT INTO vets VALUES (6, 'Sharon', 'Jenkins');
-
-INSERT INTO specialties VALUES (1, 'radiology');
-INSERT INTO specialties VALUES (2, 'surgery');
-INSERT INTO specialties VALUES (3, 'dentistry');
-
-INSERT INTO vet_specialties VALUES (2, 1);
-INSERT INTO vet_specialties VALUES (3, 2);
-INSERT INTO vet_specialties VALUES (3, 3);
-INSERT INTO vet_specialties VALUES (4, 2);
-INSERT INTO vet_specialties VALUES (5, 1);
-
-INSERT INTO types VALUES (1, 'cat');
-INSERT INTO types VALUES (2, 'dog');
-INSERT INTO types VALUES (3, 'lizard');
-INSERT INTO types VALUES (4, 'snake');
-INSERT INTO types VALUES (5, 'bird');
-INSERT INTO types VALUES (6, 'hamster');
+--INSERT INTO users(username,password,enabled) VALUES ('enrgonboz','enrique',TRUE);
+--INSERT INTO authorities(id,username,authority) VALUES (85,'enrgonboz','admin');
+--
+--INSERT INTO users(username,password,enabled) VALUES ('Javier','javi',TRUE);
+--INSERT INTO authorities(id,username,authority) VALUES (84,'Javier','admin');
+--
+--INSERT INTO users(username,password,enabled) VALUES ('Alejandro','ale',TRUE);
+--INSERT INTO authorities(id,username,authority) VALUES (80,'Alejandro','admin');
+--
+--INSERT INTO users(username,password,enabled) VALUES ('Manuel','manu',TRUE);
+--INSERT INTO authorities(id,username,authority) VALUES (81,'Manuel','admin');
+--
+--INSERT INTO users(username,password,enabled) VALUES ('Fernando','fer',TRUE);
+--INSERT INTO authorities(id,username,authority) VALUES (82,'Fernando','admin');
+--
+--INSERT INTO users(username,password,enabled) VALUES ('pabsanort2','pablo',TRUE);
+--INSERT INTO authorities(id,username,authority) VALUES (83,'pabsanort2','admin');
+--
+--INSERT INTO vets VALUES (1, 'James', 'Carter');
+--INSERT INTO vets VALUES (2, 'Helen', 'Leary');
+--INSERT INTO vets VALUES (3, 'Linda', 'Douglas');
+--INSERT INTO vets VALUES (4, 'Rafael', 'Ortega');
+--INSERT INTO vets VALUES (5, 'Henry', 'Stevens');
+--INSERT INTO vets VALUES (6, 'Sharon', 'Jenkins');
+--
+--INSERT INTO specialties VALUES (1, 'radiology');
+--INSERT INTO specialties VALUES (2, 'surgery');
+--INSERT INTO specialties VALUES (3, 'dentistry');
+--
+--INSERT INTO vet_specialties VALUES (2, 1);
+--INSERT INTO vet_specialties VALUES (3, 2);
+--INSERT INTO vet_specialties VALUES (3, 3);
+--INSERT INTO vet_specialties VALUES (4, 2);
+--INSERT INTO vet_specialties VALUES (5, 1);
+--
+--INSERT INTO types VALUES (1, 'cat');
+--INSERT INTO types VALUES (2, 'dog');
+--INSERT INTO types VALUES (3, 'lizard');
+--INSERT INTO types VALUES (4, 'snake');
+--INSERT INTO types VALUES (5, 'bird');
+--INSERT INTO types VALUES (6, 'hamster');
 
 
 -- AQUI ABAJO SE CREA EL USER GENERAL Y LUEGO SE LE DA ESAS CREDENCIALES AL ADMIN, SPONSOR O USER CORRESPONDIENTE (TIENEN TODOS LA MISMA USERY PASS) PERO SON DISTINTOS
@@ -64,18 +64,26 @@ INSERT INTO sponsor VALUES (60, 'Alejandro', 'Rios', '45987990X', 'ale@sponsor.c
 INSERT INTO festival VALUES (1,'Cabo de Plata',100,'2020-06-06','2020-06-09','Cádiz');
 INSERT INTO festival VALUES (2,'Dreambeach',200,'2021-07-25','2021-07-29','Almería');
 
-INSERT INTO artista VALUES (1,'Los papanatas','papafritas@grupo.com',0,'657412356');
-INSERT INTO artista VALUES (2,'Canelones','canelone@grupo.com',2,'657452356');
-INSERT INTO artista VALUES (3,'Yung beef','yb@grupo.com',5,'657411236');
-INSERT INTO artista VALUES (4,'Dellafuente','della@grupo.com',5,'654112356');
-INSERT INTO artista VALUES (5,'Fumeto','fumeto@grupo.com',2,'657466447');
-INSERT INTO artista VALUES (6,'El cobra','cobra@grupo.com',1,'663342356');
-INSERT INTO artista VALUES (7,'Maikel','maikel@grupo.com',1,'657778136');
-INSERT INTO artista VALUES (8,'Flammingo','fmgo@grupo.com',2,'654515556');
-INSERT INTO artista VALUES (9,'El manteca','manteca@grupo.com',0,'661112356');
-INSERT INTO artista VALUES (10,'Suli de huelva','suli@grupo.com',6,'657114433');
-INSERT INTO artista VALUES (11,'Makukote','mkk@grupo.com',1,'688996236');
-INSERT INTO artista VALUES (12,'Antonio Martínez','am@grupo.com',3,'622222356');
+INSERT INTO generos VALUES (1, 'pop');
+INSERT INTO generos VALUES (2, 'reggaeton');
+INSERT INTO generos VALUES (3, 'electronica');
+INSERT INTO generos VALUES (4, 'hip-hop');
+INSERT INTO generos VALUES (5, 'trap');
+INSERT INTO generos VALUES (6, 'flamenco');
+
+INSERT INTO artista VALUES (1,'Los papanatas','papafritas@grupo.com','657412356', 1);
+INSERT INTO artista VALUES (2,'Canelones','canelone@grupo.com','657452356',2);
+INSERT INTO artista VALUES (3,'Yung beef','yb@grupo.com','657411236', 5);
+INSERT INTO artista VALUES (4,'Dellafuente','della@grupo.com','654112356',5);
+INSERT INTO artista VALUES (5,'Fumeto','fumeto@grupo.com','657466447',2);
+INSERT INTO artista VALUES (6,'El cobra','cobra@grupo.com','663342356',1);
+INSERT INTO artista VALUES (7,'Maikel','maikel@grupo.com','657778136',1);
+INSERT INTO artista VALUES (8,'Flammingo','fmgo@grupo.com','654515556',2);
+INSERT INTO artista VALUES (9,'El manteca','manteca@grupo.com','661112356',4);
+INSERT INTO artista VALUES (10,'Suli de huelva','suli@grupo.com','657114433',6);
+INSERT INTO artista VALUES (11,'Makukote','mkk@grupo.com','688996236',4);
+INSERT INTO artista VALUES (12,'Antonio Martínez','am@grupo.com','622222356',3);
+INSERT INTO artista VALUES (13,'Prueba Javi','prueba@grupo.com','622222356',3);
 
 INSERT INTO entrada VALUES (1,40,0,1);
 INSERT INTO entrada VALUES (2,60,1,1);

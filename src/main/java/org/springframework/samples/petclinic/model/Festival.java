@@ -48,5 +48,8 @@ public class Festival extends NamedEntity {
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	@NotNull
 	private LocalDate fechaFin;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "festival")
+	private Set<FestivalArtista> artistas;
 
 }
