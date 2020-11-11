@@ -16,6 +16,9 @@ public class FestivalService {
 	@Autowired
 	FestivalRepository festivalRepo;
 
+//	public Collection<Artista> findAllArtistasByFestivalId(int festivalId){
+//		return festivalRepo.findAllArtistasByFestivalId(festivalId);
+//	}
 	
 	public Collection<Festival> findAll() {
 		return festivalRepo.findAll();
@@ -32,7 +35,6 @@ public class FestivalService {
 
 	public void save(@Valid Festival festival) {
 		festivalRepo.save(festival);
-
 	}
 
 }
