@@ -20,57 +20,76 @@
 			</button>
 		</div>
 		<div class="navbar-collapse collapse" id="main-navbar">
+
 			<ul class="nav navbar-nav">
-
-				<petclinic:menuItem active="${name eq 'home'}" url="/"
-					title="home page">
-					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-					<span>Home</span>
-				</petclinic:menuItem>
-
-				<petclinic:menuItem active="${name eq 'festivales'}" url="/festivales"
-					title="find festivales">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					<span>Mis festivales</span>
-				</petclinic:menuItem>
-
-				<petclinic:menuItem active="${name eq 'vets'}" url="/vets"
-					title="veterinarians">
-					<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-					<span>Veterinarians</span>
-				</petclinic:menuItem>
-
-
-				<petclinic:menuItem active="${name eq 'vademecum'}" url="/diseases"
-					title="vademecum" dropdown="${true}">
-					<ul class="dropdown-menu">
-						<li>
-							<div class="row">
-								<div class="text-center">
-									<a href="<c:url value="/diseases" />">Diseases</a>
-								</div>
-							</div>
-						</li>
-						<li class="divider"></li>
-						<li>
-							<div class="row">
-								<div class="text-center">
-									<a href="<c:url value="#" />">Symptoms</a>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</petclinic:menuItem>
-			</ul>
-
-
-
-
-			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="!isAuthenticated()">
-					<li><a href="<c:url value="/login" />">Login</a></li>
-					<li><a href="<c:url value="/users/new" />">Register</a></li>
+
+
+					<petclinic:menuItem active="${name eq 'home'}" url="/"
+						title="home page">
+						<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+
+						<span>Inicio</span>
+					</petclinic:menuItem>
+					<petclinic:menuItem active="${name eq 'miperfil'}" url="/miperfil"
+						title="mi  perfil">
+						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+						<span>Mi Perfil</span>
+					</petclinic:menuItem>
+
+					<petclinic:menuItem active="${name eq 'about'}" url="/about"
+						title="about">
+						<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+						<span>Sobre nosotros</span>
+					</petclinic:menuItem>
+
+
+					<li></span><a href="<c:url  value="/login" />">Login</a></li>
+
+
+					<petclinic:menuItem active="${name eq 'registro'}" url="/users/new"
+						title="registro">
+						<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+						<span>Registro</span>
+					</petclinic:menuItem>
+
 				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+
+					<petclinic:menuItem active="${name eq 'home'}" url="/"
+						title="home page">
+						<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+						<span>Inicio</span>
+					</petclinic:menuItem>
+
+					<petclinic:menuItem active="${name eq 'festivales'}"
+						url="/festivales" title="find festival">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						<span>Mi Festival</span>
+					</petclinic:menuItem>
+
+					<petclinic:menuItem active="${name eq 'miperfil'}" url="/miperfil"
+						title="mi  perfil">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						<span>Mi Pefil</span>
+					</petclinic:menuItem>
+
+					<petclinic:menuItem active="${name eq 'about'}" url="/about"
+						title="about">
+						<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+						<span>Sobre nosotros</span>
+					</petclinic:menuItem>
+
+					<petclinic:menuItem active="${name eq 'artistas'}" url="/artistas"
+						title="find artistas">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						<span>Artistas</span>
+					</petclinic:menuItem>
+				</sec:authorize>
+
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+
 				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"> <span class="glyphicon glyphicon-user"></span> 
