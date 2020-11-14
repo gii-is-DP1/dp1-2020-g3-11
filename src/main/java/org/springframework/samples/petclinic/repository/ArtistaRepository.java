@@ -41,4 +41,10 @@ public interface ArtistaRepository extends CrudRepository<Artista, Integer> {
 	
 	@Query("SELECT gtype FROM GeneroType gtype where gtype.name = ?1")
 	GeneroType findGeneroTypeByName(String genero);
+	
+	@Query("SELECT a.name FROM Artista a ORDER BY a.name")
+	Collection<String> findAllArtistas();
+	
+	@Query("SELECT a FROM Artista a where a.name = ?1")
+	Artista findArtistaByName(String name);
 }

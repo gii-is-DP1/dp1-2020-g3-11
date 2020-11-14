@@ -18,6 +18,7 @@
 				<th style="width: 20%;">Hora Comienzo</th>
 				<th style="width: 20%;">Hora Fin</th>
 				<th style="width: 20%;">Artista</th>
+				<th style="width: 20%;">Recinto</th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -30,10 +31,11 @@
 					<td><c:out value="${concierto.horaCom}" /></td>
 					<td><c:out value="${concierto.horaFin}" /></td>
 					<td><c:out value="${concierto.artista.name}" /></td>
-					<td><a href="/conciertos/${concierto.id}/edit"> <span
+					<td><c:out value="${concierto.recinto.name}" /></td>
+					<td><a href="conciertos/${concierto.id}/edit"> <span
 							class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 					</a></td>
-					<td><a href="/conciertos/${concierto.id}/delete"> <span
+					<td><a href="conciertos/${concierto.id}/delete"> <span
 							class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 					</a></td>
 				</tr>
@@ -41,7 +43,7 @@
 		</tbody>
 	</table>
 
-<a href="/conciertos/new" class="btn btn-default"><span
+<a href="conciertos/new" class="btn btn-default"><span
 			class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir
 			concierto</a>
 </petclinic:layout>

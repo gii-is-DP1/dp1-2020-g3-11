@@ -31,25 +31,22 @@
 
 						<span>Inicio</span>
 					</petclinic:menuItem>
-					<petclinic:menuItem active="${name eq 'miperfil'}" url="/miperfil"
-						title="mi  perfil">
-						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						<span>Mi Perfil</span>
-					</petclinic:menuItem>
 
 					<petclinic:menuItem active="${name eq 'about'}" url="/about"
 						title="about">
-						<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
 						<span>Sobre nosotros</span>
 					</petclinic:menuItem>
 
-
-					<li></span><a href="<c:url  value="/login" />">Login</a></li>
-
+					<petclinic:menuItem active="${name eq 'login'}" url="/login"
+						title="login">
+						<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+						<span>Login</span>
+					</petclinic:menuItem>
 
 					<petclinic:menuItem active="${name eq 'registro'}" url="/users/new"
 						title="registro">
-						<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
 						<span>Registro</span>
 					</petclinic:menuItem>
 
@@ -62,27 +59,29 @@
 						<span>Inicio</span>
 					</petclinic:menuItem>
 
-					<petclinic:menuItem active="${name eq 'festivales'}"
+<%-- 					<sec:authorize access="hasRole('sponsor')">
+ --%>					<petclinic:menuItem active="${name eq 'festivales'}"
 						url="/festivales" title="find festival">
-						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-music" aria-hidden="true"></span>
 						<span>Mi Festival</span>
 					</petclinic:menuItem>
-
+<%-- 					</sec:authorize>
+ --%>
 					<petclinic:menuItem active="${name eq 'miperfil'}" url="/miperfil"
 						title="mi  perfil">
-						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 						<span>Mi Pefil</span>
 					</petclinic:menuItem>
 
 					<petclinic:menuItem active="${name eq 'about'}" url="/about"
 						title="about">
-						<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
 						<span>Sobre nosotros</span>
 					</petclinic:menuItem>
 
 					<petclinic:menuItem active="${name eq 'artistas'}" url="/artistas"
 						title="find artistas">
-						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>
 						<span>Artistas</span>
 					</petclinic:menuItem>
 				</sec:authorize>
