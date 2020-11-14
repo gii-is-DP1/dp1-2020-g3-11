@@ -62,6 +62,8 @@ public class ConciertoValidator implements Validator {
 				errors.rejectValue("fecha", "La fecha del concierto debe ser igual a la fecha de inicio",
 						"La fecha del concierto debe ser igual a la fecha de inicio");
 			}
+			
+			//dos ciertos como maximo cada dos horas
 
 		} else {
 			errors.rejectValue("fecha", "Existe algún campo sin completar", "Existe algún campo sin completar");

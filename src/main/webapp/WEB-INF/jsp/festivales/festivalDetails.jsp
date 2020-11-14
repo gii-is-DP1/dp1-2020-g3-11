@@ -41,4 +41,10 @@
 	<a href="/festivales/${festival.id}/artistas/listdisponibles"
 		class="btn btn-default"><span class="glyphicon glyphicon-plus"
 		aria-hidden="true"></span> Ver artistas disponibles</a>
+		
+		<br><br><br><br><br>
+		<h2>Conciertos</h2>
+		<a href="/festivales/${festival.id}/conciertos"
+		class="btn btn-default"><span
+		aria-hidden="true"></span> Conciertos</a>
 </petclinic:layout>

@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -24,6 +25,10 @@ public class Concierto extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "recinto_id")
 	private Recinto recinto;
+	
+	@ManyToOne
+	@JoinColumn(name = "festival_id")
+	private Festival festival;
 	
 	@ManyToOne
 	@JoinColumn(name = "artista_id")

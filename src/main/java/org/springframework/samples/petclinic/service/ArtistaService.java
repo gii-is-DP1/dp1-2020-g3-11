@@ -63,6 +63,14 @@ public class ArtistaService {
 //			artista.addFestival(festival);
 //		}
 //	}
+	
+	public Collection<String> findAllArtistas() {
+		return artistaRepository.findAllArtistas();
+	} 
+	
+	public Artista findArtistaByName(String name) {
+		return artistaRepository.findArtistaByName(name);
+	}
 
 	@Transactional
 	public void delete(Artista artista) {

@@ -6,6 +6,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
+
 <petclinic:layout pageName="conciertos">
 
 	<jsp:attribute name="customScript">
@@ -37,10 +38,14 @@
             <petclinic:inputField label="Fecha" name="fecha"/>
             <petclinic:inputField label="Hora Comienzo" name="horaCom"/>
             <petclinic:inputField label="Hora Fin" name="horaFin"/>  
-			<%--  <petclinic:selectField label="Artista" name="artista" names="${artistas}" size="artistas.size"/>--%>
-			<!-- aqui deberia aparecer en un select los artistas que podemos elegir para el concierto, hay que retocarlo mas adelante -->
-			<petclinic:inputField label="ID del artista" name="artista.id"/>
-			<petclinic:inputField label="ID del recinto" name="recinto.id"/>
+			<div class="control-group">
+				<petclinic:selectField name="artista.name" label="Artista " names="${artistas}"
+					size="${artistas.size()}" />
+			</div>
+			<div class="control-group">
+				<petclinic:selectField name="recinto.name" label="Recinto " names="${recintos}"
+					size="${recintos.size()}" />
+			</div>
             
         </div>
         <div class="form-group">

@@ -85,6 +85,10 @@ INSERT INTO artista VALUES (11,'Makukote','mkk@grupo.com','688996236',4);
 INSERT INTO artista VALUES (12,'Antonio Martínez','am@grupo.com','622222356',3);
 INSERT INTO artista VALUES (13,'Prueba Javi','prueba@grupo.com','622222356',3);
 
+INSERT INTO festival_artista VALUES (1, 1, 2);
+INSERT INTO festival_artista VALUES (2, 2, 2);
+INSERT INTO festival_artista VALUES (3, 3, 2);
+
 INSERT INTO entrada VALUES (1,40,0,1);
 INSERT INTO entrada VALUES (2,60,1,1);
 INSERT INTO entrada VALUES (3,80,2,1);
@@ -97,14 +101,20 @@ INSERT INTO oferta VALUES (4,10,'Camiseta festival');
 INSERT INTO oferta VALUES (5,15,'Una carga de movil y una camiseta');
 INSERT INTO oferta VALUES (6,25,'Camiseta festival');
 
-INSERT INTO recinto VALUES (1,50000,200,4,2,1);
-INSERT INTO recinto VALUES (2,40000,100,0,1,1);
-INSERT INTO recinto VALUES (3,30000,50,0,0,1);
-INSERT INTO recinto VALUES (4,45000,220,4,2,1);
-INSERT INTO recinto VALUES (5,35000,150,0,1,1);
-INSERT INTO recinto VALUES (6,20000,100,0,0,1);
-INSERT INTO recinto VALUES (7,60000,180,4,2,1);
-INSERT INTO recinto VALUES (8,60000,120,0,1,1);
+INSERT INTO tabla_tipos_recinto VALUES (1, 'Parking');
+INSERT INTO tabla_tipos_recinto VALUES (2, 'Camping');
+INSERT INTO tabla_tipos_recinto VALUES (3, 'Escenario');
+
+INSERT INTO recinto VALUES (1,'Escenario Terra',50000,200,4,1,3);
+INSERT INTO recinto VALUES (2,'Camping Atlas',20000,100,0,1,2);
+INSERT INTO recinto VALUES (3,'Parking 1',30000,50,0,1,1);
+INSERT INTO recinto VALUES (4,'Escenario Benito Villamarin',45000,220,4,1,3);
+INSERT INTO recinto VALUES (5,'Escenario Electro',35000,150,4,2,2);
+INSERT INTO recinto VALUES (6,'Escenario Musica Urban',22000,150,4,2,2);
+INSERT INTO recinto VALUES (7,'Camping DreamBeach',15000,100,0,1,2);
+INSERT INTO recinto VALUES (8,'Parking DreamBeach',30000,50,0,1,1);
+INSERT INTO recinto VALUES (9,'Escenario Carranza',60000,180,4,1,3);
+INSERT INTO recinto VALUES (10,'Camping Falla',60000,120,0,1,2);
 
 INSERT INTO puesto VALUES (1,1000,1,0,1);
 INSERT INTO puesto VALUES (2,2000,0,1,1);
@@ -119,11 +129,10 @@ INSERT INTO puesto VALUES (10,980,1,0,1);
 INSERT INTO puesto VALUES (11,2050,0,1,1);
 INSERT INTO puesto VALUES (12,3520,2,2,1);
 
-INSERT INTO concierto VALUES (1,'2021-08-20','2021-08-20 17:00','2021-08-20 18:00',1,2);
-INSERT INTO concierto VALUES (2,'2021-09-15','2021-09-15 16:00','2021-09-15 17:00',5,2);
-INSERT INTO concierto VALUES (3,'2021-10-01','2021-10-01 18:00','2021-10-01 20:00',6,2);
-INSERT INTO concierto VALUES (4,'2021-12-07','2021-12-07 22:00','2021-12-07 23:30',10,2);
-INSERT INTO concierto VALUES (5,'2021-11-03','2021-11-03 12:00','2021-11-03 14:00',7,2);
+INSERT INTO concierto VALUES (1,'2021-08-20','2021-08-20 17:00','2021-08-20 18:00',1,2,5);
+INSERT INTO concierto VALUES (2,'2021-09-15','2021-09-15 16:00','2021-09-15 17:00',2,2,6);
+INSERT INTO concierto VALUES (3,'2021-10-01','2021-10-01 18:00','2021-10-01 20:00',3,2,5);
+
 
 INSERT INTO valoracion VALUES (1,'Muy bueno, me encantó.',4,1);
 INSERT INTO valoracion VALUES (2,'Fatal, la limpieza sobre todo.',1,1);
