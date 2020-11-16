@@ -89,10 +89,14 @@ INSERT INTO festival_artista VALUES (1, 1, 2);
 INSERT INTO festival_artista VALUES (2, 2, 2);
 INSERT INTO festival_artista VALUES (3, 3, 2);
 
-INSERT INTO entrada VALUES (1,40,0,1);
-INSERT INTO entrada VALUES (2,60,1,1);
-INSERT INTO entrada VALUES (3,80,2,1);
-INSERT INTO entrada VALUES (4,90,3,1);
+INSERT INTO entradatypes VALUES (1, 'camping');
+INSERT INTO entradatypes VALUES (2, 'no camping');
+INSERT INTO entradatypes VALUES (3, 'fiesta');
+
+
+INSERT INTO entrada VALUES (1,40,1,1,20);
+INSERT INTO entrada VALUES (2,30,2,1,23);
+INSERT INTO entrada VALUES (3,50,1,1,22);
 
 INSERT INTO oferta VALUES (1,20,'Camisetas y 3 bolsas de hielo');
 INSERT INTO oferta VALUES (2,30,'Botella de Ron y 1 bolsa de hielos');
@@ -137,3 +141,5 @@ INSERT INTO concierto VALUES (3,'2021-10-01','2021-10-01 18:00','2021-10-01 20:0
 INSERT INTO valoracion VALUES (1,'Muy bueno, me encantó.',4,1);
 INSERT INTO valoracion VALUES (2,'Fatal, la limpieza sobre todo.',1,1);
 INSERT INTO valoracion VALUES (3,'Genial.',3,1);
+
+
