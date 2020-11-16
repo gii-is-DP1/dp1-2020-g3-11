@@ -14,7 +14,9 @@ import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,11 +54,11 @@ public class ArtistaController {
 //	public void initOwnerBinder(WebDataBinder dataBinder) {
 //		dataBinder.setDisallowedFields("id");
 //	}
-
-//	@InitBinder("pet")
-//	public void initPetBinder(WebDataBinder dataBinder) {
-//		dataBinder.setValidator(new PetValidator());
-//	}
+	
+	@InitBinder("artista")
+	public void initArtistBinder(WebDataBinder dataBinder) {
+		dataBinder.setValidator(new ArtistaValidator());
+	}
 
 	@GetMapping(value = "/artistas/new")
 	public String initCreationForm(Festival festival, ModelMap model) {
