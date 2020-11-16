@@ -39,10 +39,12 @@
             <petclinic:inputField label="Hora Comienzo" name="horaCom"/>
             <petclinic:inputField label="Hora Fin" name="horaFin"/>  
 			<div class="control-group">
+
 				<petclinic:selectField name="artista.name" label="Artista " names="${artistas}"
 					size="${artistas.size()}" />
 			</div>
 			<div class="control-group">
+			
 				<petclinic:selectField name="recinto.name" label="Recinto " names="${recintos}"
 					size="${recintos.size()}" />
 			</div>

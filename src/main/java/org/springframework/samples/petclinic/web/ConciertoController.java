@@ -36,48 +36,57 @@ public class ConciertoController {
 	public static final String CONCIERTOS_LISTING = "conciertos/conciertoListing";
 
 	@Autowired
-	ConciertoService conciertoService;
-	RecintoService recintoService;
-	FestivalService festivalService;
-	ArtistaService artistaService;
-	FestivalArtistaService festivalArtistaService;
-	
+	private final ConciertoService conciertoService;
+	private final RecintoService recintoService;
+	private final FestivalService festivalService;
+	private final ArtistaService artistaService;
+	private final FestivalArtistaService festivalArtistaService;
+
 	@Autowired
-	public ConciertoController(ConciertoService conciertoService, FestivalService festivalService, ArtistaService artistaService, 
-			RecintoService recintoService, FestivalArtistaService festivalArtistaService) {
+	public ConciertoController(ConciertoService conciertoService, FestivalService festivalService,
+			ArtistaService artistaService, RecintoService recintoService,
+			FestivalArtistaService festivalArtistaService) {
 		this.conciertoService = conciertoService;
-        this.festivalService = festivalService;
-        this.recintoService = recintoService;
-        this.artistaService = artistaService;
-        this.festivalArtistaService = festivalArtistaService;
+		this.festivalService = festivalService;
+		this.recintoService = recintoService;
+		this.artistaService = artistaService;
+		this.festivalArtistaService = festivalArtistaService;
 	}
 
 	@ModelAttribute("festival")
 	public Optional<Festival> findFestival(@PathVariable("festivalId") int festivalId) {
 		return this.festivalService.findById(festivalId);
 	}
-	
+
 	@ModelAttribute("artistas")
 	public Collection<String> artistas(@PathVariable("festivalId") int festivalId) {
-		return festivalArtistaService.findAllArtistasByFestivalId(festivalId).stream().map(x-> x.getName()).collect(Collectors.toList());
+		return festivalArtistaService.findAllArtistasByFestivalId(festivalId).stream().map(x -> x.getName())
+				.collect(Collectors.toList());
 
 	}
-	
+
 	@ModelAttribute("recintos")
 	public Collection<String> recintos(@PathVariable("festivalId") int festivalId) {
-		return conciertoService.findAllRecintosByFestivalId(festivalId).stream().map(x-> x.getName()).collect(Collectors.toList());
+		return conciertoService.findAllRecintosByFestivalId(festivalId).stream().map(x -> x.getName())
+				.collect(Collectors.toList());
 	}
 	
+	@InitBinder("festival")
+	public void initFestivalBinder(WebDataBinder dataBinder) {
+		dataBinder.setDisallowedFields("id");
+	}
+	
+
+	@InitBinder("concierto")
+	public void initConciertoBinder(WebDataBinder dataBinder) {
+		dataBinder.setValidator(new ConciertoValidator());
+	}
+
 	@GetMapping
 	public String listConciertos(@PathVariable("festivalId") int festivalId, ModelMap model) {
 
 		model.addAttribute("conciertos", conciertoService.findAllConciertosByFestivalId(festivalId));
 		return CONCIERTOS_LISTING;
-	}
-
-	@InitBinder("concierto")
-	public void initConciertoBinder(WebDataBinder dataBinder) {
-	dataBinder.setValidator(new ConciertoValidator());
 	}
 
 	@GetMapping("/{id}/edit")
@@ -88,17 +97,21 @@ public class ConciertoController {
 	}
 
 	@PostMapping("/{id}/edit")
-	public String editConcierto(@PathVariable("id") int id, @PathVariable("festivalId") int festivalId, @Valid Concierto concierto, BindingResult binding,
-			ModelMap model) {
+	public String editConcierto(@PathVariable("id") int id, @PathVariable("festivalId") int festivalId,
+			@Valid Concierto concierto, BindingResult binding, ModelMap model) {
+
 		if (binding.hasErrors()) {
 			model.put("concierto", concierto);
 			return CONCIERTOS_FORM;
+
 		} else {
+			
 			Festival festival = festivalService.findById(festivalId).orElse(null);
 			Concierto modifiedConcierto = conciertoService.findById(id).orElse(null);
 			BeanUtils.copyProperties(concierto, modifiedConcierto, "id", "festival");
-			Artista artista = this.conciertoService.findArtistaByName(modifiedConcierto.getArtista().getName());
-			Recinto recinto = this.conciertoService.findRecintoByName(modifiedConcierto.getRecinto().getName());
+			Artista artista = this.artistaService.findArtistaByName(modifiedConcierto.getArtista().getName());
+			Recinto recinto = this.recintoService.findRecintoByName(modifiedConcierto.getRecinto().getName());
+
 			modifiedConcierto.setArtista(artista);
 			modifiedConcierto.setRecinto(recinto);
 			conciertoService.save(modifiedConcierto);
@@ -108,7 +121,8 @@ public class ConciertoController {
 	}
 
 	@GetMapping("/{id}/delete")
-	public String deleteConcierto(@PathVariable("id") int id, @PathVariable("festivalId") int festivalId, ModelMap model) {
+	public String deleteConcierto(@PathVariable("id") int id, @PathVariable("festivalId") int festivalId,
+			ModelMap model) {
 		Optional<Concierto> concierto = conciertoService.findById(id);
 		if (concierto.isPresent()) {
 			conciertoService.delete(concierto.get());
@@ -127,22 +141,23 @@ public class ConciertoController {
 	}
 
 	@PostMapping("/new")
-	public String saveNewConcierto(@Valid Concierto concierto, @Valid Festival festival, BindingResult binding, ModelMap model) {
-		
+	public String saveNewConcierto(@Valid Concierto concierto, Festival festival, BindingResult binding,
+			ModelMap model) {
+
 		if (binding.hasErrors()) {
+			model.put("concierto", concierto);
 			return CONCIERTOS_FORM;
-		
-		}else{
-			
-			concierto.setRecinto(conciertoService.findRecintoByName(concierto.getRecinto().getName()));
-			concierto.setArtista(conciertoService.findArtistaByName(concierto.getArtista().getName()));
+
+		} else {
+
+			concierto.setRecinto(recintoService.findRecintoByName(concierto.getRecinto().getName()));
+			concierto.setArtista(artistaService.findArtistaByName(concierto.getArtista().getName()));
 			concierto.setFestival(festival);
 			conciertoService.save(concierto);
 			model.addAttribute("message", "The concierto was created successfully!");
 			return "redirect:/festivales/{festivalId}/conciertos";
 
-
 		}
 	}
-	
+
 }

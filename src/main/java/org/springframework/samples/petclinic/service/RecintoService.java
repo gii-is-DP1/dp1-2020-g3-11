@@ -16,25 +16,25 @@ public class RecintoService {
 	@Autowired
 	RecintoRepository recintoRepo;
 
-	public Collection<Recinto> findAll() {
+	public Collection<Recinto> findAll() throws DataAccessException {
 		return recintoRepo.findAll();
 	}
 
-	public Optional<Recinto> findById(int id) {
+	public Optional<Recinto> findById(int id) throws DataAccessException {
 		return recintoRepo.findById(id);
 	}
 
-	public void delete(Recinto recinto) {
+	public void delete(Recinto recinto) throws DataAccessException {
 		recintoRepo.deleteById(recinto.getId());
 
 	}
 
-	public void save(Recinto recinto) {
+	public void save(Recinto recinto) throws DataAccessException {
 		recintoRepo.save(recinto);
 
 	}
 	
-	public TipoRecinto findRecintoType(String recinto) {
+	public TipoRecinto findRecintoType(String recinto) throws DataAccessException {
 		return recintoRepo.findRecintoTypeByName(recinto);
 	}
 	
@@ -43,15 +43,15 @@ public class RecintoService {
 		return recintoRepo.findRecintoTypes();
 	}
 	
-	public Recinto findRecintoByType(TipoRecinto tipo) {
+	public Recinto findRecintoByType(TipoRecinto tipo) throws DataAccessException {
 		return recintoRepo.findRecintoByType(tipo);
 	}
 	
-	public Collection<String> findAllRecintos() {
+	public Collection<String> findAllRecintos() throws DataAccessException {
 		return recintoRepo.findAllRecintos();
 	} 
 	
-	public Recinto findRecintoByName(String name) {
+	public Recinto findRecintoByName(String name) throws DataAccessException {
 		return recintoRepo.findRecintoByName(name);
 	}
 

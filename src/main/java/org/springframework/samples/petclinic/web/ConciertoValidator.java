@@ -22,19 +22,7 @@ import org.springframework.samples.petclinic.model.Concierto;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-/**
- * <code>Validator</code> for <code>Pet</code> forms.
- * <p>
- * We're not using Bean Validation annotations here because it is easier to
- * define such validation rule in Java.
- * </p>
- *
- * @author Ken Krebs
- * @author Juergen Hoeller
- */
 public class ConciertoValidator implements Validator {
-
-	private static final String REQUIRED = "required";
 
 	@Override
 	public void validate(Object obj, Errors errors) {
@@ -42,37 +30,65 @@ public class ConciertoValidator implements Validator {
 		LocalDate fecha = concierto.getFecha();
 		LocalDateTime horaCom = concierto.getHoraCom();
 		LocalDateTime horaFin = concierto.getHoraFin();
+//		Recinto recinto= concierto.getRecinto();
+//		Artista artista= concierto.getArtista();
+//		Integer numeroMaxEscenarios= concierto.getRecinto().getNumMaxEscenarios();
 
-		if (fecha != null || horaCom != null || horaFin != null) {
-			// fecha validation
-			if (fecha.isBefore(LocalDate.now())) {
-				errors.rejectValue("fecha", "La fecha tiene que ser posterior a la actualidad",
-						"La fecha tiene que ser posterior a la actualidad");
-			}
-
-			// horas validation
-			if (horaFin.isBefore(horaCom) || horaFin.equals(horaCom)) {
-				errors.rejectValue("horaCom", "La fecha comienzo tiene que ser anterior a la hora final",
-						"La fecha comienzo tiene que ser anterior a la hora final");
-			}
-
-			// hora de comienzo igual a la fecha de concierto
-
-			if (!horaCom.toLocalDate().isEqual(fecha)) {
-				errors.rejectValue("fecha", "La fecha del concierto debe ser igual a la fecha de inicio",
-						"La fecha del concierto debe ser igual a la fecha de inicio");
-			}
-			
-			//dos ciertos como maximo cada dos horas
-
-		} else {
-			errors.rejectValue("fecha", "Existe algún campo sin completar", "Existe algún campo sin completar");
-			errors.rejectValue("horaCom", "Existe algún campo sin completar", "Existe algún campo sin completar");
-			errors.rejectValue("horaFin", "Existe algún campo sin completar", "Existe algún campo sin completar");
+		if (fecha == null) {
+			errors.rejectValue("fecha", "es requerido", "es requerido");
 
 		}
 
+		if (horaCom == null) {
+			errors.rejectValue("horaCom", "es requerido", "es requerido");
+
+		}
+
+		if (horaFin == null) {
+			errors.rejectValue("horaFin", "es requerido", "es requerido");
+
+		}
+
+		if (concierto.isNew() && concierto.getRecinto() == null) {
+			errors.rejectValue("recinto", "es requerido", "es requerido");
+
+		}
+
+		if (concierto.isNew() && concierto.getArtista() == null) {
+			errors.rejectValue("artista", "es requerido", "es requerido");
+
+		}
+
+		// fecha validation
+		if (fecha.isBefore(LocalDate.now())) {
+			errors.rejectValue("fecha", "La fecha tiene que ser posterior a la actualidad",
+					"La fecha tiene que ser posterior a la actualidad");
+		}
+
+		// horas validation
+		if (horaFin.isBefore(horaCom) || horaFin.equals(horaCom)) {
+			errors.rejectValue("horaCom", "La fecha comienzo tiene que ser anterior a la hora final",
+					"La fecha comienzo tiene que ser anterior a la hora final");
+		}
+
+		// hora de comienzo igual a la fecha de concierto
+
+		if (!horaCom.toLocalDate().isEqual(fecha)) {
+			errors.rejectValue("fecha", "La fecha del concierto debe ser igual a la fecha de inicio",
+					"La fecha del concierto debe ser igual a la fecha de inicio");
+		}
+//			
+//			if(conciertosAVez(conciertoS.findAllConciertosByRecintoId(recinto.getId()), concierto)>=numeroMaxEscenarios) {
+//				errors.rejectValue("recinto", "Se supera el numero maximo de escenarios ",
+//						"Se supera el numero maximo de escenarios ");
+//			}
+
 	}
+
+//	public static Integer conciertosAVez(Collection<Concierto> conciertos, Concierto conciertoMeter) {
+//		LocalDateTime conciertoMeterHoraComienzo = conciertoMeter.getHoraCom();
+//		return (int) conciertos.stream().filter(x-> conciertoMeterHoraComienzo.isAfter(x.getHoraCom())&& conciertoMeterHoraComienzo.isBefore(x.getHoraFin())).count();
+//	}
 
 	/**
 	 * This Validator validates *just* Concierto instances

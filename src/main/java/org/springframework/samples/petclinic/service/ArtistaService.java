@@ -34,12 +34,12 @@ public class ArtistaService {
 	private ArtistaRepository artistaRepository;
 
 	@Transactional(readOnly = true)
-	public Collection<Artista> findAll() {
+	public Collection<Artista> findAll() throws DataAccessException {
 		return artistaRepository.findAll();
 	}
 
 	@Autowired
-	public ArtistaService(ArtistaRepository artistaRepository) {
+	public ArtistaService(ArtistaRepository artistaRepository) throws DataAccessException {
 		this.artistaRepository = artistaRepository;
 	}
 
@@ -48,11 +48,11 @@ public class ArtistaService {
 		return artistaRepository.findById(id);
 	}
 
-	public void save(@Valid Artista artista) {
+	public void save(@Valid Artista artista) throws DataAccessException {
 		artistaRepository.save(artista);
 	}
 	
-	public GeneroType findGeneroType(String genero) {
+	public GeneroType findGeneroType(String genero) throws DataAccessException {
 		return artistaRepository.findGeneroTypeByName(genero);
 	}
 
@@ -64,16 +64,16 @@ public class ArtistaService {
 //		}
 //	}
 	
-	public Collection<String> findAllArtistas() {
+	public Collection<String> findAllArtistas() throws DataAccessException {
 		return artistaRepository.findAllArtistas();
 	} 
 	
-	public Artista findArtistaByName(String name) {
+	public Artista findArtistaByName(String name) throws DataAccessException {
 		return artistaRepository.findArtistaByName(name);
 	}
 
 	@Transactional
-	public void delete(Artista artista) {
+	public void delete(Artista artista) throws DataAccessException {
 		artistaRepository.deleteById(artista.getId());
 	}
 

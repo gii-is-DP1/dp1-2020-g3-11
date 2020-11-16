@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Artista;
 import org.springframework.samples.petclinic.model.Concierto;
 import org.springframework.samples.petclinic.model.Recinto;
@@ -20,48 +21,51 @@ public class ConciertoService {
 	ConciertoRepository conciertoRepo;
 
 	
-	public Collection<Concierto> findAll() {
+	public Collection<Concierto> findAll() throws DataAccessException{
 		return conciertoRepo.findAll();
 	}
 
-	public Optional<Concierto> findById(int id) {
+	public Optional<Concierto> findById(int id) throws DataAccessException {
 		return conciertoRepo.findById(id);
 	}
 
-	public Artista findArtistaByName(String name) {
+	public Artista findArtistaByName(String name) throws DataAccessException {
 		return conciertoRepo.findArtistaByName(name);
 	}
 	
-	public void delete(Concierto concierto) {
+	public void delete(Concierto concierto) throws DataAccessException {
 		conciertoRepo.deleteById(concierto.getId());
 
 	}
 
-	public void save(@Valid Concierto concierto) {
+	public void save(@Valid Concierto concierto) throws DataAccessException {
 		conciertoRepo.save(concierto);
 
 	}
 	
-	public Collection<Concierto> findAllConciertosByFestivalId(int festivalId) {
+	public Collection<Concierto> findAllConciertosByFestivalId(int festivalId) throws DataAccessException {
 		return conciertoRepo.findAllConciertosByFestivalId(festivalId);
 	}
 	
-	public Collection<String> findAllArtistas() {
+	public Collection<String> findAllArtistas() throws DataAccessException {
 		return conciertoRepo.findAllArtistas();
 	} 
 	
-	public Collection<String> findAllRecintos() {
+	public Collection<String> findAllRecintos() throws DataAccessException {
 		return conciertoRepo.findAllRecintos();
 	} 
 	
-	public Recinto findRecintoByName(String name) {
+	public Recinto findRecintoByName(String name) throws DataAccessException {
 		return conciertoRepo.findRecintoByName(name);
 	}
 	
-	public Collection<Recinto> findAllRecintosByFestivalId(int festivalId) {
+	public Collection<Recinto> findAllRecintosByFestivalId(int festivalId) throws DataAccessException {
 		return conciertoRepo.findAllRecintosByFestivalId(festivalId);
 	}
 	
+	public Collection<Concierto> findAllConciertosByRecintoId(int recintoId) throws DataAccessException {
+		return conciertoRepo.findAllConciertosByRecintoId(recintoId);
+	}
 	
 
 }
