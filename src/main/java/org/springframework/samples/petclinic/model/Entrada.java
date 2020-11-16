@@ -7,10 +7,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 import lombok.Data;
 
@@ -23,13 +22,22 @@ public class Entrada extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "festival_id")
 	private Festival festival;
+	
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
 
-	@Column(name = "tipoEntrada")
-	private TipoEntrada tipoEntrada;
+	@ManyToOne
+	@JoinColumn(name = "entradaType")
+	@NotNull
+	private EntradaType entradaType;
 	
 	@Column(name = "precio")
 	@NotNull
+	@Positive
 	private Integer precio;
+	
+	
 
 
 

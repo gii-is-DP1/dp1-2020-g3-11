@@ -77,10 +77,14 @@ INSERT INTO artista VALUES (10,'Suli de huelva','suli@grupo.com',6,'657114433');
 INSERT INTO artista VALUES (11,'Makukote','mkk@grupo.com',1,'688996236');
 INSERT INTO artista VALUES (12,'Antonio Martínez','am@grupo.com',3,'622222356');
 
-INSERT INTO entrada VALUES (1,40,0,1);
-INSERT INTO entrada VALUES (2,60,1,1);
-INSERT INTO entrada VALUES (3,80,2,1);
-INSERT INTO entrada VALUES (4,90,3,1);
+INSERT INTO entradatypes VALUES (1, 'camping');
+INSERT INTO entradatypes VALUES (2, 'no camping');
+INSERT INTO entradatypes VALUES (3, 'fiesta');
+
+
+INSERT INTO entrada VALUES (1,40,1,1,20);
+INSERT INTO entrada VALUES (2,30,2,1,23);
+INSERT INTO entrada VALUES (3,50,1,1,22);
 
 INSERT INTO oferta VALUES (1,20,'Camisetas y 3 bolsas de hielo');
 INSERT INTO oferta VALUES (2,30,'Botella de Ron y 1 bolsa de hielos');
@@ -120,3 +124,5 @@ INSERT INTO concierto VALUES (5,'2021-11-03','2021-11-03 12:00','2021-11-03 14:0
 INSERT INTO valoracion VALUES (1,'Muy bueno, me encantó.',4,1);
 INSERT INTO valoracion VALUES (2,'Fatal, la limpieza sobre todo.',1,1);
 INSERT INTO valoracion VALUES (3,'Genial.',3,1);
+
+
