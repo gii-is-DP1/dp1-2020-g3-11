@@ -21,12 +21,12 @@ import lombok.Data;
 public class Artista extends NamedEntity {
 
 	@Column(name = "correo")
-	@NotBlank
+//	@NotBlank
 	private String correo;
 
 	@Column(name = "telefono")
-	@NotNull
-	@Digits(fraction = 0, integer = 10)
+//	@NotNull
+//	@Digits(fraction = 0, integer = 10)
 	private String telefono;
 
 	@ManyToOne
