@@ -23,6 +23,7 @@ public class Concierto extends BaseEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "recinto_id")
+//	@NotNull
 	private Recinto recinto;
 	
 	@ManyToOne
@@ -31,18 +32,22 @@ public class Concierto extends BaseEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "artista_id")
+//	@NotNull
 	private Artista artista;
 	
 	@Column(name = "fecha")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
+//	@NotNull
 	private LocalDate fecha;
 
 	@Column(name = "horaCom")
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
+//	@NotNull
 	private LocalDateTime horaCom;
 
 	@Column(name = "horaFin")
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
+//	@NotNull
 	private LocalDateTime horaFin;
 
 }

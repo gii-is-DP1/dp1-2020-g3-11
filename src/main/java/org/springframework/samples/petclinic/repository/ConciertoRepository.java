@@ -22,15 +22,15 @@ public interface ConciertoRepository extends CrudRepository<Concierto, Integer> 
 	Collection<String> findAllRecintos() throws DataAccessException;
 	
 	@Query("SELECT a FROM Artista a where a.name = ?1")
-	Artista findArtistaByName(String name) throws DataAccessException;
+	Artista findArtistaByName(String name);
 
 	@Query("SELECT a FROM Recinto a where a.name = ?1")
-	Recinto findRecintoByName(String name) throws DataAccessException;
+	Recinto findRecintoByName(String name);
 	
 	@Query("select r from Recinto r where r.festival.id = ?1")
-	public Collection<Recinto> findAllRecintosByFestivalId(int festivalId) throws DataAccessException;
+	public Collection<Recinto> findAllRecintosByFestivalId(int festivalId);
 
 	@Query("select c from Concierto c where c.recinto.id = ?1")
-	Collection<Concierto> findAllConciertosByRecintoId(int recintoId) throws DataAccessException;
+	Collection<Concierto> findAllConciertosByRecintoId(int recintoId);
 
 }
