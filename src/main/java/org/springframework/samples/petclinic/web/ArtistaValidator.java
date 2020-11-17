@@ -75,8 +75,8 @@ public class ArtistaValidator implements Validator {
 
 		// type validation
 		if (artista.isNew() && artista.getGenero() == null) {
-			errors.rejectValue("genero", REQUIRED + "Debes seleccionar un género",
-					REQUIRED + "Debes seleccionar un género");
+			errors.rejectValue("genero.name", "Debes seleccionar un género",
+					"Debes seleccionar un género");
 		}
 
 	}
