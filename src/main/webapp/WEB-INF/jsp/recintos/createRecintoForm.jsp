@@ -23,7 +23,6 @@
 		<c:if test="${recinto['new']}">Nuevo </c:if>
 		recinto
 	</h2>
-	<h3>Lista Puestos</h3>
 	<form:form modelAttribute="recinto" class="form-horizontal"
 		id="add-recinto-form">
 		<div class="form-group has-feedback">

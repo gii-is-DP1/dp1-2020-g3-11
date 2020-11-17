@@ -27,6 +27,12 @@ public interface RecintoRepository extends CrudRepository<Recinto, Integer> {
 	
 	@Query("SELECT a FROM Recinto a where a.name = ?1")
 	Recinto findRecintoByName(String name);
+	
+	@Query("SELECT r FROM Recinto r where r.festival.id = ?1")
+	Collection<Recinto> findAllRecintosByFestivalId(int festivalId);
+	
+	@Query("select r from Recinto r where r.festival.id = ?1 and r.id = ?2")
+	Recinto findByRecintoIdFestivalId(int festivalId, int recintoId);
 
 	
 }

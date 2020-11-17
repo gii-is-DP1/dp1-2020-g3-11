@@ -18,7 +18,7 @@ import lombok.Data;
 public class Puesto extends BaseEntity {	
 
 	@ManyToOne
-	@JoinColumn(name = "recinto_id")
+	@JoinColumn(name = "recinto")
 	private Recinto recinto;
 
 	@Column(name = "tipoPuesto")
