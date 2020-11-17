@@ -1,6 +1,6 @@
 package org.springframework.samples.petclinic.service;
 
-import java.util.Collection; 
+import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +54,16 @@ public class RecintoService {
 	public Recinto findRecintoByName(String name) throws DataAccessException {
 		return recintoRepo.findRecintoByName(name);
 	}
+
+	public Collection<Recinto> findAllRecintosByFestivalId(int festivalId) throws DataAccessException{
+		return recintoRepo.findAllRecintosByFestivalId(festivalId);
+	}
+
+	public Recinto findByRecintoIdFestivalId(int festivalId, int recintoId) {
+		return recintoRepo.findByRecintoIdFestivalId(festivalId, recintoId);
+	}
+	
+	
 
 
 }

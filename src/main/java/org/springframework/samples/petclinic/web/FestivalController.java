@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Artista;
 import org.springframework.samples.petclinic.model.Festival;
 import org.springframework.samples.petclinic.model.FestivalArtista;
+import org.springframework.samples.petclinic.model.Recinto;
 import org.springframework.samples.petclinic.service.ArtistaService;
 import org.springframework.samples.petclinic.service.FestivalArtistaService;
 import org.springframework.samples.petclinic.service.FestivalService;
+import org.springframework.samples.petclinic.service.RecintoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -29,7 +31,11 @@ public class FestivalController {
 	public static final String FESTIVALES_LISTING = "festivales/festivalListing";
 	public static final String FESTIVALES_DETAILS = "festivales/festivalDetails";
 	public static final String ARTISTAS_LISTA = "festivales/listArtistasAñadir";
+	public static final String RECINTOS_LISTA = "festivales/asd";
 
+	@Autowired
+	RecintoService festivalRecintoService;
+	
 	@Autowired
 	FestivalService festivalService;
 
@@ -51,6 +57,7 @@ public class FestivalController {
 		if (festival != null) {
 			model.addAttribute("festival", festival);
 			model.addAttribute("artistas", festivalArtistaService.findAllArtistasByFestivalId(festivalId));
+			model.addAttribute("recintos", festivalRecintoService.findAllRecintosByFestivalId(festivalId));
 		} else {
 			return "redirect:/oups";
 		}
@@ -143,6 +150,20 @@ public class FestivalController {
 			return showFestival(model, festivalId);
 		} else {
 			model.addAttribute("message", "We cannot find the Artist you tried to delete!");
+			return showFestival(model, festivalId);
+		}
+	}
+	
+	@GetMapping("/{festivalId}/recintos/{recintoId}/delete")
+	public String deleteRecintoDeFestival(@PathVariable("festivalId") int festivalId,
+			@PathVariable("recintoId") int recintoId, ModelMap model) {
+		Recinto recinto= festivalRecintoService.findByRecintoIdFestivalId(festivalId, recintoId);
+		if (recinto != null) {
+			festivalRecintoService.delete(recinto);
+			model.addAttribute("message", "The enclosure was deleted successfully!");
+			return showFestival(model, festivalId);
+		} else {
+			model.addAttribute("message", "We cannot find the enclosure you tried to delete!");
 			return showFestival(model, festivalId);
 		}
 	}
