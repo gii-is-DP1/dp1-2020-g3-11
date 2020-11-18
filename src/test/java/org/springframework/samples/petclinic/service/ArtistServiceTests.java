@@ -11,7 +11,6 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -23,12 +22,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.petclinic.model.Artista;
-
+import org.springframework.samples.petclinic.model.FestivalArtista;
+import org.springframework.samples.petclinic.model.GeneroType;
 import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 class ArtistServiceTests {
-
 
 	@Autowired
 	protected ArtistaService artistService;
@@ -59,9 +58,9 @@ class ArtistServiceTests {
 		String newName = "Declan";
 		artist.setName(newName);
 
-
-	@Autowired
-	protected ArtistaService artistService;
+		artist = this.artistService.findArtistaById(1).get();
+		assertThat(newName.equals(artist.getName()));
+	}
 
 	// FIND ALL (COLLECTION ARTIST)
 	@Test
@@ -85,7 +84,7 @@ class ArtistServiceTests {
 		assertThat(artist2.getName()).isEqualTo("Canelones");
 	}
 
-	// FIND COLLECTION GENRES 
+	// FIND COLLECTION GENRES
 	@Test
 	void shouldFindGenres() throws Exception {
 		List<String> genres = (List<String>) this.artistService.findGeneroTypes();
@@ -114,11 +113,10 @@ class ArtistServiceTests {
 		} catch (Exception ex) {
 			Logger.getLogger(ArtistServiceTests.class.getName()).log(Level.SEVERE, null, ex);
 		}
-
-		artist = this.artistService.findArtistaById(1).get();
-		assertThat(newName.equals(artist.getName()));
+		listArtist = this.artistService.findAll();
+		assertThat(listArtist.size()).isEqualTo(tamaño + 1);
+		assertThat(artist.getId()).isNotNull();
 	}
-
 
 	@Test
 	@Transactional
@@ -132,13 +130,6 @@ class ArtistServiceTests {
 		listArtist = this.artistService.findAll();
 		assertThat(listArtist.size()).isEqualTo(tamaño - 1);
 
-	}
-
-}
-
-		listArtist = this.artistService.findAll();
-		assertThat(listArtist.size()).isEqualTo(tamaño + 1);
-		assertThat(artist.getId()).isNotNull();
 	}
 
 	@Test
@@ -158,6 +149,4 @@ class ArtistServiceTests {
 		});
 	}
 
-
 }
-

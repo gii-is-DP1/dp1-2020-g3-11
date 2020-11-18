@@ -50,5 +50,51 @@ class ArtistValidatorTest {
 		assertThat(violation.getMessage()).isEqualTo("must not be blank");
 
 	}
+	
+	@Test
+	void shouldNotValidateWhenEmailEmpty() {
+		LocaleContextHolder.setLocale(Locale.ENGLISH);
+
+		Artista artista = new Artista();
+		artista.setName("Juanlu");
+		artista.setCorreo("");
+		GeneroType g = new GeneroType();
+		artista.setGenero(g);
+		artista.setTelefono("678789888");
+		Set<FestivalArtista> fa = new HashSet<FestivalArtista>();
+		artista.setFestivales(fa);
+
+		Validator validator = this.createValidator();
+		Set<ConstraintViolation<Artista>> constraintViolations = validator.validate(artista);
+
+		assertThat(constraintViolations.size()).isEqualTo(1);
+		ConstraintViolation<Artista> violation = constraintViolations.iterator().next();
+		assertThat(violation.getPropertyPath().toString()).isEqualTo("correo");
+		assertThat(violation.getMessage()).isEqualTo("must not be blank");
+
+	}
+	
+	@Test
+	void shouldNotValidateWhenNameEmpty() {
+		LocaleContextHolder.setLocale(Locale.ENGLISH);
+
+		Artista artista = new Artista();
+		artista.setName("");
+		artista.setCorreo("pepote@gmail.com");
+		GeneroType g = new GeneroType();
+		artista.setGenero(g);
+		artista.setTelefono("678789888");
+		Set<FestivalArtista> fa = new HashSet<FestivalArtista>();
+		artista.setFestivales(fa);
+
+		Validator validator = this.createValidator();
+		Set<ConstraintViolation<Artista>> constraintViolations = validator.validate(artista);
+
+		assertThat(constraintViolations.size()).isEqualTo(1);
+		ConstraintViolation<Artista> violation = constraintViolations.iterator().next();
+		assertThat(violation.getPropertyPath().toString()).isEqualTo("name");
+		assertThat(violation.getMessage()).isEqualTo("size must be between 3 and 50");
+
+	}
 
 }
