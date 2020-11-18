@@ -24,9 +24,6 @@ public class ArtistaValidator implements Validator {
 
 	private static final String REQUIRED = "required";
 
-//	public boolean isNumeric(String s) {
-//		return s != null && s.matches("[-+]?/d*/.?/d+");
-//	}
 
 	private static boolean isNumeric(String cadena) {
 		try {
