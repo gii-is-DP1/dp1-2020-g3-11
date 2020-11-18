@@ -1,18 +1,4 @@
-/*
- * Copyright 2002-2013 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 package org.springframework.samples.petclinic.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,6 +11,10 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
 
@@ -33,12 +23,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.petclinic.model.Artista;
-import org.springframework.samples.petclinic.model.FestivalArtista;
-import org.springframework.samples.petclinic.model.GeneroType;
+
 import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 class ArtistServiceTests {
+
+
+	@Autowired
+	protected ArtistaService artistService;
+
+	@Autowired
+	protected FestivalService festivalService;
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	@Test
+	@Transactional
+	public void shouldNotEditArtistBlankEmail() throws Exception {
+		Artista artist = this.artistService.findArtistaById(1).get();
+		String email = "";
+
+		assertThrows(Exception.class, () -> {
+			artist.setCorreo(email);
+			entityManager.flush();
+			this.artistService.save(artist);
+		});
+	}
+
+	@Test
+	@Transactional
+	public void shouldEditArtistName() throws Exception {
+		Artista artist = this.artistService.findArtistaById(1).get();
+		String newName = "Declan";
+		artist.setName(newName);
+
+
 	@Autowired
 	protected ArtistaService artistService;
 
@@ -87,11 +108,34 @@ class ArtistServiceTests {
 		artist.setTelefono("689542122");
 		Set<FestivalArtista> fa = new HashSet<FestivalArtista>();
 		artist.setFestivales(fa);
+
 		try {
 			this.artistService.save(artist);
 		} catch (Exception ex) {
 			Logger.getLogger(ArtistServiceTests.class.getName()).log(Level.SEVERE, null, ex);
 		}
+
+		artist = this.artistService.findArtistaById(1).get();
+		assertThat(newName.equals(artist.getName()));
+	}
+
+
+	@Test
+	@Transactional
+	void shouldDeleteArtist() throws Exception {
+		Collection<Artista> listArtist = this.artistService.findAll();
+		int tamaño = listArtist.size();
+		Artista artist = this.artistService.findArtistaById(4).orElse(null);
+
+		this.artistService.delete(artist);
+
+		listArtist = this.artistService.findAll();
+		assertThat(listArtist.size()).isEqualTo(tamaño - 1);
+
+	}
+
+}
+
 		listArtist = this.artistService.findAll();
 		assertThat(listArtist.size()).isEqualTo(tamaño + 1);
 		assertThat(artist.getId()).isNotNull();
@@ -114,8 +158,6 @@ class ArtistServiceTests {
 		});
 	}
 
-	// EDIT ARTIST
-
-	// DELETE ARTIST
 
 }
+
