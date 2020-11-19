@@ -31,7 +31,6 @@ public class FestivalController {
 	public static final String FESTIVALES_LISTING = "festivales/festivalListing";
 	public static final String FESTIVALES_DETAILS = "festivales/festivalDetails";
 	public static final String ARTISTAS_LISTA = "festivales/listArtistasAñadir";
-	public static final String RECINTOS_LISTA = "festivales/asd";
 
 	@Autowired
 	RecintoService festivalRecintoService;
