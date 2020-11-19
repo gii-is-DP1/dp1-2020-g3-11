@@ -7,7 +7,7 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
 
-<petclinic:layout pageName="conciertos">
+<petclinic:layout pageName="concerts">
 
 	<jsp:attribute name="customScript">
 	
@@ -30,9 +30,9 @@
     <jsp:body>
     
     <h2>
-        <c:if test="${concierto['new']}">Nuevo </c:if> Concierto
+        <c:if test="${concert['new']}">Nuevo </c:if> Concierto
     </h2>
-    <form:form modelAttribute="concierto" class="form-horizontal" id="add-concierto-form">
+    <form:form modelAttribute="concert" class="form-horizontal" id="add-concert-form">
         <div class="form-group has-feedback">
         
             <petclinic:inputField label="Fecha" name="fecha"/>
@@ -53,7 +53,7 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
-                    <c:when test="${concierto['new']}">
+                    <c:when test="${concert['new']}">
                         <button class="btn btn-default" type="submit">Añadir Concierto</button>
                     </c:when>
                     <c:otherwise>

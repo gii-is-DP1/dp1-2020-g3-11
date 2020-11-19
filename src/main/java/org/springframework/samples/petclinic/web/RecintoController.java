@@ -7,8 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.model.Concierto;
-import org.springframework.samples.petclinic.model.Festival;
 import org.springframework.samples.petclinic.model.Recinto;
 import org.springframework.samples.petclinic.model.TipoRecinto;
 import org.springframework.samples.petclinic.service.FestivalService;

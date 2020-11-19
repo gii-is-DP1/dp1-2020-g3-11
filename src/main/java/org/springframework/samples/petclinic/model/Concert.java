@@ -19,7 +19,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "concierto")
-public class Concierto extends BaseEntity {
+public class Concert extends BaseEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "recinto_id")
@@ -32,22 +32,22 @@ public class Concierto extends BaseEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "artista_id")
-//	@NotNull
+	@NotNull
 	private Artista artista;
 	
 	@Column(name = "fecha")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
-//	@NotNull
+	@NotNull
 	private LocalDate fecha;
 
 	@Column(name = "horaCom")
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
-//	@NotNull
+	@NotNull
 	private LocalDateTime horaCom;
 
 	@Column(name = "horaFin")
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
-//	@NotNull
+	@NotNull
 	private LocalDateTime horaFin;
 
 }

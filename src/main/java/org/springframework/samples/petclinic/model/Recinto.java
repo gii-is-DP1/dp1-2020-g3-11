@@ -21,7 +21,7 @@ import lombok.Data;
 public class Recinto extends NamedEntity {
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recinto")
-	private Set<Concierto> conciertos;
+	private Set<Concert> conciertos;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recinto")
 	private Set<Puesto> puestos;

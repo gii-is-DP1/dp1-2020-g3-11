@@ -73,19 +73,6 @@ public class FestivalController {
 		model.addAttribute("festival", festival);
 		return ARTISTAS_LISTA;
 	}
-	
-//	@GetMapping(value = "/{festivalId}/conciertos")
-//	public String listaConciertos(@PathVariable("festivalId") int festivalId, ModelMap model) {
-//		Festival festival = festivalService.findById(festivalId).orElse(null);
-//		if (festival != null) {
-//		Collection<Concierto> conciertos = festivalConciertoService.findAllConciertosByFestivalId(festivalId);
-//		model.addAttribute("conciertos", conciertos);
-//		model.addAttribute("festival", festival);
-//		} else {
-//			return "redirect:/oups";
-//		}
-//		return CONCIERTOS_LISTA;
-//	}
 
 	@GetMapping(value = "/{festivalId}/artistas/{artistaId}/add")
 	public String asociarArtistaFestival(@PathVariable("festivalId") int festivalId,
