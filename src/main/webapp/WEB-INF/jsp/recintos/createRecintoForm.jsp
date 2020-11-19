@@ -27,12 +27,11 @@
 		id="add-recinto-form">
 		<div class="form-group has-feedback">
 			<petclinic:inputField label="Nombre" name="name" />
-			<petclinic:inputField label="Aforo máximo de recinto"
-				name="aforoMaxRec" />
 			<petclinic:inputField label="Nº huecos de puestos" name="huecos" />
-
+			
+			<h4>Tipo del recinto</h4>
 			Escenario <input type="radio" onclick="javascript:yesnoCheck();"
-				name="tipoRecinto.name" id="yesCheck" value="Escenario"> 
+				name="tipoRecinto.name" id="yesCheck" value="Escenario"><br>
 			Parking <input type="radio"
 				onclick="javascript:yesnoCheck();" name="tipoRecinto.name" id="noCheck" value="Parking"><br>
 			Camping <input type="radio"

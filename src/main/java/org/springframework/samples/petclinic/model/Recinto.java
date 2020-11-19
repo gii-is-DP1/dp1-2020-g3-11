@@ -30,14 +30,8 @@ public class Recinto extends NamedEntity {
 	@JoinColumn(name = "festival_id")
 	private Festival festival;
 	
-	@Column(name = "aforoMaxRec")
-	@NotNull
-//	@Min(value = 1)
-	private Integer aforoMaxRec;
-
 	@Column(name = "huecos")
 	@NotNull
-//	@Min(value = 1)
 	private Integer huecos;
 
 	@ManyToOne

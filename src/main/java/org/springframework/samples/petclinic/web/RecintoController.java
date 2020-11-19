@@ -9,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Recinto;
 import org.springframework.samples.petclinic.model.TipoRecinto;
+import org.springframework.samples.petclinic.service.ArtistaService;
 import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.samples.petclinic.service.RecintoService;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,12 @@ public class RecintoController {
 	@Autowired
 	RecintoService recintoService;
 
+	@Autowired
+	public RecintoController(FestivalService festivalService, RecintoService recintoService) {
+		this.festivalService = festivalService;
+		this.recintoService = recintoService;
+	}
+	
 	@GetMapping
 	public String listRecintos(ModelMap model) {
 
@@ -43,16 +50,16 @@ public class RecintoController {
 		return RECINTOS_LISTING;
 	}
 
-	@InitBinder("recinto")
-	public void initRecintoBinder(WebDataBinder dataBinder) {
-		dataBinder.setValidator(new RecintoValidator());
-	}
-
 	@ModelAttribute("tipos_recinto")
 	public Collection<TipoRecinto> populateRecintoTypes() {
 		return this.recintoService.findRecintoTypes();
 	}
 
+	@InitBinder("recinto")
+	public void initRecintoBinder(WebDataBinder dataBinder) {
+		dataBinder.setValidator(new RecintoValidator());
+	}
+	
 	@GetMapping("/{id}/edit")
 	public String editRecinto(@PathVariable("id") int id, @PathVariable("festivalId") int festivalId, ModelMap model) {
 		Optional<Recinto> recinto = recintoService.findById(id);
@@ -100,16 +107,16 @@ public class RecintoController {
 	}
 
 	@PostMapping("/new")
-	public String saveNewRecinto(@Valid Recinto recinto, @PathVariable("festivalId") int festivalId,
+	public String saveNewRecinto(@PathVariable("festivalId") int festivalId, @Valid Recinto recinto,
 			BindingResult binding, ModelMap model) {
 		if (binding.hasErrors()) {
-			model.addAttribute("recinto", recinto);
+//			model.addAttribute("recinto", recinto);
 			return RECINTOS_NEW_FORM;
 		} else {
-			TipoRecinto tipo = this.recintoService.findRecintoType(recinto.getTipoRecinto().getName());
-			recinto.setFestival(this.festivalService.findById(festivalId).get());
+			TipoRecinto tipo = recintoService.findRecintoType(recinto.getTipoRecinto().getName());
+			recinto.setFestival(festivalService.findById(festivalId).get());
 			recinto.setTipoRecinto(tipo);
-			this.recintoService.save(recinto);
+			recintoService.save(recinto);
 			return "redirect:/festivales/{festivalId}";
 		}
 	}
