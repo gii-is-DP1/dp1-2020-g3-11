@@ -15,10 +15,11 @@
  */
 package org.springframework.samples.petclinic.web;
 
-import java.time.LocalDate;
+import java.time.LocalDate; 
 import java.time.LocalDateTime;
+import java.util.List;
 
-import org.springframework.samples.petclinic.model.Concierto;
+import org.springframework.samples.petclinic.model.Concert;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -32,11 +33,33 @@ import org.springframework.validation.Validator;
  * @author Ken Krebs
  * @author Juergen Hoeller
  */
-public class ConciertoValidator implements Validator {
+public class ConcertValidator implements Validator {
+	
+
+//numero escenarios maximos
+public static Integer conciertosAVez(List<Concert> conciertos, Concert c) {
+	LocalDateTime newStartDate= c.getHoraCom();
+	LocalDateTime newFinishDate= c.getHoraFin();
+	Integer x=0;
+	for(int i=0; i<conciertos.size(); i++) {
+		LocalDateTime actualStartDate= conciertos.get(i).getHoraCom();
+		LocalDateTime actualFinishDate= conciertos.get(i).getHoraFin();
+
+		boolean b1 = newStartDate.isBefore(actualStartDate);
+		boolean b2 = newFinishDate.isBefore(actualStartDate);
+		boolean b3 = newStartDate.isAfter(actualFinishDate);
+		boolean b4 = newFinishDate.isAfter(actualFinishDate);
+		if (!((b1 && b2) || b3 && b4)) {
+			x++;
+	}
+	}
+	
+	return x;
+}
 
 	@Override
 	public void validate(Object obj, Errors errors) {
-		Concierto concierto = (Concierto) obj;
+		Concert concierto = (Concert) obj;
 		LocalDate fecha = concierto.getFecha();
 		LocalDateTime horaCom = concierto.getHoraCom();
 		LocalDateTime horaFin = concierto.getHoraFin();
@@ -82,6 +105,7 @@ public class ConciertoValidator implements Validator {
 			errors.rejectValue("artista.name", "Elige un artista", "Elige un artista");
 
 		}
+
 	}
 
 	/**
@@ -89,7 +113,7 @@ public class ConciertoValidator implements Validator {
 	 */
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return Concierto.class.isAssignableFrom(clazz);
+		return Concert.class.isAssignableFrom(clazz);
 	}
 
 }

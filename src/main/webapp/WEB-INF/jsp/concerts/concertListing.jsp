@@ -6,7 +6,7 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
 
 
-<petclinic:layout pageName="conciertos">
+<petclinic:layout pageName="concerts">
 
 
 <h2>Conciertos</h2>
@@ -24,18 +24,18 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${conciertos}" var="concierto">
+			<c:forEach items="${concerts}" var="concert">
 				<tr>
-					<td><c:out value="${concierto.id}" /></td>
-					<td><c:out value="${concierto.fecha}" /></td>
-					<td><c:out value="${concierto.horaCom}" /></td>
-					<td><c:out value="${concierto.horaFin}" /></td>
-					<td><c:out value="${concierto.artista.name}" /></td>
-					<td><c:out value="${concierto.recinto.name}" /></td>
-					<td><a href="conciertos/${concierto.id}/edit"> <span
+					<td><c:out value="${concert.id}" /></td>
+					<td><c:out value="${concert.fecha}" /></td>
+					<td><c:out value="${concert.horaCom}" /></td>
+					<td><c:out value="${concert.horaFin}" /></td>
+					<td><c:out value="${concert.artista.name}" /></td>
+					<td><c:out value="${concert.recinto.name}" /></td>
+					<td><a href="conciertos/${concert.id}/edit"> <span
 							class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 					</a></td>
-					<td><a href="conciertos/${concierto.id}/delete"> <span
+					<td><a href="conciertos/${concert.id}/delete"> <span
 							class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 					</a></td>
 				</tr>
