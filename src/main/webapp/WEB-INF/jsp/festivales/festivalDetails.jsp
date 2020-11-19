@@ -53,14 +53,19 @@
 
 			<c:forEach items="${recintos}" var="recinto">
 				<tr>
-					<td><c:out value="${recinto.name}" /></td>
-
 					<td><spring:url
  							value="/festivales/{festivalId}/recintos/{recintoId}/edit" 
  							var="recintoUrl"> 
  							<spring:param name="festivalId" value="${festival.id}" /> 
 							<spring:param name="recintoId" value="${recinto.id}" /> 
-						</spring:url> <a href="${fn:escapeXml(recintoUrl)}">Editar</a></td> 
+						</spring:url> <a href="${fn:escapeXml(recintoUrl)}">${recinto.name}</a></td>
+
+					<td><spring:url
+ 							value="/festivales/{festivalId}/recintos/{recintoId}/detalles_recinto" 
+ 							var="recintoUrl"> 
+ 							<spring:param name="festivalId" value="${festival.id}" /> 
+							<spring:param name="recintoId" value="${recinto.id}" /> 
+						</spring:url> <a href="${fn:escapeXml(recintoUrl)}">Detalles recinto</a></td> 
 
  					<td><spring:url 
  							value="/festivales/{festivalId}/recintos/{recintoId}/delete"
