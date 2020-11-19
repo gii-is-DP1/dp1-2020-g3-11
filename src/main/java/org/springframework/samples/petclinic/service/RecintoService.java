@@ -29,6 +29,7 @@ public class RecintoService {
 
 	}
 
+	@Transactional
 	public void save(Recinto recinto) throws DataAccessException {
 		recintoRepo.save(recinto);
 
@@ -43,22 +44,27 @@ public class RecintoService {
 		return recintoRepo.findRecintoTypes();
 	}
 	
+	@Transactional(readOnly = true)
 	public Recinto findRecintoByType(TipoRecinto tipo) throws DataAccessException {
 		return recintoRepo.findRecintoByType(tipo);
 	}
 	
+	@Transactional(readOnly = true)
 	public Collection<String> findAllRecintos() throws DataAccessException {
 		return recintoRepo.findAllRecintos();
 	} 
 	
+	@Transactional(readOnly = true)
 	public Recinto findRecintoByName(String name) throws DataAccessException {
 		return recintoRepo.findRecintoByName(name);
 	}
 
+	@Transactional(readOnly = true)
 	public Collection<Recinto> findAllRecintosByFestivalId(int festivalId) throws DataAccessException{
 		return recintoRepo.findAllRecintosByFestivalId(festivalId);
 	}
 
+	@Transactional(readOnly = true)
 	public Recinto findByRecintoIdFestivalId(int festivalId, int recintoId) {
 		return recintoRepo.findByRecintoIdFestivalId(festivalId, recintoId);
 	}
