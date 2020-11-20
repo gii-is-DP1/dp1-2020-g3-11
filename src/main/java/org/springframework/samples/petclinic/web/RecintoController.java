@@ -107,6 +107,7 @@ public class RecintoController {
 	@GetMapping("/{id}/detalles_recinto")
 	public String mostrarDetallesRecinto(ModelMap model, @PathVariable("id") int recintoId) {
 		model.addAttribute("recinto", this.recintoService.findById(recintoId).get());
+		model.addAttribute("conciertos", this.recintoService.findAllConciertosById(recintoId));
 		return RECINTOS_DETALLES_FORM;
 	}
 	

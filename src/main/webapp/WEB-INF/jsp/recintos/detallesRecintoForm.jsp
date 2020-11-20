@@ -20,12 +20,26 @@
 	</table>
 	<c:if test="${recinto.tipoRecinto == 'Escenario'}">
 		<h3>Lista Conciertos</h3>
-		<table id="conciertos_recinto_table" class="table table-striped">
+		<table>
 			<thead>
 				<tr>
-					<th style="width: 20%;">Nombre</th>
+					<th style="width: 20%;">Artista</th>
+					<th style="width: 20%;">Fecha</th>
+					<th style="width: 20%;">Hora Comienzo</th>
+					<th style="width: 20%;">Hora Fin</th>
 				</tr>
 			</thead>
+			<tbody>
+
+				<c:forEach items="${conciertos}" var="concierto">
+					<tr>
+						<td><c:out value="${concierto.artista.name}" /></td>
+						<td><c:out value="${concierto.fecha}" /></td>
+						<td><c:out value="${concierto.horaCom}" /></td>
+						<td><c:out value="${concierto.horaFin}" /></td>
+					</tr>
+				</c:forEach>
+			</tbody>
 		</table>
 	</c:if>
 </petclinic:layout>
