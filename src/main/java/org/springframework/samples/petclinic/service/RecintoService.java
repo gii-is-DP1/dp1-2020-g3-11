@@ -21,6 +21,7 @@ public class RecintoService {
 		return recintoRepo.findAll();
 	}
 
+	@Transactional(readOnly = true)
 	public Optional<Recinto> findById(int id) throws DataAccessException {
 		return recintoRepo.findById(id);
 	}
@@ -36,6 +37,7 @@ public class RecintoService {
 
 	}
 	
+	@Transactional(readOnly = true)
 	public TipoRecinto findRecintoType(String recinto) throws DataAccessException {
 		return recintoRepo.findRecintoTypeByName(recinto);
 	}
