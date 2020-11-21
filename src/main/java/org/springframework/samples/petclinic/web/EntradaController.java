@@ -45,10 +45,10 @@ public class EntradaController {
     }
 	
 
-//	@InitBinder("entrada")
-//	public void initEntradaBinder(WebDataBinder dataBinder) {
-//	dataBinder.setValidator(new EntradaValidator());
-//	}
+	@InitBinder("entrada")
+	public void initEntradaBinder(WebDataBinder dataBinder) {
+	dataBinder.setValidator(new EntradaValidator());
+	}
 
 	@GetMapping("/{id}/edit")
 	public String editEntrada(@PathVariable("id") int id, ModelMap model) {

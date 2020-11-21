@@ -1,6 +1,5 @@
 package org.springframework.samples.petclinic.web;
 
-
 import org.springframework.samples.petclinic.model.Entrada;
 import org.springframework.samples.petclinic.model.EntradaType;
 import org.springframework.validation.Errors;
@@ -18,23 +17,26 @@ import org.springframework.validation.Validator;
  */
 public class EntradaValidator implements Validator {
 
-	private static final String REQUIRED = "required";
-
+	private static final String REQUIRED = "Campo requerido.";
+	
 	@Override
 	public void validate(Object obj, Errors errors) {
 		Entrada entrada = (Entrada) obj;
-		EntradaType tipo = entrada.getEntradaType();
 		Integer precio = entrada.getPrecio();
-		
-		if (tipo != null || precio != null) {
-			//validacion precio
-			if(precio<0) {
+
+		if (precio != null) {
+			// validacion precio
+			if (precio <= 0) {
 				errors.rejectValue("precio", "El precio de la entrada debe ser mayor que 0",
 						"El precio de la entrada debe ser mayor que 0");
 			}
-		}else {
-			errors.rejectValue("precio", "Existe algún campo sin completar", "Existe algún campo sin completar");
-			errors.rejectValue("tipo", "Existe algún campo sin completar", "Existe algún campo sin completar");
+		} else {
+			errors.rejectValue("precio", REQUIRED, REQUIRED);
+		}
+
+		// type validation
+		if (entrada.isNew() && entrada.getEntradaType() == null) {
+			errors.rejectValue("entradaType.name", "Debe elegir un tipo", "Debe elegir un tipo");
 		}
 	}
 
