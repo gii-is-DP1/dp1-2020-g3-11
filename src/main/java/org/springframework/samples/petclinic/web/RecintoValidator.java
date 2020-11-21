@@ -1,6 +1,5 @@
 package org.springframework.samples.petclinic.web;
 
-import org.springframework.samples.petclinic.model.Festival;
 import org.springframework.samples.petclinic.model.Recinto;
 import org.springframework.samples.petclinic.model.TipoRecinto;
 import org.springframework.validation.Errors;
@@ -29,7 +28,7 @@ public class RecintoValidator implements Validator {
 			errors.rejectValue("huecos", REQUIRED, REQUIRED);
 		} else {
 			if (huecos <= 0) {
-				errors.rejectValue("huecos", "El aforo debe ser mayor que 0", "El aforo debe ser mayor que 0");
+				errors.rejectValue("huecos", "El nº de puestos debe ser mayor que 0", "El nº puestos debe ser mayor que 0");
 			}
 		}
 		
