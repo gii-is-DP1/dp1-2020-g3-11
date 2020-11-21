@@ -63,6 +63,7 @@ INSERT INTO sponsor VALUES (60, 'Alejandro', 'Rios', '45987990X', 'ale@sponsor.c
 
 INSERT INTO festival VALUES (1,'Cabo de Plata',100,'2020-06-06','2020-06-09','Cádiz');
 INSERT INTO festival VALUES (2,'Dreambeach',200,'2021-07-25','2021-07-29','Almería');
+INSERT INTO festival VALUES (3,'Mucha Cumbia BRO',200,'2021-03-15','2021-03-19','Puerto Rico');
 
 INSERT INTO generos VALUES (1, 'pop');
 INSERT INTO generos VALUES (2, 'reggaeton');

@@ -114,7 +114,7 @@ class ConcertServiceTests {
 		int size = concerts.size();
 		Artista artist = this.artistService.findArtistaById(2).get();
 		Recinto rec = this.recintService.findById(5).get();
-		Festival fest = this.festivalService.findById(2).get();
+		Festival fest = this.festivalService.findFestivalById(2).get();
 
 		Concert concert = new Concert();
 		concert.setFecha(LocalDate.of(2020, 12, 01));
@@ -142,7 +142,7 @@ class ConcertServiceTests {
 		Concert concert = new Concert();
 		
 		Recinto rec = this.recintService.findById(5).get();
-		Festival fest = this.festivalService.findById(2).get();
+		Festival fest = this.festivalService.findFestivalById(2).get();
 		
 		concert.setFecha(LocalDate.of(2020, 12, 01));
 		concert.setHoraCom(LocalDateTime.of(2020, 12, 01, 12, 40));

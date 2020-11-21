@@ -6,13 +6,11 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-import javax.print.attribute.HashAttributeSet;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.samples.petclinic.repository.ArtistaRepository;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 /**
