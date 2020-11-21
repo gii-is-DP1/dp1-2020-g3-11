@@ -59,7 +59,7 @@ public class ConcertController {
 
 	@ModelAttribute("festival")
 	public Optional<Festival> findFestival(@PathVariable("festivalId") int festivalId) {
-		return this.festivalService.findById(festivalId);
+		return this.festivalService.findFestivalById(festivalId);
 	}
 
 	@ModelAttribute("artistas")
@@ -155,7 +155,7 @@ public class ConcertController {
 		} else {
 			concert.setRecinto(this.recintoService.findRecintoByName(concert.getRecinto().getName()));
 			concert.setArtista(this.artistService.findArtistaByName(concert.getArtista().getName()));
-			concert.setFestival(this.festivalService.findById(idFestival).get());
+			concert.setFestival(this.festivalService.findFestivalById(idFestival).get());
 			this.concertService.save(concert);
 
 		}

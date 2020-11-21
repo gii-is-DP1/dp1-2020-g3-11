@@ -60,7 +60,7 @@ public class FestivalController {
 
 	@GetMapping("/{festivalId}")
 	public String showFestival(ModelMap model, @PathVariable("festivalId") int festivalId) {
-		Festival festival = festivalService.findById(festivalId).orElse(null);
+		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
 		if (festival != null) {
 			model.addAttribute("festival", festival);
 			model.addAttribute("artistas", festivalArtistaService.findAllArtistasByFestivalId(festivalId));
@@ -73,7 +73,7 @@ public class FestivalController {
 
 	@GetMapping(value = "/{festivalId}/artistas/listdisponibles")
 	public String listaArtistasDisponibles(@PathVariable("festivalId") int festivalId, ModelMap model) {
-		Festival festival = festivalService.findById(festivalId).orElse(null);
+		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
 		Collection<Artista> artistas = artistaService.findAll();
 		artistas.removeAll(festivalArtistaService.findAllArtistasByFestivalId(festivalId));
 		model.addAttribute("artistasDisponibles", artistas);
@@ -85,7 +85,7 @@ public class FestivalController {
 	public String asociarArtistaFestival(@PathVariable("festivalId") int festivalId,
 			@PathVariable("artistaId") int artistaId) {
 		if (!festivalArtistaService.existByArtistaIdFestivalId(festivalId, artistaId)) {
-			Festival festival = festivalService.findById(festivalId).orElse(null);
+			Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
 			Artista artista = artistaService.findArtistaById(artistaId).orElse(null);
 			FestivalArtista fa = new FestivalArtista();
 			fa.setArtista(artista);
@@ -97,7 +97,7 @@ public class FestivalController {
 
 	@GetMapping("/{id}/edit")
 	public String editFestival(@PathVariable("id") int id, ModelMap model) {
-		Optional<Festival> festival = festivalService.findById(id);
+		Optional<Festival> festival = festivalService.findFestivalById(id);
 		if (festival.isPresent()) {
 			model.addAttribute("festival", festival.get());
 			return FESTIVALES_FORM;
@@ -110,7 +110,7 @@ public class FestivalController {
 	@PostMapping("/{id}/edit")
 	public String editFestival(@PathVariable("id") int id, @Valid Festival modifiedFestival, BindingResult binding,
 			ModelMap model) {
-		Optional<Festival> festival = festivalService.findById(id);
+		Optional<Festival> festival = festivalService.findFestivalById(id);
 		if (binding.hasErrors()) {
 			return FESTIVALES_FORM;
 		} else {
@@ -123,7 +123,7 @@ public class FestivalController {
 
 	@GetMapping("/{festivalId}/delete")
 	public String deleteFestival(@PathVariable("festivalId") int festivalId, ModelMap model) {
-		Optional<Festival> festival = festivalService.findById(festivalId);
+		Optional<Festival> festival = festivalService.findFestivalById(festivalId);
 		if (festival.isPresent()) {
 			festivalService.delete(festival.get());
 			model.addAttribute("message", "The Festival was deleted successfully!");

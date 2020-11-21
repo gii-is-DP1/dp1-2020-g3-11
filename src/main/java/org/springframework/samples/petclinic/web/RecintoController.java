@@ -7,10 +7,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.samples.petclinic.model.GeneroType;
 import org.springframework.samples.petclinic.model.Recinto;
 import org.springframework.samples.petclinic.model.TipoRecinto;
-import org.springframework.samples.petclinic.service.ArtistaService;
 import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.samples.petclinic.service.RecintoService;
 import org.springframework.stereotype.Controller;
@@ -83,7 +81,7 @@ public class RecintoController {
 			BeanUtils.copyProperties(modifiedRecinto, recinto.get(), "id");
 			TipoRecinto tipoRecinto = this.recintoService.findRecintoType(modifiedRecinto.getTipoRecinto().getName());
 			modifiedRecinto.setTipoRecinto(tipoRecinto);
-			modifiedRecinto.setFestival(this.festivalService.findById(festivalId).get());
+			modifiedRecinto.setFestival(this.festivalService.findFestivalById(festivalId).get());
 			this.recintoService.save(modifiedRecinto);
 			model.addAttribute("message", "Recinto actualizado correctamente!");
 			return "redirect:/festivales/{festivalId}";
@@ -125,7 +123,7 @@ public class RecintoController {
 			return RECINTOS_FORM;
 		} else {
 			TipoRecinto tipo = recintoService.findRecintoType(recinto.getTipoRecinto().getName());
-			recinto.setFestival(festivalService.findById(festivalId).get());
+			recinto.setFestival(festivalService.findFestivalById(festivalId).get());
 			recinto.setTipoRecinto(tipo);
 			recintoService.save(recinto);
 			return "redirect:/festivales/{festivalId}";
