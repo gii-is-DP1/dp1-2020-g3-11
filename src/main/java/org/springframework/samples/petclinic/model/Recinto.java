@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -28,6 +29,7 @@ public class Recinto extends NamedEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "festival_id")
+	@NotNull
 	private Festival festival;
 	
 	@Column(name = "huecos")
@@ -36,6 +38,7 @@ public class Recinto extends NamedEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "tipos_recinto")
+	@NotNull
 	private TipoRecinto tipoRecinto;
 
 	@Column(name = "numMaxEscenarios")

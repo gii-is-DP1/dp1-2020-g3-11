@@ -20,7 +20,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
  */
 
 
-class ConciertoTests {
+class ConcertValidatorTests {
 
 	private Validator createValidator() {
 		LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();

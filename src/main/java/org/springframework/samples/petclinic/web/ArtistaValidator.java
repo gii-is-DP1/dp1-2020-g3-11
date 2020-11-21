@@ -81,9 +81,6 @@ public class ArtistaValidator implements Validator {
 
 	}
 
-	/**
-	 * This Validator validates *just* Concierto instances
-	 */
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return Artista.class.isAssignableFrom(clazz);
