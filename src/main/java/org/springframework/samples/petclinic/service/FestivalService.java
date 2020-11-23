@@ -6,9 +6,11 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Festival;
 import org.springframework.samples.petclinic.repository.FestivalRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class FestivalService {
@@ -24,17 +26,23 @@ public class FestivalService {
 		return festivalRepo.findAll();
 	}
 
-	public Optional<Festival> findById(int id) {
-		return festivalRepo.findById(id);
-	}
-
-	public void delete(Festival festival) {
+	public void delete(Festival festival) throws DataAccessException {
 		festivalRepo.deleteById(festival.getId());
 
 	}
 
 	public void save(@Valid Festival festival) {
 		festivalRepo.save(festival);
+	}
+	
+	@Transactional(readOnly = true)
+	public Festival findFestivalByName(String name) throws DataAccessException {
+		return festivalRepo.findFestivalByName(name);
+	}
+	
+	@Transactional(readOnly = true)
+	public Optional<Festival> findFestivalById(int id) throws DataAccessException {
+		return festivalRepo.findById(id);
 	}
 
 }

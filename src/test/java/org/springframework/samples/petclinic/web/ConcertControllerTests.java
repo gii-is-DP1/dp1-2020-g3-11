@@ -1,4 +1,3 @@
-package org.springframework.samples.petclinic.web;
 //package org.springframework.samples.petclinic.web;
 //
 ///*
@@ -35,14 +34,14 @@ package org.springframework.samples.petclinic.web;
 //import org.springframework.context.annotation.FilterType;
 //import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
 //import org.springframework.samples.petclinic.model.Artista;
-//import org.springframework.samples.petclinic.model.Concierto;
+//import org.springframework.samples.petclinic.model.Concert;
 //import org.springframework.samples.petclinic.model.Festival;
 //import org.springframework.samples.petclinic.model.Owner;
 //import org.springframework.samples.petclinic.model.Pet;
 //import org.springframework.samples.petclinic.model.PetType;
 //import org.springframework.samples.petclinic.model.Recinto;
 //import org.springframework.samples.petclinic.service.ArtistaService;
-//import org.springframework.samples.petclinic.service.ConciertoService;
+//import org.springframework.samples.petclinic.service.ConcertService;
 //import org.springframework.samples.petclinic.service.FestivalService;
 //import org.springframework.samples.petclinic.service.OwnerService;
 //import org.springframework.samples.petclinic.service.PetService;
@@ -57,7 +56,7 @@ package org.springframework.samples.petclinic.web;
 // *
 // * @author Colin But
 // */
-//@WebMvcTest(value = Concierto.class,
+//@WebMvcTest(value = Concert.class,
 //		excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class),
 //		excludeAutoConfiguration= SecurityConfiguration.class)
 //class ConciertoControllerTests {
@@ -71,10 +70,10 @@ package org.springframework.samples.petclinic.web;
 //	private static final int TEST_CONCIERTO_ID = 1;
 //
 //	@Autowired
-//	private ConciertoController conciertoController;
+//	private ConcertController conciertoController;
 //
 //	@MockBean
-//	private ConciertoService conciertoService;
+//	private ConcertService conciertoService;
 //	
 //	@MockBean
 //	private ArtistaService artistaService;
@@ -93,9 +92,9 @@ package org.springframework.samples.petclinic.web;
 //		
 ////		given(this.conciertoService.findPetTypes()).willReturn(Lists.newArrayList(cat));
 //		given(this.recintoService.findById(TEST_RECINTO_ID).get()).willReturn(new Recinto());
-//		given(this.conciertoService.findById(TEST_CONCIERTO_ID).get()).willReturn(new Concierto());
-//		given(this.artistaService.findArtistaById(TEST_ARTISTA_ID).get()).willReturn(new Artista());
-//		given(this.festivalService.findById(TEST_FESTIVAL_ID).get()).willReturn(new Festival());
+//		given(this.conciertoService.findById(TEST_CONCIERTO_ID).get()).willReturn(new Concert());
+//		given(this.artistaService.findArtistaById(TEST_ARTISTA_ID)).willReturn(new Artista());
+//		given(this.festivalService.findFestivalById(TEST_FESTIVAL_ID).get()).willReturn(new Festival());
 //
 //	}
 //

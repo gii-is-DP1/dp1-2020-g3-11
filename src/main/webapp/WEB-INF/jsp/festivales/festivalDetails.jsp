@@ -53,21 +53,26 @@
 
 			<c:forEach items="${recintos}" var="recinto">
 				<tr>
-					<td><c:out value="${recinto.name}" /></td>
+					<td><spring:url
+ 							value="/festivales/{festivalId}/recintos/{recintoId}/edit" 
+ 							var="recintoUrl"> 
+ 							<spring:param name="festivalId" value="${festival.id}" /> 
+							<spring:param name="recintoId" value="${recinto.id}" /> 
+						</spring:url> <a href="${fn:escapeXml(recintoUrl)}">${recinto.name}</a></td>
 
 					<td><spring:url
-							value="/festivales/{festivalId}/recintos/{recintoId}/edit"
-							var="recintoUrl">
-							<spring:param name="festivalId" value="${festival.id}" />
-							<spring:param name="recintoId" value="${recinto.id}" />
-						</spring:url> <a href="${fn:escapeXml(recintoUrl)}">Editar</a></td>
+ 							value="/festivales/{festivalId}/recintos/{recintoId}/detalles_recinto" 
+ 							var="recintoUrl"> 
+ 							<spring:param name="festivalId" value="${festival.id}" /> 
+							<spring:param name="recintoId" value="${recinto.id}" /> 
+						</spring:url> <a href="${fn:escapeXml(recintoUrl)}">Detalles recinto</a></td> 
 
-					<td><spring:url
-							value="/festivales/{festivalId}/recintos/{recintoId}/delete"
-							var="recintoUrl">
+ 					<td><spring:url 
+ 							value="/festivales/{festivalId}/recintos/{recintoId}/delete"
+ 							var="recintoUrl"> 
 							<spring:param name="festivalId" value="${festival.id}" />
-							<spring:param name="recintoId" value="${recinto.id}" />
-						</spring:url> <a href="${fn:escapeXml(recintoUrl)}">Borrar</a></td>
+ 							<spring:param name="recintoId" value="${recinto.id}" /> 
+ 						</spring:url> <a href="${fn:escapeXml(recintoUrl)}">Borrar</a></td>
 
 
 
@@ -75,7 +80,11 @@
 			</c:forEach>
 		</tbody>
 	</table>
-
+	
+<!-- 	<h2>Recintos</h2> -->
+<%-- 	<a href="/festivales/${festival.id}/recintos" class="btn btn-default"><span --%>
+<!-- 		aria-hidden="true"></span> Ver recintos</a> -->
+	
 	<a href="/festivales/${festival.id}/recintos/new"
 		class="btn btn-default"><span class="glyphicon glyphicon-plus"
 		aria-hidden="true"></span> Añadir recinto</a>
@@ -86,5 +95,5 @@
 	<br>
 	<h2>Conciertos</h2>
 	<a href="/festivales/${festival.id}/conciertos" class="btn btn-default"><span
-		aria-hidden="true"></span> Conciertos</a>
+		aria-hidden="true"></span> Ver conciertos</a>
 </petclinic:layout>

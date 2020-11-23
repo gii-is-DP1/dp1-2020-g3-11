@@ -30,9 +30,9 @@
                     </spring:url>
 					<td> <a href="${fn:escapeXml(festivalUrl)}"><c:out value="${festival.name}" /></a></td>
 					<td><c:out value="${festival.aforoMax}" /></td>
-					<td><c:out value="${festival.localizacion}" /></td>
 					<td><c:out value="${festival.fechaCom}" /></td>
 					<td><c:out value="${festival.fechaFin}" /></td>
+					<td><c:out value="${festival.localizacion}" /></td>
 					<td><a href="/festivales/${festival.id}/edit"> <span
 							class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 					</a></td>
