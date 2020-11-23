@@ -79,7 +79,7 @@ public class FestivalController {
 			@PathVariable("artistaId") int artistaId) {
 		if (!festivalArtistaService.existByArtistaIdFestivalId(festivalId, artistaId)) {
 			Festival festival = festivalService.findById(festivalId).orElse(null);
-			Artista artista = artistaService.findArtistaById(artistaId).orElse(null);
+			Artista artista = artistaService.findArtistaById(artistaId);
 			FestivalArtista fa = new FestivalArtista();
 			fa.setArtista(artista);
 			fa.setFestival(festival);

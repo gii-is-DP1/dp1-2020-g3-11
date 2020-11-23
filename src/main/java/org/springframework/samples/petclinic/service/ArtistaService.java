@@ -44,8 +44,8 @@ public class ArtistaService {
 	}
 
 	@Transactional(readOnly = true)
-	public Optional<Artista> findArtistaById(int id) throws DataAccessException {
-		return artistaRepository.findById(id);
+	public Artista findArtistaById(int id) throws DataAccessException {
+		return artistaRepository.findArtistaById(id);
 	}
 
 	public void save(@Valid Artista artista) throws DataAccessException {
@@ -81,5 +81,7 @@ public class ArtistaService {
 	public Collection<String> findGeneroTypes() throws DataAccessException {
 		return artistaRepository.findGeneroTypes();
 	}
+	
+	
 
 }

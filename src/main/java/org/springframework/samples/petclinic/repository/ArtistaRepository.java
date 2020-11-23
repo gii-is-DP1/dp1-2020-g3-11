@@ -47,4 +47,7 @@ public interface ArtistaRepository extends CrudRepository<Artista, Integer> {
 	
 	@Query("SELECT a FROM Artista a where a.name = ?1")
 	Artista findArtistaByName(String name);
+	
+	@Query("SELECT a FROM Artista a where a.id = ?1")
+    Artista findArtistaById(int id);
 }

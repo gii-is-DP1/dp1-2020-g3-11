@@ -1,6 +1,6 @@
 package org.springframework.samples.petclinic.model;
 
-import java.util.Set;
+import java.util.Set; 
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -21,11 +20,11 @@ import lombok.Data;
 public class Artista extends NamedEntity {
 
 	@Column(name = "correo")
-//	@NotBlank
+	@NotBlank
 	private String correo;
 
 	@Column(name = "telefono")
-//	@NotNull
+	@NotBlank
 //	@Digits(fraction = 0, integer = 10)
 	private String telefono;
 

@@ -22,11 +22,7 @@ import org.springframework.validation.Validator;
 
 public class ArtistaValidator implements Validator {
 
-	private static final String REQUIRED = "required";
-
-//	public boolean isNumeric(String s) {
-//		return s != null && s.matches("[-+]?/d*/.?/d+");
-//	}
+	private static final String REQUIRED = "Campo requerido.";
 
 	private static boolean isNumeric(String cadena) {
 		try {
@@ -46,8 +42,8 @@ public class ArtistaValidator implements Validator {
 
 		// name validation
 		if (!StringUtils.hasLength(name) || name.length() > 50 || name.length() < 3) {
-			errors.rejectValue("name", REQUIRED + " and between 3 and 50 characters",
-					REQUIRED + " and between 3 and 50 character");
+			errors.rejectValue("name", REQUIRED + " Debe contener entre 3 y 50 caracteres",
+					REQUIRED + " Debe contener entre 3 y 50 caracteres");
 		}
 
 		// correo validation
@@ -56,7 +52,7 @@ public class ArtistaValidator implements Validator {
 		}
 
 		if (!correo.contains("@")) {
-			errors.rejectValue("correo", " Your email must contain an @", " Your email must contain an @");
+			errors.rejectValue("correo", " Tu email debe contener una @", "Tu email debe contener una @");
 		}
 
 		// telefono validation
@@ -65,25 +61,26 @@ public class ArtistaValidator implements Validator {
 		}
 		// tamaño
 		if (!isNumeric(telefono)) {
-			errors.rejectValue("telefono", " The phone must be a number", " The phone must be a number");
+			errors.rejectValue("telefono", " El teléfono debe ser númerico", " El teléfono debe ser númerico");
 		}
 
 		if (telefono.length() > 15 || telefono.length() < 9) {
-			errors.rejectValue("telefono", REQUIRED + " and between 9 and 15 characters",
-					REQUIRED + " and between 9 and 15 character");
+			errors.rejectValue("telefono", REQUIRED + " Debe contener entre 3 y 50 caracteres",
+					REQUIRED + " Debe contener entre 3 y 50 caracteres");
+		} else {
+			if(telefono.startsWith("-") || telefono.startsWith("+") ) {
+				errors.rejectValue("telefono", "El teléfono no puede contener simbolos",
+						"El teléfono no puede contener simbolos");
+			}
 		}
 
 		// type validation
 		if (artista.isNew() && artista.getGenero() == null) {
-			errors.rejectValue("genero.name", "Debes seleccionar un género",
-					"Debes seleccionar un género");
+			errors.rejectValue("genero.name", "Debes seleccionar un género", "Debes seleccionar un género");
 		}
 
 	}
 
-	/**
-	 * This Validator validates *just* Concierto instances
-	 */
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return Artista.class.isAssignableFrom(clazz);

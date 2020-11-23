@@ -112,7 +112,7 @@ class ConcertServiceTests {
 	void shouldInsertNewConcert() throws Exception {
 		List<Concert> concerts = (List<Concert>) this.concertService.findAll();
 		int size = concerts.size();
-		Artista artist = this.artistService.findArtistaById(2).get();
+		Artista artist = this.artistService.findArtistaById(2);
 		Recinto rec = this.recintService.findById(5).get();
 		Festival fest = this.festivalService.findById(2).get();
 
