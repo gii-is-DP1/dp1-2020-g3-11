@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.repository;
 
+import java.time.LocalDate;
 import java.util.Collection;
 
 import org.springframework.data.jpa.repository.Query;
@@ -19,7 +20,11 @@ public interface FestivalRepository extends CrudRepository<Festival, Integer> {
 	Festival findFestivalByName(String name);
 	
 	
-//	@Query("SELECT f FROM Festival f where f.date =?1")
-//	Festival findFestivalByDate(String name);
+	@Query("SELECT fechaCom FROM Festival f where f.id =?1")
+	LocalDate findStartDateFestival(int id);
+	
+	@Query("SELECT fechaFin FROM Festival f where f.id =?1")
+	LocalDate findEndDateFestival(int id);
+
 	
 }

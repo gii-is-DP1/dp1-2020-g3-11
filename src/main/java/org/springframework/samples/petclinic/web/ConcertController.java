@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Artista;
 import org.springframework.samples.petclinic.model.Concert;
 import org.springframework.samples.petclinic.model.Festival;
@@ -17,6 +18,7 @@ import org.springframework.samples.petclinic.service.ConcertService;
 import org.springframework.samples.petclinic.service.FestivalArtistaService;
 import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.samples.petclinic.service.RecintoService;
+import org.springframework.samples.petclinic.service.exceptions.ConcertOutOfDateException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -104,7 +106,8 @@ public class ConcertController {
 
 	@PostMapping("/{id}/edit")
 	public String processUpdateConcert(@PathVariable("id") int id, @PathVariable("festivalId") int festivalId,
-			@Valid Concert concert, BindingResult binding, ModelMap model) {
+			@Valid Concert concert, BindingResult binding, ModelMap model)
+			throws DataAccessException, ConcertOutOfDateException {
 
 		if (binding.hasErrors()) {
 			model.put("concert", concert);
@@ -115,10 +118,16 @@ public class ConcertController {
 			BeanUtils.copyProperties(concert, modifiedConcert, "id", "festival");
 			Artista artista = this.artistService.findArtistaByName(modifiedConcert.getArtista().getName());
 			Recinto recinto = this.recintoService.findRecintoByName(modifiedConcert.getRecinto().getName());
+			try {
+				modifiedConcert.setArtista(artista);
+				modifiedConcert.setRecinto(recinto);
+				concertService.save(modifiedConcert);
+			} catch (ConcertOutOfDateException e) {
+				binding.rejectValue("fecha", "Tienes que crear un concierto en la franja horaria del festival.",
+						"Tienes que crear un concierto en la franja horaria del festival.");
+				return CONCERTS_FORM;			
+				}
 
-			modifiedConcert.setArtista(artista);
-			modifiedConcert.setRecinto(recinto);
-			concertService.save(modifiedConcert);
 		}
 		return "redirect:/festivales/{festivalId}/conciertos";
 
@@ -130,33 +139,38 @@ public class ConcertController {
 		Optional<Concert> concert = concertService.findById(id);
 		if (concert.isPresent()) {
 			concertService.delete(concert.get());
-			model.addAttribute("message", "The concert was deleted successfully!");
 			return "redirect:/festivales/{festivalId}/conciertos";
 		} else {
-			model.addAttribute("message", "We cannot find the concert you tried to delete!");
 			return "redirect:/festivales/{festivalId}/conciertos";
 		}
 	}
 
 	@GetMapping("/new")
 	public String initCreationConcert(ModelMap model) {
-		Concert concert= new Concert();
+		Concert concert = new Concert();
 		model.put("concert", concert);
 		return CONCERTS_FORM;
 	}
 
 	@PostMapping("/new")
-	public String processCreationConcert(@PathVariable("festivalId") int idFestival, @Valid Concert concert, BindingResult binding,
-			ModelMap model) {
+	public String processCreationConcert(@PathVariable("festivalId") int idFestival, @Valid Concert concert,
+			BindingResult binding, ModelMap model) throws DataAccessException, ConcertOutOfDateException {
 
 		if (binding.hasErrors()) {
-//			binding.getFieldErrors().forEach(x-> binding.rejectValue(x.getField(), x.getDefaultMessage(), x.getDefaultMessage()));
 			return CONCERTS_FORM;
 		} else {
-			concert.setRecinto(this.recintoService.findRecintoByName(concert.getRecinto().getName()));
-			concert.setArtista(this.artistService.findArtistaByName(concert.getArtista().getName()));
-			concert.setFestival(this.festivalService.findFestivalById(idFestival).get());
-			this.concertService.save(concert);
+			try {
+				concert.setRecinto(this.recintoService.findRecintoByName(concert.getRecinto().getName()));
+				concert.setArtista(this.artistService.findArtistaByName(concert.getArtista().getName()));
+				concert.setFestival(this.festivalService.findFestivalById(idFestival).get());
+				this.concertService.save(concert);
+
+			} catch (ConcertOutOfDateException e) {
+				binding.rejectValue("fecha", "Tienes que crear un concierto en la franja horaria del festival.",
+						"Tienes que crear un concierto en la franja horaria del festival.");
+				return CONCERTS_FORM;
+
+			}
 
 		}
 		return "redirect:/festivales/{festivalId}/conciertos";

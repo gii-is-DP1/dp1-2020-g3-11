@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.service;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -43,6 +44,16 @@ public class FestivalService {
 	@Transactional(readOnly = true)
 	public Optional<Festival> findFestivalById(int id) throws DataAccessException {
 		return festivalRepo.findById(id);
+	}
+	
+	@Transactional
+	public LocalDate findStartDateFestival(int id) throws DataAccessException {
+		return festivalRepo.findStartDateFestival(id);
+	}
+	
+	@Transactional
+	public LocalDate findEndDateFestival(int id) throws DataAccessException {
+		return festivalRepo.findEndDateFestival(id);
 	}
 
 }

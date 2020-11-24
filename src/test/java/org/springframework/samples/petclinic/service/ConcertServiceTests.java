@@ -15,12 +15,11 @@
  */
 package org.springframework.samples.petclinic.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;  
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,15 +31,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Recinto;
-import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
-import org.springframework.samples.petclinic.util.EntityUtils;
+import org.springframework.samples.petclinic.service.exceptions.ConcertOutOfDateException;
 import org.springframework.samples.petclinic.model.Artista;
 import org.springframework.samples.petclinic.model.Concert;
 import org.springframework.samples.petclinic.model.Festival;
-import org.springframework.samples.petclinic.model.Owner;
-import org.springframework.samples.petclinic.model.Pet;
-import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -94,32 +90,41 @@ class ConcertServiceTests {
 	@Test
 	void shouldFindConcertById() throws Exception {
 		Concert concert2 = this.concertService.findById(2).get();
-		assertThat(concert2.getFecha()).isEqualTo(LocalDate.of(2021, 9, 15));
+		assertThat(concert2.getFecha()).isEqualTo(LocalDate.of(2021, 7, 26));
 		assertThat(concert2.getFestival().getId()).isEqualTo(2);
 	}
 
-//        FIND ALL CONCERTS 
+//  FIND ALL CONCERTS
 
-	@Test
-	void shoudAllFindConcert() throws Exception {
-		List<Concert> concerts = (List<Concert>) this.concertService.findAll();
-		assertThat((concerts.size() == 3)).isTrue();
-	}
+@Test
+void shoudFindAllConcert() throws Exception {
+	List<Concert> concerts = (List<Concert>) this.concertService.findAll();
+	assertThat((concerts.size() == 3)).isTrue();
+}
+
+//  FIND ALL CONCERTS BY FESTIVAL ID
+
+@Test
+void shoudFindAllConcertFestivalId() throws Exception {
+	List<Concert> concerts = (List<Concert>) this.concertService.findAllConcertsByFestivalId(2);
+	assertThat((concerts.size() == 3)).isTrue();
+}
+
 
 // 		INSERT NEW CONCERT 
 	@Test
 	@Transactional
 	void shouldInsertNewConcert() throws Exception {
-		List<Concert> concerts = (List<Concert>) this.concertService.findAll();
+		List<Concert> concerts = (List<Concert>) this.concertService.findAllConcertsByFestivalId(2);
 		int size = concerts.size();
 		Artista artist = this.artistService.findArtistaById(2);
 		Recinto rec = this.recintService.findById(5).get();
 		Festival fest = this.festivalService.findFestivalById(2).get();
 
 		Concert concert = new Concert();
-		concert.setFecha(LocalDate.of(2020, 12, 01));
-		concert.setHoraCom(LocalDateTime.of(2020, 12, 01, 12, 40));
-		concert.setHoraFin(LocalDateTime.of(2020, 12, 02, 12, 40));
+		concert.setFecha(LocalDate.of(2021, 07, 25));
+		concert.setHoraCom(LocalDateTime.of(2021, 07, 25, 23, 40));
+		concert.setHoraFin(LocalDateTime.of(2021, 07, 26, 01, 40));
 		concert.setArtista(artist);
 		concert.setRecinto(rec);
 		concert.setFestival(fest);
@@ -129,7 +134,7 @@ class ConcertServiceTests {
 		} catch (Exception ex) {
 			Logger.getLogger(ConcertServiceTests.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		concerts = (List<Concert>) this.concertService.findAll();
+		concerts = (List<Concert>) this.concertService.findAllConcertsByFestivalId(2);
 		assertThat(concerts.size()).isEqualTo(size + 1);
 		assertThat(concert.getId()).isNotNull();
 	}
@@ -144,9 +149,9 @@ class ConcertServiceTests {
 		Recinto rec = this.recintService.findById(5).get();
 		Festival fest = this.festivalService.findFestivalById(2).get();
 		
-		concert.setFecha(LocalDate.of(2020, 12, 01));
-		concert.setHoraCom(LocalDateTime.of(2020, 12, 01, 12, 40));
-		concert.setHoraFin(LocalDateTime.of(2020, 12, 02, 12, 40));
+		concert.setFecha(LocalDate.of(2021, 07, 25));
+		concert.setHoraCom(LocalDateTime.of(2021, 07, 25, 23, 40));
+		concert.setHoraFin(LocalDateTime.of(2021, 07, 26, 01, 40));
 		concert.setArtista(null);
 		concert.setRecinto(rec);
 		concert.setFestival(fest);
@@ -155,37 +160,85 @@ class ConcertServiceTests {
 			this.concertService.save(concert);
 		});
 	}
+//	INSERT NEW CONCERT WITH EXCEPTION 
 
 	@Test
 	@Transactional
-	void shouldUpdateConcert() {
-		Concert concert = this.concertService.findById(1).get();
-		LocalDate fecha = concert.getFecha();
-		fecha.plusWeeks(2);
-		concert.setFecha(fecha);
+	public void shouldThrowExceptionInsertingConcertsWithWrongDates() {
+		Concert concert = new Concert();
+		Artista artist = this.artistService.findArtistaById(2);
+		Recinto rec = this.recintService.findById(5).get();
+		Festival fest = this.festivalService.findFestivalById(2).get();
+		concert.setFecha(LocalDate.of(2021, 07, 25));
+		concert.setHoraCom(LocalDateTime.of(2021, 07, 25, 23, 40));
+		concert.setHoraFin(LocalDateTime.of(2021, 07, 26, 01, 40));
+		concert.setArtista(artist);
+		concert.setRecinto(rec);
+		concert.setFestival(fest);
+		try {
+			this.concertService.save(concert);
+		} catch (ConcertOutOfDateException e) {
+			// Wrongs dates!
+			e.printStackTrace();
+		}
+		
+		Concert concert2 = new Concert();
+		Artista artist2 = this.artistService.findArtistaById(2);
+		Recinto rec2 = this.recintService.findById(5).get();
+		Festival fest2 = this.festivalService.findFestivalById(2).get();
+		concert2.setFecha(LocalDate.of(2021, 07, 25));
+		concert2.setHoraCom(LocalDateTime.of(2021, 8, 25, 23, 40));
+		concert2.setHoraFin(LocalDateTime.of(2021, 8, 26, 01, 40));
+		concert2.setArtista(artist2);
+		concert2.setRecinto(rec2);
+		concert2.setFestival(fest2);
+		Assertions.assertThrows(ConcertOutOfDateException.class, () ->{
+			this.concertService.save(concert2);
+		});		
+	}
+
+//UPDATE CONCERT
+	@Test
+	@Transactional
+	void shouldUpdateConcert() throws DataAccessException, ConcertOutOfDateException {
+		Concert concert = this.concertService.findById(2).get();
+		LocalDateTime horaCom = concert.getHoraCom();
+		horaCom.plusMinutes(10);
+		concert.setHoraCom(horaCom);
 		this.concertService.save(concert);
 
 		// retrieving new name from database
-		concert = this.concertService.findById(1).get();
-		assertThat(concert.getFecha()).isEqualTo(fecha);
+		concert = this.concertService.findById(2).get();
+		assertThat(concert.getHoraCom()).isEqualTo(horaCom);
 	}
 	
+	//UPDATE CONCERT WITH EXCEPTION
+
+	@Test
+	@Transactional
+	void shouldThrowExceptionUpdatingConcertWithWrongDates() throws DataAccessException, ConcertOutOfDateException {
+		Concert concert = this.concertService.findById(2).get();
+		LocalDateTime horaFin = concert.getHoraFin();
+		concert.setHoraFin(horaFin.plusDays(10));
+
+		Assertions.assertThrows(ConcertOutOfDateException.class, () ->{
+			this.concertService.save(concert);
+		});		
+	}
 	
+	//DELETE CONCERT
+
 	@Test
 	@Transactional
 	void shouldDeleteConcert() throws Exception {
-		List<Concert> concerts = (List<Concert>) this.concertService.findAll();
+		List<Concert> concerts = (List<Concert>) this.concertService.findAllConcertsByFestivalId(2);
 		int size = concerts.size();
 		Concert concert = this.concertService.findById(2).get();
 
 		this.concertService.delete(concert);
 
-		concerts = (List<Concert>) this.concertService.findAll();
+		concerts = (List<Concert>) this.concertService.findAllConcertsByFestivalId(2);
 		assertThat(concerts.size()).isEqualTo(size - 1);
 
 	}
-	
-	
-	
-
 }
