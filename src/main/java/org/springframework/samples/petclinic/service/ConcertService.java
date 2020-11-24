@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Concert;
 import org.springframework.samples.petclinic.repository.ConcertRepository;
+import org.springframework.samples.petclinic.service.exceptions.ConcertOutOfDateException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -31,8 +32,14 @@ public class ConcertService {
 
 	}
 
-	public void save(@Valid Concert concierto) throws DataAccessException {
-		concertRepository.save(concierto);
+	public void save(@Valid Concert concierto) throws DataAccessException, ConcertOutOfDateException {
+		if(concierto.getHoraCom().toLocalDate().isBefore(concierto.getFestival().getFechaCom()) ||
+		concierto.getHoraFin().toLocalDate().isAfter(concierto.getFestival().getFechaFin())){
+			throw new ConcertOutOfDateException();
+		}else {
+			concertRepository.save(concierto);
+
+		}
 
 	}
 	
