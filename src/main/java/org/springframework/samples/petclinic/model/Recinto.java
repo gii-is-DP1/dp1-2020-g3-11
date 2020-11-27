@@ -28,6 +28,7 @@ public class Recinto extends NamedEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "festival_id")
+	@NotNull
 	private Festival festival;
 
 	@Column(name = "huecos")
@@ -36,6 +37,7 @@ public class Recinto extends NamedEntity {
 	private Integer huecos;
 
 	@ManyToOne
+	@NotNull
 	@JoinColumn(name = "tipos_recinto")
 	private TipoRecinto tipoRecinto;
 

@@ -31,7 +31,7 @@
     
     <form:form modelAttribute="festival" class="form-horizontal" id="add-festival-form">
         <div class="form-group has-feedback">
-            <petclinic:inputField label="Name" name="name"/>
+            <petclinic:inputField label="Nombre" name="name"/>
             <petclinic:inputField label="Aforo Maximo" name="aforoMax"/>
             <petclinic:inputField label="Fecha Comienzo" name="fechaCom"/>
             <petclinic:inputField label="Fecha Fin" name="fechaFin"/>  
