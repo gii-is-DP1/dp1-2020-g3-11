@@ -24,28 +24,33 @@ public class EntradaService {
 		return entradaRepo.findAll();
 	}
 
+	@Transactional(readOnly = true)
 	public Optional<Entrada> findById(int id) throws DataAccessException {
 		return entradaRepo.findById(id);
 	}
 	
+	@Transactional(readOnly = true)
 	public EntradaType findEntradaType(String entradatype) {
         return entradaRepo.findEntradaTypeByName(entradatype);
     }
-
-	public void delete(Entrada entrada) {
+	
+	@Transactional
+	public void delete(Entrada entrada) throws DataAccessException {
 		entradaRepo.deleteById(entrada.getId());
 
 	}
-
-	public void save(@Valid Entrada entrada) {
+	@Transactional
+	public void save(@Valid Entrada entrada) throws DataAccessException{
 		entradaRepo.save(entrada);
 
 	}
 	
+	@Transactional(readOnly = true)
 	public Collection<Entrada> findAllEntradasByFestivalId(int festivalId) throws DataAccessException{
 		return entradaRepo.findAllEntradasByFestivalId(festivalId);
 	}
 
+	@Transactional(readOnly = true)
 	public Entrada findByEntradaIdFestivalId(int festivalId, int entradaId) {
 		return entradaRepo.findByEntradaIdFestivalId(festivalId, entradaId);
 	}

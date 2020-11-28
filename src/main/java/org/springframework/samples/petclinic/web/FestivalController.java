@@ -110,7 +110,7 @@ public class FestivalController {
 			model.addAttribute("festival", festival.get());
 			return FESTIVALES_FORM;
 		} else {
-			model.addAttribute("message", "We cannot find the festival you tried to edit!");
+			model.addAttribute("message", "No se encuentra el festival a editar.");
 			return listFestivales(model);
 		}
 	}
@@ -124,7 +124,7 @@ public class FestivalController {
 		} else {
 			BeanUtils.copyProperties(modifiedFestival, festival.get(), "id");
 			festivalService.save(festival.get());
-			model.addAttribute("message", "Festival updated succesfully!");
+			model.addAttribute("message", "Festival editado correctamente.");
 			return listFestivales(model);
 		}
 	}
@@ -134,10 +134,10 @@ public class FestivalController {
 		Optional<Festival> festival = festivalService.findFestivalById(festivalId);
 		if (festival.isPresent()) {
 			festivalService.delete(festival.get());
-			model.addAttribute("message", "The Festival was deleted successfully!");
+			model.addAttribute("message", "Festival borrado correctamente.");
 			return listFestivales(model);
 		} else {
-			model.addAttribute("message", "We cannot find the Festival you tried to delete!");
+			model.addAttribute("message", "No se encuentra el festival a borrar.");
 			return listFestivales(model);
 		}
 	}
@@ -148,10 +148,10 @@ public class FestivalController {
 		FestivalArtista fa = festivalArtistaService.findByArtistaIdFestivalId(festivalId, artistaId);
 		if (fa != null) {
 			festivalArtistaService.delete(fa);
-			model.addAttribute("message", "The Artist was deleted successfully!");
+			model.addAttribute("message", "El artista fue borrado.");
 			return showFestival(model, festivalId);
 		} else {
-			model.addAttribute("message", "We cannot find the Artist you tried to delete!");
+			model.addAttribute("message", "No se encuentra el artista a borrar.");
 			return showFestival(model, festivalId);
 		}
 	}
@@ -162,10 +162,10 @@ public class FestivalController {
 		Recinto recinto= festivalRecintoService.findByRecintoIdFestivalId(festivalId, recintoId);
 		if (recinto != null) {
 			festivalRecintoService.delete(recinto);
-			model.addAttribute("message", "The enclosure was deleted successfully!");
+			model.addAttribute("message", "El recinto fue borrado.");
 			return showFestival(model, festivalId);
 		} else {
-			model.addAttribute("message", "We cannot find the enclosure you tried to delete!");
+			model.addAttribute("message", "No se encuentra el recinto a borrar.");
 			return showFestival(model, festivalId);
 		}
 	}
@@ -176,10 +176,10 @@ public class FestivalController {
 		Entrada entrada= festivalEntradaService.findByEntradaIdFestivalId(festivalId, entradaId);
 		if (entrada != null) {
 			festivalEntradaService.delete(entrada);
-			model.addAttribute("message", "The enclosure was deleted successfully!");
+			model.addAttribute("message", "La entrada fue borrada.");
 			return showFestival(model, festivalId);
 		} else {
-			model.addAttribute("message", "We cannot find the enclosure you tried to delete!");
+			model.addAttribute("message", "No se encuentra la entrada a borrar.");
 			return showFestival(model, festivalId);
 		}
 	}

@@ -102,7 +102,7 @@ public class EntradaController {
 	}
 
 	@PostMapping("/new")
-	public String saveNewEntrada(@Valid Entrada entrada,@PathVariable("festivalId") int festivalId, BindingResult binding, ModelMap model) {
+	public String saveNewEntrada(@PathVariable("festivalId") int festivalId,@Valid Entrada entrada, BindingResult binding, ModelMap model) {
 		if (binding.hasErrors()) {
 			return ENTRADAS_FORM;
 		} else {
