@@ -99,6 +99,9 @@ INSERT INTO entradatypes VALUES (3, 'fiesta');
 INSERT INTO entrada VALUES (1,40,1,1,20);
 INSERT INTO entrada VALUES (2,30,2,1,23);
 INSERT INTO entrada VALUES (3,50,1,1,22);
+INSERT INTO entrada VALUES (10,41,1,2,20);
+INSERT INTO entrada VALUES (11,31,2,2,23);
+INSERT INTO entrada VALUES (12,51,1,2,22);
 
 INSERT INTO oferta VALUES (1,20,'Camisetas y 3 bolsas de hielo');
 INSERT INTO oferta VALUES (2,30,'Botella de Ron y 1 bolsa de hielos');
