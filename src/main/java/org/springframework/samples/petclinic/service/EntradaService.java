@@ -24,7 +24,7 @@ public class EntradaService {
 		return entradaRepo.findAll();
 	}
 
-	public Optional<Entrada> findById(int id) {
+	public Optional<Entrada> findById(int id) throws DataAccessException {
 		return entradaRepo.findById(id);
 	}
 	
@@ -40,6 +40,14 @@ public class EntradaService {
 	public void save(@Valid Entrada entrada) {
 		entradaRepo.save(entrada);
 
+	}
+	
+	public Collection<Entrada> findAllEntradasByFestivalId(int festivalId) throws DataAccessException{
+		return entradaRepo.findAllEntradasByFestivalId(festivalId);
+	}
+
+	public Entrada findByEntradaIdFestivalId(int festivalId, int entradaId) {
+		return entradaRepo.findByEntradaIdFestivalId(festivalId, entradaId);
 	}
 	
 	@Transactional(readOnly = true)

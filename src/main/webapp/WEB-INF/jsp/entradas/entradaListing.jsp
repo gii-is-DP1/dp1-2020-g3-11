@@ -26,7 +26,7 @@
 					<td><c:out value="${entrada.id}" /></td>
 					<td><c:out value="${entrada.precio}" /></td>
 					<td><c:out value="${entrada.entradaType}" /></td>
-					<td><a href="/entradas/${entrada.id}/edit"> <span
+					<td><a href="entradas/${entrada.id}/edit"> <span
 							class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 					</a></td>
 					<td><a href="/entradas/${entrada.id}/delete"> <span

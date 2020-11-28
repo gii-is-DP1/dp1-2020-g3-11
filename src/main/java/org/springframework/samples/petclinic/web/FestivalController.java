@@ -8,10 +8,12 @@ import javax.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Artista;
+import org.springframework.samples.petclinic.model.Entrada;
 import org.springframework.samples.petclinic.model.Festival;
 import org.springframework.samples.petclinic.model.FestivalArtista;
 import org.springframework.samples.petclinic.model.Recinto;
 import org.springframework.samples.petclinic.service.ArtistaService;
+import org.springframework.samples.petclinic.service.EntradaService;
 import org.springframework.samples.petclinic.service.FestivalArtistaService;
 import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.samples.petclinic.service.RecintoService;
@@ -33,6 +35,8 @@ public class FestivalController {
 	public static final String FESTIVALES_LISTING = "festivales/festivalListing";
 	public static final String FESTIVALES_DETAILS = "festivales/festivalDetails";
 	public static final String ARTISTAS_LISTA = "festivales/listArtistasAñadir";
+	public static final String ENTRADAS_FORM = "festivales/createOrUpdateEntradaForm";
+
 
 	@Autowired
 	RecintoService festivalRecintoService;
@@ -45,6 +49,9 @@ public class FestivalController {
 	
 	@Autowired
 	FestivalArtistaService festivalArtistaService;
+	
+	@Autowired
+	EntradaService festivalEntradaService;
 
 	@InitBinder("festival")
 	public void initFestivalBinder(WebDataBinder dataBinder) {
@@ -65,6 +72,7 @@ public class FestivalController {
 			model.addAttribute("festival", festival);
 			model.addAttribute("artistas", festivalArtistaService.findAllArtistasByFestivalId(festivalId));
 			model.addAttribute("recintos", festivalRecintoService.findAllRecintosByFestivalId(festivalId));
+			model.addAttribute("entradas", festivalEntradaService.findAllEntradasByFestivalId(festivalId));
 		} else {
 			return "redirect:/oups";
 		}
@@ -154,6 +162,20 @@ public class FestivalController {
 		Recinto recinto= festivalRecintoService.findByRecintoIdFestivalId(festivalId, recintoId);
 		if (recinto != null) {
 			festivalRecintoService.delete(recinto);
+			model.addAttribute("message", "The enclosure was deleted successfully!");
+			return showFestival(model, festivalId);
+		} else {
+			model.addAttribute("message", "We cannot find the enclosure you tried to delete!");
+			return showFestival(model, festivalId);
+		}
+	}
+	
+	@GetMapping("/{festivalId}/entradas/{entradaId}/delete")
+	public String deleteEntradaDeFestival(@PathVariable("festivalId") int festivalId,
+			@PathVariable("entradaId") int entradaId, ModelMap model) {
+		Entrada entrada= festivalEntradaService.findByEntradaIdFestivalId(festivalId, entradaId);
+		if (entrada != null) {
+			festivalEntradaService.delete(entrada);
 			model.addAttribute("message", "The enclosure was deleted successfully!");
 			return showFestival(model, festivalId);
 		} else {
