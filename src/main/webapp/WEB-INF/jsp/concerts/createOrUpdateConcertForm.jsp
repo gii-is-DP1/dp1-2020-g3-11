@@ -6,7 +6,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
-<petclinic:layout pageName="conciertos">
+
+<petclinic:layout pageName="concerts">
 
 	<jsp:attribute name="customScript">
 	
@@ -29,24 +30,30 @@
     <jsp:body>
     
     <h2>
-        <c:if test="${concierto['new']}">Nuevo </c:if> Concierto
+        <c:if test="${concert['new']}">Nuevo </c:if> Concierto
     </h2>
-    <form:form modelAttribute="concierto" class="form-horizontal" id="add-concierto-form">
+    <form:form modelAttribute="concert" class="form-horizontal" id="add-concert-form">
         <div class="form-group has-feedback">
         
             <petclinic:inputField label="Fecha" name="fecha"/>
             <petclinic:inputField label="Hora Comienzo" name="horaCom"/>
             <petclinic:inputField label="Hora Fin" name="horaFin"/>  
-			<%--  <petclinic:selectField label="Artista" name="artista" names="${artistas}" size="artistas.size"/>--%>
-			<!-- aqui deberia aparecer en un select los artistas que podemos elegir para el concierto, hay que retocarlo mas adelante -->
-			<petclinic:inputField label="ID del artista" name="artista.id"/>
-			<petclinic:inputField label="ID del recinto" name="recinto.id"/>
+			<div class="control-group">
+
+				<petclinic:selectField name="artista.name" label="Artista " names="${artistas}"
+					size="${artistas.size()}" />
+			</div>
+			<div class="control-group">
+			
+				<petclinic:selectField name="recinto.name" label="Recinto " names="${recintos}"
+					size="${recintos.size()}" />
+			</div>
             
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <c:choose>
-                    <c:when test="${concierto['new']}">
+                    <c:when test="${concert['new']}">
                         <button class="btn btn-default" type="submit">Añadir Concierto</button>
                     </c:when>
                     <c:otherwise>

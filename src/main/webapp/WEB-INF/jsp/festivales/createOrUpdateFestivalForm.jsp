@@ -7,12 +7,31 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
 <petclinic:layout pageName="festivales">
-    <h2>
+ 
+    <jsp:attribute name="customScript">
+	
+        <script>
+            $(function () {
+                $("#fechaCom").datepicker({dateFormat: 'yy/mm/dd'});
+            });
+        </script>
+        <script>
+            $(function () {
+                $("#fechaFin").datepicker({dateFormat: 'yy/mm/dd'});
+            });
+        </script>
+      
+    </jsp:attribute>
+    <jsp:body>
+    
+       <h2>
         <c:if test="${festival['new']}">Nuevo </c:if> Festival
     </h2>
+    
+    
     <form:form modelAttribute="festival" class="form-horizontal" id="add-festival-form">
         <div class="form-group has-feedback">
-            <petclinic:inputField label="Name" name="name"/>
+            <petclinic:inputField label="Nombre" name="name"/>
             <petclinic:inputField label="Aforo Maximo" name="aforoMax"/>
             <petclinic:inputField label="Fecha Comienzo" name="fechaCom"/>
             <petclinic:inputField label="Fecha Fin" name="fechaFin"/>  
@@ -31,4 +50,5 @@
             </div>
         </div>
     </form:form>
+    </jsp:body>
 </petclinic:layout> 

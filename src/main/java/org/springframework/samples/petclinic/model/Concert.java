@@ -1,7 +1,7 @@
 package org.springframework.samples.petclinic.model;
 
 
-import java.time.LocalDate; 
+import java.time.LocalDate;  
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -19,14 +19,20 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "concierto")
-public class Concierto extends BaseEntity {
+public class Concert extends BaseEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "recinto_id")
+//	@NotNull
 	private Recinto recinto;
 	
 	@ManyToOne
+	@JoinColumn(name = "festival_id")
+	private Festival festival;
+	
+	@ManyToOne
 	@JoinColumn(name = "artista_id")
+	@NotNull
 	private Artista artista;
 	
 	@Column(name = "fecha")
