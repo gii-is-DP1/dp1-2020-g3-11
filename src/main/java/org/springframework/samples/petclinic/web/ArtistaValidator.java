@@ -65,8 +65,8 @@ public class ArtistaValidator implements Validator {
 		}
 
 		if (telefono.length() > 15 || telefono.length() < 9) {
-			errors.rejectValue("telefono", REQUIRED + " Debe contener entre 3 y 50 caracteres",
-					REQUIRED + " Debe contener entre 3 y 50 caracteres");
+			errors.rejectValue("telefono", REQUIRED + " Debe contener entre 9 y 15 caracteres",
+					REQUIRED + " Debe contener entre 9 y 15 caracteres");
 		} else {
 			if(telefono.startsWith("-") || telefono.startsWith("+") ) {
 				errors.rejectValue("telefono", "El teléfono no puede contener simbolos",
