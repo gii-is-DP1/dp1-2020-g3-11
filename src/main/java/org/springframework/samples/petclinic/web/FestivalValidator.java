@@ -24,6 +24,37 @@ import org.springframework.validation.Validator;
 
 public class FestivalValidator implements Validator {
 
+	public static boolean contieneSoloLetras(String cadena) {
+		for (int x = 0; x < cadena.length(); x++) {
+			char c = cadena.charAt(x);
+			// Si no está entre a y z, ni entre A y Z, ni es un espacio
+			if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == ' ')) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public static boolean contieneSoloLetrasYNumeros(String cadena) {
+		for (int x = 0; x < cadena.length(); x++) {
+			char c = cadena.charAt(x);
+			// Si no está entre a y z, ni entre A y Z, ni es un espacio
+			if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c == ' ') || (c >= '0' && c <= '9'))) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+//	private static boolean isNumeric(String cadena) {
+//		try {
+//			Integer.parseInt(cadena);
+//			return true;
+//		} catch (NumberFormatException nfe) {
+//			return false;
+//		}
+//	}
+
 	private static final String REQUIRED = "Campo requerido.";
 
 	@Override
@@ -40,10 +71,18 @@ public class FestivalValidator implements Validator {
 					REQUIRED + " Debe contener entre 3 y 50 caracteres");
 		}
 
+		if (!contieneSoloLetrasYNumeros(name)) {
+			errors.rejectValue("name", "Introduzca una entrada válida.", "Introduzca una entrada válida.");
+		}
+
 		if (!StringUtils.hasLength(localizacion)) {
 			errors.rejectValue("localizacion", REQUIRED, REQUIRED);
 		}
 
+		if (!contieneSoloLetras(localizacion)) {
+			errors.rejectValue("localizacion", "Introduzca una entrada válida.", "Introduzca una entrada válida.");
+		}
+	
 		if (aforoMax == null) {
 			errors.rejectValue("aforoMax", REQUIRED, REQUIRED);
 		} else {
@@ -52,6 +91,7 @@ public class FestivalValidator implements Validator {
 						"El aforo máximo debe ser mayor que 0");
 			}
 		}
+			
 
 		if (fechaCom == null) {
 			errors.rejectValue("fechaCom", REQUIRED, REQUIRED);
@@ -73,6 +113,7 @@ public class FestivalValidator implements Validator {
 						"El valor de la fecha fin no puede ser anterior a la fecha comienzo establecida");
 			}
 		}
+
 
 	}
 
