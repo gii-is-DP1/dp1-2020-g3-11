@@ -29,15 +29,15 @@
 			<petclinic:inputField label="Nombre" name="name" />
 			<petclinic:inputField label="Nº huecos de puestos" name="huecos" />
 			
-			<h4>Tipo del recinto</h4>
+			<label class="col-sm-2 control-label">Tipo del recinto</label>
 			Escenario <input type="radio" onclick="javascript:yesnoCheck();"
 				name="tipoRecinto.name" id="yesCheck" value="Escenario"><br>
 			Parking <input type="radio"
-				onclick="javascript:yesnoCheck();" name="tipoRecinto.name" id="noCheck" value="Parking"><br>
+				onclick="javascript:yesnoCheck();" name="tipoRecinto.name" id="noCheck" value="Parking">
 			Camping <input type="radio"
 				onclick="javascript:yesnoCheck();" name="tipoRecinto.name" id="mCheck" value="Camping"><br>
 			<div id="ifYes" style="visibility: hidden">
-				<petclinic:inputField label="Nº máximo de escenarios"
+				<br><petclinic:inputField label="Nº máximo de escenarios"
 					name="numMaxEscenarios" />
 			</div>
 		</div>
