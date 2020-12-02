@@ -11,6 +11,7 @@ import org.springframework.samples.petclinic.model.Concert;
 import org.springframework.samples.petclinic.repository.ConcertRepository;
 import org.springframework.samples.petclinic.service.exceptions.ConcertOutOfDateException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ConcertService {

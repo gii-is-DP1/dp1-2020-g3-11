@@ -21,5 +21,5 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tabla_tipos_recinto")
 public class TipoRecinto extends NamedEntity {
-
+	
 }

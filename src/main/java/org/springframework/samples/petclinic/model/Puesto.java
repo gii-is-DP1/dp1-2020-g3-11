@@ -18,14 +18,23 @@ import lombok.Data;
 public class Puesto extends BaseEntity {	
 
 	@ManyToOne
-	@JoinColumn(name = "recinto")
+	@JoinColumn(name = "festival_id")
+//	@NotNull
+	private Festival festival;
+	
+	@ManyToOne
+	@JoinColumn(name = "recinto_id")
+//	@NotNull
 	private Recinto recinto;
 
-	@Column(name = "tipoPuesto")
+	@ManyToOne
+	@NotNull
+	@JoinColumn(name = "tipos_puesto")
 	private TipoPuesto tipoPuesto;
 
-
-	@Column(name = "tipoTamaño")
+	@ManyToOne
+	@NotNull
+	@JoinColumn(name = "tipos_tamaño")
 	private TipoTamaño tipoTamaño;
 
 	@Column(name = "precio")

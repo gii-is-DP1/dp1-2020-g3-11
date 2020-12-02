@@ -133,10 +133,16 @@
 		aria-hidden="true"></span> Añadir entrada</a>
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
+	
 	<h4>Conciertos</h4>
 	<a href="/festivales/${festival.id}/conciertos" class="btn btn-default"><span
 		aria-hidden="true"></span> Ver conciertos</a>
+	
+	<br>
+	<br>
+	
+	<h4>Puestos</h4>
+	<a href="/festivales/${festival.id}/puestos" class="btn btn-default"><span
+		aria-hidden="true"></span> Ver puestos</a>
+		
 </petclinic:layout>
