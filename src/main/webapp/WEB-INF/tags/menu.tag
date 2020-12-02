@@ -3,9 +3,8 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-<!--  >%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%-->
 <%@ attribute name="name" required="true" rtexprvalue="true"
-	description="Name of the active menu: home, owners, vets or error"%>
+	description="Opciones del menu: inicio, login, entradas, festivales, mis puestos o error"%>
 
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container">
@@ -44,14 +43,8 @@
 						<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
 						<span>Login</span>
 					</petclinic:menuItem>
-
-					<petclinic:menuItem active="${name eq 'registro'}" url="/users/new"
-						title="registro">
-						<span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
-						<span>Registro de petclinic</span>
-					</petclinic:menuItem>
 					
-					<petclinic:menuItem active="${name eq 'registroSpringfest'}" url="/users/new"
+					<petclinic:menuItem active="${name eq 'registroSpringfest'}" url="/usuarios/new"
 						title="registroUsuario">
 						<span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
 						<span>Registro de SpringFest</span>
@@ -61,7 +54,7 @@
 				<!--LO QUE VE EL ADMIN			-->
 				<sec:authorize access="hasAuthority('admin')">
 
-					<petclinic:menuItem active="${name eq 'home'}" url="/"
+					<petclinic:menuItem active="${name eq 'home'}" url="/festivales"
 						title="home page">
 						<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 						<span>Inicio</span>
@@ -77,7 +70,7 @@
 					<petclinic:menuItem active="${name eq 'miperfil'}" url="/miperfil"
 						title="mi  perfil">
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						<span>Mi Pefil</span>
+						<span>Mi Perfil</span>
 					</petclinic:menuItem>
 
 					<petclinic:menuItem active="${name eq 'about'}" url="/about"
@@ -129,7 +122,7 @@
 				<!--LO QUE VE EL USUARIO CLIENTE			-->
 				<sec:authorize access="hasAuthority('usuario')">
 
-					<petclinic:menuItem active="${name eq 'home'}" url="/"
+					<petclinic:menuItem active="${name eq 'home'}" url="/festivales"
 						title="home page">
 						<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 						<span>Inicio</span>

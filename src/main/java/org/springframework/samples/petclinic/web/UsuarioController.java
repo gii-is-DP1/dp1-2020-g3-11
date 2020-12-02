@@ -33,6 +33,11 @@ public class UsuarioController {
 	public void setAllowedFields(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
 	}
+	
+	@InitBinder("usuario")
+	public void initArtistBinder(WebDataBinder dataBinder) {
+		dataBinder.setValidator(new RegistroUsuarioValidator());
+	}
 
 	@GetMapping(value = "/usuarios/new")
 	public String initCreationForm(Map<String, Object> model) {

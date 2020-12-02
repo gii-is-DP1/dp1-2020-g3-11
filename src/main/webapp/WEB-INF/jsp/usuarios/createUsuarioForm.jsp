@@ -7,7 +7,7 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
 
 <petclinic:layout pageName="sponsor">
-	
+
 	<jsp:attribute name="customScript">
 	<script type="text/javascript">
 		function yesnoCheck() {
@@ -39,12 +39,13 @@
 			id="add-usuario-form">
 		<div class="form-group has-feedback">
 			<h4>Tipo de usuario</h4>
+			<div class="tipodeUsuario">
 			Sponsor <input type="radio" onclick="javascript:yesnoCheck();"
-					name="tipoUsuario.name" id="yesCheck" value="Sponsor"><br>
+						name="tipoUsuario.name" id="yesCheck" value="Sponsor"><br>
 					
 			Usuario <input type="radio" onclick="javascript:yesnoCheck();"
-					name="tipoUsuario.name" id="noCheck" value="Usuario"><br>
-
+						name="tipoUsuario.name" id="noCheck" value="Usuario"><br>
+</div>
 			<petclinic:inputField label="Nombre" name="firstName" />
 			<petclinic:inputField label="Apellidos" name="lastName" />
 			<petclinic:inputField label="Correo" name="correo" />
