@@ -13,6 +13,7 @@
 	  <table id="puestoTable" class="table table-striped">
 		<thead>
 			<tr>
+				<th style="width: 20%;">ID</th>
 				<th style="width: 20%;">Tipo del puesto</th>
 				<th style="width: 20%;">Tamaño del puesto</th>
 				<th style="width: 20%;">Precio</th>
@@ -24,10 +25,11 @@
 		<tbody>
 			<c:forEach items="${puestos}" var="puesto">
 				<tr>
+					<td><c:out value="${puesto.id}" /></td>
 					<td><c:out value="${puesto.tipoPuesto}" /></td>
-					<td><c:out value="${puesto.tipoTamaño}" /></td>
+					<td><c:out value="${puesto.tipoTamanio}" /></td>
 					<td><c:out value="${puesto.precio}" /></td>
-					<td><c:out value="${puesto.recinto}" /></td>
+					<td><c:out value="${puesto.recinto.name}" /></td>
 					<td><a href="puestos/${puesto.id}/edit"> <span
 							class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 					</a></td>

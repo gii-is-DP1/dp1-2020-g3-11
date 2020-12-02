@@ -40,6 +40,9 @@
 		class="btn btn-default"><span class="glyphicon glyphicon-plus"
 		aria-hidden="true"></span> Ver artistas disponibles</a>
 
+	<br>
+	<br>
+	
 	<h2>Recintos</h2>
 	<table id="recintosTable" class="table table-striped">
 		<thead>
@@ -88,7 +91,10 @@
 	<a href="/festivales/${festival.id}/recintos/new"
 		class="btn btn-default"><span class="glyphicon glyphicon-plus"
 		aria-hidden="true"></span> Añadir recinto</a>
+
 	<br>
+	<br>
+	
 	<h3>Entradas</h3>
 	<table id="entradasTable" class="table table-striped">
 		<thead>

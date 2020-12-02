@@ -142,7 +142,7 @@ INSERT INTO tabla_tipos_puesto VALUES (1, 'Comida');
 INSERT INTO tabla_tipos_puesto VALUES (2, 'Ropa');
 INSERT INTO tabla_tipos_puesto VALUES (3, 'Actividades');
 
-INSERT INTO tabla_tipos_tamanio VALUES (1, 'Pequeño');
+INSERT INTO tabla_tipos_tamanio VALUES (1, 'Reducido');
 INSERT INTO tabla_tipos_tamanio VALUES (2, 'Mediano');
 INSERT INTO tabla_tipos_tamanio VALUES (3, 'Grande');
 

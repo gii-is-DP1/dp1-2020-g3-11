@@ -34,8 +34,8 @@ public class Puesto extends BaseEntity {
 
 	@ManyToOne
 	@NotNull
-	@JoinColumn(name = "tipos_tamaño")
-	private TipoTamaño tipoTamaño;
+	@JoinColumn(name = "tipos_tamanio")
+	private TipoTamaño tipoTamanio;
 
 	@Column(name = "precio")
 	@NotNull
