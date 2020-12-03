@@ -12,7 +12,7 @@
 
 	<h2>
 		<c:if test="${puesto['new']}">Registro de un nuevo </c:if>
-		puesto
+		Puesto
 	</h2>
 	<form:form modelAttribute="puesto" class="form-horizontal"
 		id="add-puesto-form">
@@ -31,6 +31,12 @@
 			</div>
 			
 			<petclinic:inputField label="Precio" name="precio" />
+			
+			<div class="control-group">
+			
+				<petclinic:selectField name="recinto.name" label="Recinto " names="${recintos}"
+					size="${recintos.size()}" />
+			</div>
 
 		</div>
 		<div class="form-group">

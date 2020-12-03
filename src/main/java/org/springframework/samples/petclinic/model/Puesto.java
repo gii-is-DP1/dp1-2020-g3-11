@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.model;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -34,7 +35,7 @@ public class Puesto extends BaseEntity {
 
 	@ManyToOne
 	@NotNull
-	@JoinColumn(name = "tipos_tamanio")
+	@JoinColumn(name = "tipos_tamaño")
 	private TipoTamaño tipoTamanio;
 
 	@Column(name = "precio")

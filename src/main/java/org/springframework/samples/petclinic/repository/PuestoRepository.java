@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.samples.petclinic.model.Puesto;
+import org.springframework.samples.petclinic.model.Recinto;
 import org.springframework.samples.petclinic.model.TipoPuesto;
 import org.springframework.samples.petclinic.model.TipoTamaño;
 
@@ -25,5 +26,8 @@ public interface PuestoRepository extends CrudRepository<Puesto, Integer> {
 	
 	@Query("SELECT ptype FROM TipoPuesto ptype ORDER BY ptype.name")
 	Collection<TipoPuesto> findTiposPuesto();
+
+	@Query("SELECT r FROM Recinto r where r.id = ?1")
+	Recinto findRecintoById(Integer id);
 	
 }
