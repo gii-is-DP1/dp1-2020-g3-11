@@ -42,6 +42,7 @@ public class Recinto extends NamedEntity {
 	private TipoRecinto tipoRecinto;
 
 	@Column(name = "numMaxEscenarios")
-	private Integer numMaxEscenarios;
+	@NotNull
+	private Integer numMaxEscenarios = 0;
 
 }

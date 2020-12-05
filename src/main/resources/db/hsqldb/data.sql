@@ -74,7 +74,7 @@ INSERT INTO usuario VALUES (24, 'Pablo', 'Cubero', '41111990B', 'pablo@user.com'
 
 
 
-INSERT INTO festival VALUES (1,'Cabo de Plata',100,'2020-06-06','2020-06-09','Cádiz');
+INSERT INTO festival VALUES (1,'Cabo de Plata',100,'2021-06-06','2021-06-09','Cádiz');
 INSERT INTO festival VALUES (2,'Dreambeach',200,'2021-07-25','2021-07-29','Almería');
 INSERT INTO festival VALUES (3,'Mucha Cumbia BRO',200,'2021-03-15','2021-03-19','Puerto Rico');
 INSERT INTO festival VALUES (4,'Mucha Cumbia BRO 2.0',200,'2021-03-15','2021-03-19','Puerto Rico');

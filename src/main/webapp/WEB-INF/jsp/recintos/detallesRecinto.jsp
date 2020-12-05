@@ -14,13 +14,24 @@
 	<table id="puestos_recinto_table" class="table table-striped">
 		<thead>
 			<tr>
-				<th style="width: 20%;">Nombre</th>
+				<th style="width: 20%;">Tipo Puesto</th>
+				<th style="width: 20%;">Tamaño del puesto</th>
+				<th style="width: 20%;">Precio</th>
 			</tr>
 		</thead>
+		<tbody>
+			<c:forEach items="${puestos}" var="puesto">
+				<tr>
+					<td><c:out value="${puesto.tipoPuesto}" /></td>
+					<td><c:out value="${puesto.tipoTamanio}" /></td>
+					<td><c:out value="${puesto.precio}" /></td>
+				</tr>
+			</c:forEach>
+		</tbody>
 	</table>
 	<c:if test="${recinto.tipoRecinto == 'Escenario'}">
 		<h3>Lista Conciertos</h3>
-		<table>
+		<table id="conciertos_recinto_table" class="table table-striped">
 			<thead>
 				<tr>
 					<th style="width: 20%;">Artista</th>

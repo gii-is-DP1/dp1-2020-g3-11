@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RecintoController {
 
 	public static final String RECINTOS_FORM = "recintos/createOrUpdateRecintoForm";
-	public static final String RECINTOS_DETALLES_FORM = "recintos/detallesRecintoForm";
+	public static final String RECINTOS_DETALLES_FORM = "recintos/detallesRecinto";
 	public static final String RECINTOS_LISTING = "recintos/recintoListing";
 
 	@Autowired
@@ -106,6 +106,7 @@ public class RecintoController {
 	public String mostrarDetallesRecinto(ModelMap model, @PathVariable("id") int recintoId) {
 		model.addAttribute("recinto", this.recintoService.findById(recintoId).get());
 		model.addAttribute("conciertos", this.recintoService.findAllConciertosById(recintoId));
+		model.addAttribute("puestos", this.recintoService.findAllPuestosById(recintoId));
 		return RECINTOS_DETALLES_FORM;
 	}
 	
