@@ -32,4 +32,21 @@ PetClinic :: a Spring Framework demonstration
     <link href="${jQueryUiCss}" rel="stylesheet"/>
     <spring:url value="/webjars/jquery-ui/1.11.4/jquery-ui.theme.min.css" var="jQueryUiThemeCss"/>
     <link href="${jQueryUiThemeCss}" rel="stylesheet"/>
+     
+     <!-- Only datetimepicker is used -->
+    <spring:url value="/webjars/datetimepicker/2.5.20-1/jquery.datetimepicker.css" var="jQueryDTPCss"/>
+    <link href="${jQueryDTPCss}" rel="stylesheet"/>
+    
+    
+    <spring:url value="/webjars/datetimepicker/2.5.20-1/jquery.js" var="jQueryDTP"/>
+	<script src="${jQueryDTP}"></script>
+    
+    <spring:url value="/webjars/datetimepicker/2.5.20-1/build/jquery.datetimepicker.full.min.js" var="DTPjS"/>
+	<script src="${DTPjS}"></script>
+    
+     <!-- Only ckeditor is used -->
+
+    <spring:url value="/webjars/ckeditor/4.14.0/standard/ckeditor.js" var="ckeditorJs"/>
+	<script src="${ckeditorJs}"></script>
+	
 </head>

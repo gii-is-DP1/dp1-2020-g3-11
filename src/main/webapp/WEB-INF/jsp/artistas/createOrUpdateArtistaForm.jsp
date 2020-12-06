@@ -20,7 +20,6 @@
 				<petclinic:selectField name="genero.name" label="Género " names="${generos}"
 					size="${generos.size()}" />
 			</div>
-			<%-- <petclinic:inputField label="Género" name="genero" /> --%>
 			<petclinic:inputField label="Teléfono" name="telefono" />
 		</div>
 		<div class="form-group">

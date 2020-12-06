@@ -10,6 +10,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Concert;
 import org.springframework.samples.petclinic.repository.ConcertRepository;
 import org.springframework.samples.petclinic.service.exceptions.ConcertOutOfDateException;
+import org.springframework.samples.petclinic.service.exceptions.NumberConcertsException;
+import org.springframework.samples.petclinic.web.ConcertValidator;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,8 +25,8 @@ public class ConcertService {
 		return concertRepository.findAll();
 	}
 
-	public Optional<Concert> findById(int id) throws DataAccessException {
-		return concertRepository.findById(id);
+	public Concert findById(int id) throws DataAccessException {
+		return concertRepository.findById(id).get();
 	}
 
 	public void delete(Concert concierto) throws DataAccessException {
@@ -32,12 +34,18 @@ public class ConcertService {
 
 	}
 
-	public void save(@Valid Concert concierto) throws DataAccessException, ConcertOutOfDateException {
-		if(concierto.getHoraCom().toLocalDate().isBefore(concierto.getFestival().getFechaCom()) ||
-		concierto.getHoraFin().toLocalDate().isAfter(concierto.getFestival().getFechaFin())){
+	public void save(@Valid Concert concert) throws DataAccessException, ConcertOutOfDateException, NumberConcertsException {
+//		Integer concertsTogether= ConcertValidator.conciertosAVez(this.concertRepository.findAllConciertosByRecintoId(concert.getRecinto().getId()), concert);
+		if(concert.getHoraCom().toLocalDate().isBefore(concert.getFestival().getFechaCom()) ||
+				concert.getHoraFin().toLocalDate().isAfter(concert.getFestival().getFechaFin())){
 			throw new ConcertOutOfDateException();
-		}else {
-			concertRepository.save(concierto);
+		}
+//			else if(concert.getRecinto().getNumMaxEscenarios()<concertsTogether){
+//			
+//			throw new NumberConcertsException();
+//		}
+		else {
+			concertRepository.save(concert);
 
 		}
 
