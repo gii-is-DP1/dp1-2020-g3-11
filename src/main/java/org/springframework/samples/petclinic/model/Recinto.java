@@ -10,7 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.Constraint;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.NumberFormat;
 
 import lombok.Data;
 

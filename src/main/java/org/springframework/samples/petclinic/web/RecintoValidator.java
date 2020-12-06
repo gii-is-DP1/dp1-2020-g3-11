@@ -26,14 +26,19 @@ public class RecintoValidator implements Validator {
 					REQUIRED + " Debe contener entre 3 y 50 caracteres");
 		}
 
-		if (huecos == null) {
-			errors.rejectValue("huecos", REQUIRED, REQUIRED);
-		} else {
-			if (huecos <= 0) {
-				errors.rejectValue("huecos", "El nº de puestos debe ser mayor que 0",
-						"El nº puestos debe ser mayor que 0");
-			}
-		}
+		try {
+            if (huecos == null) {
+                errors.rejectValue("huecos", REQUIRED, REQUIRED);
+            } else {
+                if (huecos <= 0) {
+                    errors.rejectValue("huecos", "El nº de puestos debe ser mayor que 0",
+                            "El nº puestos debe ser mayor que 0");
+                }
+            }
+        } catch (NumberFormatException n) {
+            errors.rejectValue("huecos", "Este campo no puede contener caracteres",
+                    "Este campo no puede contener caracteres");
+        }
 
 		if (tipoRecinto != null && tipoRecinto.getName().equals("Escenario") && numEscenarios == null) {
 			errors.rejectValue("numMaxEscenarios", REQUIRED, REQUIRED);
