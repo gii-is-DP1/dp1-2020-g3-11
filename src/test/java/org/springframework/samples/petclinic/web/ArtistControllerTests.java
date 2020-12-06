@@ -63,13 +63,7 @@ public class ArtistControllerTests {
 		genero.setId(1);
 		genero.setName("pop");
 		testArtista1.setGenero(genero);
-//		Set<FestivalArtista> listaFest = new HashSet<FestivalArtista>();
-//		Festival festival = festivalService.findFestivalById(TEST_FESTIVAL_ID_1).orElse(null);
-//		FestivalArtista fa = new FestivalArtista();
-//		fa.setArtista(testArtista1);
-//		fa.setFestival(festival);
-//		listaFest.add(fa);
-//		testArtista1.setFestivales(listaFest);
+
 
 		given(this.artistaService.findArtistaById(TEST_ARTIST_ID_1)).willReturn(testArtista1);
 		given(this.artistaService.findGeneroType("pop")).willReturn(genero);

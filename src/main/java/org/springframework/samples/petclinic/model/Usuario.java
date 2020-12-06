@@ -41,8 +41,7 @@ public class Usuario extends Person {
 	private TipoUsuario tipoUsuario;
 
 	@Column(name = "telefono")
-	@NotNull
-	@Digits(fraction = 0, integer = 10)
+	@NotBlank
 	private String telefono;
 
 	@Column(name = "marca")

@@ -22,7 +22,7 @@ public class UsuarioController {
 
 	private final UsuarioService usuarioService;
 
-	private static final String VIEWS_USUARIO_CREATE_FORM = "usuarios/createUsuarioForm";
+	private static final String VIEWS_USUARIO_CREATE_FORM = "usuarios/createOrUpdateUsuarioForm";
 
 	@Autowired
 	public UsuarioController(UsuarioService clinicService, UserService userService, AuthoritiesService authoritiesService) {
@@ -36,7 +36,7 @@ public class UsuarioController {
 	
 	@InitBinder("usuario")
 	public void initArtistBinder(WebDataBinder dataBinder) {
-		dataBinder.setValidator(new RegistroUsuarioValidator());
+		dataBinder.setValidator(new UsuarioValidator());
 	}
 
 	@GetMapping(value = "/usuarios/new")
