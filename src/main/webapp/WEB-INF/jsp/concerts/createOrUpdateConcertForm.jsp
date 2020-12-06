@@ -8,36 +8,19 @@
 
 
 <petclinic:layout pageName="concerts">
-
-	<jsp:attribute name="customScript">
-	
-        <script>
-            $(function () {
-                $("#fecha").datepicker({dateFormat: 'yy/mm/dd'});
-            });
-        </script>
-        <script>
-            $(function () {
-                $("#horaCom").datepicker({dateFormat: 'yy/mm/dd HH:xx'});
-            });
-        </script>
-        <script>
-            $(function () {
-                $("#horaFin").datepicker({dateFormat: 'yy/mm/dd HH:xx'});
-            });
-        </script>
-    </jsp:attribute>
-    <jsp:body>
     
     <h2>
         <c:if test="${concert['new']}">Nuevo </c:if> Concierto
-    </h2>
+    </h2><br>
+    
+    <h4> Recordatorio: El festival comienza el <b>${festival.fechaCom}</b> y termina el <b>${festival.fechaFin}</b>. 
+			Los conciertos deben estar en esa franja horaria. </h4><br>
     <form:form modelAttribute="concert" class="form-horizontal" id="add-concert-form">
         <div class="form-group has-feedback">
         
-            <petclinic:inputField label="Fecha" name="fecha"/>
-            <petclinic:inputField label="Hora Comienzo" name="horaCom"/>
-            <petclinic:inputField label="Hora Fin" name="horaFin"/>  
+			<petclinic:localDate label="Fecha" name="fecha" id="fecha"></petclinic:localDate>            
+			<petclinic:localDateTime label="Hora comienzo" name="horaCom" id="horaCom"></petclinic:localDateTime>            
+			<petclinic:localDateTime label="Hora fin" name="horaFin" id="horaFin"></petclinic:localDateTime>            
 			<div class="control-group">
 
 				<petclinic:selectField name="artista.name" label="Artista " names="${artistas}"
@@ -63,5 +46,4 @@
             </div>
         </div>
     </form:form>
-    </jsp:body>
     </petclinic:layout> 

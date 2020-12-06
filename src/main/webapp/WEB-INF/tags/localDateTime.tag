@@ -30,7 +30,6 @@
             jQuery.datetimepicker.setLocale('es');
 
             jQuery(${name}).datetimepicker({
-            	format:'Y/m/d',
             	i18n:{
             		  es:{
             			dayOfWeekShort:[
@@ -39,7 +38,7 @@
             		   ]
             		  }
             		 },
-            	minDate:'-1970/01/01', timepicker:false
+            	minDate:'-1970/01/01'
             	});
             </script>
 		</div>

@@ -9,11 +9,12 @@
 <petclinic:layout pageName="concerts">
 
 
-<h2>Conciertos</h2>
+<h2>Conciertos</h2><br>
+<h4> Recordatorio: El festival comienza el <b>${festival.fechaCom}</b> y termina el <b>${festival.fechaFin}</b>. 
+			Los conciertos deben estar en esa franja horaria. </h4>
 	  <table id="conciertoTable" class="table table-striped">
 		<thead>
 			<tr>
-				<th style="width: 20%;">ID</th>
 				<th style="width: 20%;">Fecha</th>
 				<th style="width: 20%;">Hora Comienzo</th>
 				<th style="width: 20%;">Hora Fin</th>
@@ -24,9 +25,10 @@
 			</tr>
 		</thead>
 		<tbody>
+		
 			<c:forEach items="${concerts}" var="concert">
+			
 				<tr>
-					<td><c:out value="${concert.id}" /></td>
 					<td><c:out value="${concert.fecha}" /></td>
 					<td><c:out value="${concert.horaCom}" /></td>
 					<td><c:out value="${concert.horaFin}" /></td>

@@ -1,7 +1,6 @@
 package org.springframework.samples.petclinic.web;
 
-import java.util.Collection;
-import java.util.Optional;
+import java.util.Collection; 
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -19,6 +18,7 @@ import org.springframework.samples.petclinic.service.FestivalArtistaService;
 import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.samples.petclinic.service.RecintoService;
 import org.springframework.samples.petclinic.service.exceptions.ConcertOutOfDateException;
+import org.springframework.samples.petclinic.service.exceptions.NumberConcertsException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -39,6 +39,7 @@ public class ConcertController {
 
 	@Autowired
 	ConcertService concertService;
+	
 	@Autowired
 	RecintoService recintoService;
 	@Autowired
@@ -60,8 +61,8 @@ public class ConcertController {
 	}
 
 	@ModelAttribute("festival")
-	public Optional<Festival> findFestival(@PathVariable("festivalId") int festivalId) {
-		return this.festivalService.findFestivalById(festivalId);
+	public Festival findFestival(@PathVariable("festivalId") int festivalId) {
+		return this.festivalService.findFestivalById(festivalId).get();
 	}
 
 	@ModelAttribute("artistas")
@@ -92,14 +93,13 @@ public class ConcertController {
 
 	@GetMapping
 	public String listConcerts(@PathVariable("festivalId") int festivalId, ModelMap model) {
-
 		model.addAttribute("concerts", concertService.findAllConcertsByFestivalId(festivalId));
 		return CONCERTS_LISTING;
 	}
 
 	@GetMapping("/{id}/edit")
 	public String initUpdateConcert(@PathVariable("id") int id, ModelMap model) {
-		Concert concert = concertService.findById(id).orElse(null);
+		Concert concert = concertService.findById(id);
 		model.put("concert", concert);
 		return CONCERTS_FORM;
 	}
@@ -107,14 +107,14 @@ public class ConcertController {
 	@PostMapping("/{id}/edit")
 	public String processUpdateConcert(@PathVariable("id") int id, @PathVariable("festivalId") int festivalId,
 			@Valid Concert concert, BindingResult binding, ModelMap model)
-			throws DataAccessException, ConcertOutOfDateException {
+			throws DataAccessException, ConcertOutOfDateException, NumberConcertsException {
 
 		if (binding.hasErrors()) {
 			model.put("concert", concert);
 			return CONCERTS_FORM;
 
 		} else {
-			Concert modifiedConcert = concertService.findById(id).orElse(null);
+			Concert modifiedConcert = concertService.findById(id);
 			BeanUtils.copyProperties(concert, modifiedConcert, "id", "festival");
 			Artista artista = this.artistService.findArtistaByName(modifiedConcert.getArtista().getName());
 			Recinto recinto = this.recintoService.findRecintoByName(modifiedConcert.getRecinto().getName());
@@ -126,8 +126,12 @@ public class ConcertController {
 				binding.rejectValue("fecha", "Tienes que crear un concierto en la franja horaria del festival.",
 						"Tienes que crear un concierto en la franja horaria del festival.");
 				return CONCERTS_FORM;			
-				}
-
+			} 
+//			catch (NumberConcertsException e) {
+//				binding.rejectValue("recinto.name", "No puedes crear más conciertos en este recinto. Todos los escenarios están llenos a esa hora.",
+//						"No puedes crear más conciertos en este recinto. Todos los escenarios están llenos a esa hora.");			
+//				return CONCERTS_FORM;			
+//			}
 		}
 		return "redirect:/festivales/{festivalId}/conciertos";
 
@@ -136,13 +140,9 @@ public class ConcertController {
 	@GetMapping("/{id}/delete")
 	public String deleteConcert(@PathVariable("id") int id, @PathVariable("festivalId") int festivalId,
 			ModelMap model) {
-		Optional<Concert> concert = concertService.findById(id);
-		if (concert.isPresent()) {
-			concertService.delete(concert.get());
+		Concert concert = concertService.findById(id);
+			concertService.delete(concert);
 			return "redirect:/festivales/{festivalId}/conciertos";
-		} else {
-			return "redirect:/festivales/{festivalId}/conciertos";
-		}
 	}
 
 	@GetMapping("/new")
@@ -154,7 +154,7 @@ public class ConcertController {
 
 	@PostMapping("/new")
 	public String processCreationConcert(@PathVariable("festivalId") int idFestival, @Valid Concert concert,
-			BindingResult binding, ModelMap model) throws DataAccessException, ConcertOutOfDateException {
+			BindingResult binding, ModelMap model) throws DataAccessException, ConcertOutOfDateException, NumberConcertsException {
 
 		if (binding.hasErrors()) {
 			return CONCERTS_FORM;
@@ -171,8 +171,15 @@ public class ConcertController {
 				return CONCERTS_FORM;
 
 			}
-
+//			catch (NumberConcertsException e) {
+//				binding.rejectValue("recinto.name", "No puedes crear más conciertos en este recinto. Todos los escenarios están llenos a esa hora.",
+//						"No puedes crear más conciertos en este recinto. Todos los escenarios están llenos a esa hora.");	
+//
+//				return CONCERTS_FORM;			
+//	
+//			}
 		}
+
 		return "redirect:/festivales/{festivalId}/conciertos";
 
 	}

@@ -8,7 +8,6 @@
 
 <petclinic:layout pageName="artistas">
 
-
 	<h2>Artistas</h2>
 	<table id="artistaTable" class="table table-striped">
 		<thead>
@@ -39,6 +38,7 @@
 	<a href="/festivales/${festival.id}/artistas/listdisponibles"
 		class="btn btn-default"><span class="glyphicon glyphicon-plus"
 		aria-hidden="true"></span> Ver artistas disponibles</a>
+	<br><br>
 
 	<h2>Recintos</h2>
 	<table id="recintosTable" class="table table-striped">
@@ -88,8 +88,8 @@
 	<a href="/festivales/${festival.id}/recintos/new"
 		class="btn btn-default"><span class="glyphicon glyphicon-plus"
 		aria-hidden="true"></span> Añadir recinto</a>
-	<br>
-	<h3>Entradas</h3>
+	<br><br>
+	<h2>Entradas</h2>
 	<table id="entradasTable" class="table table-striped">
 		<thead>
 			<tr>
@@ -131,12 +131,13 @@
 	<a href="/festivales/${festival.id}/entradas/new"
 		class="btn btn-default"><span class="glyphicon glyphicon-plus"
 		aria-hidden="true"></span> Añadir entrada</a>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<h4>Conciertos</h4>
+	<br><br>
+	<h2>Conciertos</h2>
+		<p align="left">
+	
 	<a href="/festivales/${festival.id}/conciertos" class="btn btn-default"><span
-		aria-hidden="true"></span> Ver conciertos</a>
+		aria-hidden="true"></span> Ver conciertos</a></p>
+	<p align="right">
+	<a href="/festivales/${festival.id}/valoraciones" class="btn btn-default"><span
+		aria-hidden="true"></span> Ver valoraciones</a></p>
 </petclinic:layout>

@@ -33,7 +33,6 @@ public class Recinto extends NamedEntity {
 
 	@Column(name = "huecos")
 	@NotNull
-//	@Min(value = 1)
 	private Integer huecos;
 
 	@ManyToOne
