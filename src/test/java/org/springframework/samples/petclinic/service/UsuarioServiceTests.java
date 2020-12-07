@@ -35,7 +35,7 @@ public class UsuarioServiceTests {
 
 	@Test
 	void shouldFindAllUsuarios() {
-		Collection<Usuario> listaUsuario = this.usuarioService.findAll();
+		Collection<Usuario> listaUsuario = this.usuarioService.findAllUsuarios();
 		assertThat(listaUsuario.size()).isEqualTo(5);
 	}
 
@@ -55,7 +55,7 @@ public class UsuarioServiceTests {
 	@Test
 	@Transactional
 	void shouldInsertNewUsuario() throws Exception {
-		Collection<Usuario> listaUsuario = this.usuarioService.findAll();
+		Collection<Usuario> listaUsuario = this.usuarioService.findAllUsuarios();
 		int tamaño = listaUsuario.size();
 		TipoUsuario tipo = this.usuarioService.findTipoUsuario("Usuario");
 
@@ -75,7 +75,7 @@ public class UsuarioServiceTests {
 		} catch (Exception ex) {
 			Logger.getLogger(UsuarioServiceTests.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		listaUsuario = this.usuarioService.findAll();
+		listaUsuario = this.usuarioService.findAllUsuarios();
 		assertThat(listaUsuario.size()).isEqualTo(tamaño + 1);
 		assertThat(usuario.getId()).isNotNull();
 	}

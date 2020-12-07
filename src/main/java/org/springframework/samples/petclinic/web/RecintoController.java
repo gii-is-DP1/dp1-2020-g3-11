@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.web;
 
+import java.security.Principal;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -9,8 +10,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Recinto;
 import org.springframework.samples.petclinic.model.TipoRecinto;
+import org.springframework.samples.petclinic.model.Usuario;
 import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.samples.petclinic.service.RecintoService;
+import org.springframework.samples.petclinic.service.UsuarioService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -23,7 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("festivales/{festivalId}/recintos")
+@RequestMapping("/mifestival/recintos")
 public class RecintoController {
 
 	public static final String RECINTOS_FORM = "recintos/createOrUpdateRecintoForm";
@@ -37,11 +40,20 @@ public class RecintoController {
 	RecintoService recintoService;
 
 	@Autowired
+	UsuarioService usuarioService;
+
+	public Usuario usuarioLogueado(Principal principal) {
+		String username = principal.getName();
+		Usuario usuario = usuarioService.findUsuarioByUsername(username);
+		return usuario;
+	}
+
+	@Autowired
 	public RecintoController(FestivalService festivalService, RecintoService recintoService) {
 		this.festivalService = festivalService;
 		this.recintoService = recintoService;
 	}
-	
+
 	@GetMapping
 	public String listRecintos(ModelMap model) {
 
@@ -58,7 +70,7 @@ public class RecintoController {
 	public void initRecintoBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new RecintoValidator());
 	}
-	
+
 	@GetMapping("/{id}/edit")
 	public String editRecinto(@PathVariable("id") int id, @PathVariable("festivalId") int festivalId, ModelMap model) {
 		Optional<Recinto> recinto = recintoService.findById(id);
@@ -108,7 +120,7 @@ public class RecintoController {
 		model.addAttribute("conciertos", this.recintoService.findAllConciertosById(recintoId));
 		return RECINTOS_DETALLES_FORM;
 	}
-	
+
 	@GetMapping("/new")
 	public String editNewRecinto(ModelMap model) {
 		model.addAttribute("recinto", new Recinto());
@@ -116,8 +128,10 @@ public class RecintoController {
 	}
 
 	@PostMapping("/new")
-	public String saveNewRecinto(@PathVariable("festivalId") int festivalId, @Valid Recinto recinto,
-			BindingResult binding, ModelMap model) {
+	public String saveNewRecinto(@Valid Recinto recinto, BindingResult binding, ModelMap model, Principal principal) {
+
+		Usuario usuario = usuarioLogueado(principal);
+		Integer festivalId = usuario.getFestival().getId();
 		if (binding.hasErrors()) {
 //			model.addAttribute("recinto", recinto);
 			return RECINTOS_FORM;
@@ -126,7 +140,7 @@ public class RecintoController {
 			recinto.setFestival(festivalService.findFestivalById(festivalId).get());
 			recinto.setTipoRecinto(tipo);
 			recintoService.save(recinto);
-			return "redirect:/festivales/{festivalId}";
+			return "redirect:/mifestival";
 		}
 	}
 }

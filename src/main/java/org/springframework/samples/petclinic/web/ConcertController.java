@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.web;
 
+import java.security.Principal;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,11 +14,13 @@ import org.springframework.samples.petclinic.model.Artista;
 import org.springframework.samples.petclinic.model.Concert;
 import org.springframework.samples.petclinic.model.Festival;
 import org.springframework.samples.petclinic.model.Recinto;
+import org.springframework.samples.petclinic.model.Usuario;
 import org.springframework.samples.petclinic.service.ArtistaService;
 import org.springframework.samples.petclinic.service.ConcertService;
 import org.springframework.samples.petclinic.service.FestivalArtistaService;
 import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.samples.petclinic.service.RecintoService;
+import org.springframework.samples.petclinic.service.UsuarioService;
 import org.springframework.samples.petclinic.service.exceptions.ConcertOutOfDateException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -31,7 +34,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("festivales/{festivalId}/conciertos")
+@RequestMapping("mifestival/conciertos")
 public class ConcertController {
 
 	public static final String CONCERTS_FORM = "concerts/createOrUpdateConcertForm";
@@ -49,9 +52,17 @@ public class ConcertController {
 	FestivalArtistaService festivalArtistService;
 
 	@Autowired
+	UsuarioService usuarioService;
+
+	public Usuario usuarioLogueado(Principal principal) {
+		String username = principal.getName();
+		Usuario usuario = usuarioService.findUsuarioByUsername(username);
+		return usuario;
+	}
+
+	@Autowired
 	public ConcertController(ConcertService concertService, FestivalService festivalService,
-			ArtistaService artistService, RecintoService recintoService,
-			FestivalArtistaService festivalArtistService) {
+			ArtistaService artistService, RecintoService recintoService, FestivalArtistaService festivalArtistService) {
 		this.concertService = concertService;
 		this.festivalService = festivalService;
 		this.recintoService = recintoService;
@@ -60,30 +71,39 @@ public class ConcertController {
 	}
 
 	@ModelAttribute("festival")
-	public Optional<Festival> findFestival(@PathVariable("festivalId") int festivalId) {
+	public Optional<Festival> findFestival(Principal principal) {
+
+		Usuario usuario = usuarioLogueado(principal);
+		Integer festivalId = usuario.getFestival().getId();
+
 		return this.festivalService.findFestivalById(festivalId);
 	}
 
 	@ModelAttribute("artistas")
-	public Collection<String> artistas(@PathVariable("festivalId") int festivalId) {
+	public Collection<String> artistas(Principal principal) {
+		Usuario usuario = usuarioLogueado(principal);
+		Integer festivalId = usuario.getFestival().getId();
+
 		return festivalArtistService.findAllArtistasByFestivalId(festivalId).stream().map(x -> x.getName())
 				.collect(Collectors.toList());
 
 	}
 
 	@ModelAttribute("recintos")
-	public Collection<String> recintos(@PathVariable("festivalId") int festivalId) {
+	public Collection<String> recintos(Principal principal) {
+
+		Usuario usuario = usuarioLogueado(principal);
+		Integer festivalId = usuario.getFestival().getId();
+
 		return recintoService.findAllRecintosByFestivalId(festivalId).stream()
-				.filter(x-> x.getTipoRecinto().getName().equals("Escenario"))
-				.map(x -> x.getName())
+				.filter(x -> x.getTipoRecinto().getName().equals("Escenario")).map(x -> x.getName())
 				.collect(Collectors.toList());
 	}
-	
+
 	@InitBinder("festival")
 	public void initFestivalBinder(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
 	}
-	
 
 	@InitBinder("concert")
 	public void initConcertBinder(WebDataBinder dataBinder) {
@@ -91,7 +111,10 @@ public class ConcertController {
 	}
 
 	@GetMapping
-	public String listConcerts(@PathVariable("festivalId") int festivalId, ModelMap model) {
+	public String listConcerts(Principal principal, ModelMap model) {
+
+		Usuario usuario = usuarioLogueado(principal);
+		Integer festivalId = usuario.getFestival().getId();
 
 		model.addAttribute("concerts", concertService.findAllConcertsByFestivalId(festivalId));
 		return CONCERTS_LISTING;
@@ -105,9 +128,8 @@ public class ConcertController {
 	}
 
 	@PostMapping("/{id}/edit")
-	public String processUpdateConcert(@PathVariable("id") int id, @PathVariable("festivalId") int festivalId,
-			@Valid Concert concert, BindingResult binding, ModelMap model)
-			throws DataAccessException, ConcertOutOfDateException {
+	public String processUpdateConcert(@PathVariable("id") int id, Principal principal, @Valid Concert concert,
+			BindingResult binding, ModelMap model) throws DataAccessException, ConcertOutOfDateException {
 
 		if (binding.hasErrors()) {
 			model.put("concert", concert);
@@ -125,23 +147,23 @@ public class ConcertController {
 			} catch (ConcertOutOfDateException e) {
 				binding.rejectValue("fecha", "Tienes que crear un concierto en la franja horaria del festival.",
 						"Tienes que crear un concierto en la franja horaria del festival.");
-				return CONCERTS_FORM;			
-				}
+				return CONCERTS_FORM;
+			}
 
 		}
-		return "redirect:/festivales/{festivalId}/conciertos";
+		return "redirect:/mifestival/conciertos";
 
 	}
 
 	@GetMapping("/{id}/delete")
-	public String deleteConcert(@PathVariable("id") int id, @PathVariable("festivalId") int festivalId,
-			ModelMap model) {
+	public String deleteConcert(@PathVariable("id") int id, Principal principal, ModelMap model) {
+
 		Optional<Concert> concert = concertService.findById(id);
 		if (concert.isPresent()) {
 			concertService.delete(concert.get());
-			return "redirect:/festivales/{festivalId}/conciertos";
+			return "redirect:/mifestival/conciertos";
 		} else {
-			return "redirect:/festivales/{festivalId}/conciertos";
+			return "redirect:/mifestival/conciertos";
 		}
 	}
 
@@ -153,8 +175,11 @@ public class ConcertController {
 	}
 
 	@PostMapping("/new")
-	public String processCreationConcert(@PathVariable("festivalId") int idFestival, @Valid Concert concert,
-			BindingResult binding, ModelMap model) throws DataAccessException, ConcertOutOfDateException {
+	public String processCreationConcert(Principal principal, @Valid Concert concert, BindingResult binding,
+			ModelMap model) throws DataAccessException, ConcertOutOfDateException {
+
+		Usuario usuario = usuarioLogueado(principal);
+		Integer festivalId = usuario.getFestival().getId();
 
 		if (binding.hasErrors()) {
 			return CONCERTS_FORM;
@@ -162,7 +187,7 @@ public class ConcertController {
 			try {
 				concert.setRecinto(this.recintoService.findRecintoByName(concert.getRecinto().getName()));
 				concert.setArtista(this.artistService.findArtistaByName(concert.getArtista().getName()));
-				concert.setFestival(this.festivalService.findFestivalById(idFestival).get());
+				concert.setFestival(this.festivalService.findFestivalById(festivalId).get());
 				this.concertService.save(concert);
 
 			} catch (ConcertOutOfDateException e) {
@@ -173,7 +198,7 @@ public class ConcertController {
 			}
 
 		}
-		return "redirect:/festivales/{festivalId}/conciertos";
+		return "redirect:/mifestival/conciertos";
 
 	}
 

@@ -45,39 +45,47 @@ INSERT INTO tabla_tipos_Usuario VALUES (2, 'Sponsor');
 INSERT INTO tabla_tipos_Usuario VALUES (3, 'admin');
 
 
--- AQUI ABAJO SE CREA EL USER GENERAL Y LUEGO SE LE DA ESAS CREDENCIALES AL ADMIN, SPONSOR O USER CORRESPONDIENTE (TIENEN TODOS LA MISMA USERY PASS) PERO SON DISTINTOS
+--admin1--
 INSERT INTO users(username,password,enabled) VALUES ('administrador1','adm1n',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (1,'administrador1','admin');
+INSERT INTO usuario VALUES (1, 'George', 'Franklin', '45899990X', 'jorgito@admin.com', '1995-02-20',null,'692874512', 3,'administrador1');
 
-INSERT INTO users(username,password,enabled) VALUES ('sponsorPrueba','sponsorPrueba',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (12,'sponsorPrueba','sponsor');
+
+--admin2--
+INSERT INTO users(username,password,enabled) VALUES ('administrador2','adm1n',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (28,'administrador2','admin');
+INSERT INTO usuario VALUES (2, 'Javi', 'erere', '46899990X', 'javierefdo@admin.com', '1998-02-20',null,'677888512', 3,'administrador2');
+
+INSERT INTO festival VALUES (1,'Cabo de Plata',100,'2020-06-06','2020-06-09','Cádiz', 1);
+INSERT INTO festival VALUES (2,'Dreambeach',200,'2021-07-25','2021-07-29','Almería', 2);
+
 --usuario --
-INSERT INTO usuario VALUES (60, 'Alejandro', 'Rios', '45987990X', 'ale@sponsor.com', '1993-08-10',null,'692771112', 1,'sponsorPrueba');
-
-
 INSERT INTO users(username,password,enabled) VALUES ('usuarioPrueba','usuarioPrueba',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (13,'usuarioPrueba','usuario');
+INSERT INTO usuario VALUES (60, 'nombre', 'Apellido', '45987990X', 'ale@sponsor.com', '1993-08-10',null,'692771112', 1,'usuarioPrueba');
 
-INSERT INTO admin VALUES (1, 'George', 'Franklin', '45899990X', 'jorgito@admin.com', '1995-02-20','692874512','administrador1');
 
-INSERT INTO users(username,password,enabled) VALUES ('user1','us3r',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (2,'user1','usuario');
+
+
 
 --sponsor--
-INSERT INTO usuario VALUES (20, 'Manue', 'Frank', '45444990X', 'manue@user.com',  '1999-02-20','marcaPredeterminada','692811112', 2,'user1');
+INSERT INTO users(username,password,enabled) VALUES ('sponsorPrueba','sponsorPrueba',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (12,'sponsorPrueba','sponsor');
+INSERT INTO usuario VALUES (20, 'Manue', 'Frank', '45444990X', 'manue@user.com',  '1999-02-20','marcaPredeterminada','692811112',  2,'sponsorPrueba');
 
 
-INSERT INTO usuario VALUES (22, 'Edu', 'Garcia', '45333990A', 'edu@user.com', '1999-02-20', null, '693333112', 1, 'user1');
+
+INSERT INTO users(username,password,enabled) VALUES ('user1','us3r',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (3,'user1','usuario');
+INSERT INTO usuario VALUES (22, 'Edu', 'Garcia', '45333990A', 'edu@user.com', '1999-02-20', null, '693333112',  1, 'user1');
 INSERT INTO usuario VALUES (23, 'Juan', 'Gomez', '45222990C', 'juan@user.com', '1999-02-20',null, '692811882', 1,'user1');
 INSERT INTO usuario VALUES (24, 'Pablo', 'Cubero', '41111990B', 'pablo@user.com', '1999-02-20',null, '699911112', 1,'user1');
 
 
 
 
-INSERT INTO festival VALUES (1,'Cabo de Plata',100,'2020-06-06','2020-06-09','Cádiz');
-INSERT INTO festival VALUES (2,'Dreambeach',200,'2021-07-25','2021-07-29','Almería');
-INSERT INTO festival VALUES (3,'Mucha Cumbia BRO',200,'2021-03-15','2021-03-19','Puerto Rico');
-INSERT INTO festival VALUES (4,'Mucha Cumbia BRO 2.0',200,'2021-03-15','2021-03-19','Puerto Rico');
+--INSERT INTO festival VALUES (3,'Mucha Cumbia BRO',200,'2021-03-15','2021-03-19','Puerto Rico', 2);--
+--INSERT INTO festival VALUES (4,'Mucha Cumbia BRO 2.0',200,'2021-03-15','2021-03-19','Puerto Rico', 2);--
 
 INSERT INTO generos VALUES (1, 'pop');
 INSERT INTO generos VALUES (2, 'reggaeton');

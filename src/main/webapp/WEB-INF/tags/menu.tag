@@ -61,8 +61,8 @@
 					</petclinic:menuItem>
 
 
-					<petclinic:menuItem active="${name eq 'festivales'}"
-						url="/festivales" title="find festival">
+					<petclinic:menuItem active="${name eq 'mifestival'}"
+						url="/mifestival" title="find festival">
 						<span class="glyphicon glyphicon-music" aria-hidden="true"></span>
 						<span>Mi Festival</span>
 					</petclinic:menuItem>

@@ -1,6 +1,6 @@
 package org.springframework.samples.petclinic.service;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -27,8 +27,8 @@ public class UsuarioService {
 	}
 
 	@Transactional(readOnly = true)
-	public Collection<Usuario> findAll() throws DataAccessException {
-		return usuarioRepository.findAll();
+	public List<Usuario> findAllUsuarios() throws DataAccessException {
+		return usuarioRepository.findAllUsuarios();
 	}
 
 	@Transactional
@@ -50,5 +50,10 @@ public class UsuarioService {
 	@Transactional(readOnly = true)
 	public TipoUsuario findTipoUsuario(String usuario) throws DataAccessException {
 		return usuarioRepository.findTipoUsuarioByName(usuario);
+	}
+	
+	@Transactional(readOnly = true)
+	public Usuario findUsuarioByUsername(String username) {
+		return usuarioRepository.findTipoUsuarioByUserName(username);
 	}
 }

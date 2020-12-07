@@ -1,7 +1,8 @@
 package org.springframework.samples.petclinic.web;
 
+import java.security.Principal;
 import java.util.Collection;
-import java.util.Optional; 
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -9,8 +10,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Entrada;
 import org.springframework.samples.petclinic.model.EntradaType;
+import org.springframework.samples.petclinic.model.Usuario;
 import org.springframework.samples.petclinic.service.EntradaService;
 import org.springframework.samples.petclinic.service.FestivalService;
+import org.springframework.samples.petclinic.service.UsuarioService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -23,17 +26,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("festivales/{festivalId}/entradas")
+@RequestMapping("mifestival/entradas")
 public class EntradaController {
 	public static final String ENTRADAS_FORM = "entradas/createOrUpdateEntradaForm";
 	public static final String ENTRADAS_LISTING = "entradas/entradaListing";
-	
+
 	@Autowired
 	FestivalService festivalService;
-	
+
 	@Autowired
 	EntradaService entradaService;
-	
+
+	@Autowired
+	UsuarioService usuarioService;
+
+	public Usuario usuarioLogueado(Principal principal) {
+		String username = principal.getName();
+		Usuario usuario = usuarioService.findUsuarioByUsername(username);
+		return usuario;
+	}
 
 	@GetMapping
 	public String listEntradas(ModelMap model) {
@@ -41,20 +52,21 @@ public class EntradaController {
 		model.addAttribute("entradas", entradaService.findAll());
 		return ENTRADAS_LISTING;
 	}
-	
-	@ModelAttribute("entradatype")
-    public Collection<String> entradaTypes() {
-        return entradaService.findEntradaTypes();
 
-    }
-	
+	@ModelAttribute("entradatype")
+	public Collection<String> entradaTypes() {
+		return entradaService.findEntradaTypes();
+
+	}
+
 	@InitBinder("entrada")
 	public void initEntradaBinder(WebDataBinder dataBinder) {
-	dataBinder.setValidator(new EntradaValidator());
+		dataBinder.setValidator(new EntradaValidator());
 	}
 
 	@GetMapping("/{id}/edit")
-	public String editEntrada(@PathVariable("id") int id,@PathVariable("festivalId") int festivalId, ModelMap model) {
+	public String editEntrada(@PathVariable("id") int id, @PathVariable("festivalId") int festivalId, ModelMap model) {
+
 		Optional<Entrada> entrada = entradaService.findById(id);
 		if (entrada.isPresent()) {
 			model.addAttribute("entrada", entrada.get());
@@ -66,8 +78,11 @@ public class EntradaController {
 	}
 
 	@PostMapping("/{id}/edit")
-	public String editEntrada(@PathVariable("id") int id,@PathVariable("festivalId") int festivalId, @Valid Entrada modifiedEntrada, BindingResult binding,
-			ModelMap model) {
+	public String editEntrada(@PathVariable("id") int id, @Valid Entrada modifiedEntrada, BindingResult binding,
+			ModelMap model, Principal principal) {
+
+		Usuario usuario = usuarioLogueado(principal);
+		Integer festivalId = usuario.getFestival().getId();
 		Optional<Entrada> entrada = entradaService.findById(id);
 		if (binding.hasErrors()) {
 			return ENTRADAS_FORM;
@@ -78,7 +93,7 @@ public class EntradaController {
 			modifiedEntrada.setFestival(this.festivalService.findFestivalById(festivalId).get());
 			entradaService.save(modifiedEntrada);
 			model.addAttribute("message", "entrada actualizada correctamente!");
-			return "redirect:/festivales/{festivalId}";
+			return "redirect:/mifestival";
 		}
 	}
 
@@ -102,7 +117,11 @@ public class EntradaController {
 	}
 
 	@PostMapping("/new")
-	public String saveNewEntrada(@PathVariable("festivalId") int festivalId,@Valid Entrada entrada, BindingResult binding, ModelMap model) {
+	public String saveNewEntrada(@Valid Entrada entrada, BindingResult binding, ModelMap model, Principal principal) {
+
+		Usuario usuario = usuarioLogueado(principal);
+		Integer festivalId = usuario.getFestival().getId();
+
 		if (binding.hasErrors()) {
 			return ENTRADAS_FORM;
 		} else {
@@ -111,7 +130,7 @@ public class EntradaController {
 			entrada.setEntradaType(entradatype);
 			entradaService.save(entrada);
 			model.addAttribute("message", "La entrada fue creada correctamente!");
-			return "redirect:/festivales/{festivalId}";
+			return "redirect:/mifestival";
 		}
 	}
 }

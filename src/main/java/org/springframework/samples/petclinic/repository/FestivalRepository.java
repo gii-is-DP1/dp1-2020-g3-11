@@ -25,6 +25,9 @@ public interface FestivalRepository extends CrudRepository<Festival, Integer> {
 	
 	@Query("SELECT fechaFin FROM Festival f where f.id =?1")
 	LocalDate findEndDateFestival(int id);
+	
+	@Query("SELECT f FROM Festival f where f.festivalAdmin.id =?1")
+	Festival findFestivalByAdminId(Integer id);
 
 	
 }
