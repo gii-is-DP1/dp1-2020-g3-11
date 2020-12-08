@@ -2,9 +2,6 @@ package org.springframework.samples.petclinic.web;
 
 import static org.mockito.BDDMockito.given;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.petclinic.configuration.SecurityConfiguration;
 import org.springframework.samples.petclinic.model.Artista;
-import org.springframework.samples.petclinic.model.Festival;
-import org.springframework.samples.petclinic.model.FestivalArtista;
 import org.springframework.samples.petclinic.model.GeneroType;
-import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.service.ArtistaService;
 import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
@@ -27,8 +21,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;

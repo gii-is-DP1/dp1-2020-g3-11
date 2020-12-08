@@ -58,7 +58,7 @@ class FestivalServiceTest {
 	@Test
 	void shouldFindAllFestival() {
 		Collection<Festival> listFest = this.festivalService.findAll();
-		assertThat(listFest.size()).isEqualTo(4);
+		assertThat(listFest.size()).isEqualTo(2);
 	}
 
 	// FIND FESTIVAL BY ID
@@ -106,7 +106,7 @@ class FestivalServiceTest {
 	void shouldDeleteFestival() throws Exception {
 		Collection<Festival> listfestival = this.festivalService.findAll();
 		int tamaño = listfestival.size();
-		Festival festival = this.festivalService.findFestivalById(4).orElse(null);
+		Festival festival = this.festivalService.findFestivalById(2).orElse(null);
 
 		this.festivalService.delete(festival);
 

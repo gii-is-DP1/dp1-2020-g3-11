@@ -39,12 +39,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //				.antMatchers("/admin/**").hasAnyAuthority("admin")
 //				.antMatchers("/owners/**").hasAnyAuthority("owner","admin")				
 //				.antMatchers("/vets/**").authenticated()
-				.antMatchers("/festivales/**").hasAnyAuthority("admin, sponsor, usuario")
+				.antMatchers("/festivales/**").hasAnyAuthority("sponsor, usuario")
 				.antMatchers("/mispuestos/**").hasAnyAuthority("sponsor")
 				.anyRequest().permitAll()
 				.and()
 				 	.formLogin()
-				 	.defaultSuccessUrl("/festivales")
 				 	/*.loginPage("/login")*/
 				 	.failureUrl("/login-error")
 				.and()

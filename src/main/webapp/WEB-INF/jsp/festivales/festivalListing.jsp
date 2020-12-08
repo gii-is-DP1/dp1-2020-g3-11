@@ -37,14 +37,14 @@
 					<td><c:out value="${festival.fechaFin}" /></td>
 					<td><c:out value="${festival.localizacion}" /></td>
 					
-					<sec:authorize access="hasAuthority('admin')">
+<%-- 					<sec:authorize access="hasAuthority('admin')">
 						<td><a href="/festivales/${festival.id}/edit"> <span
 								class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 						</a></td>
 						<td><a href="/festivales/${festival.id}/delete"> <span
 								class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 						</a></td>
-					</sec:authorize>
+					</sec:authorize> --%>
 					
 					<sec:authorize access="hasAuthority('sponsor')">
 						<td><spring:url value="/festivales/{festivalId}/puestos"

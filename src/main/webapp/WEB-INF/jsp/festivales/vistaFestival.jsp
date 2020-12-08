@@ -38,6 +38,8 @@
 		class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ver
 		artistas disponibles</a>
 
+	<br>
+	<br>
 	<h2>Recintos</h2>
 	<table id="recintosTable" class="table table-striped">
 		<thead>
@@ -74,9 +76,10 @@
 		</tbody>
 	</table>
 
-	<a href="/mifestival/recintos/new"
-		class="btn btn-default"><span class="glyphicon glyphicon-plus"
-		aria-hidden="true"></span> Añadir recinto</a>
+	<a href="/mifestival/recintos/new" class="btn btn-default"><span
+		class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir
+		recinto</a>
+	<br>
 	<br>
 	<h3>Entradas</h3>
 	<table id="entradasTable" class="table table-striped">
@@ -95,15 +98,13 @@
 				<tr>
 					<td><c:out value="${entrada.entradaType}" /></td>
 					<td><c:out value="${entrada.precio}" /></td>
-					<td><spring:url
-							value="/mifestival/entradas/{entradaId}/edit"
+					<td><spring:url value="/mifestival/entradas/{entradaId}/edit"
 							var="entradaUrl">
 							<spring:param name="entradaId" value="${entrada.id}" />
 						</spring:url> <a href="${fn:escapeXml(entradaUrl)}">Editar</a></td>
 
 					<td><spring:url
-							value="/mifestival/entradas/{entradaId}/delete"
-							var="entradaUrl">
+							value="/mifestival/entradas/{entradaId}/delete" var="entradaUrl">
 							<spring:param name="entradaId" value="${entrada.id}" />
 						</spring:url> <a href="${fn:escapeXml(entradaUrl)}">Borrar</a></td>
 				</tr>
@@ -112,15 +113,14 @@
 	</table>
 
 
-	<a href="/mifestival/entradas/new"
-		class="btn btn-default"><span class="glyphicon glyphicon-plus"
-		aria-hidden="true"></span> Añadir entrada</a>
+	<a href="/mifestival/entradas/new" class="btn btn-default"><span
+		class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir
+		entrada</a>
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
+
 	<h4>Conciertos</h4>
 	<a href="/mifestival/conciertos" class="btn btn-default"><span
 		aria-hidden="true"></span> Ver conciertos</a>
+
 </petclinic:layout>

@@ -15,9 +15,8 @@
  */
 package org.springframework.samples.petclinic.web;
 
-import java.time.LocalDate; 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.springframework.samples.petclinic.model.Concert;
 import org.springframework.validation.Errors;
@@ -34,28 +33,31 @@ import org.springframework.validation.Validator;
  * @author Juergen Hoeller
  */
 public class ConcertValidator implements Validator {
-	
 
-//numero escenarios maximos
-public static Integer conciertosAVez(List<Concert> conciertos, Concert c) {
-	LocalDateTime newStartDate= c.getHoraCom();
-	LocalDateTime newFinishDate= c.getHoraFin();
-	Integer x=0;
-	for(int i=0; i<conciertos.size(); i++) {
-		LocalDateTime actualStartDate= conciertos.get(i).getHoraCom();
-		LocalDateTime actualFinishDate= conciertos.get(i).getHoraFin();
-
-		boolean b1 = newStartDate.isBefore(actualStartDate);
-		boolean b2 = newFinishDate.isBefore(actualStartDate);
-		boolean b3 = newStartDate.isAfter(actualFinishDate);
-		boolean b4 = newFinishDate.isAfter(actualFinishDate);
-		if (!((b1 && b2) || b3 && b4)) {
-			x++;
-	}
-	}
-	
-	return x;
-}
+////numero escenarios maximos
+//public static Integer conciertosAVez(Collection<Concert> conciertos, Concert c) {
+//	List<Concert> lConcerts= conciertos.stream().collect(Collectors.toList());
+//	LocalDateTime newStartDate= c.getHoraCom();
+//	LocalDateTime newFinishDate= c.getHoraFin();
+//	Integer x=0;
+//	for(int i=0; i<lConcerts.size(); i++) {
+//		LocalDateTime actualStartDate= lConcerts.get(i).getHoraCom();
+//		LocalDateTime actualFinishDate= lConcerts.get(i).getHoraFin();
+//
+//		boolean b1 = newStartDate.isBefore(actualStartDate);
+//		boolean b2 = newFinishDate.isBefore(actualFinishDate);
+//		boolean b3 = newStartDate.isAfter(actualStartDate);
+//		boolean b4 = newFinishDate.isAfter(actualStartDate);
+//		boolean b5 = newStartDate.isBefore(actualFinishDate);
+//		boolean b6 = newFinishDate.isAfter(actualFinishDate);
+//
+//		if ((b1 && b4) || (b3 && b2) || (b5 && b6)) {
+//			x++;
+//	}
+//	}
+//	
+//	return x;
+//}
 
 	@Override
 	public void validate(Object obj, Errors errors) {
@@ -65,6 +67,7 @@ public static Integer conciertosAVez(List<Concert> conciertos, Concert c) {
 		LocalDateTime horaFin = concierto.getHoraFin();
 
 		if (fecha == null || horaCom == null || horaFin == null) {
+
 			if (fecha == null) {
 				errors.rejectValue("fecha", "Campo requerido", "Campo requerido");
 			}
@@ -77,7 +80,6 @@ public static Integer conciertosAVez(List<Concert> conciertos, Concert c) {
 				errors.rejectValue("horaFin", "Campo requerido", "Campo requerido");
 			}
 
-			
 		} else if (fecha != null || horaCom != null || horaFin != null) {
 
 			if (horaFin != null) {
@@ -94,8 +96,9 @@ public static Integer conciertosAVez(List<Concert> conciertos, Concert c) {
 				errors.rejectValue("fecha", "La fecha tiene que ser posterior a la actualidad",
 						"La fecha tiene que ser posterior a la actualidad");
 			}
+
 		}
-		
+
 		if (concierto.isNew() && concierto.getRecinto() == null) {
 			errors.rejectValue("recinto.name", "Elige un recinto", "Elige un recinto");
 
@@ -105,7 +108,6 @@ public static Integer conciertosAVez(List<Concert> conciertos, Concert c) {
 			errors.rejectValue("artista.name", "Elige un artista", "Elige un artista");
 
 		}
-
 	}
 
 	/**

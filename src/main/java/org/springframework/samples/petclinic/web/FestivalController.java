@@ -39,7 +39,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @EnableWebSecurity
-@RequestMapping("/mifestival")
 public class FestivalController {
 
 	public static final String FESTIVALES_FORM = "festivales/createOrUpdateFestivalForm";
@@ -77,11 +76,11 @@ public class FestivalController {
 		dataBinder.setValidator(new FestivalValidator());
 	}
 
-//	@GetMapping("/festivales")
-//	public String listFestivales(ModelMap model) {
-//		model.addAttribute("festivales", festivalService.findAll());
-//		return FESTIVALES_LISTING;
-//	}
+	@GetMapping("/festivales")
+	public String listFestivales(ModelMap model) {
+		model.addAttribute("festivales", festivalService.findAll());
+		return FESTIVALES_LISTING;
+	}
 
 	@GetMapping()
 	public String showFestival(ModelMap model, Principal principal) {
@@ -98,7 +97,7 @@ public class FestivalController {
 		return "/festivales/vistaFestival";
 	}
 
-	@GetMapping(value = "/artistas/listdisponibles")
+	@GetMapping(value = "/mifestival/artistas/listdisponibles")
 	public String listaArtistasDisponibles(ModelMap model, Principal principal) {
 
 		Usuario usuario = usuarioLogueado(principal);
@@ -112,7 +111,7 @@ public class FestivalController {
 		return ARTISTAS_LISTA;
 	}
 
-	@GetMapping(value = "/artistas/{artistaId}/add")
+	@GetMapping(value = "/mifestival/artistas/{artistaId}/add")
 	public String asociarArtistaFestival(@PathVariable("artistaId") int artistaId, Principal principal) {
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
@@ -128,7 +127,7 @@ public class FestivalController {
 		return "redirect:/mifestival";
 	}
 
-	@GetMapping("/artistas/{artistaId}/delete")
+	@GetMapping("/mifestival/artistas/{artistaId}/delete")
 	public String deleteArtistaDeFestival(@PathVariable("artistaId") int artistaId, ModelMap model,
 			Principal principal) {
 
@@ -146,7 +145,7 @@ public class FestivalController {
 		}
 	}
 
-	@GetMapping("/recintos/{recintoId}/delete")
+	@GetMapping("/mifestival/recintos/{recintoId}/delete")
 	public String deleteRecintoDeFestival(@PathVariable("recintoId") int recintoId, ModelMap model,
 			Principal principal) {
 
@@ -164,7 +163,7 @@ public class FestivalController {
 		}
 	}
 
-	@GetMapping("/entradas/{entradaId}/delete")
+	@GetMapping("/mifestival/entradas/{entradaId}/delete")
 	public String deleteEntradaDeFestival(@PathVariable("entradaId") int entradaId, ModelMap model,
 			Principal principal) {
 

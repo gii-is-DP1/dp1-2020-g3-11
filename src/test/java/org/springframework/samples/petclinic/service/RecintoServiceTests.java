@@ -31,7 +31,7 @@ public class RecintoServiceTests {
 	@Test
 	@Transactional
 	public void shouldNotEditRecintoBlankName() throws Exception {
-		Recinto recinto = this.recintoService.findById(2).get();
+		Recinto recinto = this.recintoService.findById(2);
 		String name = "";
 
 		assertThrows(Exception.class, () -> {
@@ -44,11 +44,11 @@ public class RecintoServiceTests {
 	@Test
 	@Transactional
 	public void shouldEditRecintoName() throws Exception {
-		Recinto recinto = this.recintoService.findById(2).get();
+		Recinto recinto = this.recintoService.findById(2);
 		String newName = "Parking 4";
 		recinto.setName(newName);
 
-		recinto = this.recintoService.findById(2).get();
+		recinto = this.recintoService.findById(2);
 		assertThat(newName.equals(recinto.getName()));
 	}
 
@@ -57,7 +57,7 @@ public class RecintoServiceTests {
 	void shouldDeleteRecinto() throws Exception {
 		Collection<Recinto> listRecinto = this.recintoService.findAll();
 		int tamaño = listRecinto.size();
-		Recinto recinto = this.recintoService.findById(4).orElse(null);
+		Recinto recinto = this.recintoService.findById(4);
 
 		this.recintoService.delete(recinto);
 
@@ -91,7 +91,7 @@ public class RecintoServiceTests {
 	// FIND RECINTO BY ID
 	@Test
 	void shouldFindRecintoById() {
-		Recinto recinto = this.recintoService.findById(4).get();
+		Recinto recinto = this.recintoService.findById(4);
 		assertThat(recinto.getName().equals("Escenario Benito Villamarin"));
 		assertThat(recinto.getHuecos().equals(220));
 	}
@@ -99,7 +99,7 @@ public class RecintoServiceTests {
 	// FIND TIPOS RECINTO
 	@Test
 	void shouldFindRecintoTypes() throws Exception {
-		Recinto recinto = this.recintoService.findById(5).get();
+		Recinto recinto = this.recintoService.findById(5);
 		Collection<TipoRecinto> listaTipos = this.recintoService.findRecintoTypes();
 		assertThat(listaTipos.contains(recinto.getTipoRecinto()));
 	}
@@ -107,7 +107,7 @@ public class RecintoServiceTests {
 	// FIND TIPO RECINTO BY RECINTO NAME
 	@Test
 	void shouldFindRecintoType() throws Exception {
-		Recinto recinto = this.recintoService.findById(5).get();
+		Recinto recinto = this.recintoService.findById(5);
 		Collection<TipoRecinto> listaTipos = this.recintoService.findRecintoTypes();
 		TipoRecinto tipoRecinto = this.recintoService.findRecintoType(recinto.getName());
 		assertThat(listaTipos.contains(tipoRecinto));
@@ -116,7 +116,7 @@ public class RecintoServiceTests {
 	// FIND RECINTO BY RECINTO_TYPE
 	@Test
 	void shouldFindRecintoByType() throws Exception {
-		Recinto recinto1 = this.recintoService.findById(5).get();
+		Recinto recinto1 = this.recintoService.findById(5);
 		TipoRecinto tipoRecinto = this.recintoService.findRecintoType(recinto1.getName());
 		Recinto recinto2 = this.recintoService.findRecintoByType(tipoRecinto);
 		assertThat(recinto1.equals(recinto2));
@@ -125,7 +125,7 @@ public class RecintoServiceTests {
 	// FIND RECINTO BY NAME
 	@Test
 	void shouldFindRecintoByName() throws Exception {
-		Recinto recinto1 = this.recintoService.findById(4).get();
+		Recinto recinto1 = this.recintoService.findById(4);
 		assertThat(recinto1.getName().equals("Escenario Benito Villamarin"));
 		assertThat(recinto1.getHuecos().equals(220));
 	}

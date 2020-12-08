@@ -54,7 +54,7 @@
 				<!--LO QUE VE EL ADMIN			-->
 				<sec:authorize access="hasAuthority('admin')">
 
-					<petclinic:menuItem active="${name eq 'home'}" url="/festivales"
+					<petclinic:menuItem active="${name eq 'home'}" url="/"
 						title="home page">
 						<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 						<span>Inicio</span>

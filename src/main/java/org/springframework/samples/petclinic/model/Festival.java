@@ -26,7 +26,7 @@ public class Festival extends NamedEntity {
 	private Set<Recinto> recintos;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "festival")
-	private Set<Valoracion> valoraciones;
+	private Set<Opinion> valoraciones;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "festival")
 	private Set<Entrada> entradas;
@@ -53,7 +53,7 @@ public class Festival extends NamedEntity {
 	private Set<FestivalArtista> artistas;
 	
 	@OneToOne
-	@NotBlank
+
 	private Usuario festivalAdmin;
 
 }
