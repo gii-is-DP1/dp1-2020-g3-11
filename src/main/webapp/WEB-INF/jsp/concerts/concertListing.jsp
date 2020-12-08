@@ -10,8 +10,8 @@
 
 
 <h2>Conciertos</h2><br>
-<%-- <h4> Recordatorio: El festival comienza el <b>${festival.fechaCom}</b> y termina el <b>${festival.fechaFin}</b>. 
-			Los conciertos deben estar en esa franja horaria. </h4> --%>
+<h4> Recordatorio: El festival comienza el <b>${festival.fechaCom}</b> y termina el <b>${festival.fechaFin}</b>. 
+			Los conciertos deben estar en esa franja horaria. </h4>
 	  <table id="conciertoTable" class="table table-striped">
 		<thead>
 			<tr>

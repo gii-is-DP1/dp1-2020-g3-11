@@ -18,15 +18,13 @@
 
 		}
 	</script>
-	
-	
-        <script>
-									$(function() {
-										$("#fechaNacimiento").datepicker({
-											dateFormat : 'yy/mm/dd'
-										});
-									});
-								</script>
+	<script>
+		$(function() {
+			$("#fechaNacimiento").datepicker({
+				dateFormat : 'yy/mm/dd'
+			});
+		});
+	</script>
         
       
     </jsp:attribute>
@@ -54,7 +52,11 @@
 			<petclinic:inputField label="Fecha de Nacimiento"
 					name="fechaNacimiento" />
 			<petclinic:inputField label="Usuario" name="user.username" />
-			<petclinic:inputField label="Contraseña" name="user.password" />
+			
+			<label class="col-sm-2 control-label">Contraseña</label>
+			<div class="col-sm-10">
+			<input class="form-control" name="user.password" type="password" />
+			</div>
 			<div id="ifYes" style="visibility: hidden">
 				<petclinic:inputField label="Marca" name="marca" />
 			</div>

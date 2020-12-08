@@ -82,7 +82,7 @@ public class FestivalController {
 		return FESTIVALES_LISTING;
 	}
 
-	@GetMapping()
+	@GetMapping("/mifestival")
 	public String showFestival(ModelMap model, Principal principal) {
 
 		Usuario usuario = usuarioLogueado(principal);

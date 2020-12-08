@@ -72,12 +72,12 @@ public class ConcertController {
 	}
 
 	@ModelAttribute("festival")
-	public Optional<Festival> findFestival(Principal principal) {
+	public Festival findFestival(Principal principal) {
 
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
 
-		return this.festivalService.findFestivalById(festivalId);
+		return this.festivalService.findFestivalById(festivalId).get();
 	}
 
 	@ModelAttribute("artistas")
@@ -101,10 +101,6 @@ public class ConcertController {
 				.collect(Collectors.toList());
 	}
 
-	@InitBinder("festival")
-	public void initFestivalBinder(WebDataBinder dataBinder) {
-		dataBinder.setDisallowedFields("id");
-	}
 
 	@InitBinder("concert")
 	public void initConcertBinder(WebDataBinder dataBinder) {

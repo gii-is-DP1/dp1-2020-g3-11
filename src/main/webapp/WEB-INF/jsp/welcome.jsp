@@ -6,7 +6,7 @@
 
 <petclinic:layout pageName="home">
 	<center><h1>
-		Bienvenido a SpringFest
+		¡Bienvenido a SpringFest!
 	</h1></center>
 	<div class="row">
 		<div class="col-md-12">

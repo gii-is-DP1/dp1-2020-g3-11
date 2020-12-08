@@ -59,7 +59,7 @@
 						</spring:url> <a href="${fn:escapeXml(recintoUrl)}">${recinto.name}</a></td>
 
 					<td><spring:url
-							value="/mifestival/recintos/{recintoId}/detalles_recinto"
+							value="/mifestival/recintos/{recintoId}/detalles"
 							var="recintoUrl">
 							<spring:param name="recintoId" value="${recinto.id}" />
 						</spring:url> <a href="${fn:escapeXml(recintoUrl)}">Detalles recinto</a></td>
