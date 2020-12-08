@@ -65,7 +65,7 @@ public class EntradaController {
 	}
 
 	@GetMapping("/{id}/edit")
-	public String editEntrada(@PathVariable("id") int id, @PathVariable("festivalId") int festivalId, ModelMap model) {
+	public String editEntrada(@PathVariable("id") int id, ModelMap model) {
 
 		Optional<Entrada> entrada = entradaService.findById(id);
 		if (entrada.isPresent()) {

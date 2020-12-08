@@ -164,11 +164,5 @@ INSERT INTO concierto VALUES (2,'2021-07-26','2021-07-26 16:00','2021-07-26 17:0
 INSERT INTO concierto VALUES (3,'2021-07-27','2021-07-27 18:00','2021-07-27 20:00',3,2,5);
 
 
-INSERT INTO opinion VALUES (1, 'Muy bueno','2021-07-25 17:00', 5, 2);
-INSERT INTO opinion VALUES (2, 'Malísimo','2021-07-25 18:00', 1, 2);
-INSERT INTO opinion VALUES (3, 'Genial!','2021-07-25 19:00', 4, 2);
-INSERT INTO opinion VALUES (4, 'Muy malo','2021-07-25 21:00', 2, 2);
-INSERT INTO opinion VALUES (5, 'Apestan','2021-07-25 23:00', 1, 2);
-INSERT INTO opinion VALUES (6, 'De maravilla!!','2021-07-25 23:50', 5, 2);
-
+INSERT INTO opinion VALUES (1, 'Muy bueno','2021-07-25 17:00', 5, 2, 60);
 

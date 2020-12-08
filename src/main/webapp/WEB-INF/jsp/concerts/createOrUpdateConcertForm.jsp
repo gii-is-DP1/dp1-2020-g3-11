@@ -13,8 +13,8 @@
         <c:if test="${concert['new']}">Nuevo </c:if> Concierto
     </h2><br>
     
-<%--     <h4> Recordatorio: El festival comienza el <b>${festival.fechaCom}</b> y termina el <b>${festival.fechaFin}</b>. 
-			Los conciertos deben estar en esa franja horaria. </h4><br> --%>
+	<h4> Recordatorio: El festival comienza el <b>${festival.fechaCom}</b> y termina el <b>${festival.fechaFin}</b>. 
+			Los conciertos deben estar en esa franja horaria. </h4><br>
     <form:form modelAttribute="concert" class="form-horizontal" id="add-concert-form">
         <div class="form-group has-feedback">
         

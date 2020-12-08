@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.web;
 
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -9,8 +10,10 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Festival;
 import org.springframework.samples.petclinic.model.Opinion;
+import org.springframework.samples.petclinic.model.Usuario;
 import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.samples.petclinic.service.OpinionService;
+import org.springframework.samples.petclinic.service.UsuarioService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -35,11 +38,20 @@ public class OpinionController {
 
 	@Autowired
 	OpinionService opinionService;
+	
+	@Autowired
+	UsuarioService usuarioService;
 
 	@Autowired
 	public OpinionController(FestivalService festivalService, OpinionService opinionService) {
 		this.festivalService = festivalService;
 		this.opinionService = opinionService;
+	}
+	
+	public Usuario usuarioLogueado(Principal principal) {
+		String username = principal.getName();
+		Usuario usuario = usuarioService.findUsuarioByUsername(username);
+		return usuario;
 	}
 	
 	@ModelAttribute("festival")
@@ -66,8 +78,6 @@ public class OpinionController {
 		return OPINIONS_LISTING;
 	}
 	
-	
-	
 	@GetMapping("/new")
 	public String initCreationOpinion(ModelMap model) {
 		Opinion opinion = new Opinion();
@@ -77,18 +87,19 @@ public class OpinionController {
 
 	@PostMapping("/new")
 	public String processCreationOpinion(@PathVariable("festivalId") int festivalId, @Valid Opinion opinion,
-			BindingResult binding, ModelMap model) {
+			BindingResult binding, ModelMap model, Principal principal) {
 
 		if (binding.hasErrors()) {
 			System.out.println(binding.getAllErrors());
 			return OPINIONS_FORM;
 			
 		} else {
+			Usuario usuario = usuarioLogueado(principal);
 			opinion.setFestival(this.festivalService.findFestivalById(festivalId).get());
 			opinion.setFecha(LocalDateTime.of(LocalDateTime.now().getYear(), 
 					LocalDateTime.now().getMonth(), LocalDateTime.now().getDayOfMonth(),
 					LocalDateTime.now().getHour(), LocalDateTime.now().getMinute()));
-			
+			opinion.setOpinionUsuario(usuario);
 			this.opinionService.save(opinion);
 			return "redirect:/festivales/{festivalId}/valoraciones";
 		}

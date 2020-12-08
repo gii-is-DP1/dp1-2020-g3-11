@@ -16,9 +16,11 @@
 		<thead>
 			<tr>
 				<!-- <th style="width: 25%;">Usuario</th> -->
-				<th style="width: 80%;">Descripción</th>
-				<th style="width: 5%;">Puntuación</th>
-				<th style="width: 15%;">Fecha</th>
+				<th style="width: 70%;">Descripción</th>
+				<th style="width: 1%;">Puntuación</th>
+				<th style="width: 14%;">Fecha</th>
+				<th style="width: 15%;">Usuario</th>
+
 			</tr>
 		</thead>
 		<tbody>
@@ -29,6 +31,8 @@
 					<td>${opinion.descripcion}</td>
 					<td><c:out value="${opinion.puntuacion}" /></td>
 					<td><c:out value="${opinion.fecha}" /></td>
+					<td><c:out value="${opinion.opinionUsuario.user.username}" /></td>
+
 					
 				</tr>
 			</c:forEach>			
