@@ -39,10 +39,10 @@ public class UsuarioService {
 			authoritiesService.saveAuthorities(usuario.getUser().getUsername(), "sponsor");
 		} else {
 			authoritiesService.saveAuthorities(usuario.getUser().getUsername(), "usuario");
-
 		}
 	}
 
+	@Transactional(readOnly = true)
 	public Usuario findUsuarioById(Integer id) {
 		return usuarioRepository.findUsuarioById(id);
 	}

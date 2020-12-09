@@ -64,11 +64,10 @@ public class ArtistaValidator implements Validator {
 			errors.rejectValue("telefono", " El teléfono debe ser númerico", " El teléfono debe ser númerico");
 		}
 
-		if (telefono.length() > 15 || telefono.length() < 9) {
-			errors.rejectValue("telefono", REQUIRED + " Debe contener entre 9 y 15 caracteres",
-					REQUIRED + " Debe contener entre 9 y 15 caracteres");
+		if (telefono.length() != 9) {
+			errors.rejectValue("telefono", " Debe contener 9 digitos", "  Debe contener 9 digitos");
 		} else {
-			if(telefono.startsWith("-") || telefono.startsWith("+") ) {
+			if (telefono.startsWith("-") || telefono.startsWith("+")) {
 				errors.rejectValue("telefono", "El teléfono no puede contener simbolos",
 						"El teléfono no puede contener simbolos");
 			}

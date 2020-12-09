@@ -63,7 +63,6 @@ public class UsuarioValidatorTest {
 		usuario.setEntradas(entradas);
 		TipoUsuario tipo = new TipoUsuario();
 		tipo.setName("sponsor");
-		usuario.setTipoUsuario(null);
 
 		usuario.setTelefono("639884123");
 

@@ -51,12 +51,10 @@ public class Usuario extends Person {
 	@NotNull
 	private LocalDate fechaNacimiento;
 
-	
-	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
-	
+
 	@OneToOne
 	@JoinColumn(name = "id", referencedColumnName = "id")
 	private Festival festival;
