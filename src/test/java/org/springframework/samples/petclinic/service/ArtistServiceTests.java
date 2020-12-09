@@ -1,4 +1,3 @@
-
 package org.springframework.samples.petclinic.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,6 +10,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -22,12 +22,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.petclinic.model.Artista;
-import org.springframework.samples.petclinic.model.FestivalArtista;
-import org.springframework.samples.petclinic.model.GeneroType;
+
 import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 class ArtistServiceTests {
+
 
 	@Autowired
 	protected ArtistaService artistService;
@@ -41,7 +41,7 @@ class ArtistServiceTests {
 	@Test
 	@Transactional
 	public void shouldNotEditArtistBlankEmail() throws Exception {
-		Artista artist = this.artistService.findArtistaById(1);
+		Artista artist = this.artistService.findArtistaById(1).get();
 		String email = "";
 
 		assertThrows(Exception.class, () -> {
@@ -54,13 +54,13 @@ class ArtistServiceTests {
 	@Test
 	@Transactional
 	public void shouldEditArtistName() throws Exception {
-		Artista artist = this.artistService.findArtistaById(1);
+		Artista artist = this.artistService.findArtistaById(1).get();
 		String newName = "Declan";
 		artist.setName(newName);
 
-		artist = this.artistService.findArtistaById(1);
-		assertThat(newName.equals(artist.getName()));
-	}
+
+	@Autowired
+	protected ArtistaService artistService;
 
 	// FIND ALL (COLLECTION ARTIST)
 	@Test
@@ -72,7 +72,7 @@ class ArtistServiceTests {
 	// FIND ARTIST BY ID
 	@Test
 	void shouldFindArtistWithCorrectId() throws Exception {
-		Artista artist3 = this.artistService.findArtistaById(3);
+		Artista artist3 = this.artistService.findArtistaById(3).get();
 		assertThat(artist3.getName()).isEqualTo("Yung beef");
 		assertThat(artist3.getTelefono()).isEqualTo("657411236");
 	}
@@ -84,7 +84,7 @@ class ArtistServiceTests {
 		assertThat(artist2.getName()).isEqualTo("Canelones");
 	}
 
-	// FIND COLLECTION GENRES
+	// FIND COLLECTION GENRES 
 	@Test
 	void shouldFindGenres() throws Exception {
 		List<String> genres = (List<String>) this.artistService.findGeneroTypes();
@@ -113,23 +113,31 @@ class ArtistServiceTests {
 		} catch (Exception ex) {
 			Logger.getLogger(ArtistServiceTests.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		listArtist = this.artistService.findAll();
-		assertThat(listArtist.size()).isEqualTo(tamaño + 1);
-		assertThat(artist.getId()).isNotNull();
+
+		artist = this.artistService.findArtistaById(1).get();
+		assertThat(newName.equals(artist.getName()));
 	}
+
 
 	@Test
 	@Transactional
 	void shouldDeleteArtist() throws Exception {
 		Collection<Artista> listArtist = this.artistService.findAll();
 		int tamaño = listArtist.size();
-		Artista artist = this.artistService.findArtistaById(4);
+		Artista artist = this.artistService.findArtistaById(4).orElse(null);
 
 		this.artistService.delete(artist);
 
 		listArtist = this.artistService.findAll();
 		assertThat(listArtist.size()).isEqualTo(tamaño - 1);
 
+	}
+
+}
+
+		listArtist = this.artistService.findAll();
+		assertThat(listArtist.size()).isEqualTo(tamaño + 1);
+		assertThat(artist.getId()).isNotNull();
 	}
 
 	@Test
@@ -149,4 +157,6 @@ class ArtistServiceTests {
 		});
 	}
 
+
 }
+

@@ -33,41 +33,38 @@ public class ArtistaService {
 
 	private ArtistaRepository artistaRepository;
 
-	@Transactional(readOnly = true)
-	public Collection<Artista> findAll() throws DataAccessException {
-		return artistaRepository.findAll();
-	}
-
 	@Autowired
 	public ArtistaService(ArtistaRepository artistaRepository) throws DataAccessException {
 		this.artistaRepository = artistaRepository;
 	}
 
 	@Transactional(readOnly = true)
-	public Artista findArtistaById(int id) throws DataAccessException {
-		return artistaRepository.findArtistaById(id);
+	public Collection<Artista> findAll() throws DataAccessException {
+		return artistaRepository.findAll();
 	}
 
+  @Transactional(readOnly = true)
+	public Artista findArtistaById(int id) throws DataAccessException {
+		return artistaRepository.findArtistaById(id);
+
+	}
+
+	@Transactional
 	public void save(@Valid Artista artista) throws DataAccessException {
 		artistaRepository.save(artista);
 	}
-	
+
+	@Transactional
 	public GeneroType findGeneroType(String genero) throws DataAccessException {
 		return artistaRepository.findGeneroTypeByName(genero);
 	}
 
-//	public void meteArtistaFestival(@Valid Artista artista, int festivalId) throws DataAccessException {
-//		Festival festival = festivalRepo.findById(festivalId).orElse(null);
-//		if (!festival.getArtistas().contains(artista)) {
-//			festival.addArtista(artista);
-//			artista.addFestival(festival);
-//		}
-//	}
-	
+	@Transactional
 	public Collection<String> findAllArtistas() throws DataAccessException {
 		return artistaRepository.findAllArtistas();
-	} 
-	
+	}
+
+	@Transactional
 	public Artista findArtistaByName(String name) throws DataAccessException {
 		return artistaRepository.findArtistaByName(name);
 	}
