@@ -81,7 +81,7 @@ public class ArtistaController {
 
 	@GetMapping(value = "/artistas/{artistaId}/edit")
 	public String initUpdateForm(@PathVariable("artistaId") int artistaId, ModelMap model) {
-		Artista artista = this.artistaService.findArtistaById(artistaId).orElse(null);
+		Artista artista = this.artistaService.findArtistaById(artistaId);
 		model.put("artista", artista);
 		return ARTISTAS_FORM;
 	}
@@ -93,7 +93,7 @@ public class ArtistaController {
 			model.put("artista", artista);
 			return ARTISTAS_FORM;
 		} else {
-			Artista artistaToUpdate = this.artistaService.findArtistaById(artistaId).orElse(null);
+			Artista artistaToUpdate = this.artistaService.findArtistaById(artistaId);
 			BeanUtils.copyProperties(artista, artistaToUpdate, "id", "festival");
 			GeneroType genero = this.artistaService.findGeneroType(artistaToUpdate.getGenero().getName());
 			artistaToUpdate.setGenero(genero);

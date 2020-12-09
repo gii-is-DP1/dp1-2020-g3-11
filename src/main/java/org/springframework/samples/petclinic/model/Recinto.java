@@ -21,19 +21,15 @@ import lombok.Data;
 public class Recinto extends NamedEntity {
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recinto")
-	private Set<Concierto> conciertos;
+	private Set<Concert> conciertos;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recinto")
 	private Set<Puesto> puestos;
 	
 	@ManyToOne
 	@JoinColumn(name = "festival_id")
-	private Festival festival;
-	
-	@Column(name = "aforoMaxRec")
 	@NotNull
-//	@Min(value = 1)
-	private Integer aforoMaxRec;
+	private Festival festival;
 
 	@Column(name = "huecos")
 	@NotNull
@@ -41,6 +37,7 @@ public class Recinto extends NamedEntity {
 	private Integer huecos;
 
 	@ManyToOne
+	@NotNull
 	@JoinColumn(name = "tipos_recinto")
 	private TipoRecinto tipoRecinto;
 

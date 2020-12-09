@@ -29,13 +29,11 @@
 
 
 					<td><spring:url
-							value="/festivales/{festivalId}/artistas/{artistaId}/add"
+							value="/mifestival/artistas/{artistaId}/add"
 							var="artistaUrl">
-							<spring:param name="festivalId" value="${festival.id}" />
 							<spring:param name="artistaId" value="${artista.id}" />
 						</spring:url> <a href="${fn:escapeXml(artistaUrl)}">Asociar con mi festival</a></td>
 				</tr>
-				<%-- </c:if> --%>
 			</c:forEach>
 		</tbody>
 	</table>

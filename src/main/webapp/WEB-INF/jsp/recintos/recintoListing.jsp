@@ -22,10 +22,10 @@
 			<c:forEach items="${recintos}" var="recinto">
 				<tr>
 					<td><c:out value="${recinto.name}" /></td>
-					<td><a href="/recintos/${recinto.id}/edit"> <span
+					<td><a href="recintos/${recinto.id}/edit"> <span
 							class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 					</a></td>
-					<td><a href="/recintos/${recinto.id}/delete"> <span
+					<td><a href="recintos/${recinto.id}/delete"> <span
 							class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 					</a></td>
 				</tr>
@@ -33,7 +33,7 @@
 		</tbody>
 	</table>
 
-	<a href="/recintos/new" class="btn btn-default"><span
+	<a href="recintos/new" class="btn btn-default"><span
 		class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir
 		recinto</a>
 </petclinic:layout>

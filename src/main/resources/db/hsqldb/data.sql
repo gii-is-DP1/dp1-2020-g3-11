@@ -40,29 +40,52 @@
 --INSERT INTO types VALUES (5, 'bird');
 --INSERT INTO types VALUES (6, 'hamster');
 
+INSERT INTO tabla_tipos_Usuario VALUES (1, 'Usuario');
+INSERT INTO tabla_tipos_Usuario VALUES (2, 'Sponsor');
+INSERT INTO tabla_tipos_Usuario VALUES (3, 'admin');
 
--- AQUI ABAJO SE CREA EL USER GENERAL Y LUEGO SE LE DA ESAS CREDENCIALES AL ADMIN, SPONSOR O USER CORRESPONDIENTE (TIENEN TODOS LA MISMA USERY PASS) PERO SON DISTINTOS
---> CREAMOS ID PARA LOS ADMIN DEL 1 AL 19, USERS DE 20 A 59, SPONSOR DE 60 PALANTE
+
+--admin1--
 INSERT INTO users(username,password,enabled) VALUES ('administrador1','adm1n',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (1,'administrador1','admin');
+INSERT INTO usuario VALUES (1, 'George', 'Franklin', '45899990X', 'jorgito@admin.com', '1995-02-20',null,'692874512', 3,'administrador1');
 
-INSERT INTO admin VALUES (1, 'George', 'Franklin', '45899990X', 'jorgito@admin.com', '1995-02-20','692874512','administrador1');
+
+--admin2--
+INSERT INTO users(username,password,enabled) VALUES ('administrador2','adm1n',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (28,'administrador2','admin');
+INSERT INTO usuario VALUES (2, 'Javi', 'erere', '46899990X', 'javierefdo@admin.com', '1998-02-20',null,'677888512', 3,'administrador2');
+
+INSERT INTO festival VALUES (1,'Cabo de Plata',100,'2020-06-06','2020-06-09','Cádiz', 1);
+INSERT INTO festival VALUES (2,'Dreambeach',200,'2021-07-25','2021-07-29','Almería', 2);
+
+--usuario --
+INSERT INTO users(username,password,enabled) VALUES ('usuarioPrueba','usuarioPrueba',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (13,'usuarioPrueba','usuario');
+INSERT INTO usuario VALUES (60, 'nombre', 'Apellido', '45987990X', 'ale@sponsor.com', '1993-08-10',null,'692771112', 1,'usuarioPrueba');
+
+
+
+
+
+--sponsor--
+INSERT INTO users(username,password,enabled) VALUES ('sponsorPrueba','sponsorPrueba',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (12,'sponsorPrueba','sponsor');
+INSERT INTO usuario VALUES (20, 'Manue', 'Frank', '45444990X', 'manue@user.com',  '1999-02-20','marcaPredeterminada','692811112',  2,'sponsorPrueba');
+
+
 
 INSERT INTO users(username,password,enabled) VALUES ('user1','us3r',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (2,'user1','usuario');
+INSERT INTO authorities(id,username,authority) VALUES (3,'user1','usuario');
+INSERT INTO usuario VALUES (22, 'Edu', 'Garcia', '45333990A', 'edu@user.com', '1999-02-20', null, '693333112',  1, 'user1');
+INSERT INTO usuario VALUES (23, 'Juan', 'Gomez', '45222990C', 'juan@user.com', '1999-02-20',null, '692811882', 1,'user1');
+INSERT INTO usuario VALUES (24, 'Pablo', 'Cubero', '41111990B', 'pablo@user.com', '1999-02-20',null, '699911112', 1,'user1');
 
-INSERT INTO usuario VALUES (20, 'Manue', 'Frank', '45444990X', 'manue@user.com', '1999-02-20','692811112','user1');
-INSERT INTO usuario VALUES (22, 'Edu', 'Garcia', '45333990A', 'edu@user.com', '1999-02-20','693333112','user1');
-INSERT INTO usuario VALUES (23, 'Juan', 'Gomez', '45222990C', 'juan@user.com', '1999-02-20','692811882','user1');
-INSERT INTO usuario VALUES (24, 'Pablo', 'Cubero', '41111990B', 'pablo@user.com', '1999-02-20','699911112','user1');
 
-INSERT INTO users(username,password,enabled) VALUES ('sponsor1','sp0nsor',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (3,'sponsor1','sponsor');
 
-INSERT INTO sponsor VALUES (60, 'Alejandro', 'Rios', '45987990X', 'ale@sponsor.com', '1993-08-10','Redbull','692771112','sponsor1');
 
-INSERT INTO festival VALUES (1,'Cabo de Plata',100,'2020-06-06','2020-06-09','Cádiz');
-INSERT INTO festival VALUES (2,'Dreambeach',200,'2021-07-25','2021-07-29','Almería');
+--INSERT INTO festival VALUES (3,'Mucha Cumbia BRO',200,'2021-03-15','2021-03-19','Puerto Rico', 2);--
+--INSERT INTO festival VALUES (4,'Mucha Cumbia BRO 2.0',200,'2021-03-15','2021-03-19','Puerto Rico', 2);--
 
 INSERT INTO generos VALUES (1, 'pop');
 INSERT INTO generos VALUES (2, 'reggaeton');
@@ -97,6 +120,9 @@ INSERT INTO entradatypes VALUES (3, 'fiesta');
 INSERT INTO entrada VALUES (1,40,1,1,20);
 INSERT INTO entrada VALUES (2,30,2,1,23);
 INSERT INTO entrada VALUES (3,50,1,1,22);
+INSERT INTO entrada VALUES (10,41,1,2,20);
+INSERT INTO entrada VALUES (11,31,2,2,23);
+INSERT INTO entrada VALUES (12,51,1,2,22);
 
 INSERT INTO oferta VALUES (1,20,'Camisetas y 3 bolsas de hielo');
 INSERT INTO oferta VALUES (2,30,'Botella de Ron y 1 bolsa de hielos');
@@ -109,16 +135,16 @@ INSERT INTO tabla_tipos_recinto VALUES (1, 'Parking');
 INSERT INTO tabla_tipos_recinto VALUES (2, 'Camping');
 INSERT INTO tabla_tipos_recinto VALUES (3, 'Escenario');
 
-INSERT INTO recinto VALUES (1,'Escenario Terra',50000,200,4,1,3);
-INSERT INTO recinto VALUES (2,'Camping Atlas',20000,100,0,1,2);
-INSERT INTO recinto VALUES (3,'Parking 1',30000,50,0,1,1);
-INSERT INTO recinto VALUES (4,'Escenario Benito Villamarin',45000,220,4,1,3);
-INSERT INTO recinto VALUES (5,'Escenario Electro',35000,150,4,2,3);
-INSERT INTO recinto VALUES (6,'Escenario Musica Urban',22000,150,4,2,3);
-INSERT INTO recinto VALUES (7,'Camping DreamBeach',15000,100,0,1,2);
-INSERT INTO recinto VALUES (8,'Parking DreamBeach',30000,50,0,1,1);
-INSERT INTO recinto VALUES (9,'Escenario Carranza',60000,180,4,1,3);
-INSERT INTO recinto VALUES (10,'Camping Falla',60000,120,0,1,2);
+INSERT INTO recinto VALUES (1,'Escenario Terra',200,4,1,3);
+INSERT INTO recinto VALUES (2,'Camping Atlas',100,0,1,2);
+INSERT INTO recinto VALUES (3,'Parking 1',50,0,1,1);
+INSERT INTO recinto VALUES (4,'Escenario Benito Villamarin',220,4,1,3);
+INSERT INTO recinto VALUES (5,'Escenario Electro',150,4,2,3);
+INSERT INTO recinto VALUES (6,'Escenario Musica Urban',150,4,2,3);
+INSERT INTO recinto VALUES (7,'Camping DreamBeach',100,0,1,2);
+INSERT INTO recinto VALUES (8,'Parking DreamBeach',50,0,1,1);
+INSERT INTO recinto VALUES (9,'Escenario Carranza',180,4,1,3);
+INSERT INTO recinto VALUES (10,'Camping Falla',120,0,1,2);
 
 INSERT INTO puesto VALUES (1,1000,1,0,1);
 INSERT INTO puesto VALUES (2,2000,0,1,1);
@@ -133,13 +159,10 @@ INSERT INTO puesto VALUES (10,980,1,0,1);
 INSERT INTO puesto VALUES (11,2050,0,1,1);
 INSERT INTO puesto VALUES (12,3520,2,2,1);
 
-INSERT INTO concierto VALUES (1,'2021-08-20','2021-08-20 17:00','2021-08-20 18:00',1,2,5);
-INSERT INTO concierto VALUES (2,'2021-09-15','2021-09-15 16:00','2021-09-15 17:00',2,2,6);
-INSERT INTO concierto VALUES (3,'2021-10-01','2021-10-01 18:00','2021-10-01 20:00',3,2,5);
+INSERT INTO concierto VALUES (1,'2021-07-25','2021-07-25 17:00','2021-07-25 18:00',1,2,5);
+INSERT INTO concierto VALUES (2,'2021-07-26','2021-07-26 16:00','2021-07-26 17:00',2,2,6);
+INSERT INTO concierto VALUES (3,'2021-07-27','2021-07-27 18:00','2021-07-27 20:00',3,2,5);
 
 
-INSERT INTO valoracion VALUES (1,'Muy bueno, me encantó.',4,1);
-INSERT INTO valoracion VALUES (2,'Fatal, la limpieza sobre todo.',1,1);
-INSERT INTO valoracion VALUES (3,'Genial.',3,1);
-
+INSERT INTO opinion VALUES (1, 'Muy bueno','2021-07-25 17:00', 5, 2, 60);
 

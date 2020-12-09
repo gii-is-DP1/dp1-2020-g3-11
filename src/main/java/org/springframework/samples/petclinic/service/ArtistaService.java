@@ -43,9 +43,10 @@ public class ArtistaService {
 		return artistaRepository.findAll();
 	}
 
-	@Transactional(readOnly = true)
-	public Optional<Artista> findArtistaById(int id) throws DataAccessException {
-		return artistaRepository.findById(id);
+  @Transactional(readOnly = true)
+	public Artista findArtistaById(int id) throws DataAccessException {
+		return artistaRepository.findArtistaById(id);
+
 	}
 
 	@Transactional
@@ -77,5 +78,7 @@ public class ArtistaService {
 	public Collection<String> findGeneroTypes() throws DataAccessException {
 		return artistaRepository.findGeneroTypes();
 	}
+	
+	
 
 }

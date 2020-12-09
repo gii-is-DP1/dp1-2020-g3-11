@@ -25,12 +25,7 @@ import org.springframework.samples.petclinic.model.Artista;
 import org.springframework.samples.petclinic.model.GeneroType;
 import org.springframework.samples.petclinic.repository.ArtistaRepository;
 
-/**
- * Spring Data JPA OwnerRepository interface
- *
- * @author Michael Isvy
- * @since 15.1.2013
- */
+
 public interface ArtistaRepository extends CrudRepository<Artista, Integer> {
 
 	Collection<Artista> findAll();
@@ -47,4 +42,7 @@ public interface ArtistaRepository extends CrudRepository<Artista, Integer> {
 	
 	@Query("SELECT a FROM Artista a where a.name = ?1")
 	Artista findArtistaByName(String name);
+	
+	@Query("SELECT a FROM Artista a where a.id = ?1")
+    Artista findArtistaById(int id);
 }
