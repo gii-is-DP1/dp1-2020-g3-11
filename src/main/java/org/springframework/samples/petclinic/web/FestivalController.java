@@ -2,7 +2,11 @@ package org.springframework.samples.petclinic.web;
 
 import java.security.Principal;
 import java.util.Collection;
+import java.util.Optional;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Artista;
 import org.springframework.samples.petclinic.model.Entrada;
@@ -19,10 +23,12 @@ import org.springframework.samples.petclinic.service.UsuarioService;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @EnableWebSecurity
@@ -168,42 +174,49 @@ public class FestivalController {
 		}
 	}
 
-//	@GetMapping("/festivales/{id}/edit")
-//	public String editFestival(@PathVariable("id") int id, ModelMap model) {
-//		Optional<Festival> festival = festivalService.findFestivalById(id);
-//		if (festival.isPresent()) {
-//			model.addAttribute("festival", festival.get());
-//			return FESTIVALES_FORM;
-//		} else {
-//			model.addAttribute("message", "No se encuentra el festival a editar.");
-//			return listFestivales(model);
-//		}
-//	}
+	@GetMapping("/mifestival/edit")
+	public String editFestival(Principal principal, ModelMap model) {
+		Usuario usuario = usuarioLogueado(principal);
+		Integer festivalId = usuario.getFestival().getId();
+		Optional<Festival> festival = festivalService.findFestivalById(festivalId);
+		if (festival.isPresent()) {
+			model.addAttribute("festival", festival.get());
+			return FESTIVALES_FORM;
+		} else {
+			model.addAttribute("message", "No se encuentra el festival a editar.");
+			return showFestival(model, principal);
+		}
+	}
 
-//	@PostMapping("/festivales/{id}/edit")
-//	public String editFestival(@PathVariable("id") int id, @Valid Festival modifiedFestival, BindingResult binding,
-//			ModelMap model) {
-//		Optional<Festival> festival = festivalService.findFestivalById(id);
-//		if (binding.hasErrors()) {
-//			return FESTIVALES_FORM;
-//		} else {
-//			BeanUtils.copyProperties(modifiedFestival, festival.get(), "id");
-//			festivalService.save(festival.get());
-//			model.addAttribute("message", "Festival editado correctamente.");
-//			return listFestivales(model);
-//		}
-//	}
-//
-//	@GetMapping("/festivales/{festivalId}/delete")
-//	public String deleteFestival(@PathVariable("festivalId") int festivalId, ModelMap model) {
+	@PostMapping("/mifestival/edit")
+	public String editFestival(Principal principal, @Valid Festival modifiedFestival, BindingResult binding,
+			ModelMap model) {
+		Usuario usuario = usuarioLogueado(principal);
+		Integer festivalId = usuario.getFestival().getId();
+		Optional<Festival> festival = festivalService.findFestivalById(festivalId);
+
+		if (binding.hasErrors()) {
+			return FESTIVALES_FORM;
+		} else {
+			BeanUtils.copyProperties(modifiedFestival, festival.get(), "id", "festivalAdmin");
+			festivalService.save(festival.orElse(null));
+			model.addAttribute("message", "Festival editado correctamente.");
+			return showFestival(model, principal);
+		}
+	}
+
+//	@GetMapping("/mifestival/delete")
+//	public String deleteFestival(Principal principal, ModelMap model) {
+//		Usuario usuario = usuarioLogueado(principal);
+//		Integer festivalId = usuario.getFestival().getId();
 //		Optional<Festival> festival = festivalService.findFestivalById(festivalId);
 //		if (festival.isPresent()) {
 //			festivalService.delete(festival.get());
 //			model.addAttribute("message", "Festival borrado correctamente.");
-//			return listFestivales(model);
+//			return "redirect:/";
 //		} else {
 //			model.addAttribute("message", "No se encuentra el festival a borrar.");
-//			return listFestivales(model);
+//			return "redirect:/";
 //		}
 //	}
 
