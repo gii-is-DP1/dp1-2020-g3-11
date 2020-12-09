@@ -53,7 +53,6 @@ public class Festival extends NamedEntity {
 	private Set<FestivalArtista> artistas;
 	
 	@OneToOne
-
 	private Usuario festivalAdmin;
 
 }

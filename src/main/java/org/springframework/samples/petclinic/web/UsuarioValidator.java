@@ -47,7 +47,8 @@ public class UsuarioValidator implements Validator {
 		// CORREO
 		if (!StringUtils.hasLength(correo)) {
 			errors.rejectValue("correo", REQUIRED, REQUIRED);
-		} else if (!correo.contains("@")) {
+		}
+		if (!correo.contains("@")) {
 			errors.rejectValue("correo", " Tu email debe contener una @", "Tu email debe contener una @");
 		}
 		// DNI
@@ -58,15 +59,6 @@ public class UsuarioValidator implements Validator {
 		if (dni.length() > 15 || dni.length() < 7) {
 			errors.rejectValue("DNI", REQUIRED + " Debe contener entre 7 y 15 caracteres",
 					REQUIRED + " Debe contener entre 7 y 15 caracteres");
-		}
-
-		// FECHA DE NACIMIENTO
-		if (fechaNac == null) {
-			errors.rejectValue("fechaNacimiento", REQUIRED, REQUIRED);
-		}
-		if (fechaNac.isAfter(LocalDate.now())) {
-			errors.rejectValue("fechaNacimiento", "La fecha de nacimiento debe ser anterior a la actual",
-					"La fecha de nacimiento debe ser anterior a la actual");
 		}
 
 		// TELEFONO
@@ -89,9 +81,19 @@ public class UsuarioValidator implements Validator {
 		}
 
 		// TIPO DE USUARIO
-		if (usuario.getTipoUsuario() == null) {
-			errors.rejectValue("tipoUsuario.name", "Debes seleccionar un tipo de usuario",
+		if (usuario.isNew() && usuario.getTipoUsuario() == null) {
+			errors.rejectValue("tipoUsuario", "Debes seleccionar un tipo de usuario",
 					"Debes seleccionar un tipo de usuario");
+		}
+
+		// FECHA DE NACIMIENTO
+		if (fechaNac == null) {
+			errors.rejectValue("fechaNacimiento", REQUIRED, REQUIRED);
+		} else {
+			if (fechaNac.isAfter(LocalDate.now())) {
+				errors.rejectValue("fechaNacimiento", "La fecha de nacimiento debe ser anterior a la actual",
+						"La fecha de nacimiento debe ser anterior a la actual");
+			}
 		}
 		// USUARIO
 		if (!StringUtils.hasLength(nombreUsuario)) {

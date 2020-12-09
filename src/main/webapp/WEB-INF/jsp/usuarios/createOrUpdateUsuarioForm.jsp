@@ -18,15 +18,16 @@
 
 		}
 	</script>
-	<script>
-		$(function() {
-			$("#fechaNacimiento").datepicker({
-				dateFormat : 'yy/mm/dd'
-			});
-		});
-	</script>
-        
-      
+	
+	
+    <script>
+					$(function() {
+						$("#fechaNacimiento").datepicker({
+							dateFormat : 'yy/mm/dd'
+						});
+					});
+				</script>
+
     </jsp:attribute>
 	<jsp:body>
 	<h2>
@@ -37,7 +38,7 @@
 			id="add-usuario-form">
 		<div class="form-group has-feedback">
 			<h4>Tipo de usuario</h4>
-			<div class="tipodeUsuario">
+			<div class="tipoUsuario">
 			Sponsor <input type="radio" onclick="javascript:yesnoCheck();"
 						name="tipoUsuario.name" id="yesCheck" value="Sponsor"><br>
 					
@@ -52,11 +53,7 @@
 			<petclinic:inputField label="Fecha de Nacimiento"
 					name="fechaNacimiento" />
 			<petclinic:inputField label="Usuario" name="user.username" />
-			
-			<label class="col-sm-2 control-label">Contraseña</label>
-			<div class="col-sm-10">
-			<input class="form-control" name="user.password" type="password" />
-			</div>
+			<petclinic:inputField label="Contraseña" name="user.password" />
 			<div id="ifYes" style="visibility: hidden">
 				<petclinic:inputField label="Marca" name="marca" />
 			</div>

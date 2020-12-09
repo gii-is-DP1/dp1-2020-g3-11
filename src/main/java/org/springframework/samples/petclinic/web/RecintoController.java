@@ -2,7 +2,6 @@ package org.springframework.samples.petclinic.web;
 
 import java.security.Principal;
 import java.util.Collection;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -128,7 +127,6 @@ public class RecintoController {
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
 		if (binding.hasErrors()) {
-//			model.addAttribute("recinto", recinto);
 			return RECINTOS_FORM;
 		} else {
 			TipoRecinto tipo = recintoService.findRecintoType(recinto.getTipoRecinto().getName());

@@ -35,7 +35,7 @@ public class UsuarioController {
 	}
 	
 	@InitBinder("usuario")
-	public void initArtistBinder(WebDataBinder dataBinder) {
+	public void initUsuariotBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new UsuarioValidator());
 	}
 
