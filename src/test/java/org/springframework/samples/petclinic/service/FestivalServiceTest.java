@@ -66,7 +66,6 @@ class FestivalServiceTest {
 	void shouldFindFestivaltWithCorrectId() throws Exception {
 		Festival festival3 = this.festivalService.findFestivalById(2).get();
 		assertThat(festival3.getName()).isEqualTo("Dreambeach");
-		assertThat(festival3.getLocalizacion()).isEqualTo("Almería");
 	}
 
 	// FIND FESTIVAL BY NAME
@@ -101,19 +100,7 @@ class FestivalServiceTest {
 		assertThat(festival.getId()).isNotNull();
 	}
 
-	@Test
-	@Transactional
-	void shouldDeleteFestival() throws Exception {
-		Collection<Festival> listfestival = this.festivalService.findAll();
-		int tamaño = listfestival.size();
-		Festival festival = this.festivalService.findFestivalById(2).orElse(null);
 
-		this.festivalService.delete(festival);
-
-		listfestival = this.festivalService.findAll();
-		assertThat(listfestival.size()).isEqualTo(tamaño - 1);
-
-	}
 
 	@Test
 	@Transactional
