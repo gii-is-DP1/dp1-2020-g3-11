@@ -1,7 +1,12 @@
 package org.springframework.samples.petclinic.model;
 
-public enum TipoPuesto {
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-	COMIDA, ROPA, ACTIVIDADES
+@Entity
+@Table(name="tabla_tipos_puesto")
+public class TipoPuesto extends NamedEntity {
+	
+	
 	
 }

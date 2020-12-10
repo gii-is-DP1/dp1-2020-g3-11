@@ -56,8 +56,14 @@ INSERT INTO users(username,password,enabled) VALUES ('administrador2','adm1n',TR
 INSERT INTO authorities(id,username,authority) VALUES (28,'administrador2','admin');
 INSERT INTO usuario VALUES (2, 'Javi', 'erere', '46899990X', 'javierefdo@admin.com', '1998-02-20',null,'677888512', 3,'administrador2');
 
+--admin3--
+INSERT INTO users(username,password,enabled) VALUES ('administrador3','adm1n',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (40,'administrador3','admin');
+INSERT INTO usuario VALUES (3, 'Juanlu', 'erere', '46899990X', 'javierefdo@admin.com', '1998-02-20',null,'677888512', 3,'administrador3');
+
 INSERT INTO festival VALUES (1,'Cabo de Plata',100,'2020-06-06','2020-06-09','Cádiz', 1);
 INSERT INTO festival VALUES (2,'Dreambeach',200,'2021-07-25','2021-07-29','Almería', 2);
+INSERT INTO festival VALUES (3,'Guacamayo',200,'2021-07-25','2021-07-29','Almería', 3);
 
 --usuario --
 INSERT INTO users(username,password,enabled) VALUES ('usuarioPrueba','usuarioPrueba',TRUE);
@@ -146,18 +152,26 @@ INSERT INTO recinto VALUES (8,'Parking DreamBeach',50,0,1,1);
 INSERT INTO recinto VALUES (9,'Escenario Carranza',180,4,1,3);
 INSERT INTO recinto VALUES (10,'Camping Falla',120,0,1,2);
 
-INSERT INTO puesto VALUES (1,1000,1,0,1);
-INSERT INTO puesto VALUES (2,2000,0,1,1);
-INSERT INTO puesto VALUES (3,3500,2,2,1);
-INSERT INTO puesto VALUES (4,1500,1,0,1);
-INSERT INTO puesto VALUES (5,2200,0,1,1);
-INSERT INTO puesto VALUES (6,3600,2,2,1);
-INSERT INTO puesto VALUES (7,1450,1,0,1);
-INSERT INTO puesto VALUES (8,2250,0,1,1);
-INSERT INTO puesto VALUES (9,3650,2,2,1);
-INSERT INTO puesto VALUES (10,980,1,0,1);
-INSERT INTO puesto VALUES (11,2050,0,1,1);
-INSERT INTO puesto VALUES (12,3520,2,2,1);
+INSERT INTO tabla_tipos_puesto VALUES (1, 'Comida');
+INSERT INTO tabla_tipos_puesto VALUES (2, 'Ropa');
+INSERT INTO tabla_tipos_puesto VALUES (3, 'Actividades');
+
+INSERT INTO tabla_tipos_tamanio VALUES (1, 'Reducido');
+INSERT INTO tabla_tipos_tamanio VALUES (2, 'Mediano');
+INSERT INTO tabla_tipos_tamanio VALUES (3, 'Grande');
+
+INSERT INTO puesto VALUES (1,1000,1,1,1,1);
+INSERT INTO puesto VALUES (2,2000,1,4,3,1);
+INSERT INTO puesto VALUES (3,3500,2,5,2,2);
+INSERT INTO puesto VALUES (4,1500,2,6,1,1);
+INSERT INTO puesto VALUES (5,2200,1,4,3,2);
+INSERT INTO puesto VALUES (6,3600,2,6,2,3);
+INSERT INTO puesto VALUES (7,1450,2,5,1,1);
+INSERT INTO puesto VALUES (8,2250,1,9,1,1);
+INSERT INTO puesto VALUES (9,3650,1,9,2,1);
+INSERT INTO puesto VALUES (10,980,2,5,1,2);
+INSERT INTO puesto VALUES (11,2050,1,1,3,1);
+INSERT INTO puesto VALUES (12,3520,1,1,2,2);
 
 INSERT INTO concierto VALUES (1,'2021-07-25','2021-07-25 17:00','2021-07-25 18:00',1,2,5);
 INSERT INTO concierto VALUES (2,'2021-07-26','2021-07-26 16:00','2021-07-26 17:00',2,2,6);

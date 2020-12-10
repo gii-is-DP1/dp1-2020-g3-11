@@ -21,7 +21,7 @@
 
 	<h2>
 		<c:if test="${recinto['new']}">Nuevo </c:if>
-		recinto
+		Recinto
 	</h2>
 	<form:form modelAttribute="recinto" class="form-horizontal"
 		id="add-recinto-form">

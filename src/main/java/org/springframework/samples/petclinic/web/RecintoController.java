@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.web;
 
 import java.security.Principal;
 import java.util.Collection;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -29,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RecintoController {
 
 	public static final String RECINTOS_FORM = "recintos/createOrUpdateRecintoForm";
-	public static final String RECINTOS_DETALLES_FORM = "recintos/detallesRecintoForm";
+	public static final String RECINTOS_DETALLES_FORM = "recintos/detallesRecinto";
 	public static final String RECINTOS_LISTING = "recintos/recintoListing";
 
 	@Autowired
@@ -72,22 +73,28 @@ public class RecintoController {
 
 	@GetMapping("/{id}/edit")
 	public String editRecinto(@PathVariable("id") int id, ModelMap model) {
-		Recinto recinto = recintoService.findById(id);
-			model.addAttribute("recinto", recinto);
+		Optional<Recinto> recinto = recintoService.findById(id);
+		if (recinto.isPresent()) {
+			model.addAttribute("recinto", recinto.get());
 			return RECINTOS_FORM;
+		} else {
+			model.addAttribute("message", "No podemos encontrar el recinto que intentas editar!");
+			return listRecintos(model);
+		}
 	}
 
 	@PostMapping("/{id}/edit")
-	public String editRecinto(@PathVariable("id") int id,
-			@Valid Recinto modifiedRecinto, BindingResult binding, ModelMap model, Principal principal) {
-		Recinto recinto = recintoService.findById(id);
+	public String editRecinto(@PathVariable("id") int id, Principal principal, @Valid Recinto modifiedRecinto,
+			BindingResult binding, ModelMap model) {
+		Optional<Recinto> recinto = recintoService.findById(id);
 		if (binding.hasErrors()) {
 			return RECINTOS_FORM;
 		} else {
-			BeanUtils.copyProperties(modifiedRecinto, recinto, "id");
+			BeanUtils.copyProperties(modifiedRecinto, recinto.get(), "id");
 			TipoRecinto tipoRecinto = this.recintoService.findRecintoType(modifiedRecinto.getTipoRecinto().getName());
 			modifiedRecinto.setTipoRecinto(tipoRecinto);
-			modifiedRecinto.setFestival(this.festivalService.findFestivalById(usuarioLogueado(principal).getFestival().getId()).get());
+			modifiedRecinto.setFestival(
+					this.festivalService.findFestivalById(usuarioLogueado(principal).getFestival().getId()).get());
 			this.recintoService.save(modifiedRecinto);
 			model.addAttribute("message", "Recinto actualizado correctamente!");
 			return "redirect:/mifestival";
@@ -110,8 +117,9 @@ public class RecintoController {
 
 	@GetMapping("/{id}/detalles")
 	public String mostrarDetallesRecinto(ModelMap model, @PathVariable("id") int recintoId) {
-		model.addAttribute("recinto", this.recintoService.findById(recintoId));
+		model.addAttribute("recinto", this.recintoService.findById(recintoId).get());
 		model.addAttribute("conciertos", this.recintoService.findAllConciertosById(recintoId));
+		model.addAttribute("puestos", this.recintoService.findAllPuestosById(recintoId));
 		return RECINTOS_DETALLES_FORM;
 	}
 
@@ -122,11 +130,13 @@ public class RecintoController {
 	}
 
 	@PostMapping("/new")
-	public String saveNewRecinto(@Valid Recinto recinto, BindingResult binding, ModelMap model, Principal principal) {
-
+	public String saveNewRecinto(Principal principal, @Valid Recinto recinto, BindingResult binding, ModelMap model) {
+		
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
+		
 		if (binding.hasErrors()) {
+//			model.addAttribute("recinto", recinto);
 			return RECINTOS_FORM;
 		} else {
 			TipoRecinto tipo = recintoService.findRecintoType(recinto.getTipoRecinto().getName());

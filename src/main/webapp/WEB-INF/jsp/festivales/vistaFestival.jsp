@@ -55,7 +55,7 @@
 			</table>
 
 
-			<a href="/festivales/${festival.id}/artistas/listdisponibles"
+			<a href="/mifestival/artistas/listdisponibles"
 				class="btn btn-default"><span class="glyphicon glyphicon-plus"
 				aria-hidden="true"></span> Ver artistas disponibles</a>
 		</div>
@@ -74,9 +74,8 @@
 					<c:forEach items="${recintos}" var="recinto">
 						<tr>
 							<td><spring:url
-									value="/festivales/{festivalId}/recintos/{recintoId}/edit"
+									value="/mifestival/recintos/{recintoId}/edit"
 									var="recintoUrl">
-									<spring:param name="festivalId" value="${festival.id}" />
 									<spring:param name="recintoId" value="${recinto.id}" />
 								</spring:url> <a href="${fn:escapeXml(recintoUrl)}">${recinto.name}</a></td>
 
