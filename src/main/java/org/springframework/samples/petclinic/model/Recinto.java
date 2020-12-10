@@ -1,6 +1,5 @@
 package org.springframework.samples.petclinic.model;
 
-
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,18 +13,17 @@ import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
-
 @Entity
 @Data
 @Table(name = "recinto")
 public class Recinto extends NamedEntity {
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recinto")
 	private Set<Concert> conciertos;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recinto")
 	private Set<Puesto> puestos;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "festival_id")
 	@NotNull
@@ -42,6 +40,7 @@ public class Recinto extends NamedEntity {
 	private TipoRecinto tipoRecinto;
 
 	@Column(name = "numMaxEscenarios")
-	private Integer numMaxEscenarios;
+	@NotNull
+	private Integer numMaxEscenarios = 0;
 
 }
