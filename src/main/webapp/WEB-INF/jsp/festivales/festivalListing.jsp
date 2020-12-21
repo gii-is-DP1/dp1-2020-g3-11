@@ -30,8 +30,7 @@
 					<spring:url value="/festivales/{festivalId}" var="festivalUrl">
 						<spring:param name="festivalId" value="${festival.id}" />
 					</spring:url>
-					<td><a href="${fn:escapeXml(festivalUrl)}"><c:out
-								value="${festival.name}" /></a></td>
+					<td><c:out value="${festival.name}" /></td>
 					<td><c:out value="${festival.aforoMax}" /></td>
 					<td><c:out value="${festival.fechaCom}" /></td>
 					<td><c:out value="${festival.fechaFin}" /></td>

@@ -67,7 +67,6 @@ INSERT INTO usuario VALUES (3, 'Juanlu', 'erere', '46899990X', 'javierefdo@admin
 
 INSERT INTO festival VALUES (3,'Guacamayo',200,200,'2021-07-25','2021-07-29','Almería', 3);
 
-
 --usuario --
 INSERT INTO users(username,password,enabled) VALUES ('usuarioPrueba','usuarioPrueba',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (13,'usuarioPrueba','usuario');
@@ -85,10 +84,16 @@ INSERT INTO usuario VALUES (20, 'Manue', 'Frank', '45444990X', 'manue@user.com',
 
 
 INSERT INTO users(username,password,enabled) VALUES ('user1','us3r',TRUE);
-INSERT INTO authorities(id,username,authority) VALUES (3,'user1','usuario');
+INSERT INTO authorities(id,username,authority) VALUES (14,'user1','usuario');
 INSERT INTO usuario VALUES (22, 'Edu', 'Garcia', '45333990A', 'edu@user.com', '1999-02-20', null, '693333112',  1, 'user1');
-INSERT INTO usuario VALUES (23, 'Juan', 'Gomez', '45222990C', 'juan@user.com', '1999-02-20',null, '692811882', 1,'user1');
-INSERT INTO usuario VALUES (24, 'Pablo', 'Cubero', '41111990B', 'pablo@user.com', '1999-02-20',null, '699911112', 1,'user1');
+
+INSERT INTO users(username,password,enabled) VALUES ('user2','us3r',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (15,'user2','usuario');
+INSERT INTO usuario VALUES (23, 'Juan', 'Gomez', '45222990C', 'juan@user.com', '1999-02-20',null, '692811882', 1,'user2');
+
+INSERT INTO users(username,password,enabled) VALUES ('user3','us3r',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (16,'user3','usuario');
+INSERT INTO usuario VALUES (24, 'Pablo', 'Cubero', '41111990B', 'pablo@user.com', '1999-02-20',null, '699911112', 1,'user3');
 
 
 
