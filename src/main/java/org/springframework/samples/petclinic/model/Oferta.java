@@ -21,8 +21,8 @@ import lombok.Data;
 @Table(name = "oferta")
 public class Oferta extends BaseEntity {
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "oferta")
-	private Set<Entrada> entradas;
+//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "oferta")
+//	private Set<Entrada> entradas;
 	
 	@Column(name = "precioOferta")
 	@NotNull
