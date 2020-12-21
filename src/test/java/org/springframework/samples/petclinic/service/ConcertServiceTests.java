@@ -119,7 +119,7 @@ void shoudFindAllConcertFestivalId() throws Exception {
 		List<Concert> concerts = (List<Concert>) this.concertService.findAllConcertsByFestivalId(2);
 		int size = concerts.size();
 		Artista artist = this.artistService.findArtistaById(2);
-		Recinto rec = this.recintService.findById(5);
+		Recinto rec = this.recintService.findById(5).get();
 		Festival fest = this.festivalService.findFestivalById(2).get();
 
 		Concert concert = new Concert();
@@ -147,7 +147,7 @@ void shoudFindAllConcertFestivalId() throws Exception {
 	void shouldThrowExceptionInsertingNewConcertNullParameter() throws Exception {
 		Concert concert = new Concert();
 		
-		Recinto rec = this.recintService.findById(5);
+		Recinto rec = this.recintService.findById(5).get();
 		Festival fest = this.festivalService.findFestivalById(2).get();
 		
 		concert.setFecha(LocalDate.of(2021, 07, 25));
@@ -168,7 +168,7 @@ void shoudFindAllConcertFestivalId() throws Exception {
 	public void shouldThrowExceptionInsertingConcertsWithWrongDates() throws DataAccessException, NumberConcertsException {
 		Concert concert = new Concert();
 		Artista artist = this.artistService.findArtistaById(2);
-		Recinto rec = this.recintService.findById(5);
+		Recinto rec = this.recintService.findById(5).get();
 		Festival fest = this.festivalService.findFestivalById(2).get();
 		concert.setFecha(LocalDate.of(2021, 07, 25));
 		concert.setHoraCom(LocalDateTime.of(2021, 07, 25, 23, 40));
@@ -185,7 +185,7 @@ void shoudFindAllConcertFestivalId() throws Exception {
 		
 		Concert concert2 = new Concert();
 		Artista artist2 = this.artistService.findArtistaById(2);
-		Recinto rec2 = this.recintService.findById(5);
+		Recinto rec2 = this.recintService.findById(5).get();
 		Festival fest2 = this.festivalService.findFestivalById(2).get();
 		concert2.setFecha(LocalDate.of(2021, 07, 25));
 		concert2.setHoraCom(LocalDateTime.of(2021, 8, 25, 23, 40));

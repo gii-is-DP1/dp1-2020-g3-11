@@ -64,5 +64,10 @@ public class FestivalService {
 	public LocalDate findEndDateFestival(int id) throws DataAccessException {
 		return festivalRepo.findEndDateFestival(id);
 	}
+	
+	@Transactional(readOnly = true)
+	public Festival findFestivalById2(int id) throws DataAccessException {
+		return festivalRepo.findById(id).get();
+	}
 
 }

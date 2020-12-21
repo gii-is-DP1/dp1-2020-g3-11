@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.samples.petclinic.model.Concert;
+import org.springframework.samples.petclinic.model.Puesto;
 import org.springframework.samples.petclinic.model.Recinto;
 import org.springframework.samples.petclinic.model.TipoRecinto;
 
@@ -37,6 +38,9 @@ public interface RecintoRepository extends CrudRepository<Recinto, Integer> {
 
 	@Query("select c from Concert c where c.recinto.id = ?1")
 	Collection<Concert> findAllConciertosById(int recintoId);
+
+	@Query("select p from Puesto p where p.recinto.id = ?1")
+	Collection<Puesto> findAllPuestosById(int recintoId);
 
 	
 }
