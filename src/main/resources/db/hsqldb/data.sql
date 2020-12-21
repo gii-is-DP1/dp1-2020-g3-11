@@ -130,12 +130,12 @@ INSERT INTO entrada VALUES (10,41,1,2,20);
 INSERT INTO entrada VALUES (11,31,2,2,23);
 INSERT INTO entrada VALUES (12,51,1,2,22);
 
-INSERT INTO oferta VALUES (1,20,'Camisetas y 3 bolsas de hielo');
-INSERT INTO oferta VALUES (2,30,'Botella de Ron y 1 bolsa de hielos');
-INSERT INTO oferta VALUES (3,40,'Descuento en puestos REDBULL, 5 bolsas de hielo y camiseta');
-INSERT INTO oferta VALUES (4,10,'Camiseta festival');
-INSERT INTO oferta VALUES (5,15,'Una carga de movil y una camiseta');
-INSERT INTO oferta VALUES (6,25,'Camiseta festival');
+--INSERT INTO oferta VALUES (1,20,'Camisetas y 3 bolsas de hielo');
+--INSERT INTO oferta VALUES (2,30,'Botella de Ron y 1 bolsa de hielos');
+--INSERT INTO oferta VALUES (3,40,'Descuento en puestos REDBULL, 5 bolsas de hielo y camiseta');
+--INSERT INTO oferta VALUES (4,10,'Camiseta festival');
+--INSERT INTO oferta VALUES (5,15,'Una carga de movil y una camiseta');
+--INSERT INTO oferta VALUES (6,25,'Camiseta festival');
 
 INSERT INTO tabla_tipos_recinto VALUES (1, 'Parking');
 INSERT INTO tabla_tipos_recinto VALUES (2, 'Camping');
