@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Entrada;
 import org.springframework.samples.petclinic.model.EntradaType;
+import org.springframework.samples.petclinic.model.Festival;
 import org.springframework.samples.petclinic.model.Usuario;
 import org.springframework.samples.petclinic.service.EntradaService;
 import org.springframework.samples.petclinic.service.FestivalService;
@@ -23,10 +24,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("mifestival/entradas")
 public class EntradaController {
 	public static final String ENTRADAS_FORM = "entradas/createOrUpdateEntradaForm";
 	public static final String ENTRADAS_LISTING = "entradas/entradaListing";
@@ -53,6 +52,47 @@ public class EntradaController {
 		return ENTRADAS_LISTING;
 	}
 
+	@GetMapping("/festivales/{festivalId}/entradas/{entradaId}/comprar")
+	public String comprarEntrada(ModelMap model, @PathVariable("festivalId") int festivalId,
+			@PathVariable("entradaId") int entradaId, Principal principal) {
+
+		Usuario usuario = usuarioLogueado(principal);
+		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
+		Entrada entrada = entradaService.findById(entradaId).orElse(null);
+		
+		
+		model.addAttribute("datosUsuario", usuario);
+		model.addAttribute("datosFestival", festival);
+		model.addAttribute("datosEntrada", entrada);
+		return "entradas/entradaComprada";
+	}
+
+	@GetMapping("/festivales/{festivalId}/entradas/{entradaId}/gracias")
+	public String graciasPorComprarEntrada(ModelMap model, @PathVariable("festivalId") int festivalId,
+			@PathVariable("entradaId") int entradaId, Principal principal) {
+
+		Usuario usuario = usuarioLogueado(principal);
+		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
+		Entrada entrada = entradaService.findById(entradaId).orElse(null);
+		
+		festivalService.reducirEntradasRestantes(festival);
+		festivalService.save(festival);
+		
+
+		model.addAttribute("datosUsuario", usuario);
+		model.addAttribute("datosFestival", festival);
+		model.addAttribute("datosEntrada", entrada);
+
+		return "entradas/vistaGraciasPorTuCompra";
+	}
+
+	@GetMapping("festivales/{festivalId}/entradas")
+	public String listEntradasUsuario(ModelMap model, @PathVariable("festivalId") int festivalId) {
+
+		model.addAttribute("entradas", entradaService.findAllEntradasByFestivalId(festivalId));
+		return ENTRADAS_LISTING;
+	}
+
 	@ModelAttribute("entradatype")
 	public Collection<String> entradaTypes() {
 		return entradaService.findEntradaTypes();
@@ -64,7 +104,7 @@ public class EntradaController {
 		dataBinder.setValidator(new EntradaValidator());
 	}
 
-	@GetMapping("/{id}/edit")
+	@GetMapping("mifestival/entradas/{id}/edit")
 	public String editEntrada(@PathVariable("id") int id, ModelMap model) {
 
 		Optional<Entrada> entrada = entradaService.findById(id);
@@ -77,7 +117,7 @@ public class EntradaController {
 		}
 	}
 
-	@PostMapping("/{id}/edit")
+	@PostMapping("mifestival/entradas/{id}/edit")
 	public String editEntrada(@PathVariable("id") int id, @Valid Entrada modifiedEntrada, BindingResult binding,
 			ModelMap model, Principal principal) {
 
@@ -110,13 +150,13 @@ public class EntradaController {
 //		}
 //	}
 
-	@GetMapping("/new")
+	@GetMapping("mifestival/entradas/new")
 	public String createNewentrada(ModelMap model) {
 		model.addAttribute("entrada", new Entrada());
 		return ENTRADAS_FORM;
 	}
 
-	@PostMapping("/new")
+	@PostMapping("mifestival/entradas/new")
 	public String saveNewEntrada(@Valid Entrada entrada, BindingResult binding, ModelMap model, Principal principal) {
 
 		Usuario usuario = usuarioLogueado(principal);

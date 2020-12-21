@@ -36,28 +36,21 @@
 					<td><c:out value="${festival.fechaCom}" /></td>
 					<td><c:out value="${festival.fechaFin}" /></td>
 					<td><c:out value="${festival.localizacion}" /></td>
-					
-<%-- 					<sec:authorize access="hasAuthority('admin')">
-						<td><a href="/festivales/${festival.id}/edit"> <span
-								class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-						</a></td>
-						<td><a href="/festivales/${festival.id}/delete"> <span
-								class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-						</a></td>
-					</sec:authorize> --%>
-					
+
 					<sec:authorize access="hasAuthority('sponsor')">
 						<td><spring:url value="/festivales/{festivalId}/puestos"
 								var="puestoUrl">
 								<spring:param name="festivalId" value="${festival.id}" />
 							</spring:url> <a href="${fn:escapeXml(puestoUrl)}">Ver puestos</a></td>
 					</sec:authorize>
-					
+
 					<sec:authorize access="hasAuthority('usuario')">
-						<td><spring:url value="/festivales/{festivalId}/entradas"
-								var="entradaUrl">
-								<spring:param name="festivalId" value="${festival.id}" />
-							</spring:url> <a href="${fn:escapeXml(entradaUrl)}">Comprar entradas</a></td>
+						<c:if test="${festival.entradasRestantes > 0}">
+							<td><spring:url value="/festivales/{festivalId}/entradas"
+									var="entradaUrl">
+									<spring:param name="festivalId" value="${festival.id}" />
+								</spring:url> <a href="${fn:escapeXml(entradaUrl)}">Comprar entradas</a></td>
+						</c:if>
 						<td><spring:url value="/festivales/{festivalId}/valoraciones"
 								var="valoracionUrl">
 								<spring:param name="festivalId" value="${festival.id}" />
@@ -67,8 +60,9 @@
 			</c:forEach>
 		</tbody>
 	</table>
-
-	<a href="/festivales/new" class="btn btn-default"><span
-		class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir
-		festival</a>
+	<sec:authorize access="hasAuthority('admin')">
+		<a href="/festivales/new" class="btn btn-default"><span
+			class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir
+			festival</a>
+	</sec:authorize>
 </petclinic:layout>

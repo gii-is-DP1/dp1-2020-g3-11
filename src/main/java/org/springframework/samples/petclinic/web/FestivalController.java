@@ -82,6 +82,8 @@ public class FestivalController {
 
 		Integer adminId = usuario.getId();
 		Festival festival = festivalService.findFestivalByAdminId(adminId);
+		
+		
 		model.addAttribute("festival", festival);
 		model.addAttribute("artistas", festivalArtistaService.findAllArtistasByFestivalId(festival.getId()));
 		model.addAttribute("recintos", festivalRecintoService.findAllRecintosByFestivalId(festival.getId()));
