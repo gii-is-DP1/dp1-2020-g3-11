@@ -1,7 +1,6 @@
 package org.springframework.samples.petclinic.service;
 
-import java.util.Collection;  
-import java.util.Optional;
+import java.util.Collection;   
 
 import javax.validation.Valid;
 
@@ -11,18 +10,21 @@ import org.springframework.samples.petclinic.model.Concert;
 import org.springframework.samples.petclinic.repository.ConcertRepository;
 import org.springframework.samples.petclinic.service.exceptions.ConcertOutOfDateException;
 import org.springframework.samples.petclinic.service.exceptions.NumberConcertsException;
-import org.springframework.samples.petclinic.web.ConcertValidator;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ConcertService {
 
-	@Autowired
 	ConcertRepository concertRepository;
 
 	
 	public Collection<Concert> findAll() throws DataAccessException{
 		return concertRepository.findAll();
+	}
+	
+	@Autowired
+	public ConcertService(ConcertRepository concertRepository)  throws DataAccessException{
+		this.concertRepository = concertRepository;
 	}
 
 	public Concert findById(int id) throws DataAccessException {
