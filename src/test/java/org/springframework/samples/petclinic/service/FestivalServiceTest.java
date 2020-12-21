@@ -58,7 +58,7 @@ class FestivalServiceTest {
 	@Test
 	void shouldFindAllFestival() {
 		Collection<Festival> listFest = this.festivalService.findAll();
-		assertThat(listFest.size()).isEqualTo(2);
+		assertThat(listFest.size()).isEqualTo(3);
 	}
 
 	// FIND FESTIVAL BY ID
@@ -100,8 +100,6 @@ class FestivalServiceTest {
 		assertThat(festival.getId()).isNotNull();
 	}
 
-	@Test
-	@Transactional
 	void shouldThrowExceptionInsertingNewfestivalBlankParameter() throws Exception {
 
 		Festival festival = new Festival();
