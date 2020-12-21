@@ -83,6 +83,11 @@ public class RecintoService {
 	public Collection<Puesto> findAllPuestosById(int recintoId) {
 		return recintoRepo.findAllPuestosById(recintoId);
 	}
+
+	@Transactional(readOnly = true)
+	public Recinto findRecintoById(int id) throws DataAccessException {
+		return recintoRepo.findById(id).get();
+	}
 	
 	
 

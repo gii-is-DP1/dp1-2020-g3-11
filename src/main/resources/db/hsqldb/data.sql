@@ -61,7 +61,7 @@ INSERT INTO users(username,password,enabled) VALUES ('administrador3','adm1n',TR
 INSERT INTO authorities(id,username,authority) VALUES (40,'administrador3','admin');
 INSERT INTO usuario VALUES (3, 'Juanlu', 'erere', '46899990X', 'javierefdo@admin.com', '1998-02-20',null,'677888512', 3,'administrador3');
 
-INSERT INTO festival VALUES (1,'Cabo de Plata',100,'2020-06-06','2020-06-09','Cádiz', 1);
+INSERT INTO festival VALUES (1,'Cabo de Plata',100,'2021-06-06','2021-06-09','Cádiz', 1);
 INSERT INTO festival VALUES (2,'Dreambeach',200,'2021-07-25','2021-07-29','Almería', 2);
 INSERT INTO festival VALUES (3,'Guacamayo',200,'2021-07-25','2021-07-29','Almería', 3);
 
