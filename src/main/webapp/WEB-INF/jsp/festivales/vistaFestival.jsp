@@ -8,6 +8,7 @@
 
 <petclinic:layout pageName="MiFestival">
 
+
 	<div style="width: 100%;">
 		<div style="float: top; width: 45%;">
 			<h1>${festival.name}</h1>

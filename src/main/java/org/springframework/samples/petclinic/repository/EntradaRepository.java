@@ -19,7 +19,6 @@ public interface EntradaRepository extends CrudRepository<Entrada, Integer> {
 	@Query("SELECT etype.name FROM EntradaType etype ORDER BY etype.name")
 	List<String> findEntradaTypes() throws DataAccessException;
 
-	// para entradas por festival id
 	@Query("SELECT e FROM Entrada e where e.festival.id = ?1")
 	Collection<Entrada> findAllEntradasByFestivalId(int festivalId);
 

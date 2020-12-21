@@ -26,7 +26,7 @@ public class FestivalService {
 	public Collection<Festival> findAll() {
 		return festivalRepo.findAll();
 	}
-	
+
 	@Transactional(readOnly = true)
 	public Festival findFestivalByAdminId(Integer id) {
 		return festivalRepo.findFestivalByAdminId(id);
@@ -39,6 +39,10 @@ public class FestivalService {
 
 	public void save(@Valid Festival festival) {
 		festivalRepo.save(festival);
+	}
+
+	public void reducirEntradasRestantes(@Valid Festival festival) {
+		FestivalRepository.reducirEntradasrestantes(festival);
 	}
 
 	@Transactional(readOnly = true)
