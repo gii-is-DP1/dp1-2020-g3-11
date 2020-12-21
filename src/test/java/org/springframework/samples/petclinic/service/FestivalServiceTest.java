@@ -76,7 +76,6 @@ class FestivalServiceTest {
 		assertThat(festival.getName()).isEqualTo("Cabo de Plata");
 	}
 
-
 	// INSERT festival
 
 	@Test
@@ -103,20 +102,6 @@ class FestivalServiceTest {
 
 	@Test
 	@Transactional
-	void shouldDeleteFestival() throws Exception {
-		Collection<Festival> listfestival = this.festivalService.findAll();
-		int tamaño = listfestival.size();
-		Festival festival = this.festivalService.findFestivalById(2).orElse(null);
-
-		this.festivalService.delete(festival);
-
-		listfestival = this.festivalService.findAll();
-		assertThat(listfestival.size()).isEqualTo(tamaño - 1);
-
-	}
-
-	@Test
-	@Transactional
 	void shouldThrowExceptionInsertingNewfestivalBlankParameter() throws Exception {
 
 		Festival festival = new Festival();
@@ -125,7 +110,7 @@ class FestivalServiceTest {
 		festival.setLocalizacion("");
 		festival.setFechaCom(LocalDate.of(2020, 12, 20));
 		festival.setFechaFin(LocalDate.of(2020, 12, 23));
-		
+
 		assertThrows(ConstraintViolationException.class, () -> {
 			this.festivalService.save(festival);
 		});

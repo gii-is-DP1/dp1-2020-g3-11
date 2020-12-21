@@ -55,7 +55,7 @@
 			</table>
 
 
-			<a href="/festivales/${festival.id}/artistas/listdisponibles"
+			<a href="/mifestival/artistas/listdisponibles"
 				class="btn btn-default"><span class="glyphicon glyphicon-plus"
 				aria-hidden="true"></span> Ver artistas disponibles</a>
 		</div>

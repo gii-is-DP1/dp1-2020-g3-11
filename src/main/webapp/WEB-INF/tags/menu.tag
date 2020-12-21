@@ -113,11 +113,6 @@
 						<span>Sobre nosotros</span>
 					</petclinic:menuItem>
 
-					<petclinic:menuItem active="${name eq 'artistas'}" url="/artistas"
-						title="find artistas">
-						<span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>
-						<span>Artistas</span>
-					</petclinic:menuItem>
 				</sec:authorize>
 				<!--LO QUE VE EL USUARIO CLIENTE			-->
 				<sec:authorize access="hasAuthority('usuario')">
