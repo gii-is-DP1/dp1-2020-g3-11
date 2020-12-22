@@ -60,55 +60,55 @@
       	<c:if test = "${average == 1}">
 		<span class="star-rating star-5"> 
 		<input type="radio"
-				name="puntuacion" value="1" checked="checked"><i></i>
+				name="puntuacion" value="1" checked="checked" disabled="disabled"><i></i>
 		</span>
 		</c:if>
 		
 		<c:if test = "${average == 2}">
 		<span class="star-rating star-5"> 
 		<input type="radio"
-				name="puntuacion" value="2" checked="checked"><i></i>
+				name="puntuacion" value="2" checked="checked" disabled="disabled"><i></i>
 		<input type="radio"
-				name="puntuacion" value="2" checked="checked"><i></i>
+				name="puntuacion" value="2" checked="checked" disabled="disabled"><i></i>
 		</span>
 		</c:if>
 		
 		<c:if test = "${average == 3}">
 		<span class="star-rating star-5"> 
 		<input type="radio"
-				name="puntuacion" value="3" checked="checked"><i></i>
+				name="puntuacion" value="3" checked="checked" disabled="disabled"><i></i>
 		<input type="radio"
-				name="puntuacion" value="3" checked="checked"><i></i>
+				name="puntuacion" value="3" checked="checked" disabled="disabled"><i></i>
 		<input type="radio"
-				name="puntuacion" value="3" checked="checked"><i></i>
+				name="puntuacion" value="3" checked="checked" disabled="disabled"><i></i>
 		</span>		
 		</c:if>
 		
 		<c:if test = "${average == 4}">
 		<span class="star-rating star-5"> 
 		<input type="radio"
-				name="puntuacion" value="4" checked="checked"><i></i>
+				name="puntuacion" value="4" checked="checked" disabled="disabled"><i></i>
 		<input type="radio"
-				name="puntuacion" value="4" checked="checked"><i></i>
+				name="puntuacion" value="4" checked="checked" disabled="disabled"><i></i>
 		<input type="radio"
-				name="puntuacion" value="4" checked="checked"><i></i>
+				name="puntuacion" value="4" checked="checked" disabled="disabled"><i></i>
 		<input type="radio"
-				name="puntuacion" value="4" checked="checked"><i></i>
+				name="puntuacion" value="4" checked="checked" disabled="disabled"><i></i>
 		</span>		
 		</c:if>
 		
 		<c:if test = "${average == 5}">
 		<span class="star-rating star-5"> 
 		<input type="radio"
-				name="puntuacion" value="4" checked="checked"><i></i>
+				name="puntuacion" value="4" checked="checked" disabled="disabled"><i></i>
 		<input type="radio"
-				name="puntuacion" value="5" checked="checked"><i></i>
+				name="puntuacion" value="5" checked="checked" disabled="disabled"><i></i>
 		<input type="radio"
-				name="puntuacion" value="5" checked="checked"><i></i>
+				name="puntuacion" value="5" checked="checked" disabled="disabled"><i></i>
 		<input type="radio"
-				name="puntuacion" value="5" checked="checked"><i></i>
+				name="puntuacion" value="5" checked="checked" disabled="disabled"><i></i>
 		<input type="radio"
-				name="puntuacion" value="5" checked="checked"><i></i>
+				name="puntuacion" value="5" checked="checked" disabled="disabled"><i></i>
 		</span>
 		</c:if>
 

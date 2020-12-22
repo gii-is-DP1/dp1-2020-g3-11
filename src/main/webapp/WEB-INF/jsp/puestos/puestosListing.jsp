@@ -44,4 +44,9 @@
 <a href="puestos/new" class="btn btn-default"><span
 			class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir
 			puesto</a>
+			
+<br><br><br><br>
+	<spring:url value="/mifestival" var="festivaUrl">
+	</spring:url>
+	<a href="${fn:escapeXml(festivaUrl)}"><b>Volver a mi festival</b></a>
 </petclinic:layout>

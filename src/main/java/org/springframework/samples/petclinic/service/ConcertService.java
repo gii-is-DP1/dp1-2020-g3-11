@@ -1,6 +1,6 @@
 package org.springframework.samples.petclinic.service;
 
-import java.util.Collection;   
+import java.util.Collection;    
 
 import javax.validation.Valid;
 
@@ -9,7 +9,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Concert;
 import org.springframework.samples.petclinic.repository.ConcertRepository;
 import org.springframework.samples.petclinic.service.exceptions.ConcertOutOfDateException;
-import org.springframework.samples.petclinic.service.exceptions.NumberConcertsException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -36,7 +35,7 @@ public class ConcertService {
 
 	}
 
-	public void save(@Valid Concert concert) throws DataAccessException, ConcertOutOfDateException, NumberConcertsException {
+	public void save(@Valid Concert concert) throws DataAccessException, ConcertOutOfDateException {
 //		Integer concertsTogether= ConcertValidator.conciertosAVez(this.concertRepository.findAllConciertosByRecintoId(concert.getRecinto().getId()), concert);
 		if(concert.getHoraCom().toLocalDate().isBefore(concert.getFestival().getFechaCom()) ||
 				concert.getHoraFin().toLocalDate().isAfter(concert.getFestival().getFechaFin())){

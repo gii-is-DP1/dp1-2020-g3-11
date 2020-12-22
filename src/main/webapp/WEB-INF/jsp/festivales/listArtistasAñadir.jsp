@@ -39,8 +39,7 @@
 	</table>
 	
 	<spring:url
-							value="/festivales/{festivalId}"
+							value="/mifestival"
 							var="festivaUrl">
-							<spring:param name="festivalId" value="${festival.id}" />
 						</spring:url> <a href="${fn:escapeXml(festivaUrl)}"><b>Volver a mi festival</b></a></td>
 </petclinic:layout>

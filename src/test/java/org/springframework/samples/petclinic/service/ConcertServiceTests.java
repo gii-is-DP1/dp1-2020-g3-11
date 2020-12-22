@@ -15,7 +15,7 @@
  */
 package org.springframework.samples.petclinic.service;
 
-import static org.assertj.core.api.Assertions.assertThat;  
+import static org.assertj.core.api.Assertions.assertThat;   
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
@@ -34,7 +34,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Recinto;
 import org.springframework.samples.petclinic.service.exceptions.ConcertOutOfDateException;
-import org.springframework.samples.petclinic.service.exceptions.NumberConcertsException;
 import org.springframework.samples.petclinic.model.Artista;
 import org.springframework.samples.petclinic.model.Concert;
 import org.springframework.samples.petclinic.model.Festival;
@@ -165,7 +164,7 @@ void shoudFindAllConcertFestivalId() throws Exception {
 
 	@Test
 	@Transactional
-	public void shouldThrowExceptionInsertingConcertsWithWrongDates() throws DataAccessException, NumberConcertsException {
+	public void shouldThrowExceptionInsertingConcertsWithWrongDates() throws DataAccessException {
 		Concert concert = new Concert();
 		Artista artist = this.artistService.findArtistaById(2);
 		Recinto rec = this.recintService.findById(5).get();
@@ -201,7 +200,7 @@ void shoudFindAllConcertFestivalId() throws Exception {
 //UPDATE CONCERT
 	@Test
 	@Transactional
-	void shouldUpdateConcert() throws DataAccessException, ConcertOutOfDateException, NumberConcertsException {
+	void shouldUpdateConcert() throws DataAccessException, ConcertOutOfDateException {
 		Concert concert = this.concertService.findById(2);
 		LocalDateTime horaCom = concert.getHoraCom();
 		horaCom.plusMinutes(10);
