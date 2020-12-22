@@ -190,4 +190,6 @@ INSERT INTO concierto VALUES (3,'2021-07-27','2021-07-27 18:00','2021-07-27 20:0
 
 
 INSERT INTO opinion VALUES (1, 'Muy bueno','2021-07-25 17:00', 5, 2, 60);
+INSERT INTO opinion VALUES (2, 'Muy bueno pero bueno tu sabe','2021-08-25 17:00', 1, 2, 23);
+INSERT INTO opinion VALUES (3, 'Muy bueno. Conciertazo flammingo bro','2021-09-25 17:00',2, 2, 22);
 

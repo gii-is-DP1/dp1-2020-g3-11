@@ -11,6 +11,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 
@@ -21,6 +22,7 @@ import lombok.Data;
 @Data
 @Table(name = "oferta")
 public class Oferta extends BaseEntity {
+	
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "oferta_entradas", joinColumns = @JoinColumn(name = "oferta_id"),
@@ -37,9 +39,10 @@ public class Oferta extends BaseEntity {
 	private TipoOferta tipoOferta;
 	
 	@Column(name = "nombre")
-	@NotNull
+	@NotBlank
 	private String nombre; 
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "festival_id")
 	private Festival festival;	
