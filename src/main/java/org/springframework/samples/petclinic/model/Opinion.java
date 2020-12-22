@@ -27,7 +27,7 @@ public class Opinion extends BaseEntity {
 	@JoinColumn(name = "festival_id")
 	private Festival festival;
 
-	@Size(min = 10, max = 1024)
+	@Size(min=10,max = 1024)
 	@Column(name = "descripcion", length = 1024)
 	@NotBlank
 	private String descripcion;

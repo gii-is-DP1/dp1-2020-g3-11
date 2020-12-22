@@ -88,8 +88,8 @@ class FestivalServiceTest {
 		festival.setName("CumbioLand");
 		festival.setAforoMax(10);
 		festival.setLocalizacion("Murcia");
-		festival.setFechaCom(LocalDate.of(2020, 12, 20));
-		festival.setFechaFin(LocalDate.of(2020, 12, 23));
+		festival.setFechaCom(LocalDate.of(2022, 12, 20));
+		festival.setFechaFin(LocalDate.of(2022, 12, 23));
 		try {
 			this.festivalService.save(festival);
 		} catch (Exception ex) {
