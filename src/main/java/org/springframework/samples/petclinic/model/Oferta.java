@@ -29,8 +29,8 @@ public class Oferta extends BaseEntity {
 			inverseJoinColumns = @JoinColumn(name = "entrada_id"))
 	private Set<Entrada> entradas;
 	
+    @NotNull
 	@Column(name = "precioOferta")
-	@NotNull
 	private Integer precioOferta;
 	
 	@NotNull

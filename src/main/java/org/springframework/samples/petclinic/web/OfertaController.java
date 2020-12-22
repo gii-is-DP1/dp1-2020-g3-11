@@ -2,12 +2,9 @@ package org.springframework.samples.petclinic.web;
 
 import java.security.Principal; 
 import java.util.Collection;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Festival;
@@ -67,10 +64,10 @@ public class OfertaController {
 	}
 
 
-//	@InitBinder("oferta")
-//	public void initConcertBinder(WebDataBinder dataBinder) {
-//		dataBinder.setValidator(new OfertaValidator());
-//	}
+	@InitBinder("oferta")
+	public void initOfertaBinder(WebDataBinder dataBinder) {
+		dataBinder.setValidator(new OfertaValidator());
+	}
 
 	@GetMapping
 	public String listaOfertas(Principal principal, ModelMap model) {
