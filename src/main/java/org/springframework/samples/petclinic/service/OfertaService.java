@@ -6,9 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.samples.petclinic.model.Concert;
-import org.springframework.samples.petclinic.model.Entrada;
 import org.springframework.samples.petclinic.model.Oferta;
 import org.springframework.samples.petclinic.model.TipoOferta;
 import org.springframework.samples.petclinic.repository.OfertaRepository;
@@ -24,18 +21,22 @@ public class OfertaService {
 		return ofertaRepo.findAll();
 	}
 
+	@Transactional(readOnly = true)
 	public Collection<Oferta> findAllOfertasByFestivalId(int festivalId) throws DataAccessException {
 		return ofertaRepo.findAllOfertasByFestivalId(festivalId);
 	}
 	
+	@Transactional(readOnly = true)
 	public Oferta findById(int id) throws DataAccessException {
 		return ofertaRepo.findById(id).get();
 	}
 	
+	@Transactional(readOnly = true)
 	public TipoOferta findTipoOfertaByName(String tipoOferta) throws DataAccessException {
 		return ofertaRepo.findTipoOfertaByName(tipoOferta);
 	}
 	
+	@Transactional
 	public void delete(Oferta oferta) throws DataAccessException {
 		ofertaRepo.deleteById(oferta.getId());
 

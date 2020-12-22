@@ -1,7 +1,5 @@
 package org.springframework.samples.petclinic.web;
 
-import java.util.Scanner;
-
 import org.springframework.samples.petclinic.model.Entrada;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -20,15 +18,6 @@ public class EntradaValidator implements Validator {
 
 	private static final String REQUIRED = "Campo requerido";
 
-	private static boolean isNumeric(String cadena) {
-		try {
-			Integer.parseInt(cadena);
-			return true;
-		} catch (NumberFormatException nfe) {
-			return false;
-		}
-	}
-
 	@Override
 	public void validate(Object obj, Errors errors) {
 		Entrada entrada = (Entrada) obj;
@@ -38,9 +27,15 @@ public class EntradaValidator implements Validator {
 			errors.rejectValue("precio", REQUIRED, REQUIRED);
 		}
 
-		if (precio <= 0) {
-			errors.rejectValue("precio", "El precio de la entrada debe ser mayor que 0",
-					"El precio de la entrada debe ser mayor que 0");
+		if (precio == null) {
+			errors.rejectValue("precio", REQUIRED, REQUIRED);
+
+		} else {
+
+			if (precio <= 0) {
+				errors.rejectValue("precio", "El precio de la entrada debe ser mayor que 0",
+						"El precio de la entrada debe ser mayor que 0");
+			}
 		}
 
 		// type validation
