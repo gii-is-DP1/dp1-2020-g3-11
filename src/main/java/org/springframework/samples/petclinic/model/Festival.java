@@ -31,6 +31,9 @@ public class Festival extends NamedEntity {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "festival")
 	private Set<Entrada> entradas;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "festival")
+	private Set<Oferta> ofertas;
 
 	@Column(name = "aforoMax")
 	@NotNull

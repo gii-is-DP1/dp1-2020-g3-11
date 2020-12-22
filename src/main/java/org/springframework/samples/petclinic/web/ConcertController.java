@@ -1,8 +1,7 @@
 package org.springframework.samples.petclinic.web;
 
-import java.security.Principal;
+import java.security.Principal ;
 import java.util.Collection;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -22,7 +21,6 @@ import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.samples.petclinic.service.RecintoService;
 import org.springframework.samples.petclinic.service.UsuarioService;
 import org.springframework.samples.petclinic.service.exceptions.ConcertOutOfDateException;
-import org.springframework.samples.petclinic.service.exceptions.NumberConcertsException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -127,7 +125,7 @@ public class ConcertController {
 	@PostMapping("/{id}/edit")
 	public String processUpdateConcert(@PathVariable("id") int id, Principal principal, @Valid Concert concert,
 			BindingResult binding, ModelMap model)
-			throws DataAccessException, ConcertOutOfDateException, NumberConcertsException {
+			throws DataAccessException, ConcertOutOfDateException {
 
 		if (binding.hasErrors()) {
 			model.put("concert", concert);
@@ -174,7 +172,7 @@ public class ConcertController {
 
 	@PostMapping("/new")
 	public String processCreationConcert(Principal principal, @Valid Concert concert, BindingResult binding,
-			ModelMap model) throws DataAccessException, ConcertOutOfDateException, NumberConcertsException {
+			ModelMap model) throws DataAccessException, ConcertOutOfDateException {
 
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();

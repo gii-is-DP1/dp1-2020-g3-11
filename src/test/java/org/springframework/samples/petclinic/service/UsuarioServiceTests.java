@@ -36,7 +36,7 @@ public class UsuarioServiceTests {
 	@Test
 	void shouldFindAllUsuarios() {
 		Collection<Usuario> listaUsuario = this.usuarioService.findAllUsuarios();
-		assertThat(listaUsuario.size()).isEqualTo(7);
+		assertThat(listaUsuario.size()).isEqualTo(8);
 	}
 
 	@Test

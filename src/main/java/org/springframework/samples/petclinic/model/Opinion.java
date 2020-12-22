@@ -22,6 +22,7 @@ import lombok.Data;
 @Table(name = "opinion")
 public class Opinion extends BaseEntity {
 
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "festival_id")
 	private Festival festival;
@@ -38,10 +39,11 @@ public class Opinion extends BaseEntity {
 
 	@Column(name = "fecha")
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm")
-//    @NotNull
+	@NotNull
 	private LocalDateTime fecha;
 	
 	@OneToOne
+	@NotNull
 	private Usuario opinionUsuario;
 
 }
