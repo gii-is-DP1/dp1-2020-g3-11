@@ -38,7 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/festivales/**").hasAnyAuthority("sponsor, usuario")
 				.antMatchers("/mispuestos/**").hasAnyAuthority("sponsor")
 				.antMatchers("/mifestival/**").hasAnyAuthority("admin")
-				.antMatchers("/misentradas/**").hasAnyAuthority("usuario")
+				.antMatchers("/misEntradas/**").hasAnyAuthority("usuario")
 				.antMatchers("/artistas/**").hasAnyAuthority("admin")
 				.antMatchers("/usuarios/**").permitAll()
 				.antMatchers("/about/**").permitAll()

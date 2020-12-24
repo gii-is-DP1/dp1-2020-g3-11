@@ -103,6 +103,12 @@
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 						<span>Festivales</span>
 					</petclinic:menuItem>
+					
+					<petclinic:menuItem active="${name eq 'festivales'}" url="/misEntradas"
+						title="misEntradas">
+						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+						<span>Mis entradas</span>
+					</petclinic:menuItem>
 
 					<petclinic:menuItem active="${name eq 'about'}" url="/about"
 						title="about">

@@ -158,6 +158,15 @@ public class EntradaController {
 		return ENTRADAS_LISTING;
 	}
 
+	@GetMapping("/misEntradas")
+	public String listEntradasCompradasUsuario(ModelMap model, Principal principal) {
+
+		Usuario usuario = usuarioLogueado(principal);
+
+		model.addAttribute("entradas", entradaService.findEntradasCompradasUsuario(usuario.getId()));
+		return "entradas/misEntradasCompradas";
+	}
+
 	@ModelAttribute("entradatype")
 	public Collection<String> entradaTypes() {
 		return entradaService.findEntradaTypes();
