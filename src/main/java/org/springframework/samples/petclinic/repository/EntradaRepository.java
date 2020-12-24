@@ -25,4 +25,19 @@ public interface EntradaRepository extends CrudRepository<Entrada, Integer> {
 	@Query("select e from Entrada e where e.festival.id = ?1 and e.id = ?2")
 	Entrada findByEntradaIdFestivalId(int festivalId, int entradaId);
 
+	// @Query("select e from entrada_usuario eu inner join Entrada e on e.id=eu.id
+	// where eu.ususario.id = ?1")
+//	SELECT c.class_id, name
+//    FROM student_classes sc 
+//INNER JOIN classes c ON c.class_id = sc.class_id
+//   WHERE sc.student_id = Y
+
+	@Query("SELECT distinct entrada FROM Entrada entrada join entrada.usuario eu where eu.id  =  ?1")
+//	select distinct distributor 
+//	from Distributor distributor  
+//	join distributor.towns town 
+//	join town.district district 
+//	where district.name = :name
+	Collection<Entrada> findEntradasCompradasUsuario(int usuarioId);
+
 }

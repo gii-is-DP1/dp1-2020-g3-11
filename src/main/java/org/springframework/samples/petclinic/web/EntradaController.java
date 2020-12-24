@@ -76,7 +76,7 @@ public class EntradaController {
 		entrada.getUsuario().add(usuario);
 		usuario.getEntradas().add(entrada);
 		entradaService.save(entrada);
-		
+
 		festivalService.reducirEntradasRestantes(festival);
 		festivalService.save(festival);
 
@@ -92,6 +92,15 @@ public class EntradaController {
 
 		model.addAttribute("entradas", entradaService.findAllEntradasByFestivalId(festivalId));
 		return ENTRADAS_LISTING;
+	}
+
+	@GetMapping("/misEntradas")
+	public String listEntradasCompradasUsuario(ModelMap model, Principal principal) {
+
+		Usuario usuario = usuarioLogueado(principal);
+
+		model.addAttribute("entradas", entradaService.findEntradasCompradasUsuario(usuario.getId()));
+		return "entradas/misEntradasCompradas";
 	}
 
 	@ModelAttribute("entradatype")
