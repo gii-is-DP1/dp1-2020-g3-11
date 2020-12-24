@@ -30,7 +30,7 @@ public class Entrada extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "festival_id")
 	private Festival festival;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "entradaType")
 	@NotNull

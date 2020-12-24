@@ -66,8 +66,10 @@ public class EntradaController {
 		Usuario usuario = usuarioLogueado(principal);
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
 		Entrada entrada = entradaService.findById(entradaId).orElse(null);
+
 		List<Oferta> ofertas = ofertaService.findAllOfertasByFestivalId(festivalId).stream()
 				.collect(Collectors.toList());
+
 
 		model.addAttribute("datosUsuario", usuario);
 		model.addAttribute("datosFestival", festival);

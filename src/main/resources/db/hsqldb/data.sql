@@ -54,7 +54,7 @@ INSERT INTO usuario VALUES (1, 'George', 'Franklin', '45899990X', 'jorgito@admin
 --admin2--
 INSERT INTO users(username,password,enabled) VALUES ('administrador2','adm1n',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (28,'administrador2','admin');
-INSERT INTO usuario VALUES (2, 'Javi', 'erere', '46899990X', 'javierefdo@admin.com', '1998-02-20',null,'677888512', 3,'administrador2');
+INSERT INTO usuario VALUES (2, 'Javi', 'erere', '46899990X', 'javierefdo1@admin.com', '1998-02-20',null,'677888512', 3,'administrador2');
 
 
 INSERT INTO festival VALUES (1,'Cabo de Plata',100,100,'2020-06-06','2020-06-09','Cádiz', 1);
@@ -62,7 +62,7 @@ INSERT INTO festival VALUES (2,'Dreambeach',200,200,'2021-07-25','2021-07-29','A
 
 INSERT INTO users(username,password,enabled) VALUES ('administrador3','adm1n',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (40,'administrador3','admin');
-INSERT INTO usuario VALUES (3, 'Juanlu', 'erere', '46899990X', 'javierefdo@admin.com', '1998-02-20',null,'677888512', 3,'administrador3');
+INSERT INTO usuario VALUES (3, 'Juanlu', 'erere', '46899990X', 'javierefdo2@admin.com', '1998-02-20',null,'677888512', 3,'administrador3');
 
 
 INSERT INTO festival VALUES (3,'Guacamayo',200,200,'2021-07-25','2021-07-29','Almería', 3);
