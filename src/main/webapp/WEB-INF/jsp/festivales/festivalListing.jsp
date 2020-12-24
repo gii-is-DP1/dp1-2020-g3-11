@@ -27,15 +27,16 @@
 		<tbody>
 			<c:forEach items="${festivales}" var="festival">
 				<tr>
-					<spring:url value="/festivales/{festivalId}" var="festivalUrl">
+					<spring:url value="/festivales/{festivalId}/cartel" var="festivalUrl">
 						<spring:param name="festivalId" value="${festival.id}" />
 					</spring:url>
-					<td><c:out value="${festival.name}" /></td>
+					<td><a href="${fn:escapeXml(festivalUrl)}"><c:out
+								value="${festival.name}" /></a></td>
 					<td><c:out value="${festival.aforoMax}" /></td>
 					<td><c:out value="${festival.fechaCom}" /></td>
 					<td><c:out value="${festival.fechaFin}" /></td>
 					<td><c:out value="${festival.localizacion}" /></td>
-
+					
 					<sec:authorize access="hasAuthority('sponsor')">
 						<td><spring:url value="/festivales/{festivalId}/puestos"
 								var="puestoUrl">
@@ -44,6 +45,8 @@
 					</sec:authorize>
 
 					<sec:authorize access="hasAuthority('usuario')">
+				
+					
 						<c:if test="${festival.entradasRestantes > 0}">
 							<td><spring:url value="/festivales/{festivalId}/entradas"
 									var="entradaUrl">

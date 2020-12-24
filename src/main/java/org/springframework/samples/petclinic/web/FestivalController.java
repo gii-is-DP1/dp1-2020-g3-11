@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.web;
 
 import java.security.Principal;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -38,6 +39,7 @@ public class FestivalController {
 	public static final String FESTIVALES_LISTING = "festivales/festivalListing";
 	public static final String FESTIVALES_DETAILS = "festivales/festivalDetails";
 	public static final String ARTISTAS_LISTA = "festivales/listArtistasAñadir";
+	public static final String CARTEL = "festivales/cartel";
 	public static final String ENTRADAS_FORM = "festivales/createOrUpdateEntradaForm";
 
 	@Autowired
@@ -73,6 +75,17 @@ public class FestivalController {
 	public String listFestivales(ModelMap model) {
 		model.addAttribute("festivales", festivalService.findAll());
 		return FESTIVALES_LISTING;
+	}
+	
+	@GetMapping("/festivales/{festivalId}/cartel")
+	public String listCartel(ModelMap model, @PathVariable ("festivalId") int festivalId) {
+		
+		Collection<Artista> la = festivalArtistaService.findAllArtistasByFestivalId(festivalId);
+		
+		
+		model.addAttribute("artistas", la);
+		
+		return CARTEL;
 	}
 
 	@GetMapping("/mifestival")
