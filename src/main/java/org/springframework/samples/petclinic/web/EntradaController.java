@@ -2,7 +2,9 @@ package org.springframework.samples.petclinic.web;
 
 import java.security.Principal;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -11,9 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Entrada;
 import org.springframework.samples.petclinic.model.EntradaType;
 import org.springframework.samples.petclinic.model.Festival;
+import org.springframework.samples.petclinic.model.Oferta;
 import org.springframework.samples.petclinic.model.Usuario;
 import org.springframework.samples.petclinic.service.EntradaService;
 import org.springframework.samples.petclinic.service.FestivalService;
+import org.springframework.samples.petclinic.service.OfertaService;
 import org.springframework.samples.petclinic.service.UsuarioService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -39,6 +43,9 @@ public class EntradaController {
 	@Autowired
 	UsuarioService usuarioService;
 
+	@Autowired
+	OfertaService ofertaService;
+
 	public Usuario usuarioLogueado(Principal principal) {
 		String username = principal.getName();
 		Usuario usuario = usuarioService.findUsuarioByUsername(username);
@@ -59,12 +66,66 @@ public class EntradaController {
 		Usuario usuario = usuarioLogueado(principal);
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
 		Entrada entrada = entradaService.findById(entradaId).orElse(null);
-		
-		
+		List<Oferta> ofertas = ofertaService.findAllOfertasByFestivalId(festivalId).stream()
+				.collect(Collectors.toList());
+
 		model.addAttribute("datosUsuario", usuario);
 		model.addAttribute("datosFestival", festival);
 		model.addAttribute("datosEntrada", entrada);
+
+		List<Oferta> ofertasDisp = ofertas;
+
+		for (int i = 0; i < ofertasDisp.size(); i++) {
+
+			if (entrada.getOfertas().contains(ofertasDisp.get(i))) {
+
+				ofertasDisp.removeAll(entrada.getOfertas());
+
+			}
+
+		}
+
+		model.addAttribute("datosOferta", ofertasDisp);
+
+		Integer precio = entrada.getPrecio();
+
+		Integer precioOfertas = entrada.getOfertas().stream().mapToInt(o -> o.getPrecioOferta()).sum();
+
+		Integer precioTotal = precio + precioOfertas;
+
+		model.addAttribute("precioTotal", precioTotal);
+
 		return "entradas/entradaComprada";
+	}
+
+	@GetMapping(value = "/festivales/{festivalId}/entradas/{entradaId}/asociar/{ofertaId}")
+	public String asociarOfertaEntrada(ModelMap model, @PathVariable("ofertaId") int ofertaId,
+			@PathVariable("festivalId") int festivalId, @PathVariable("entradaId") int entradaId, Principal principal) {
+
+		Entrada entrada = entradaService.findById(entradaId).orElse(null);
+		Oferta o = ofertaService.findById(ofertaId);
+		entrada.getOfertas().add(o);
+		o.getEntradas().add(entrada);
+
+		entradaService.save(entrada);
+		ofertaService.save(o);
+
+		return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
+	}
+	
+	@GetMapping(value = "/festivales/{festivalId}/entradas/{entradaId}/quitar/{ofertaId}")
+	public String quitarOfertaEntrada(ModelMap model, @PathVariable("ofertaId") int ofertaId,
+			@PathVariable("festivalId") int festivalId, @PathVariable("entradaId") int entradaId, Principal principal) {
+
+		Entrada entrada = entradaService.findById(entradaId).orElse(null);
+		Oferta o = ofertaService.findById(ofertaId);
+		entrada.getOfertas().remove(o);
+		o.getEntradas().remove(entrada);
+
+		entradaService.save(entrada);
+		ofertaService.save(o);
+
+		return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
 	}
 
 	@GetMapping("/festivales/{festivalId}/entradas/{entradaId}/gracias")
@@ -74,10 +135,12 @@ public class EntradaController {
 		Usuario usuario = usuarioLogueado(principal);
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
 		Entrada entrada = entradaService.findById(entradaId).orElse(null);
-		
+		entrada.getUsuario().add(usuario);
+		usuario.getEntradas().add(entrada);
+		entradaService.save(entrada);
+
 		festivalService.reducirEntradasRestantes(festival);
 		festivalService.save(festival);
-		
 
 		model.addAttribute("datosUsuario", usuario);
 		model.addAttribute("datosFestival", festival);

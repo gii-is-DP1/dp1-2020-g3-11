@@ -24,5 +24,7 @@ public interface OfertaRepository extends CrudRepository<Oferta, Integer> {
 
 //    @Query("select oe.oferta from OfertaEntradas oe where oe.entrada.id = ?1")
 //	public Collection<Oferta> findAllOfertasByEntradaId(int entradaId);
+//	
+	
 
 }
