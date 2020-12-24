@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.repository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -23,5 +24,14 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
 
 	@Query("SELECT u FROM Usuario u where u.user.username = ?1")
 	Usuario findTipoUsuarioByUserName(String username);
+	
+	@Query("SELECT u FROM Usuario u where u.correo = ?1")
+	Optional<Usuario> findUsuarioByCorreo(String correo);
+	
+	@Query("SELECT u FROM Usuario u where u.DNI = ?1")
+	Optional<Usuario> findUsuarioByDNI(String dni);
+	
+	@Query("SELECT u FROM Usuario u where u.user.username = ?1")
+	Optional<Usuario> findUsuarioByNombreUsuario(String nombreUsuario);
 
 }

@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.web;
 import java.time.LocalDate;
 
 import org.springframework.samples.petclinic.model.Usuario;
+import org.springframework.samples.petclinic.service.UsuarioService;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -10,6 +11,8 @@ import org.springframework.validation.Validator;
 public class UsuarioValidator implements Validator {
 
 	private static final String REQUIRED = "Campo requerido";
+
+	public UsuarioService usuarioService;
 
 	private static boolean isNumeric(String cadena) {
 		try {
@@ -52,13 +55,9 @@ public class UsuarioValidator implements Validator {
 			errors.rejectValue("correo", " Tu email debe contener una @", "Tu email debe contener una @");
 		}
 		// DNI
-		if (!StringUtils.hasLength(dni)) {
-			errors.rejectValue("DNI", REQUIRED, REQUIRED);
-		}
-
-		if (dni.length() > 15 || dni.length() < 7) {
-			errors.rejectValue("DNI", REQUIRED + " Debe contener entre 7 y 15 caracteres",
-					REQUIRED + " Debe contener entre 7 y 15 caracteres");
+		if ((dni.length() != 9 || Character.isLetter(dni.charAt(8)) == false || !isNumeric(dni.substring(0, 7)))) {
+			errors.rejectValue("DNI", "El DNI debe estar formado por 8 números y una letra",
+					"El DNI debe estar formado por 8 números y una letra");
 		}
 
 		// TELEFONO
@@ -98,6 +97,7 @@ public class UsuarioValidator implements Validator {
 		// USUARIO
 		if (!StringUtils.hasLength(nombreUsuario)) {
 			errors.rejectValue("user.username", REQUIRED, REQUIRED);
+		
 		}
 
 		// CONTRASEÑA

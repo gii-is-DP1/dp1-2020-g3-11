@@ -28,7 +28,7 @@ public class EntradaValidatorTest {
 		entrada.setPrecio(null);
 		entrada.setEntradaType(new EntradaType());
 		entrada.setFestival(new Festival());
-		entrada.setUsuario(new Usuario());
+		
 		
 		Validator validator = createValidator();
 		Set<ConstraintViolation<Entrada>> constraintViolations = validator.validate(entrada);
@@ -47,7 +47,7 @@ public class EntradaValidatorTest {
 		entrada.setPrecio(30);
 		entrada.setEntradaType(null);
 		entrada.setFestival(new Festival());
-		entrada.setUsuario(new Usuario());
+		
 		
 		Validator validator = createValidator();
 		Set<ConstraintViolation<Entrada>> constraintViolations = validator.validate(entrada);
@@ -65,7 +65,7 @@ public class EntradaValidatorTest {
 		entrada.setPrecio(-30);
 		entrada.setEntradaType(new EntradaType());
 		entrada.setFestival(new Festival());
-		entrada.setUsuario(new Usuario());
+		
 		
 		Validator validator = createValidator();
 		Set<ConstraintViolation<Entrada>> constraintViolations = validator.validate(entrada);

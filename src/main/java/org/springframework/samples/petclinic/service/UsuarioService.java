@@ -26,6 +26,17 @@ public class UsuarioService {
 		this.usuarioRepository = usuarioRepository;
 	}
 
+	public boolean checkCorreoExists(String correo) {
+		return usuarioRepository.findUsuarioByCorreo(correo).isPresent();
+	}
+	public boolean checkUsuarioExists(String nombreUsuario) {
+		return usuarioRepository.findUsuarioByNombreUsuario(nombreUsuario).isPresent();
+	}
+	
+	public boolean checkDNIExists(String dni) {
+		return usuarioRepository.findUsuarioByDNI(dni).isPresent();
+	}
+
 	@Transactional(readOnly = true)
 	public List<Usuario> findAllUsuarios() throws DataAccessException {
 		return usuarioRepository.findAllUsuarios();
@@ -51,7 +62,7 @@ public class UsuarioService {
 	public TipoUsuario findTipoUsuario(String usuario) throws DataAccessException {
 		return usuarioRepository.findTipoUsuarioByName(usuario);
 	}
-	
+
 	@Transactional(readOnly = true)
 	public Usuario findUsuarioByUsername(String username) {
 		return usuarioRepository.findTipoUsuarioByUserName(username);

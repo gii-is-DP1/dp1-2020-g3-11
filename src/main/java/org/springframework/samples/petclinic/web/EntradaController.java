@@ -59,8 +59,7 @@ public class EntradaController {
 		Usuario usuario = usuarioLogueado(principal);
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
 		Entrada entrada = entradaService.findById(entradaId).orElse(null);
-		
-		
+
 		model.addAttribute("datosUsuario", usuario);
 		model.addAttribute("datosFestival", festival);
 		model.addAttribute("datosEntrada", entrada);
@@ -74,10 +73,12 @@ public class EntradaController {
 		Usuario usuario = usuarioLogueado(principal);
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
 		Entrada entrada = entradaService.findById(entradaId).orElse(null);
+		entrada.getUsuario().add(usuario);
+		usuario.getEntradas().add(entrada);
+		entradaService.save(entrada);
 		
 		festivalService.reducirEntradasRestantes(festival);
 		festivalService.save(festival);
-		
 
 		model.addAttribute("datosUsuario", usuario);
 		model.addAttribute("datosFestival", festival);

@@ -36,6 +36,8 @@
 		parte de los dueños de estos o la posibilidad de poder elegir ofertas
 		con antelación y no tener que hacer cola fisica para comprar alguno de
 		estos paquetes una vez llegados al festival.</p>
+		
+	<p> Si quieres usar nuestra aplicación para gestionar tu festival, mándanos un correo a springfest@springfest.com </p>
 
 
 </petclinic:layout>

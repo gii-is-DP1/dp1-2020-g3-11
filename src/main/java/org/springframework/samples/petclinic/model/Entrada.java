@@ -2,9 +2,12 @@ package org.springframework.samples.petclinic.model;
 
 
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -24,9 +27,9 @@ public class Entrada extends BaseEntity {
 	@JoinColumn(name = "festival_id")
 	private Festival festival;
 	
-	@ManyToOne
+	@ManyToMany
 	@JoinColumn(name = "usuario_id")
-	private Usuario usuario;
+	private Set<Usuario> usuario;
 
 	@ManyToOne
 	@JoinColumn(name = "entradaType")
