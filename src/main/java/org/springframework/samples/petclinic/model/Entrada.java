@@ -2,9 +2,12 @@ package org.springframework.samples.petclinic.model;
 
 
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -20,14 +23,14 @@ import lombok.Setter;
 @Table(name = "entrada")
 public class Entrada extends BaseEntity {
 	
+	@ManyToMany
+    @JoinColumn(name = "usuario_id")
+    private Set<Usuario> usuario;
+	
 	@ManyToOne
 	@JoinColumn(name = "festival_id")
 	private Festival festival;
 	
-	@ManyToOne
-	@JoinColumn(name = "usuario_id")
-	private Usuario usuario;
-
 	@ManyToOne
 	@JoinColumn(name = "entradaType")
 	@NotNull
@@ -38,8 +41,9 @@ public class Entrada extends BaseEntity {
 	@Positive
 	private Integer precio;
 	
-//	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "entradas")
-//	private Set<Oferta> ofertas;
+	@ManyToMany
+    @JoinColumn(name = "oferta_id")
+	private Set<Oferta> ofertas;
 	
 
 
