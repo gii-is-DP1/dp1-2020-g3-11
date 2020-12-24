@@ -52,7 +52,7 @@ public class OfertaServiceTests {
 	@Test
 	void shouldFindAllTiposOfertas() {
 		Collection<String> to = this.ofertaService.findTiposOfertas();
-		assertThat(to.size()).isEqualTo(4);
+		assertThat(to.size()).isEqualTo(3);
 	}
 	
 	

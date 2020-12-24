@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
@@ -24,11 +25,15 @@ public class EntradaValidatorTest {
 	void shouldNotValidateWhenPrecioNull() {
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 		
+		
+		Set<Usuario> users = new HashSet<Usuario>();
 		Entrada entrada = new Entrada();
 		entrada.setPrecio(null);
 		entrada.setEntradaType(new EntradaType());
 		entrada.setFestival(new Festival());
-		
+
+		entrada.setUsuario(users);
+
 		
 		Validator validator = createValidator();
 		Set<ConstraintViolation<Entrada>> constraintViolations = validator.validate(entrada);
@@ -43,11 +48,14 @@ public class EntradaValidatorTest {
 	void shouldNotValidateWhenEntradaTypeNull() {
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 		
+		Set<Usuario> users = new HashSet<Usuario>();
 		Entrada entrada = new Entrada();
 		entrada.setPrecio(30);
 		entrada.setEntradaType(null);
 		entrada.setFestival(new Festival());
-		
+
+		entrada.setUsuario(users);
+
 		
 		Validator validator = createValidator();
 		Set<ConstraintViolation<Entrada>> constraintViolations = validator.validate(entrada);
@@ -61,11 +69,14 @@ public class EntradaValidatorTest {
 	void shouldNotValidateWhenPriceMinor0() {
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
 		
+		Set<Usuario> users = new HashSet<Usuario>();
 		Entrada entrada = new Entrada();
 		entrada.setPrecio(-30);
 		entrada.setEntradaType(new EntradaType());
 		entrada.setFestival(new Festival());
-		
+
+		entrada.setUsuario(users);
+
 		
 		Validator validator = createValidator();
 		Set<ConstraintViolation<Entrada>> constraintViolations = validator.validate(entrada);

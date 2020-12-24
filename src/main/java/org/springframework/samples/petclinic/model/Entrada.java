@@ -23,13 +23,13 @@ import lombok.Setter;
 @Table(name = "entrada")
 public class Entrada extends BaseEntity {
 	
+	@ManyToMany
+    @JoinColumn(name = "usuario_id")
+    private Set<Usuario> usuario;
+	
 	@ManyToOne
 	@JoinColumn(name = "festival_id")
 	private Festival festival;
-	
-	@ManyToMany
-	@JoinColumn(name = "usuario_id")
-	private Set<Usuario> usuario;
 
 	@ManyToOne
 	@JoinColumn(name = "entradaType")
@@ -41,8 +41,9 @@ public class Entrada extends BaseEntity {
 	@Positive
 	private Integer precio;
 	
-//	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "entradas")
-//	private Set<Oferta> ofertas;
+	@ManyToMany
+    @JoinColumn(name = "oferta_id")
+	private Set<Oferta> ofertas;
 	
 
 

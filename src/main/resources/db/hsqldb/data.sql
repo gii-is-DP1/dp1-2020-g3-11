@@ -73,9 +73,6 @@ INSERT INTO authorities(id,username,authority) VALUES (13,'usuarioPrueba','usuar
 INSERT INTO usuario VALUES (60, 'nombre', 'Apellido', '45987990X', 'ale@sponsor.com', '1993-08-10',null,'692771112', 1,'usuarioPrueba');
 
 
-
-
-
 --sponsor--
 INSERT INTO users(username,password,enabled) VALUES ('sponsorPrueba','sponsorPrueba',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (12,'sponsorPrueba','sponsor');
@@ -141,7 +138,6 @@ INSERT INTO entrada VALUES (12,51,1,2);
 INSERT INTO tipos_oferta VALUES (1, 'Pack bebidas');
 INSERT INTO tipos_oferta VALUES (2, 'Camiseta');
 INSERT INTO tipos_oferta VALUES (3, 'Tokens');
-INSERT INTO tipos_oferta VALUES (4, 'Sin oferta');
 
 INSERT INTO oferta VALUES (1,'Camisetas y 3 bolsas de hielo', 10, 2, 2);
 INSERT INTO oferta VALUES (2,'Botella de Ron y 1 bolsa de hielos', 13, 2, 1);
