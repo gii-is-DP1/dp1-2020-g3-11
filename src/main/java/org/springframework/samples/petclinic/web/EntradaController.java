@@ -70,7 +70,6 @@ public class EntradaController {
 		List<Oferta> ofertas = ofertaService.findAllOfertasByFestivalId(festivalId).stream()
 				.collect(Collectors.toList());
 
-
 		model.addAttribute("datosUsuario", usuario);
 		model.addAttribute("datosFestival", festival);
 		model.addAttribute("datosEntrada", entrada);
@@ -114,7 +113,7 @@ public class EntradaController {
 
 		return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
 	}
-	
+
 	@GetMapping(value = "/festivales/{festivalId}/entradas/{entradaId}/quitar/{ofertaId}")
 	public String quitarOfertaEntrada(ModelMap model, @PathVariable("ofertaId") int ofertaId,
 			@PathVariable("festivalId") int festivalId, @PathVariable("entradaId") int entradaId, Principal principal) {
@@ -165,6 +164,24 @@ public class EntradaController {
 
 		model.addAttribute("entradas", entradaService.findEntradasCompradasUsuario(usuario.getId()));
 		return "entradas/misEntradasCompradas";
+	}
+
+	@GetMapping("/misEntradas/{entradaId}")
+	public String listDetallesEntradasCompradasUsuario(@PathVariable("entradaId") int entradaId, ModelMap model,
+			Principal principal) {
+
+		Entrada entrada = entradaService.findById(entradaId).orElse(null);
+
+		Integer precio = entrada.getPrecio();
+
+		Integer precioOfertas = entrada.getOfertas().stream().mapToInt(o -> o.getPrecioOferta()).sum();
+
+		Integer precioTotal = precio + precioOfertas;
+		model.addAttribute("entrada", entrada);
+		model.addAttribute("precioTotal", precioTotal);
+		model.addAttribute("ofertas", entrada.getOfertas());
+		model.addAttribute("festival", entrada.getFestival());
+		return "entradas/detallesEntrada";
 	}
 
 	@ModelAttribute("entradatype")

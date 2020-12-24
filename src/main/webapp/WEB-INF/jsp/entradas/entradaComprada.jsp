@@ -108,8 +108,6 @@
 							<spring:url
 								value="/festivales/${datosFestival.id}/entradas/{entradaId}/asociar/${oferta.id}"
 								var="asociarOfertaUrl">
-								<%-- 						<spring:param name="festivalId" value="${datosFestival.id}" /> --%>
-								<%--						<spring:param name="ofertaId" value="${datosOferta.id}" />  --%>
 								<spring:param name="entradaId" value="${datosEntrada.id}" />
 							</spring:url>
 							<a href="${fn:escapeXml(asociarOfertaUrl)}">Asociar con mi

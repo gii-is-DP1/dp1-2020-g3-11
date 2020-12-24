@@ -11,31 +11,31 @@
 <petclinic:layout pageName="entradas">
 
 
-	<h2>Mis entradas</h2>
+	<h2>Detalles entrada</h2>
 	<table id="entradaTable" class="table table-striped">
 		<thead>
 			<tr>
-				<th style="width: 33%;">Id</th>
-				<th style="width: 33%;">Precio</th>
-				<th style="width: 33%;">Tipos de Entrada</th>
+				<th style="width: 33%;">Festival</th>
+				<th style="width: 33%;">Precio Entrada + Oferta</th>
+				<th style="width: 33%;">Tipo de Entrada</th>
+				<th style="width: 33%;">Ofertas</th>
 				<th></th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${entradas}" var="entrada">
-				<tr>
 
-					<td><c:out value="${entrada.id}" /></td>
-					<td><c:out value="${entrada.precio}" /></td>
-					<td><c:out value="${entrada.entradaType}" /></td>
-					<td><spring:url value="/misEntradas/${entrada.id}"
-							var="entradaUrl">
-						</spring:url> <a href="${fn:escapeXml(entradaUrl)}">Ver detalles entrada</a></td>
-
-
-				</tr>
-			</c:forEach>
+			<tr>
+				<td><c:out value="${festival.name}" /></td>
+				<td><c:out value="${precioTotal}" /></td>
+				<td><c:out value="${entrada.entradaType}" /></td>
+				<td><c:if test="${ofertas.size() == 0}">
+					<p>No hay ofertas para asociar</p>
+				</c:if></td>
+				<c:forEach items="${ofertas}" var="oferta">
+					<td><c:out value="${oferta.nombre}" /></td>
+				</c:forEach>
+			</tr>
 		</tbody>
 	</table>
 </petclinic:layout>
