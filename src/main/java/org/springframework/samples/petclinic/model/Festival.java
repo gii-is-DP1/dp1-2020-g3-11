@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -57,8 +58,8 @@ public class Festival extends NamedEntity {
 	@NotNull
 	private LocalDate fechaFin;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "festival")
-	private Set<FestivalArtista> artistas;
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "festivales")
+	private Set<Artista> artistas;
 
 	@OneToOne
 	private Usuario festivalAdmin;

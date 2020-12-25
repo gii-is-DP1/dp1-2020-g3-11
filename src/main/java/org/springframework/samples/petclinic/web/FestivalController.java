@@ -11,12 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Artista;
 import org.springframework.samples.petclinic.model.Entrada;
 import org.springframework.samples.petclinic.model.Festival;
-import org.springframework.samples.petclinic.model.FestivalArtista;
 import org.springframework.samples.petclinic.model.Recinto;
 import org.springframework.samples.petclinic.model.Usuario;
 import org.springframework.samples.petclinic.service.ArtistaService;
 import org.springframework.samples.petclinic.service.EntradaService;
-import org.springframework.samples.petclinic.service.FestivalArtistaService;
 import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.samples.petclinic.service.RecintoService;
 import org.springframework.samples.petclinic.service.UsuarioService;
@@ -53,9 +51,6 @@ public class FestivalController {
 	UsuarioService usuarioService;
 
 	@Autowired
-	FestivalArtistaService festivalArtistaService;
-
-	@Autowired
 	EntradaService festivalEntradaService;
 
 	public Usuario usuarioLogueado(Principal principal) {
@@ -82,10 +77,9 @@ public class FestivalController {
 
 		Integer adminId = usuario.getId();
 		Festival festival = festivalService.findFestivalByAdminId(adminId);
-		
-		
+
 		model.addAttribute("festival", festival);
-		model.addAttribute("artistas", festivalArtistaService.findAllArtistasByFestivalId(festival.getId()));
+		model.addAttribute("artistas", artistaService.findArtistasByFestivalId(festival.getId()));
 		model.addAttribute("recintos", festivalRecintoService.findAllRecintosByFestivalId(festival.getId()));
 		model.addAttribute("entradas", festivalEntradaService.findAllEntradasByFestivalId(festival.getId()));
 
@@ -100,7 +94,7 @@ public class FestivalController {
 
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
 		Collection<Artista> artistas = artistaService.findAll();
-		artistas.removeAll(festivalArtistaService.findAllArtistasByFestivalId(festivalId));
+		artistas.removeAll(artistaService.findArtistasByFestivalId(festivalId));
 		model.addAttribute("artistasDisponibles", artistas);
 		model.addAttribute("festival", festival);
 		return ARTISTAS_LISTA;
@@ -108,16 +102,18 @@ public class FestivalController {
 
 	@GetMapping(value = "/mifestival/artistas/{artistaId}/add")
 	public String asociarArtistaFestival(@PathVariable("artistaId") int artistaId, Principal principal) {
+		
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
+		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
+		Artista artista = artistaService.findArtistaById(artistaId);
 
-		if (!festivalArtistaService.existByArtistaIdFestivalId(festivalId, artistaId)) {
-			Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
-			Artista artista = artistaService.findArtistaById(artistaId);
-			FestivalArtista fa = new FestivalArtista();
-			fa.setArtista(artista);
-			fa.setFestival(festival);
-			festivalArtistaService.save(fa);
+		if (!festival.getArtistas().contains(artista)) {
+			festival.getArtistas().add(artista);
+			festivalService.save(festival);
+			artista.getFestivales().add(festival);
+			artistaService.save(artista);
+
 		}
 		return "redirect:/mifestival";
 	}
@@ -128,10 +124,14 @@ public class FestivalController {
 
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
+		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
+		Artista artista = artistaService.findArtistaById(artistaId);
 
-		FestivalArtista fa = festivalArtistaService.findByArtistaIdFestivalId(festivalId, artistaId);
-		if (fa != null) {
-			festivalArtistaService.delete(fa);
+		if (festival.getArtistas().contains(artista)) {
+			festival.getArtistas().remove(artista);
+			festivalService.save(festival);
+			artista.getFestivales().remove(festival);
+			artistaService.save(artista);
 			model.addAttribute("message", "El artista fue borrado.");
 			return showFestival(model, principal);
 		} else {

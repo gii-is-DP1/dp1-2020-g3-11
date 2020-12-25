@@ -17,6 +17,7 @@ package org.springframework.samples.petclinic.repository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
@@ -43,6 +44,10 @@ public interface ArtistaRepository extends CrudRepository<Artista, Integer> {
 	@Query("SELECT a FROM Artista a where a.name = ?1")
 	Artista findArtistaByName(String name);
 	
+	@Query("SELECT distinct artista FROM Artista artista join artista.festivales af where af.id  =  ?1")
+	Set<Artista> findArtistasByFestivalId(int festivalId);
+	
 	@Query("SELECT a FROM Artista a where a.id = ?1")
     Artista findArtistaById(int id);
+	
 }

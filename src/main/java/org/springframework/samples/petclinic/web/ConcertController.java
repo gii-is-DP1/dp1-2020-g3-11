@@ -16,7 +16,6 @@ import org.springframework.samples.petclinic.model.Recinto;
 import org.springframework.samples.petclinic.model.Usuario;
 import org.springframework.samples.petclinic.service.ArtistaService;
 import org.springframework.samples.petclinic.service.ConcertService;
-import org.springframework.samples.petclinic.service.FestivalArtistaService;
 import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.samples.petclinic.service.RecintoService;
 import org.springframework.samples.petclinic.service.UsuarioService;
@@ -47,8 +46,6 @@ public class ConcertController {
 	FestivalService festivalService;
 	@Autowired
 	ArtistaService artistService;
-	@Autowired
-	FestivalArtistaService festivalArtistService;
 
 	@Autowired
 	UsuarioService usuarioService;
@@ -61,12 +58,11 @@ public class ConcertController {
 
 	@Autowired
 	public ConcertController(ConcertService concertService, FestivalService festivalService,
-			ArtistaService artistService, RecintoService recintoService, FestivalArtistaService festivalArtistService) {
+			ArtistaService artistService, RecintoService recintoService) {
 		this.concertService = concertService;
 		this.festivalService = festivalService;
 		this.recintoService = recintoService;
 		this.artistService = artistService;
-		this.festivalArtistService = festivalArtistService;
 	}
 
 	@ModelAttribute("festival")
@@ -83,7 +79,7 @@ public class ConcertController {
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
 
-		return festivalArtistService.findAllArtistasByFestivalId(festivalId).stream().map(x -> x.getName())
+		return artistService.findArtistasByFestivalId(festivalId).stream().map(x -> x.getName())
 				.collect(Collectors.toList());
 
 	}
