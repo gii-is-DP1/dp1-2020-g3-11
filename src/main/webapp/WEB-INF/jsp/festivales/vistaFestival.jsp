@@ -14,14 +14,6 @@
 			<h1>${festival.name}</h1>
 		</div>
 
-		<div style="float: top; width: 45%;">
-			<td>
-				<form>
-					<a href="/mifestival/edit" class="btn btn-primary btn-sm">
-						Editar</a>
-				</form>
-			</td>
-		</div>
 	</div>
 	<br>
 	<br>
@@ -34,8 +26,8 @@
 			<table id="artistaTable" class="table table-striped">
 				<thead>
 					<tr>
-						<th style="width: 75%;">Nombre</th>
-						<th style="width: 25%;"></th>
+						<th style="width: 85%;">Nombre</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -48,7 +40,7 @@
 									value="/mifestival/artistas/{artistaId}/delete"
 									var="artistaUrl">
 									<spring:param name="artistaId" value="${artista.id}" />
-								</spring:url> <a href="${fn:escapeXml(artistaUrl)}">Borrar</a></td>
+								</spring:url> <a href="${fn:escapeXml(artistaUrl)}" class="glyphicon glyphicon-trash"></a></td>
 
 						</tr>
 					</c:forEach>
@@ -65,9 +57,9 @@
 			<table id="recintosTable" class="table table-striped">
 				<thead>
 					<tr>
-						<th style="width: 75%;">Nombre</th>
-						<th style="width: 12, 5%;"></th>
-						<th style="width: 12, 5%;"></th>
+						<th style="width: 50%;">Nombre</th>
+						<th style="width: 20%;"></th>
+						<th style="width: 5%;"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -84,13 +76,13 @@
 									value="/mifestival/recintos/{recintoId}/detalles"
 									var="recintoUrl">
 									<spring:param name="recintoId" value="${recinto.id}" />
-								</spring:url> <a href="${fn:escapeXml(recintoUrl)}">Detalles recinto</a></td>
+								</spring:url> <a href="${fn:escapeXml(recintoUrl)}">Detalles</a></td>
 
 							<td><spring:url
 									value="/mifestival/recintos/{recintoId}/delete"
 									var="recintoUrl">
 									<spring:param name="recintoId" value="${recinto.id}" />
-								</spring:url> <a href="${fn:escapeXml(recintoUrl)}">Borrar</a></td>
+								</spring:url> <a href="${fn:escapeXml(recintoUrl)}" class="glyphicon glyphicon-trash"></a></td>
 
 
 
@@ -112,7 +104,7 @@
 			<table id="entradasTable" class="table table-striped">
 				<thead>
 					<tr>
-						<th style="width: 33%;">Tipo de Entrada</th>
+						<th style="width: 40%;">Tipo de Entrada</th>
 						<th style="width: 33%;">Precio</th>
 						<th style="width: 12, 5%;"></th>
 						<th style="width: 12, 5%;"></th>
@@ -128,13 +120,13 @@
 							<td><spring:url
 									value="/mifestival/entradas/{entradaId}/edit" var="entradaUrl">
 									<spring:param name="entradaId" value="${entrada.id}" />
-								</spring:url> <a href="${fn:escapeXml(entradaUrl)}">Editar</a></td>
+								</spring:url> <a href="${fn:escapeXml(entradaUrl)}" class="glyphicon glyphicon-pencil"></a></td>
 
 							<td><spring:url
 									value="/mifestival/entradas/{entradaId}/delete"
 									var="entradaUrl">
 									<spring:param name="entradaId" value="${entrada.id}" />
-								</spring:url> <a href="${fn:escapeXml(entradaUrl)}">Borrar</a></td>
+								</spring:url> <a href="${fn:escapeXml(entradaUrl)}" class="glyphicon glyphicon-trash"></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -155,19 +147,16 @@
 	<br>
 	<div style="width: 100%;">
 		<div style="float: left; width: 30%; margin-left: 3%;">
-			<h2>Ofertas</h2>
 			<a href="/mifestival/ofertas" class="btn btn-default"> <span
 				aria-hidden="true"></span> Ofertas
 			</a>
 		</div>
 		<div style="float: left; width: 30%; margin-left: 3%;">
-			<h2>Conciertos</h2>
 			<a href="/mifestival/conciertos" class="btn btn-default"> <span
 				aria-hidden="true"></span> Conciertos
 			</a>
 		</div>
 		<div style="float: left; width: 30%; margin-left: 3%;">
-			<h2>Puestos</h2>
 			<a href="/mifestival/puestos" class="btn btn-default"> <span
 				aria-hidden="true"></span> Puestos
 			</a>

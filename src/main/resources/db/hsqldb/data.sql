@@ -80,6 +80,7 @@ INSERT INTO usuario VALUES (60, 'nombre', 'Apellido', '45987990X', 'ale@sponsor.
 INSERT INTO users(username,password,enabled) VALUES ('sponsorPrueba','sponsorPrueba',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (12,'sponsorPrueba','sponsor');
 INSERT INTO usuario VALUES (20, 'Manue', 'Frank', '45444990X', 'manue@user.com',  '1999-02-20','marcaPredeterminada','692811112',  2,'sponsorPrueba');
+INSERT INTO sponsor VALUES (20, 'Manue', 'Frank', '45444990X', 'manue@user.com',  '1999-02-20','marcaPredeterminada','692811112','sponsorPrueba');
 
 
 
@@ -171,18 +172,18 @@ INSERT INTO tabla_tipos_tamanio VALUES (1, 'Reducido');
 INSERT INTO tabla_tipos_tamanio VALUES (2, 'Mediano');
 INSERT INTO tabla_tipos_tamanio VALUES (3, 'Grande');
 
-INSERT INTO puesto VALUES (1,1000,1,1,1,1);
-INSERT INTO puesto VALUES (2,2000,1,4,3,1);
-INSERT INTO puesto VALUES (3,3500,2,5,2,2);
-INSERT INTO puesto VALUES (4,1500,2,6,1,1);
-INSERT INTO puesto VALUES (5,2200,1,4,3,2);
-INSERT INTO puesto VALUES (6,3600,2,6,2,3);
-INSERT INTO puesto VALUES (7,1450,2,5,1,1);
-INSERT INTO puesto VALUES (8,2250,1,9,1,1);
-INSERT INTO puesto VALUES (9,3650,1,9,2,1);
-INSERT INTO puesto VALUES (10,980,2,5,1,2);
-INSERT INTO puesto VALUES (11,2050,1,1,3,1);
-INSERT INTO puesto VALUES (12,3520,1,1,2,2);
+INSERT INTO puesto VALUES (1,1000,1,1,20,1,1);
+INSERT INTO puesto VALUES (2,2000,1,4,20,3,1);
+INSERT INTO puesto VALUES (3,3500,2,5,20,2,2);
+INSERT INTO puesto VALUES (4,1500,2,6,20,1,1);
+INSERT INTO puesto VALUES (5,2200,1,4,20,3,2);
+INSERT INTO puesto VALUES (6,3600,2,6,20,2,3);
+INSERT INTO puesto VALUES (7,1450,2,5,20,1,1);
+INSERT INTO puesto VALUES (8,2250,1,9,20,1,1);
+INSERT INTO puesto VALUES (9,3650,1,9,20,2,1);
+INSERT INTO puesto VALUES (10,980,2,5,20,1,2);
+INSERT INTO puesto VALUES (11,2050,1,1,20,3,1);
+INSERT INTO puesto VALUES (12,3520,1,1,20,2,2);
 
 INSERT INTO concierto VALUES (1,'2021-07-25','2021-07-25 17:00','2021-07-25 18:00',1,2,5);
 INSERT INTO concierto VALUES (2,'2021-07-26','2021-07-26 16:00','2021-07-26 17:00',2,2,6);

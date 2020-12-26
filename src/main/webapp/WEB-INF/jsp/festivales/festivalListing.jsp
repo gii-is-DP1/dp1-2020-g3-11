@@ -37,10 +37,7 @@
 					<td><c:out value="${festival.localizacion}" /></td>
 
 					<sec:authorize access="hasAuthority('sponsor')">
-						<td><spring:url value="/festivales/{festivalId}/puestos"
-								var="puestoUrl">
-								<spring:param name="festivalId" value="${festival.id}" />
-							</spring:url> <a href="${fn:escapeXml(puestoUrl)}">Ver puestos</a></td>
+						<td><a href="/festivales/${festival.id}/puestos"> Ver puestos</a></td>
 					</sec:authorize>
 
 					<sec:authorize access="hasAuthority('usuario')">

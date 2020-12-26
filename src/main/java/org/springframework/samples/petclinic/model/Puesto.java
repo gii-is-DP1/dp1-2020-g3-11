@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -17,6 +18,10 @@ import lombok.Data;
 @Table(name = "puesto")
 public class Puesto extends BaseEntity {	
 
+	@ManyToOne
+	@JoinColumn(name = "sponsor_id")
+	private Sponsor sponsor;
+	
 	@ManyToOne
 	@JoinColumn(name = "festival_id")
 //	@NotNull

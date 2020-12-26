@@ -19,6 +19,7 @@ public interface PuestoRepository extends CrudRepository<Puesto, Integer> {
 	@Query("SELECT ptype FROM TipoTamaño ptype where ptype.name = ?1")
 	TipoTamaño findTipoTamañoByName(String name);
 
+	@Query("SELECT p FROM Puesto p where p.festival.id = ?1")
 	Collection<Puesto> findAllPuestosByFestivalId(int festivalId);
 
 	@Query("SELECT ttype FROM TipoTamaño ttype ORDER BY ttype.name")
