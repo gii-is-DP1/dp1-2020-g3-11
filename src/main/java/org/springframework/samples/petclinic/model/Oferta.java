@@ -1,7 +1,7 @@
 package org.springframework.samples.petclinic.model;
 
 
-import java.util.Set;  
+import java.util.Set;   
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,9 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,11 +31,12 @@ public class Oferta extends BaseEntity {
 			inverseJoinColumns = @JoinColumn(name = "entrada_id"))
 	private Set<Entrada> entradas;
 	
-    @NotNull
+    @NotBlank
+    @Positive
 	@Column(name = "precioOferta")
 	private Integer precioOferta;
 	
-	@NotNull
+    @NotBlank
 	@ManyToOne
 	@JoinColumn(name = "tipoOferta_id")
 	private TipoOferta tipoOferta;
