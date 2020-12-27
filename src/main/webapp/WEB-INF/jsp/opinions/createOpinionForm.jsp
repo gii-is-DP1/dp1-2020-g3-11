@@ -8,9 +8,9 @@
 
 <petclinic:layout pageName="opinions">
 	
-	<jsp:attribute name="customScript">
+<%-- 	<jsp:attribute name="customScript">
 	<script>     
-    var filtro = ['puta', 'zorra', 'marica'];
+    var filtro = ['mierda', 'cabron', 'mojon'];
     $("#descripcion").text(function(i, txt){
       for(var i=0; i<filtro.length; i++){
 		if(txt.indexOf(filtro[i])!=-1){
@@ -25,7 +25,7 @@
     });</script>
 	
 	</jsp:attribute>
-	<jsp:body>
+	<jsp:body> --%>
 
 	<h2>
 		<c:if test="${opinion['new']}">Nueva </c:if>
@@ -63,5 +63,5 @@
 			</div>
 		</div>
 	</form:form>
-	</jsp:body>
-</petclinic:layout>
+<%-- 	</jsp:body>
+ --%></petclinic:layout>
