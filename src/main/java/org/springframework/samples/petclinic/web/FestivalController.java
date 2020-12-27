@@ -75,7 +75,7 @@ public class FestivalController {
 	@GetMapping("/festivales/{festivalId}/cartel")
 	public String listCartel(ModelMap model, @PathVariable ("festivalId") int festivalId) {
 		
-		Collection<Artista> la = festivalArtistaService.findAllArtistasByFestivalId(festivalId);
+		Collection<Artista> la = artistaService.findArtistasByFestivalId(festivalId);
 		
 		
 		model.addAttribute("artistas", la);
