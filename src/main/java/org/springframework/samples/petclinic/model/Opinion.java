@@ -15,10 +15,12 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "opinion")
 public class Opinion extends BaseEntity {
 
