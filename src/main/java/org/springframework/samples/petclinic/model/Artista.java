@@ -9,6 +9,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,10 +30,12 @@ public class Artista extends NamedEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "genero_id")
+	@NotNull
 	private GeneroType genero;
 
 	@ManyToMany
 	@JoinColumn(name = "festival_id")
+	@NotNull
 	private Set<Festival> festivales;
 
 }

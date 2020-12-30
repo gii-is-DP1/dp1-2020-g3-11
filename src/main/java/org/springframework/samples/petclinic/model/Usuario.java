@@ -25,6 +25,7 @@ import lombok.Setter;
 @Table(name = "usuario")
 public class Usuario extends Person {
 
+	
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
 	private Set<Entrada> entradas;
 
