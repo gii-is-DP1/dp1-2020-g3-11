@@ -23,7 +23,9 @@ import org.springframework.samples.petclinic.service.UsuarioService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,7 +46,7 @@ public class PuestoController {
 
 	@Autowired
 	RecintoService recintoService;
-	
+
 	@Autowired
 	UsuarioService usuarioService;
 
@@ -68,19 +70,18 @@ public class PuestoController {
 
 		return this.festivalService.findFestivalById(festivalId).get();
 	}
-	
-//
-//	@InitBinder("festival")
-//	public void initFestivalBinder(WebDataBinder dataBinder) {
-//		dataBinder.setDisallowedFields("id");
-//	}
+
+	@InitBinder("puesto")
+	public void initPuestoBinder(WebDataBinder dataBinder) {
+		dataBinder.setValidator(new PuestoValidator());
+	}
 
 	@GetMapping
 	public String listPuestos(Principal principal, ModelMap model) {
 
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
-		
+
 		model.addAttribute("puestos", puestoService.findAllPuestosByFestivalId(festivalId));
 		return PUESTOS_LISTING;
 	}
@@ -97,10 +98,10 @@ public class PuestoController {
 
 	@ModelAttribute("recintos")
 	public List<String> recintos(Principal principal) {
-		
+
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
-		
+
 		return recintoService.findAllRecintosByFestivalId(festivalId).stream().map(r -> r.getName())
 				.collect(Collectors.toList());
 	}
@@ -113,9 +114,9 @@ public class PuestoController {
 	}
 
 	@PostMapping("/new")
-	public String processCreationNewPuesto(Principal principal, @Valid Puesto puesto,
-			BindingResult binding, ModelMap model) {
-		
+	public String processCreationNewPuesto(Principal principal, @Valid Puesto puesto, BindingResult binding,
+			ModelMap model) {
+
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
 
@@ -157,13 +158,13 @@ public class PuestoController {
 	}
 
 	@PostMapping("/{id}/edit")
-	public String processUpdatePuesto(@PathVariable("id") int id, Principal principal,
-			@Valid Puesto puesto, BindingResult binding, ModelMap model) {
-		
+	public String processUpdatePuesto(@PathVariable("id") int id, Principal principal, @Valid Puesto puesto,
+			BindingResult binding, ModelMap model) {
+
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
 		Puesto modifiedPuesto = puestoService.findById(id).orElse(null);
-		
+
 		if (binding.hasErrors()) {
 			model.put("puesto", puesto);
 			return PUESTOS_FORM;

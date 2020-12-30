@@ -13,15 +13,6 @@
 		<div style="float: top; width: 45%;">
 			<h1>${festival.name}</h1>
 		</div>
-
-		<div style="float: top; width: 45%;">
-			<td>
-				<form>
-					<a href="/mifestival/edit" class="btn btn-primary btn-sm">
-						Editar</a>
-				</form>
-			</td>
-		</div>
 	</div>
 	<br>
 	<br>

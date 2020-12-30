@@ -17,6 +17,7 @@ package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.Valid;
@@ -78,6 +79,18 @@ public class ArtistaService {
 	@Transactional(readOnly = true)
 	public Collection<String> findGeneroTypes() throws DataAccessException {
 		return artistaRepository.findGeneroTypes();
+	}
+
+	public boolean checkCorreoExists(String correo) {
+		return artistaRepository.findArtistaByCorreo(correo).isPresent();
+	}
+	
+	public boolean checkTelefonoExists(String telefono) {
+		return artistaRepository.findArtistaByTelefono(telefono).isPresent();
+	}
+
+	public boolean checkNombreExists(String name) {
+		return artistaRepository.findArtistaByName2(name).isPresent();
 	}
 	
 
