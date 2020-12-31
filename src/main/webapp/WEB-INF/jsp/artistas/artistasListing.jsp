@@ -16,10 +16,9 @@
 			<tr>
 				<th style="width: 20%;">Nombre</th>
 				<th style="width: 20%;">Telefono</th>
-				<th style="width: 20%;">Correo</th>
-				<th style="width: 20%;">Género</th>
-				<th></th>
-				<th></th>
+				<th style="width: 30%;">Correo</th>
+				<th style="width: 30%;">Género</th>
+				<th style="width: 20%"></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -42,7 +41,7 @@
 	<h3>
 		<spring:url value="/artistas/new" var="newArtistaUrl">
 		</spring:url>
-		<a href="${fn:escapeXml(newArtistaUrl)}" >Añadir artista</a>
+		<a href="${fn:escapeXml(newArtistaUrl)}" class="btn btn-default">Añadir artista</a>
 		</td>
 	</h3>
 </petclinic:layout>
