@@ -28,33 +28,42 @@
 		<div class="form-group has-feedback">
 			<petclinic:inputField label="Nombre" name="name" />
 			<petclinic:inputField label="Nº huecos de puestos" name="huecos" />
-			
+
 			<h4>Tipo del recinto</h4>
 			Escenario <input type="radio" onclick="javascript:yesnoCheck();"
 				name="tipoRecinto.name" id="yesCheck" value="Escenario"><br>
-			Parking <input type="radio"
-				onclick="javascript:yesnoCheck();" name="tipoRecinto.name" id="noCheck" value="Parking"><br>
-			Camping <input type="radio"
-				onclick="javascript:yesnoCheck();" name="tipoRecinto.name" id="mCheck" value="Camping"><br>
+			Parking <input type="radio" onclick="javascript:yesnoCheck();"
+				name="tipoRecinto.name" id="noCheck" value="Parking"><br>
+			Camping <input type="radio" onclick="javascript:yesnoCheck();"
+				name="tipoRecinto.name" id="mCheck" value="Camping"><br>
 			<div id="ifYes" style="visibility: hidden">
 				<petclinic:inputField label="Nº máximo de escenarios"
 					name="numMaxEscenarios" />
 			</div>
 		</div>
 
-		 <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <c:choose>
-                    <c:when test="${recinto['new']}">
-                        <button class="btn btn-default" type="submit">Añadir Recinto</button>
-                    </c:when>
-                    <c:otherwise>
-                        <button class="btn btn-default" type="submit">Actualizar Recinto</button>
-                    </c:otherwise>
-                </c:choose>
-            </div>
-        </div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<c:choose>
+					<c:when test="${recinto['new']}">
+						<button class="btn btn-default" type="submit">Añadir
+							Recinto</button>
+					</c:when>
+					<c:otherwise>
+						<button class="btn btn-default" type="submit">Actualizar
+							Recinto</button>
+					</c:otherwise>
+				</c:choose>
+				<br>
+				<br>
+				<spring:url value="/mifestival" var="festivaUrl">
+				</spring:url>
+				<a href="${fn:escapeXml(festivaUrl)}" class="btn btn-default">Volver
+					a mi festival</a>
+			</div>
+		</div>
 
 	</form:form>
+
 
 </petclinic:layout>
