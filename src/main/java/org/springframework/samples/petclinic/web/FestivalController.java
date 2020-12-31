@@ -2,7 +2,6 @@ package org.springframework.samples.petclinic.web;
 
 import java.security.Principal;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -12,11 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Artista;
 import org.springframework.samples.petclinic.model.Entrada;
 import org.springframework.samples.petclinic.model.Festival;
+import org.springframework.samples.petclinic.model.Puesto;
 import org.springframework.samples.petclinic.model.Recinto;
 import org.springframework.samples.petclinic.model.Usuario;
 import org.springframework.samples.petclinic.service.ArtistaService;
 import org.springframework.samples.petclinic.service.EntradaService;
 import org.springframework.samples.petclinic.service.FestivalService;
+import org.springframework.samples.petclinic.service.PuestoService;
 import org.springframework.samples.petclinic.service.RecintoService;
 import org.springframework.samples.petclinic.service.UsuarioService;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -39,6 +40,11 @@ public class FestivalController {
 	public static final String ARTISTAS_LISTA = "festivales/listArtistasAñadir";
 	public static final String CARTEL = "festivales/cartel";
 	public static final String ENTRADAS_FORM = "festivales/createOrUpdateEntradaForm";
+	public static final String ALQUILAR_PUESTOS = "puestos/alquilarPuestos";
+	public static final String PUESTOS_LISTING = "puestos/puestosListing";
+
+	@Autowired
+	PuestoService puestoService;
 
 	@Autowired
 	RecintoService festivalRecintoService;
@@ -71,15 +77,54 @@ public class FestivalController {
 		model.addAttribute("festivales", festivalService.findAll());
 		return FESTIVALES_LISTING;
 	}
+
+	@GetMapping("/festivales/{id_festival}/puestos")
+	public String listPuestosSponsor(Principal principal, @PathVariable("id_festival") int festivalId, ModelMap model) {
+		Usuario usuario = usuarioLogueado(principal);
+		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
+		Collection<Puesto> listaPuestos = puestoService.findPuestosLibres(festivalId);
+
+		model.addAttribute("puestos", listaPuestos);
+		model.addAttribute("datosUsuario", usuario);
+		model.addAttribute("datosFestival", festival);
+
+		return ALQUILAR_PUESTOS;
+	}
+
+	@GetMapping("/festivales/{festivalId}/puestos/{puestoId}/alquilar")
+	public String alquilarPuestoSponsor(Principal principal, @PathVariable("festivalId") int festivalId,
+			@PathVariable("puestoId") int puestoId, ModelMap model) {
+		Usuario usuario = usuarioLogueado(principal);
+		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
+		
+		Puesto puesto = puestoService.findById(puestoId).get();
+		puesto.setSponsor(usuario);
+		puestoService.save(puesto);
+		
+		Collection<Puesto> listaPuestos = puestoService.findPuestosLibres(festivalId);
+		model.addAttribute("puestos", listaPuestos);
+		model.addAttribute("datosUsuario", usuario);
+		model.addAttribute("datosFestival", festival);
+		model.addAttribute("message", "El puesto se asoció correctamente.");
+		
+		return ALQUILAR_PUESTOS;
+	}
+
+	@GetMapping("/mispuestos")
+	public String listPuestosSponsor(Principal principal, ModelMap model) {
+		Usuario usuario = usuarioLogueado(principal);
+
+		model.addAttribute("puestos", puestoService.findAllPuestosBySponsorId(usuario.getId()));
+		return PUESTOS_LISTING;
+	}
 	
 	@GetMapping("/festivales/{festivalId}/cartel")
-	public String listCartel(ModelMap model, @PathVariable ("festivalId") int festivalId) {
-		
+	public String listCartel(ModelMap model, @PathVariable("festivalId") int festivalId) {
+
 		Collection<Artista> la = artistaService.findArtistasByFestivalId(festivalId);
-		
-		
+
 		model.addAttribute("artistas", la);
-		
+
 		return CARTEL;
 	}
 
@@ -115,7 +160,7 @@ public class FestivalController {
 
 	@GetMapping(value = "/mifestival/artistas/{artistaId}/add")
 	public String asociarArtistaFestival(@PathVariable("artistaId") int artistaId, Principal principal) {
-		
+
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);

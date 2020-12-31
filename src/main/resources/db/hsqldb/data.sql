@@ -1,45 +1,3 @@
---INSERT INTO users(username,password,enabled) VALUES ('enrgonboz','enrique',TRUE);
---INSERT INTO authorities(id,username,authority) VALUES (85,'enrgonboz','admin');
---
---INSERT INTO users(username,password,enabled) VALUES ('Javier','javi',TRUE);
---INSERT INTO authorities(id,username,authority) VALUES (84,'Javier','admin');
---
---INSERT INTO users(username,password,enabled) VALUES ('Alejandro','ale',TRUE);
---INSERT INTO authorities(id,username,authority) VALUES (80,'Alejandro','admin');
---
---INSERT INTO users(username,password,enabled) VALUES ('Manuel','manu',TRUE);
---INSERT INTO authorities(id,username,authority) VALUES (81,'Manuel','admin');
---
---INSERT INTO users(username,password,enabled) VALUES ('Fernando','fer',TRUE);
---INSERT INTO authorities(id,username,authority) VALUES (82,'Fernando','admin');
---
---INSERT INTO users(username,password,enabled) VALUES ('pabsanort2','pablo',TRUE);
---INSERT INTO authorities(id,username,authority) VALUES (83,'pabsanort2','admin');
---
---INSERT INTO vets VALUES (1, 'James', 'Carter');
---INSERT INTO vets VALUES (2, 'Helen', 'Leary');
---INSERT INTO vets VALUES (3, 'Linda', 'Douglas');
---INSERT INTO vets VALUES (4, 'Rafael', 'Ortega');
---INSERT INTO vets VALUES (5, 'Henry', 'Stevens');
---INSERT INTO vets VALUES (6, 'Sharon', 'Jenkins');
---
---INSERT INTO specialties VALUES (1, 'radiology');
---INSERT INTO specialties VALUES (2, 'surgery');
---INSERT INTO specialties VALUES (3, 'dentistry');
---
---INSERT INTO vet_specialties VALUES (2, 1);
---INSERT INTO vet_specialties VALUES (3, 2);
---INSERT INTO vet_specialties VALUES (3, 3);
---INSERT INTO vet_specialties VALUES (4, 2);
---INSERT INTO vet_specialties VALUES (5, 1);
---
---INSERT INTO types VALUES (1, 'cat');
---INSERT INTO types VALUES (2, 'dog');
---INSERT INTO types VALUES (3, 'lizard');
---INSERT INTO types VALUES (4, 'snake');
---INSERT INTO types VALUES (5, 'bird');
---INSERT INTO types VALUES (6, 'hamster');
-
 INSERT INTO tabla_tipos_Usuario VALUES (1, 'Usuario');
 INSERT INTO tabla_tipos_Usuario VALUES (2, 'Sponsor');
 INSERT INTO tabla_tipos_Usuario VALUES (3, 'admin');
@@ -78,7 +36,9 @@ INSERT INTO users(username,password,enabled) VALUES ('sponsorPrueba','sponsorPru
 INSERT INTO authorities(id,username,authority) VALUES (12,'sponsorPrueba','sponsor');
 INSERT INTO usuario VALUES (20, 'Manue', 'Frank', '45444990X', 'manue@user.com',  '1999-02-20','marcaPredeterminada','692811112',  2,'sponsorPrueba');
 
-
+INSERT INTO users(username,password,enabled) VALUES ('sponsorPrueba1','sponsorPrueba',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (17,'sponsorPrueba1','sponsor');
+INSERT INTO usuario VALUES (25, 'joselito', 'cuidaito', '45444990U', 'cuidao@man.com',  '1999-02-20','acme','692854112',  2,'sponsorPrueba1');
 
 INSERT INTO users(username,password,enabled) VALUES ('user1','us3r',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (14,'user1','usuario');
@@ -163,18 +123,18 @@ INSERT INTO tabla_tipos_tamanio VALUES (1, 'Reducido');
 INSERT INTO tabla_tipos_tamanio VALUES (2, 'Mediano');
 INSERT INTO tabla_tipos_tamanio VALUES (3, 'Grande');
 
-INSERT INTO puesto VALUES (1,1000,1,1,1,1);
-INSERT INTO puesto VALUES (2,2000,1,4,3,1);
-INSERT INTO puesto VALUES (3,3500,2,5,2,2);
-INSERT INTO puesto VALUES (4,1500,2,6,1,1);
-INSERT INTO puesto VALUES (5,2200,1,4,3,2);
-INSERT INTO puesto VALUES (6,3600,2,6,2,3);
-INSERT INTO puesto VALUES (7,1450,2,5,1,1);
-INSERT INTO puesto VALUES (8,2250,1,9,1,1);
-INSERT INTO puesto VALUES (9,3650,1,9,2,1);
-INSERT INTO puesto VALUES (10,980,2,5,1,2);
-INSERT INTO puesto VALUES (11,2050,1,1,3,1);
-INSERT INTO puesto VALUES (12,3520,1,1,2,2);
+INSERT INTO puesto VALUES (1,1000,1,1,20,1,1);
+INSERT INTO puesto VALUES (2,2000,1,4,25,3,1);
+INSERT INTO puesto VALUES (3,3500,2,5,20,2,2);
+INSERT INTO puesto VALUES (4,1500,2,6,25,1,1);
+INSERT INTO puesto VALUES (5,2200,1,4,null,3,2);
+INSERT INTO puesto VALUES (6,3600,2,6,null,2,3);
+INSERT INTO puesto VALUES (7,1450,2,5,null,1,1);
+INSERT INTO puesto VALUES (8,2250,1,9,null,1,1);
+INSERT INTO puesto VALUES (9,3650,1,9,null,2,1);
+INSERT INTO puesto VALUES (10,980,2,5,null,1,2);
+INSERT INTO puesto VALUES (11,2050,1,1,null,3,1);
+INSERT INTO puesto VALUES (12,3520,1,1,null,2,2);
 
 INSERT INTO concierto VALUES (1,'2021-07-25','2021-07-25 17:00','2021-07-25 18:00',1,2,5);
 INSERT INTO concierto VALUES (2,'2021-07-26','2021-07-26 16:00','2021-07-26 17:00',2,2,6);

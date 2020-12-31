@@ -2,10 +2,13 @@ package org.springframework.samples.petclinic.model;
 
 
 
+import java.util.Set;
+
 import javax.persistence.Column; 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -43,5 +46,9 @@ public class Puesto extends BaseEntity {
 	@NotNull
 	@Positive
 	private Integer precio;
+	
+	@ManyToOne
+	@JoinColumn(name = "sponsor_id")
+    private Usuario sponsor;
 
 }
