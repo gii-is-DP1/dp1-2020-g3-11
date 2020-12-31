@@ -69,4 +69,12 @@ public class PuestoService {
 	public Recinto findRecintoById(Integer id) {
 		return puestoRepository.findRecintoById(id);
 	}
+	
+	public Collection<Puesto> findPuestosLibres(Integer festivalId){
+		return puestoRepository.findPuestosLibres(festivalId);
+	}
+
+	public Collection<Puesto> findAllPuestosBySponsorId(Integer id) {
+		return puestoRepository.findAllPuestosBySponsorId(id);
+	}
 }

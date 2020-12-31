@@ -29,5 +29,11 @@ public interface PuestoRepository extends CrudRepository<Puesto, Integer> {
 
 	@Query("SELECT r FROM Recinto r where r.id = ?1")
 	Recinto findRecintoById(Integer id);
+
+	@Query("SELECT p FROM Puesto p where p.sponsor.id = null AND p.festival.id = ?1")
+	Collection<Puesto> findPuestosLibres(Integer festivalId);
+
+	@Query("SELECT p FROM Puesto p where p.sponsor.id = ?1")
+	Collection<Puesto> findAllPuestosBySponsorId(Integer id);
 	
 }

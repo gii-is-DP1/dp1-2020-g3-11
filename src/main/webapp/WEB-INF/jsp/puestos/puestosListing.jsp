@@ -14,12 +14,22 @@
 	<table id="puestoTable" class="table table-striped">
 		<thead>
 			<tr>
+			<sec:authorize access="hasAuthority('admin')">
 				<th style="width: 25%;">Tipo del puesto</th>
 				<th style="width: 25%;">Tamaño del puesto</th>
 				<th style="width: 15%;">Precio</th>
 				<th style="width: 30%;">Recinto asociado</th>
 				<th></th>
 				<th></th>
+			</sec:authorize>
+			
+			<sec:authorize access="hasAuthority('sponsor')">
+				<th style="width: 25%;">Tipo del puesto</th>
+				<th style="width: 25%;">Tamaño del puesto</th>
+				<th style="width: 15%;">Precio</th>
+				<th style="width: 30%;">Recinto asociado</th>
+			</sec:authorize>
+			
 			</tr>
 		</thead>
 		<tbody>
