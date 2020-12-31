@@ -17,6 +17,7 @@ package org.springframework.samples.petclinic.repository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.dao.DataAccessException;
@@ -24,6 +25,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.samples.petclinic.model.Artista;
 import org.springframework.samples.petclinic.model.GeneroType;
+import org.springframework.samples.petclinic.model.Usuario;
 import org.springframework.samples.petclinic.repository.ArtistaRepository;
 
 
@@ -49,5 +51,14 @@ public interface ArtistaRepository extends CrudRepository<Artista, Integer> {
 	
 	@Query("SELECT a FROM Artista a where a.id = ?1")
     Artista findArtistaById(int id);
+
+	@Query("SELECT a FROM Artista a where a.correo = ?1")
+	Optional<Artista> findArtistaByCorreo(String correo);	
 	
+	@Query("SELECT a FROM Artista a where a.telefono = ?1")
+	Optional<Artista> findArtistaByTelefono(String telefono);
+
+	//este es para la validacion de nombre unico
+	@Query("SELECT a FROM Artista a where a.name = ?1")
+	Optional<Artista> findArtistaByName2(String name);	
 }

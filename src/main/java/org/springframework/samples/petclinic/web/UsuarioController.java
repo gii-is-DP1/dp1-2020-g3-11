@@ -59,6 +59,9 @@ public class UsuarioController {
 		if (usuarioService.checkDNIExists(usuario.getDNI())) {
 			result.addError(new FieldError("usuario", "DNI", "El DNI ya está registrado"));
 		}
+		if (usuarioService.checkTelefonoExists(usuario.getTelefono())) {
+			result.addError(new FieldError("usuario", "telefono", "El Telefono ya está registrado"));
+		}
 
 		if (result.hasErrors()) {
 			return VIEWS_USUARIO_CREATE_FORM;

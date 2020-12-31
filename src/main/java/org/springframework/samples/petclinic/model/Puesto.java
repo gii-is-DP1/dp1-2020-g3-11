@@ -8,7 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
+import javax.validation.constraints.Positive;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -41,6 +41,7 @@ public class Puesto extends BaseEntity {
 
 	@Column(name = "precio")
 	@NotNull
+	@Positive
 	private Integer precio;
 
 }

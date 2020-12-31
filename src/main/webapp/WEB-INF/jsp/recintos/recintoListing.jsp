@@ -34,6 +34,6 @@
 	</table>
 
 	<a href="recintos/new" class="btn btn-default"><span
-		class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir
+		class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añair
 		recinto</a>
 </petclinic:layout>

@@ -36,6 +36,10 @@ public class UsuarioService {
 	public boolean checkDNIExists(String dni) {
 		return usuarioRepository.findUsuarioByDNI(dni).isPresent();
 	}
+	
+	public boolean checkTelefonoExists(String telefono) {
+		return usuarioRepository.findUsuarioByTelefono(telefono).isPresent();
+	}
 
 	@Transactional(readOnly = true)
 	public List<Usuario> findAllUsuarios() throws DataAccessException {

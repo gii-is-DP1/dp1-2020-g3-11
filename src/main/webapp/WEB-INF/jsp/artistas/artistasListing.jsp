@@ -42,7 +42,7 @@
 	<h3>
 		<spring:url value="/artistas/new" var="newArtistaUrl">
 		</spring:url>
-		<a href="${fn:escapeXml(newArtistaUrl)}">Añadir artista</a>
+		<a href="${fn:escapeXml(newArtistaUrl)}" >Añadir artista</a>
 		</td>
 	</h3>
 </petclinic:layout>

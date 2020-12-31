@@ -34,4 +34,7 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
 	@Query("SELECT u FROM Usuario u where u.user.username = ?1")
 	Optional<Usuario> findUsuarioByNombreUsuario(String nombreUsuario);
 
+	@Query("SELECT u FROM Usuario u where u.telefono = ?1")
+	Optional<Usuario> findUsuarioByTelefono(String telefono);
+
 }
