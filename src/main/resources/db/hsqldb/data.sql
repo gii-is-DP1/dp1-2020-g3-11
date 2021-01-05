@@ -104,16 +104,16 @@ INSERT INTO tabla_tipos_recinto VALUES (1, 'Parking');
 INSERT INTO tabla_tipos_recinto VALUES (2, 'Camping');
 INSERT INTO tabla_tipos_recinto VALUES (3, 'Escenario');
 
-INSERT INTO recinto VALUES (1,'Escenario Terra',200,4,1,3);
-INSERT INTO recinto VALUES (2,'Camping Atlas',100,0,1,2);
-INSERT INTO recinto VALUES (3,'Parking 1',50,0,1,1);
-INSERT INTO recinto VALUES (4,'Escenario Benito Villamarin',220,4,1,3);
-INSERT INTO recinto VALUES (5,'Escenario Electro',150,4,2,3);
-INSERT INTO recinto VALUES (6,'Escenario Musica Urban',150,4,2,3);
-INSERT INTO recinto VALUES (7,'Camping DreamBeach',100,0,1,2);
-INSERT INTO recinto VALUES (8,'Parking DreamBeach',50,0,1,1);
-INSERT INTO recinto VALUES (9,'Escenario Carranza',180,4,1,3);
-INSERT INTO recinto VALUES (10,'Camping Falla',120,0,1,2);
+INSERT INTO recinto VALUES (1,'Escenario Terra',200,1,3);
+INSERT INTO recinto VALUES (2,'Camping Atlas',100,1,2);
+INSERT INTO recinto VALUES (3,'Parking 1',50,1,1);
+INSERT INTO recinto VALUES (4,'Escenario Benito Villamarin',220,1,3);
+INSERT INTO recinto VALUES (5,'Escenario Electro',150,2,3);
+INSERT INTO recinto VALUES (6,'Escenario Musica Urban',150,2,3);
+INSERT INTO recinto VALUES (7,'Camping DreamBeach',100,1,2);
+INSERT INTO recinto VALUES (8,'Parking DreamBeach',50,1,1);
+INSERT INTO recinto VALUES (9,'Escenario Carranza',180,1,3);
+INSERT INTO recinto VALUES (10,'Camping Falla',120,1,2);
 
 INSERT INTO tabla_tipos_puesto VALUES (1, 'Comida');
 INSERT INTO tabla_tipos_puesto VALUES (2, 'Ropa');

@@ -9,15 +9,6 @@
 <petclinic:layout pageName="recintos">
 
 
-	<script type="text/javascript">
-		function yesnoCheck() {
-			if (document.getElementById('yesCheck').checked) {
-				document.getElementById('ifYes').style.visibility = 'visible';
-			} else
-				document.getElementById('ifYes').style.visibility = 'hidden';
-
-		}
-	</script>
 
 	<h2>
 		<c:if test="${recinto['new']}">Nuevo </c:if>
@@ -30,16 +21,10 @@
 			<petclinic:inputField label="Nº huecos de puestos" name="huecos" />
 
 			<h4>Tipo del recinto</h4>
-			Escenario <input type="radio" onclick="javascript:yesnoCheck();"
-				name="tipoRecinto.name" id="yesCheck" value="Escenario"><br>
-			Parking <input type="radio" onclick="javascript:yesnoCheck();"
-				name="tipoRecinto.name" id="noCheck" value="Parking"><br>
-			Camping <input type="radio" onclick="javascript:yesnoCheck();"
-				name="tipoRecinto.name" id="mCheck" value="Camping"><br>
-			<div id="ifYes" style="visibility: hidden">
-				<petclinic:inputField label="Nº máximo de escenarios"
-					name="numMaxEscenarios" />
-			</div>
+			Escenario <input type="radio" name="tipoRecinto.name"
+				value="Escenario"><br> Parking <input type="radio"
+				name="tipoRecinto.name" value="Parking"><br> Camping <input
+				type="radio" name="tipoRecinto.name" value="Camping"><br>
 		</div>
 
 		<div class="form-group">
@@ -54,8 +39,7 @@
 							Recinto</button>
 					</c:otherwise>
 				</c:choose>
-				<br>
-				<br>
+				<br> <br>
 				<spring:url value="/mifestival" var="festivaUrl">
 				</spring:url>
 				<a href="${fn:escapeXml(festivaUrl)}" class="btn btn-default">Volver

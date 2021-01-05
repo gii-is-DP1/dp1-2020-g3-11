@@ -35,7 +35,6 @@ public class Artista extends NamedEntity {
 
 	@ManyToMany
 	@JoinColumn(name = "festival_id")
-	@NotNull
 	private Set<Festival> festivales;
 
 }

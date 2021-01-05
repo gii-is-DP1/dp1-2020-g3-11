@@ -42,8 +42,5 @@ public class Recinto extends NamedEntity {
 	@JoinColumn(name = "tipos_recinto")
 	private TipoRecinto tipoRecinto;
 
-	@Column(name = "numMaxEscenarios")
-	@NotNull
-	private Integer numMaxEscenarios = 0;
 
 }
