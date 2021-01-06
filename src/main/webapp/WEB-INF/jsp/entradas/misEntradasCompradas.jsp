@@ -38,4 +38,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<spring:url value="/festivales" var="festivaUrl">
+	</spring:url>
+	<a href="${fn:escapeXml(festivaUrl)}" class="btn btn-default">Volver a festivales</a>
 </petclinic:layout>

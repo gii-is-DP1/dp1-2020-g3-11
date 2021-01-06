@@ -141,11 +141,7 @@ public class ConcertController {
 						"Tienes que crear un concierto en la franja horaria del festival.");
 				return CONCERTS_FORM;
 			}
-//			catch (NumberConcertsException e) {
-//				binding.rejectValue("recinto.name", "No puedes crear más conciertos en este recinto. Todos los escenarios están llenos a esa hora.",
-//						"No puedes crear más conciertos en este recinto. Todos los escenarios están llenos a esa hora.");			
-//				return CONCERTS_FORM;			
-//			}
+
 		}
 		return "redirect:/mifestival/conciertos";
 
@@ -188,13 +184,7 @@ public class ConcertController {
 				return CONCERTS_FORM;
 
 			}
-//			catch (NumberConcertsException e) {
-//				binding.rejectValue("recinto.name", "No puedes crear más conciertos en este recinto. Todos los escenarios están llenos a esa hora.",
-//						"No puedes crear más conciertos en este recinto. Todos los escenarios están llenos a esa hora.");	
-//
-//				return CONCERTS_FORM;			
-//	
-//			}
+
 		}
 
 		return "redirect:/mifestival/conciertos";

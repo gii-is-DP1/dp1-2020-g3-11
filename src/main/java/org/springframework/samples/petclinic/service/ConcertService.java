@@ -36,15 +36,10 @@ public class ConcertService {
 	}
 
 	public void save(@Valid Concert concert) throws DataAccessException, ConcertOutOfDateException {
-//		Integer concertsTogether= ConcertValidator.conciertosAVez(this.concertRepository.findAllConciertosByRecintoId(concert.getRecinto().getId()), concert);
 		if(concert.getHoraCom().toLocalDate().isBefore(concert.getFestival().getFechaCom()) ||
 				concert.getHoraFin().toLocalDate().isAfter(concert.getFestival().getFechaFin())){
 			throw new ConcertOutOfDateException();
 		}
-//			else if(concert.getRecinto().getNumMaxEscenarios()<concertsTogether){
-//			
-//			throw new NumberConcertsException();
-//		}
 		else {
 			concertRepository.save(concert);
 

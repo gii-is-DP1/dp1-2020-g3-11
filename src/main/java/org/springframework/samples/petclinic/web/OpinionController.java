@@ -8,12 +8,15 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Festival;
 import org.springframework.samples.petclinic.model.Opinion;
 import org.springframework.samples.petclinic.model.Usuario;
 import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.samples.petclinic.service.OpinionService;
 import org.springframework.samples.petclinic.service.UsuarioService;
+import org.springframework.samples.petclinic.service.exceptions.OpinionFestivalDateException;
+import org.springframework.samples.petclinic.service.exceptions.OpinionNotAllowedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -87,13 +90,15 @@ public class OpinionController {
 
 	@PostMapping("/new")
 	public String processCreationOpinion(@PathVariable("festivalId") int festivalId, @Valid Opinion opinion,
-			BindingResult binding, ModelMap model, Principal principal) {
+			BindingResult binding, ModelMap model, Principal principal) throws DataAccessException, OpinionNotAllowedException, OpinionFestivalDateException{
 
 		if (binding.hasErrors()) {
 			System.out.println(binding.getAllErrors());
 			return OPINIONS_FORM;
 			
 		} else {
+			try {
+				
 			Usuario usuario = usuarioLogueado(principal);
 			opinion.setFestival(this.festivalService.findFestivalById(festivalId).get());
 			opinion.setFecha(LocalDateTime.of(LocalDateTime.now().getYear(), 
@@ -102,6 +107,20 @@ public class OpinionController {
 			opinion.setOpinionUsuario(usuario);
 			this.opinionService.save(opinion);
 			return "redirect:/festivales/{festivalId}/valoraciones";
+			
+		} catch (OpinionNotAllowedException e) {
+			binding.rejectValue("descripcion", "Solo se pueden valorar festivales a los que se ha asistido.",
+					"Solo se pueden valorar festivales a los que se ha asistido.");
+			return OPINIONS_FORM;
+
 		}
+			catch (OpinionFestivalDateException e) {
+			binding.rejectValue("descripcion", "Solo se pueden valorar festivales que hayan finalizado.",
+					"Solo se pueden valorar festivales que hayan finalizado.");
+			return OPINIONS_FORM;
+		}
+			
+		}
+		
 	}
 }

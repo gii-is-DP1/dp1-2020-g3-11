@@ -24,9 +24,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -65,11 +63,6 @@ public class FestivalController {
 		String username = principal.getName();
 		Usuario usuario = usuarioService.findUsuarioByUsername(username);
 		return usuario;
-	}
-
-	@InitBinder("festival")
-	public void initFestivalBinder(WebDataBinder dataBinder) {
-		dataBinder.setValidator(new FestivalValidator());
 	}
 
 	@GetMapping("/festivales")
