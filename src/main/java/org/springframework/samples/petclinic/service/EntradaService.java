@@ -10,6 +10,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Entrada;
 import org.springframework.samples.petclinic.model.EntradaType;
 import org.springframework.samples.petclinic.repository.EntradaRepository;
+import org.springframework.samples.petclinic.service.exceptions.AlcoholOfertAgeException;
+import org.springframework.samples.petclinic.service.exceptions.OpinionFestivalDateException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,7 +47,13 @@ public class EntradaService {
 	}
 
 	@Transactional
-	public void save(@Valid Entrada entrada) throws DataAccessException {
+	public void save(@Valid Entrada entrada) throws DataAccessException, AlcoholOfertAgeException {
+		if (entrada.getOfertas().stream()) {
+
+			opinionRepo.save(opinion);
+		} else {
+			throw new OpinionFestivalDateException();
+		}
 		entradaRepo.save(entrada);
 
 	}

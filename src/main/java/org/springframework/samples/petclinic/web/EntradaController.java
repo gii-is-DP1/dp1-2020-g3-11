@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Entrada;
 import org.springframework.samples.petclinic.model.EntradaType;
 import org.springframework.samples.petclinic.model.Festival;
@@ -19,6 +20,8 @@ import org.springframework.samples.petclinic.service.EntradaService;
 import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.samples.petclinic.service.OfertaService;
 import org.springframework.samples.petclinic.service.UsuarioService;
+import org.springframework.samples.petclinic.service.exceptions.AlcoholOfertAgeException;
+import org.springframework.samples.petclinic.service.exceptions.OpinionNotAllowedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -101,8 +104,9 @@ public class EntradaController {
 
 	@GetMapping(value = "/festivales/{festivalId}/entradas/{entradaId}/asociar/{ofertaId}")
 	public String asociarOfertaEntrada(ModelMap model, @PathVariable("ofertaId") int ofertaId,
-			@PathVariable("festivalId") int festivalId, @PathVariable("entradaId") int entradaId, Principal principal) {
+			@PathVariable("festivalId") int festivalId, @PathVariable("entradaId") int entradaId, Principal principal, BindingResult binding) throws DataAccessException, AlcoholOfertAgeException {
 
+		try {
 		Entrada entrada = entradaService.findById(entradaId).orElse(null);
 		Oferta o = ofertaService.findById(ofertaId);
 		entrada.getOfertas().add(o);
@@ -112,11 +116,18 @@ public class EntradaController {
 		ofertaService.save(o);
 
 		return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
+		
+	} catch (AlcoholOfertAgeException e) {
+		binding.rejectValue("tipoOferta", "Debes ser mayor de edad para escoger esta oferta.",
+				"Debes ser mayor de edad para escoger esta oferta.");
+		return "redirect:/festivales/{festivalId}/entradas/{entradaId}/asociar/{ofertaId}";
+
+	}
 	}
 
 	@GetMapping(value = "/festivales/{festivalId}/entradas/{entradaId}/quitar/{ofertaId}")
 	public String quitarOfertaEntrada(ModelMap model, @PathVariable("ofertaId") int ofertaId,
-			@PathVariable("festivalId") int festivalId, @PathVariable("entradaId") int entradaId, Principal principal) {
+			@PathVariable("festivalId") int festivalId, @PathVariable("entradaId") int entradaId, Principal principal) throws DataAccessException, AlcoholOfertAgeException {
 
 		Entrada entrada = entradaService.findById(entradaId).orElse(null);
 		Oferta o = ofertaService.findById(ofertaId);
@@ -131,7 +142,7 @@ public class EntradaController {
 
 	@GetMapping("/festivales/{festivalId}/entradas/{entradaId}/gracias")
 	public String graciasPorComprarEntrada(ModelMap model, @PathVariable("festivalId") int festivalId,
-			@PathVariable("entradaId") int entradaId, Principal principal) {
+			@PathVariable("entradaId") int entradaId, Principal principal) throws DataAccessException, AlcoholOfertAgeException {
 
 		Usuario usuario = usuarioLogueado(principal);
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
@@ -210,7 +221,7 @@ public class EntradaController {
 
 	@PostMapping("mifestival/entradas/{id}/edit")
 	public String editEntrada(@PathVariable("id") int id, @Valid Entrada modifiedEntrada, BindingResult binding,
-			ModelMap model, Principal principal) {
+			ModelMap model, Principal principal) throws DataAccessException, AlcoholOfertAgeException {
 
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
@@ -248,7 +259,7 @@ public class EntradaController {
 	}
 
 	@PostMapping("mifestival/entradas/new")
-	public String saveNewEntrada(@Valid Entrada entrada, BindingResult binding, ModelMap model, Principal principal) {
+	public String saveNewEntrada(@Valid Entrada entrada, BindingResult binding, ModelMap model, Principal principal) throws DataAccessException, AlcoholOfertAgeException {
 
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
