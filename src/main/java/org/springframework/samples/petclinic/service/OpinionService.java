@@ -1,14 +1,17 @@
 package org.springframework.samples.petclinic.service;
 
-import java.time.LocalDateTime;
-import java.util.Collection; 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Opinion;
 import org.springframework.samples.petclinic.repository.OpinionRepository;
+import org.springframework.samples.petclinic.service.exceptions.OpinionFestivalDateException;
+import org.springframework.samples.petclinic.service.exceptions.OpinionNotAllowedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,23 +36,37 @@ public class OpinionService {
 	}
 
 	@Transactional
-	public void save(Opinion opinion) throws DataAccessException {
-		opinion.setFecha(LocalDateTime.of(LocalDateTime.now().getYear(), 
-				LocalDateTime.now().getMonth(), LocalDateTime.now().getDayOfMonth(),
-				LocalDateTime.now().getHour(), LocalDateTime.now().getMinute()));
-		opinionRepo.save(opinion);
+	public void save(@Valid Opinion opinion)
+			throws DataAccessException, OpinionNotAllowedException, OpinionFestivalDateException {
 
-	}
+
+			if (opinion.getFecha().isAfter(opinion.getFestival().getFechaFin().plusDays(1).atTime(00, 00))) {
+
+				opinionRepo.save(opinion);
+			} else {
+				throw new OpinionFestivalDateException();
+			}
+
+			if (opinion.getOpinionUsuario().getEntradas().stream()
+					.anyMatch(p -> p.getFestival().equals(opinion.getFestival()))) {
+
+				opinionRepo.save(opinion);
+
+			} else {
+
+				throw new OpinionNotAllowedException();
+			}
+		}
 
 	@Transactional
 	public Collection<Opinion> findOpinionsByFestivalId(int festivalId) {
-		Collection<Opinion> l= opinionRepo.findOpinionsByFestivalId(festivalId);
-		if(l.size()>=5) {
-			l= opinionRepo.findOpinionsByFestivalId(festivalId).stream().collect(Collectors.toList()).subList(0, 5);
+		Collection<Opinion> l = opinionRepo.findOpinionsByFestivalId(festivalId);
+		if (l.size() >= 5) {
+			l = opinionRepo.findOpinionsByFestivalId(festivalId).stream().collect(Collectors.toList()).subList(0, 5);
 		}
 		return l;
 	}
-	
+
 	@Transactional
 	public Integer average(int festivalId) {
 		return opinionRepo.averageOpinionByFestivalId(festivalId);

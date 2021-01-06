@@ -52,4 +52,13 @@
 			class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir
 			entrada</a>
 	</sec:authorize>
+	
+	<div>
+		<br> <br> <br>
+
+		<spring:url value="/festivales" var="festivaUrl">
+		</spring:url>
+		<a href="${fn:escapeXml(festivaUrl)}" class="btn btn-default">Volver
+			a festivales</a>
+	</div>
 </petclinic:layout>

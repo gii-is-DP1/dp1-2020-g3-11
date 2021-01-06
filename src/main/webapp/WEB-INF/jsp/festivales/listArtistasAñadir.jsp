@@ -39,5 +39,5 @@
 	</spring:url>
 	<a href="${fn:escapeXml(festivaUrl)}" class="btn btn-default">Volver
 		a mi festival</a>
-	</td>
+
 </petclinic:layout>

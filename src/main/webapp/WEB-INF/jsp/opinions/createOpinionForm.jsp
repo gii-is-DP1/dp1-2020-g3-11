@@ -63,5 +63,14 @@
 			</div>
 		</div>
 	</form:form>
+	<div>
+		<br> <br> <br>
+
+		<spring:url value="/festivales" var="festivaUrl">
+		</spring:url>
+		<a href="${fn:escapeXml(festivaUrl)}" class="btn btn-default">Volver
+			a festivales</a>
+	</div>
 <%-- 	</jsp:body>
+
  --%></petclinic:layout>
