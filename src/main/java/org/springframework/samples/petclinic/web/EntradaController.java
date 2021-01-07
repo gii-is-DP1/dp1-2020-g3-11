@@ -1,6 +1,8 @@
 package org.springframework.samples.petclinic.web;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +22,6 @@ import org.springframework.samples.petclinic.service.EntradaService;
 import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.samples.petclinic.service.OfertaService;
 import org.springframework.samples.petclinic.service.UsuarioService;
-import org.springframework.samples.petclinic.service.exceptions.AlcoholOfertAgeException;
-import org.springframework.samples.petclinic.service.exceptions.OpinionNotAllowedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -54,12 +54,20 @@ public class EntradaController {
 		Usuario usuario = usuarioService.findUsuarioByUsername(username);
 		return usuario;
 	}
+	
+//	@GetMapping
+//	public String listOfertasAsociar(ModelMap model) {
+//
+//	model.addAttribute("recintos", recintoService.findAll());
+//		model.addAttribute("entradas", entradaService.findAll());
+//		return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
+//	}
 
 	@GetMapping
 	public String listEntradas(ModelMap model) {
 
 		model.addAttribute("entradas", entradaService.findAll());
-		return ENTRADAS_LISTING;
+		return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
 	}
 
 	@GetMapping("/festivales/{festivalId}/entradas/{entradaId}/comprar")
@@ -102,32 +110,52 @@ public class EntradaController {
 		return "entradas/entradaComprada";
 	}
 
+//	@GetMapping(value = "/festivales/{festivalId}/entradas/{entradaId}/asociar/{ofertaId}")
+//	public String asociarOfertaEntrada(ModelMap model, @PathVariable("ofertaId") int ofertaId,
+//			@PathVariable("festivalId") int festivalId, @PathVariable("entradaId") int entradaId, Principal principal) {
+//
+//		Entrada entrada = entradaService.findById(entradaId).orElse(null);
+//		Oferta o = ofertaService.findById(ofertaId);
+//		entrada.getOfertas().add(o);
+//		o.getEntradas().add(entrada);
+//
+//		entradaService.save(entrada);
+//		ofertaService.save(o);
+//
+//		return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
+//	}
+	
 	@GetMapping(value = "/festivales/{festivalId}/entradas/{entradaId}/asociar/{ofertaId}")
-	public String asociarOfertaEntrada(ModelMap model, @PathVariable("ofertaId") int ofertaId,
-			@PathVariable("festivalId") int festivalId, @PathVariable("entradaId") int entradaId, Principal principal, BindingResult binding) throws DataAccessException, AlcoholOfertAgeException {
+    public String asociarOfertaEntrada(ModelMap model, @PathVariable("ofertaId") int ofertaId,
+            @PathVariable("festivalId") int festivalId, @PathVariable("entradaId") int entradaId, Principal principal) {
 
-		try {
-		Entrada entrada = entradaService.findById(entradaId).orElse(null);
-		Oferta o = ofertaService.findById(ofertaId);
-		entrada.getOfertas().add(o);
-		o.getEntradas().add(entrada);
+        Usuario usuario = usuarioLogueado(principal);
+        Period periodo = Period.between(usuario.getFechaNacimiento(), LocalDate.now());
+        Integer edad = periodo.getYears();
 
-		entradaService.save(entrada);
-		ofertaService.save(o);
+        Oferta oferta = ofertaService.findById(ofertaId);
 
-		return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
-		
-	} catch (AlcoholOfertAgeException e) {
-		binding.rejectValue("tipoOferta", "Debes ser mayor de edad para escoger esta oferta.",
-				"Debes ser mayor de edad para escoger esta oferta.");
-		return "redirect:/festivales/{festivalId}/entradas/{entradaId}/asociar/{ofertaId}";
+        if(edad < 18 && oferta.getTipoOferta().getName().equals("Pack bebidas")) {
+        	model.addAttribute("message", "Debes ser mayor de edad para escoger esta oferta.");
+        	
+            return listEntradas(model);
+            
+        }else {
+            Entrada entrada = entradaService.findById(entradaId).orElse(null);
+            Oferta o = ofertaService.findById(ofertaId);
+            entrada.getOfertas().add(o);
+            o.getEntradas().add(entrada);
 
-	}
-	}
+            entradaService.save(entrada);
+            ofertaService.save(o);
+
+            return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
+        }
+    }
 
 	@GetMapping(value = "/festivales/{festivalId}/entradas/{entradaId}/quitar/{ofertaId}")
 	public String quitarOfertaEntrada(ModelMap model, @PathVariable("ofertaId") int ofertaId,
-			@PathVariable("festivalId") int festivalId, @PathVariable("entradaId") int entradaId, Principal principal) throws DataAccessException, AlcoholOfertAgeException {
+			@PathVariable("festivalId") int festivalId, @PathVariable("entradaId") int entradaId, Principal principal) {
 
 		Entrada entrada = entradaService.findById(entradaId).orElse(null);
 		Oferta o = ofertaService.findById(ofertaId);
@@ -142,7 +170,7 @@ public class EntradaController {
 
 	@GetMapping("/festivales/{festivalId}/entradas/{entradaId}/gracias")
 	public String graciasPorComprarEntrada(ModelMap model, @PathVariable("festivalId") int festivalId,
-			@PathVariable("entradaId") int entradaId, Principal principal) throws DataAccessException, AlcoholOfertAgeException {
+			@PathVariable("entradaId") int entradaId, Principal principal) {
 
 		Usuario usuario = usuarioLogueado(principal);
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
@@ -221,7 +249,7 @@ public class EntradaController {
 
 	@PostMapping("mifestival/entradas/{id}/edit")
 	public String editEntrada(@PathVariable("id") int id, @Valid Entrada modifiedEntrada, BindingResult binding,
-			ModelMap model, Principal principal) throws DataAccessException, AlcoholOfertAgeException {
+			ModelMap model, Principal principal) {
 
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
@@ -259,7 +287,7 @@ public class EntradaController {
 	}
 
 	@PostMapping("mifestival/entradas/new")
-	public String saveNewEntrada(@Valid Entrada entrada, BindingResult binding, ModelMap model, Principal principal) throws DataAccessException, AlcoholOfertAgeException {
+	public String saveNewEntrada(@Valid Entrada entrada, BindingResult binding, ModelMap model, Principal principal) {
 
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
