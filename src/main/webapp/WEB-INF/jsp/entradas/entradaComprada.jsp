@@ -8,6 +8,12 @@
 
 <petclinic:layout pageName="entradaComprada">
 
+	<script type="text/javascript">
+		function yesnoCheck() {
+			window.alert("Debes ser mayor de edad para escoger esta oferta.")
+		}
+	</script>
+
 	<h1>
 		<b>Confirmar datos de entrada</b>
 	</h1>
@@ -110,14 +116,23 @@
 								var="asociarOfertaUrl">
 								<spring:param name="entradaId" value="${datosEntrada.id}" />
 							</spring:url>
-							<a href="${fn:escapeXml(asociarOfertaUrl)}">Asociar con mi
-								entrada</a>
+							<br>
 
-							<!-- 						<div class="control-group"> -->
-
-							<%-- 							<petclinic:selectField name="oferta.name" label="Oferta " --%>
-							<%-- 								names="${artistas}" size="${artistas.size()}" /> --%>
-							<!-- 						</div> -->
+							<c:if test="${edad < 18}">
+								<c:if test="${oferta.tipoOferta.name == 'Pack bebidas'}">
+									<a onclick="javascript:yesnoCheck();"
+										href="${fn:escapeXml(asociarOfertaUrl)}">Asociar con mi
+										entrada </a>
+								</c:if>
+								<c:if test="${oferta.tipoOferta.name != 'Pack bebidas'}">
+									<a href="${fn:escapeXml(asociarOfertaUrl)}">Asociar con mi
+										entrada </a>
+								</c:if>
+							</c:if>
+							<c:if test="${edad >= 18}">
+								<a href="${fn:escapeXml(asociarOfertaUrl)}">Asociar con mi
+									entrada </a>
+							</c:if>
 
 						</c:forEach>
 					</c:if>
@@ -144,15 +159,15 @@
 										Precio:
 										<c:out value="${oferta.precioOferta}" />
 									</p>
-									
-										<spring:url
-								value="/festivales/${datosFestival.id}/entradas/{entradaId}/quitar/${oferta.id}"
-								var="asociarOfertaUrl">
-								<%-- 						<spring:param name="festivalId" value="${datosFestival.id}" /> --%>
-								<%--						<spring:param name="ofertaId" value="${datosOferta.id}" />  --%>
-								<spring:param name="entradaId" value="${datosEntrada.id}" />
-							</spring:url>
-							<a href="${fn:escapeXml(asociarOfertaUrl)}">Eliminar oferta</a>
+
+									<spring:url
+										value="/festivales/${datosFestival.id}/entradas/{entradaId}/quitar/${oferta.id}"
+										var="asociarOfertaUrl">
+										<%-- 						<spring:param name="festivalId" value="${datosFestival.id}" /> --%>
+										<%--						<spring:param name="ofertaId" value="${datosOferta.id}" />  --%>
+										<spring:param name="entradaId" value="${datosEntrada.id}" />
+									</spring:url>
+									<a href="${fn:escapeXml(asociarOfertaUrl)}">Eliminar oferta</a>
 
 								</c:forEach>
 						</c:if>

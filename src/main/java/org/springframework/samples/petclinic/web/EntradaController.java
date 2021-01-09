@@ -54,21 +54,6 @@ public class EntradaController {
 		Usuario usuario = usuarioService.findUsuarioByUsername(username);
 		return usuario;
 	}
-	
-//	@GetMapping
-//	public String listOfertasAsociar(ModelMap model) {
-//
-//	model.addAttribute("recintos", recintoService.findAll());
-//		model.addAttribute("entradas", entradaService.findAll());
-//		return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
-//	}
-
-	@GetMapping
-	public String listEntradas(ModelMap model) {
-
-		model.addAttribute("entradas", entradaService.findAll());
-		return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
-	}
 
 	@GetMapping("/festivales/{festivalId}/entradas/{entradaId}/comprar")
 	public String comprarEntrada(ModelMap model, @PathVariable("festivalId") int festivalId,
@@ -77,6 +62,9 @@ public class EntradaController {
 		Usuario usuario = usuarioLogueado(principal);
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
 		Entrada entrada = entradaService.findById(entradaId).orElse(null);
+		Period periodo = Period.between(usuario.getFechaNacimiento(), LocalDate.now());
+		Integer edad = periodo.getYears();
+		model.addAttribute("edad", edad);
 
 		List<Oferta> ofertas = ofertaService.findAllOfertasByFestivalId(festivalId).stream()
 				.collect(Collectors.toList());
@@ -87,10 +75,13 @@ public class EntradaController {
 
 		List<Oferta> ofertasDisp = ofertas;
 
+//		if (edad < 18) {
+//			ofertasDisp.remove(ofertasDisp.stream().filter(o -> o.getTipoOferta().getName().equals("Pack bebidas")));
+//			
+//		}
 		for (int i = 0; i < ofertasDisp.size(); i++) {
 
 			if (entrada.getOfertas().contains(ofertasDisp.get(i))) {
-
 				ofertasDisp.removeAll(entrada.getOfertas());
 
 			}
@@ -110,48 +101,31 @@ public class EntradaController {
 		return "entradas/entradaComprada";
 	}
 
-//	@GetMapping(value = "/festivales/{festivalId}/entradas/{entradaId}/asociar/{ofertaId}")
-//	public String asociarOfertaEntrada(ModelMap model, @PathVariable("ofertaId") int ofertaId,
-//			@PathVariable("festivalId") int festivalId, @PathVariable("entradaId") int entradaId, Principal principal) {
-//
-//		Entrada entrada = entradaService.findById(entradaId).orElse(null);
-//		Oferta o = ofertaService.findById(ofertaId);
-//		entrada.getOfertas().add(o);
-//		o.getEntradas().add(entrada);
-//
-//		entradaService.save(entrada);
-//		ofertaService.save(o);
-//
-//		return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
-//	}
-	
 	@GetMapping(value = "/festivales/{festivalId}/entradas/{entradaId}/asociar/{ofertaId}")
-    public String asociarOfertaEntrada(ModelMap model, @PathVariable("ofertaId") int ofertaId,
-            @PathVariable("festivalId") int festivalId, @PathVariable("entradaId") int entradaId, Principal principal) {
+	public String asociarOfertaEntrada(ModelMap model, @PathVariable("ofertaId") int ofertaId,
+			@PathVariable("festivalId") int festivalId, @PathVariable("entradaId") int entradaId, Principal principal) {
 
-        Usuario usuario = usuarioLogueado(principal);
-        Period periodo = Period.between(usuario.getFechaNacimiento(), LocalDate.now());
-        Integer edad = periodo.getYears();
+		Usuario usuario = usuarioLogueado(principal);
+		Period periodo = Period.between(usuario.getFechaNacimiento(), LocalDate.now());
+		Integer edad = periodo.getYears();
+		model.addAttribute("edad", edad);
+		Oferta oferta = ofertaService.findById(ofertaId);
 
-        Oferta oferta = ofertaService.findById(ofertaId);
+		if (edad < 18 && oferta.getTipoOferta().getName().equals("Pack bebidas")) {
+			return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
 
-        if(edad < 18 && oferta.getTipoOferta().getName().equals("Pack bebidas")) {
-        	model.addAttribute("message", "Debes ser mayor de edad para escoger esta oferta.");
-        	
-            return listEntradas(model);
-            
-        }else {
-            Entrada entrada = entradaService.findById(entradaId).orElse(null);
-            Oferta o = ofertaService.findById(ofertaId);
-            entrada.getOfertas().add(o);
-            o.getEntradas().add(entrada);
+		} else {
+			Entrada entrada = entradaService.findById(entradaId).orElse(null);
+			Oferta o = ofertaService.findById(ofertaId);
+			entrada.getOfertas().add(o);
+			o.getEntradas().add(entrada);
 
-            entradaService.save(entrada);
-            ofertaService.save(o);
+			entradaService.save(entrada);
+			ofertaService.save(o);
 
-            return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
-        }
-    }
+			return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
+		}
+	}
 
 	@GetMapping(value = "/festivales/{festivalId}/entradas/{entradaId}/quitar/{ofertaId}")
 	public String quitarOfertaEntrada(ModelMap model, @PathVariable("ofertaId") int ofertaId,
@@ -232,19 +206,6 @@ public class EntradaController {
 	@InitBinder("entrada")
 	public void initEntradaBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new EntradaValidator());
-	}
-
-	@GetMapping("mifestival/entradas/{id}/edit")
-	public String editEntrada(@PathVariable("id") int id, ModelMap model) {
-
-		Optional<Entrada> entrada = entradaService.findById(id);
-		if (entrada.isPresent()) {
-			model.addAttribute("entrada", entrada.get());
-			return ENTRADAS_FORM;
-		} else {
-			model.addAttribute("message", "No podemos encontrar la entrada que intentas editar!");
-			return listEntradas(model);
-		}
 	}
 
 	@PostMapping("mifestival/entradas/{id}/edit")
