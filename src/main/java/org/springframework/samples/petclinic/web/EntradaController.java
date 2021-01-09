@@ -1,6 +1,8 @@
 package org.springframework.samples.petclinic.web;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +12,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Entrada;
 import org.springframework.samples.petclinic.model.EntradaType;
 import org.springframework.samples.petclinic.model.Festival;
@@ -52,13 +55,6 @@ public class EntradaController {
 		return usuario;
 	}
 
-	@GetMapping
-	public String listEntradas(ModelMap model) {
-
-		model.addAttribute("entradas", entradaService.findAll());
-		return ENTRADAS_LISTING;
-	}
-
 	@GetMapping("/festivales/{festivalId}/entradas/{entradaId}/comprar")
 	public String comprarEntrada(ModelMap model, @PathVariable("festivalId") int festivalId,
 			@PathVariable("entradaId") int entradaId, Principal principal) {
@@ -66,6 +62,9 @@ public class EntradaController {
 		Usuario usuario = usuarioLogueado(principal);
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
 		Entrada entrada = entradaService.findById(entradaId).orElse(null);
+		Period periodo = Period.between(usuario.getFechaNacimiento(), LocalDate.now());
+		Integer edad = periodo.getYears();
+		model.addAttribute("edad", edad);
 
 		List<Oferta> ofertas = ofertaService.findAllOfertasByFestivalId(festivalId).stream()
 				.collect(Collectors.toList());
@@ -76,10 +75,13 @@ public class EntradaController {
 
 		List<Oferta> ofertasDisp = ofertas;
 
+//		if (edad < 18) {
+//			ofertasDisp.remove(ofertasDisp.stream().filter(o -> o.getTipoOferta().getName().equals("Pack bebidas")));
+//			
+//		}
 		for (int i = 0; i < ofertasDisp.size(); i++) {
 
 			if (entrada.getOfertas().contains(ofertasDisp.get(i))) {
-
 				ofertasDisp.removeAll(entrada.getOfertas());
 
 			}
@@ -103,15 +105,26 @@ public class EntradaController {
 	public String asociarOfertaEntrada(ModelMap model, @PathVariable("ofertaId") int ofertaId,
 			@PathVariable("festivalId") int festivalId, @PathVariable("entradaId") int entradaId, Principal principal) {
 
-		Entrada entrada = entradaService.findById(entradaId).orElse(null);
-		Oferta o = ofertaService.findById(ofertaId);
-		entrada.getOfertas().add(o);
-		o.getEntradas().add(entrada);
+		Usuario usuario = usuarioLogueado(principal);
+		Period periodo = Period.between(usuario.getFechaNacimiento(), LocalDate.now());
+		Integer edad = periodo.getYears();
+		model.addAttribute("edad", edad);
+		Oferta oferta = ofertaService.findById(ofertaId);
 
-		entradaService.save(entrada);
-		ofertaService.save(o);
+		if (edad < 18 && oferta.getTipoOferta().getName().equals("Pack bebidas")) {
+			return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
 
-		return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
+		} else {
+			Entrada entrada = entradaService.findById(entradaId).orElse(null);
+			Oferta o = ofertaService.findById(ofertaId);
+			entrada.getOfertas().add(o);
+			o.getEntradas().add(entrada);
+
+			entradaService.save(entrada);
+			ofertaService.save(o);
+
+			return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
+		}
 	}
 
 	@GetMapping(value = "/festivales/{festivalId}/entradas/{entradaId}/quitar/{ofertaId}")
@@ -193,19 +206,6 @@ public class EntradaController {
 	@InitBinder("entrada")
 	public void initEntradaBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new EntradaValidator());
-	}
-
-	@GetMapping("mifestival/entradas/{id}/edit")
-	public String editEntrada(@PathVariable("id") int id, ModelMap model) {
-
-		Optional<Entrada> entrada = entradaService.findById(id);
-		if (entrada.isPresent()) {
-			model.addAttribute("entrada", entrada.get());
-			return ENTRADAS_FORM;
-		} else {
-			model.addAttribute("message", "No podemos encontrar la entrada que intentas editar!");
-			return listEntradas(model);
-		}
 	}
 
 	@PostMapping("mifestival/entradas/{id}/edit")

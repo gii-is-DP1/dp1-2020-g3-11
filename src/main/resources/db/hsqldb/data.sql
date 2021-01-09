@@ -30,6 +30,10 @@ INSERT INTO users(username,password,enabled) VALUES ('usuarioPrueba','usuarioPru
 INSERT INTO authorities(id,username,authority) VALUES (13,'usuarioPrueba','usuario');
 INSERT INTO usuario VALUES (60, 'nombre', 'Apellido', '45987990X', 'ale@sponsor.com', '1993-08-10',null,'692771112', 1,'usuarioPrueba');
 
+INSERT INTO users(username,password,enabled) VALUES ('MenorEdad','MenorEdad',TRUE);
+INSERT INTO authorities(id,username,authority) VALUES (18,'MenorEdad','usuario');
+INSERT INTO usuario VALUES (61, 'nombre', 'Apellido', '45987996X', 'menorEdad@sponsor.com', '2020-08-10',null,'692729112', 1,'MenorEdad');
+
 
 --sponsor--
 INSERT INTO users(username,password,enabled) VALUES ('sponsorPrueba','sponsorPrueba',TRUE);
