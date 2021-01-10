@@ -1,7 +1,6 @@
 package org.springframework.samples.petclinic.service;
 
-import java.util.Collection;  
-import java.util.Optional;
+import java.util.Collection;    
 
 import javax.validation.Valid;
 
@@ -15,16 +14,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class ConcertService {
 
-	@Autowired
 	ConcertRepository concertRepository;
 
 	
 	public Collection<Concert> findAll() throws DataAccessException{
 		return concertRepository.findAll();
 	}
+	
+	@Autowired
+	public ConcertService(ConcertRepository concertRepository)  throws DataAccessException{
+		this.concertRepository = concertRepository;
+	}
 
-	public Optional<Concert> findById(int id) throws DataAccessException {
-		return concertRepository.findById(id);
+	public Concert findById(int id) throws DataAccessException {
+		return concertRepository.findById(id).get();
 	}
 
 	public void delete(Concert concierto) throws DataAccessException {
@@ -32,12 +35,13 @@ public class ConcertService {
 
 	}
 
-	public void save(@Valid Concert concierto) throws DataAccessException, ConcertOutOfDateException {
-		if(concierto.getHoraCom().toLocalDate().isBefore(concierto.getFestival().getFechaCom()) ||
-		concierto.getHoraFin().toLocalDate().isAfter(concierto.getFestival().getFechaFin())){
+	public void save(@Valid Concert concert) throws DataAccessException, ConcertOutOfDateException {
+		if(concert.getHoraCom().toLocalDate().isBefore(concert.getFestival().getFechaCom()) ||
+				concert.getHoraFin().toLocalDate().isAfter(concert.getFestival().getFechaFin())){
 			throw new ConcertOutOfDateException();
-		}else {
-			concertRepository.save(concierto);
+		}
+		else {
+			concertRepository.save(concert);
 
 		}
 

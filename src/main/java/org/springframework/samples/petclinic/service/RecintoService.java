@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Concert;
+import org.springframework.samples.petclinic.model.Puesto;
 import org.springframework.samples.petclinic.model.Recinto;
 import org.springframework.samples.petclinic.model.TipoRecinto;
 import org.springframework.samples.petclinic.repository.RecintoRepository;
@@ -73,8 +74,19 @@ public class RecintoService {
 		return recintoRepo.findByRecintoIdFestivalId(festivalId, recintoId);
 	}
 
+	@Transactional(readOnly = true)
 	public Collection<Concert> findAllConciertosById(int recintoId) {
 		return recintoRepo.findAllConciertosById(recintoId);
+	}
+
+	@Transactional(readOnly = true)
+	public Collection<Puesto> findAllPuestosById(int recintoId) {
+		return recintoRepo.findAllPuestosById(recintoId);
+	}
+
+	@Transactional(readOnly = true)
+	public Recinto findRecintoById(int id) throws DataAccessException {
+		return recintoRepo.findById(id).get();
 	}
 	
 	

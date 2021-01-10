@@ -57,7 +57,7 @@ public class RecintoServiceTests {
 	void shouldDeleteRecinto() throws Exception {
 		Collection<Recinto> listRecinto = this.recintoService.findAll();
 		int tamaño = listRecinto.size();
-		Recinto recinto = this.recintoService.findById(4).orElse(null);
+		Recinto recinto = this.recintoService.findById(3).get();
 
 		this.recintoService.delete(recinto);
 

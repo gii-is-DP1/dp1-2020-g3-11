@@ -22,9 +22,14 @@ public class FestivalService {
 //	public Collection<Artista> findAllArtistasByFestivalId(int festivalId){
 //		return festivalRepo.findAllArtistasByFestivalId(festivalId);
 //	}
-	
+
 	public Collection<Festival> findAll() {
 		return festivalRepo.findAll();
+	}
+
+	@Transactional(readOnly = true)
+	public Festival findFestivalByAdminId(Integer id) {
+		return festivalRepo.findFestivalByAdminId(id);
 	}
 
 	public void delete(Festival festival) throws DataAccessException {
@@ -35,25 +40,34 @@ public class FestivalService {
 	public void save(@Valid Festival festival) {
 		festivalRepo.save(festival);
 	}
-	
+
+	public void reducirEntradasRestantes(@Valid Festival festival) {
+		FestivalRepository.reducirEntradasrestantes(festival);
+	}
+
 	@Transactional(readOnly = true)
 	public Festival findFestivalByName(String name) throws DataAccessException {
 		return festivalRepo.findFestivalByName(name);
 	}
-	
+
 	@Transactional(readOnly = true)
 	public Optional<Festival> findFestivalById(int id) throws DataAccessException {
 		return festivalRepo.findById(id);
 	}
-	
+
 	@Transactional
 	public LocalDate findStartDateFestival(int id) throws DataAccessException {
 		return festivalRepo.findStartDateFestival(id);
 	}
-	
+
 	@Transactional
 	public LocalDate findEndDateFestival(int id) throws DataAccessException {
 		return festivalRepo.findEndDateFestival(id);
+	}
+	
+	@Transactional(readOnly = true)
+	public Festival findFestivalById2(int id) throws DataAccessException {
+		return festivalRepo.findById(id).get();
 	}
 
 }

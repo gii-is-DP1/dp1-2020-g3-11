@@ -58,7 +58,7 @@ class FestivalServiceTest {
 	@Test
 	void shouldFindAllFestival() {
 		Collection<Festival> listFest = this.festivalService.findAll();
-		assertThat(listFest.size()).isEqualTo(4);
+		assertThat(listFest.size()).isEqualTo(3);
 	}
 
 	// FIND FESTIVAL BY ID
@@ -76,7 +76,6 @@ class FestivalServiceTest {
 		assertThat(festival.getName()).isEqualTo("Cabo de Plata");
 	}
 
-
 	// INSERT festival
 
 	@Test
@@ -89,8 +88,8 @@ class FestivalServiceTest {
 		festival.setName("CumbioLand");
 		festival.setAforoMax(10);
 		festival.setLocalizacion("Murcia");
-		festival.setFechaCom(LocalDate.of(2020, 12, 20));
-		festival.setFechaFin(LocalDate.of(2020, 12, 23));
+		festival.setFechaCom(LocalDate.of(2022, 12, 20));
+		festival.setFechaFin(LocalDate.of(2022, 12, 23));
 		try {
 			this.festivalService.save(festival);
 		} catch (Exception ex) {
@@ -101,22 +100,6 @@ class FestivalServiceTest {
 		assertThat(festival.getId()).isNotNull();
 	}
 
-	@Test
-	@Transactional
-	void shouldDeleteFestival() throws Exception {
-		Collection<Festival> listfestival = this.festivalService.findAll();
-		int tamaño = listfestival.size();
-		Festival festival = this.festivalService.findFestivalById(4).orElse(null);
-
-		this.festivalService.delete(festival);
-
-		listfestival = this.festivalService.findAll();
-		assertThat(listfestival.size()).isEqualTo(tamaño - 1);
-
-	}
-
-	@Test
-	@Transactional
 	void shouldThrowExceptionInsertingNewfestivalBlankParameter() throws Exception {
 
 		Festival festival = new Festival();
@@ -125,7 +108,7 @@ class FestivalServiceTest {
 		festival.setLocalizacion("");
 		festival.setFechaCom(LocalDate.of(2020, 12, 20));
 		festival.setFechaFin(LocalDate.of(2020, 12, 23));
-		
+
 		assertThrows(ConstraintViolationException.class, () -> {
 			this.festivalService.save(festival);
 		});

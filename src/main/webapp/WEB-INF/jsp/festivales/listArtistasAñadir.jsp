@@ -13,10 +13,7 @@
 	<table id="artistaTable" class="table table-striped">
 		<thead>
 			<tr>
-				<th style="width: 75%;">Nombre</th>
-				<th style="width: 12%;"></th>
-				<th style="width: 13%;"></th>
-				<th></th>
+				<th style="width: 85%">Nombre</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -29,20 +26,18 @@
 
 
 					<td><spring:url
-							value="/festivales/{festivalId}/artistas/{artistaId}/add"
+							value="/mifestival/artistas/{artistaId}/add"
 							var="artistaUrl">
-							<spring:param name="festivalId" value="${festival.id}" />
 							<spring:param name="artistaId" value="${artista.id}" />
-						</spring:url> <a href="${fn:escapeXml(artistaUrl)}">Asociar con mi festival</a></td>
+						</spring:url> <a href="${fn:escapeXml(artistaUrl)}" >Asociar con mi festival</a></td>
 				</tr>
-				<%-- </c:if> --%>
 			</c:forEach>
 		</tbody>
 	</table>
-	
-	<spring:url
-							value="/festivales/{festivalId}"
-							var="festivaUrl">
-							<spring:param name="festivalId" value="${festival.id}" />
-						</spring:url> <a href="${fn:escapeXml(festivaUrl)}"><b>Volver a mi festival</b></a></td>
+
+	<spring:url value="/mifestival" var="festivaUrl">
+	</spring:url>
+	<a href="${fn:escapeXml(festivaUrl)}" class="btn btn-default">Volver
+		a mi festival</a>
+
 </petclinic:layout>

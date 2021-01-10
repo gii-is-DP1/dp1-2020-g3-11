@@ -1,8 +1,9 @@
 package org.springframework.samples.petclinic.model;
 
 
-import java.time.LocalDate;  
+import java.time.LocalDate;     
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,21 +14,24 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "concierto")
 public class Concert extends BaseEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "recinto_id")
-//	@NotNull
+	@NotNull
 	private Recinto recinto;
 	
 	@ManyToOne
 	@JoinColumn(name = "festival_id")
+	@NotNull
 	private Festival festival;
 	
 	@ManyToOne

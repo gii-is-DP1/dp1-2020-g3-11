@@ -16,7 +16,6 @@ public class RecintoValidator implements Validator {
 		String name = recinto.getName();
 		Integer huecos = recinto.getHuecos();
 		TipoRecinto tipoRecinto = recinto.getTipoRecinto();
-		Integer numEscenarios = recinto.getNumMaxEscenarios();
 
 		if (tipoRecinto == null)
 			errors.rejectValue("name", "Escoge un tipo de recinto", "Escoge un tipo de recinto");
@@ -35,14 +34,6 @@ public class RecintoValidator implements Validator {
 			}
 		}
 
-		if (tipoRecinto != null && tipoRecinto.getName().equals("Escenario") && numEscenarios == null) {
-			errors.rejectValue("numMaxEscenarios", REQUIRED, REQUIRED);
-		}
-
-		if (tipoRecinto != null && tipoRecinto.getName().equals("Escenario") && numEscenarios <= 0) {
-			errors.rejectValue("numMaxEscenarios", "El nº de escenarios debe ser mayor que 0",
-					"El nº de escenarios debe ser mayor que 0");
-		}
 
 	}
 

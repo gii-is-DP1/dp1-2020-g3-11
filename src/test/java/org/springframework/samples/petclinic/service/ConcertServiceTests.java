@@ -15,7 +15,7 @@
  */
 package org.springframework.samples.petclinic.service;
 
-import static org.assertj.core.api.Assertions.assertThat;  
+import static org.assertj.core.api.Assertions.assertThat;   
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
@@ -89,7 +89,7 @@ class ConcertServiceTests {
 
 	@Test
 	void shouldFindConcertById() throws Exception {
-		Concert concert2 = this.concertService.findById(2).get();
+		Concert concert2 = this.concertService.findById(2);
 		assertThat(concert2.getFecha()).isEqualTo(LocalDate.of(2021, 7, 26));
 		assertThat(concert2.getFestival().getId()).isEqualTo(2);
 	}
@@ -164,7 +164,7 @@ void shoudFindAllConcertFestivalId() throws Exception {
 
 	@Test
 	@Transactional
-	public void shouldThrowExceptionInsertingConcertsWithWrongDates() {
+	public void shouldThrowExceptionInsertingConcertsWithWrongDates() throws DataAccessException {
 		Concert concert = new Concert();
 		Artista artist = this.artistService.findArtistaById(2);
 		Recinto rec = this.recintService.findById(5).get();
@@ -201,14 +201,14 @@ void shoudFindAllConcertFestivalId() throws Exception {
 	@Test
 	@Transactional
 	void shouldUpdateConcert() throws DataAccessException, ConcertOutOfDateException {
-		Concert concert = this.concertService.findById(2).get();
+		Concert concert = this.concertService.findById(2);
 		LocalDateTime horaCom = concert.getHoraCom();
 		horaCom.plusMinutes(10);
 		concert.setHoraCom(horaCom);
 		this.concertService.save(concert);
 
 		// retrieving new name from database
-		concert = this.concertService.findById(2).get();
+		concert = this.concertService.findById(2);
 		assertThat(concert.getHoraCom()).isEqualTo(horaCom);
 	}
 	
@@ -217,7 +217,7 @@ void shoudFindAllConcertFestivalId() throws Exception {
 	@Test
 	@Transactional
 	void shouldThrowExceptionUpdatingConcertWithWrongDates() throws DataAccessException, ConcertOutOfDateException {
-		Concert concert = this.concertService.findById(2).get();
+		Concert concert = this.concertService.findById(2);
 		LocalDateTime horaFin = concert.getHoraFin();
 		concert.setHoraFin(horaFin.plusDays(10));
 
@@ -233,7 +233,7 @@ void shoudFindAllConcertFestivalId() throws Exception {
 	void shouldDeleteConcert() throws Exception {
 		List<Concert> concerts = (List<Concert>) this.concertService.findAllConcertsByFestivalId(2);
 		int size = concerts.size();
-		Concert concert = this.concertService.findById(2).get();
+		Concert concert = this.concertService.findById(2);
 
 		this.concertService.delete(concert);
 

@@ -22,7 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.petclinic.model.Artista;
-import org.springframework.samples.petclinic.model.FestivalArtista;
 import org.springframework.samples.petclinic.model.GeneroType;
 import org.springframework.stereotype.Service;
 
@@ -105,8 +104,7 @@ class ArtistServiceTests {
 		artist.setCorreo("juanlu@gmail.com");
 		artist.setGenero(genre);
 		artist.setTelefono("689542122");
-		Set<FestivalArtista> fa = new HashSet<FestivalArtista>();
-		artist.setFestivales(fa);
+		//artist.setFestivales(fa);
 
 		try {
 			this.artistService.save(artist);
@@ -142,8 +140,7 @@ class ArtistServiceTests {
 		artist.setCorreo("juanlu@gmail.com");
 		artist.setGenero(genre);
 		artist.setTelefono("689542122");
-		Set<FestivalArtista> fa = new HashSet<FestivalArtista>();
-		artist.setFestivales(fa);
+		//artist.setFestivales(fa);
 		assertThrows(ConstraintViolationException.class, () -> {
 			this.artistService.save(artist);
 		});

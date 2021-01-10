@@ -14,6 +14,7 @@ import org.springframework.samples.petclinic.service.FestivalService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -69,6 +70,15 @@ public class ArtistaController {
 
 	@PostMapping(value = "/artistas/new")
 	public String processCreationForm(@Valid Artista artista, BindingResult result, ModelMap model) {
+		if (artistaService.checkCorreoExists(artista.getCorreo())) {
+			result.addError(new FieldError("artista", "correo", "El correo ya existe"));
+		}
+		if (artistaService.checkTelefonoExists(artista.getTelefono())) {
+			result.addError(new FieldError("artista", "telefono", "El telefono ya existe"));
+		}
+		if (artistaService.checkNombreExists(artista.getName())) {
+			result.addError(new FieldError("artista", "name", "El nombre ya existe"));
+		}
 		if (result.hasErrors()) {
 			return ARTISTAS_FORM;
 		} else {

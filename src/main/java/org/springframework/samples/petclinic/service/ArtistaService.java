@@ -16,7 +16,9 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -47,27 +49,24 @@ public class ArtistaService {
 	public Artista findArtistaById(int id) throws DataAccessException {
 		return artistaRepository.findArtistaById(id);
 	}
+	
+	@Transactional(readOnly = true)
+	public Set<Artista> findArtistasByFestivalId(int festivalId) throws DataAccessException {
+		return artistaRepository.findArtistasByFestivalId(festivalId);
+	}
 
 	public void save(@Valid Artista artista) throws DataAccessException {
 		artistaRepository.save(artista);
 	}
-	
+
 	public GeneroType findGeneroType(String genero) throws DataAccessException {
 		return artistaRepository.findGeneroTypeByName(genero);
 	}
 
-//	public void meteArtistaFestival(@Valid Artista artista, int festivalId) throws DataAccessException {
-//		Festival festival = festivalRepo.findById(festivalId).orElse(null);
-//		if (!festival.getArtistas().contains(artista)) {
-//			festival.addArtista(artista);
-//			artista.addFestival(festival);
-//		}
-//	}
-	
 	public Collection<String> findAllArtistas() throws DataAccessException {
 		return artistaRepository.findAllArtistas();
-	} 
-	
+	}
+
 	public Artista findArtistaByName(String name) throws DataAccessException {
 		return artistaRepository.findArtistaByName(name);
 	}
@@ -81,7 +80,19 @@ public class ArtistaService {
 	public Collection<String> findGeneroTypes() throws DataAccessException {
 		return artistaRepository.findGeneroTypes();
 	}
+
+	public boolean checkCorreoExists(String correo) {
+		return artistaRepository.findArtistaByCorreo(correo).isPresent();
+	}
 	
+	public boolean checkTelefonoExists(String telefono) {
+		return artistaRepository.findArtistaByTelefono(telefono).isPresent();
+	}
+
+	public boolean checkNombreExists(String name) {
+		return artistaRepository.findArtistaByName2(name).isPresent();
+	}
 	
+
 
 }

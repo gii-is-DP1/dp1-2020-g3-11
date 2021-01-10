@@ -15,68 +15,21 @@
  */
 package org.springframework.samples.petclinic.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Collection;
+import static org.assertj.core.api.Assertions.assertThat; 
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.validation.ConstraintViolationException;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.samples.petclinic.model.Recinto;
-import org.springframework.samples.petclinic.model.Usuario;
-import org.springframework.samples.petclinic.service.exceptions.DuplicatedPetNameException;
-import org.springframework.samples.petclinic.util.EntityUtils;
-import org.springframework.samples.petclinic.model.Artista;
-import org.springframework.samples.petclinic.model.Concert;
 import org.springframework.samples.petclinic.model.Entrada;
 import org.springframework.samples.petclinic.model.EntradaType;
 import org.springframework.samples.petclinic.model.Festival;
-import org.springframework.samples.petclinic.model.Owner;
-import org.springframework.samples.petclinic.model.Pet;
-import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Integration test of the Service and the Repository layer.
- * <p>
- * ClinicServiceSpringDataJpaTests subclasses benefit from the following
- * services provided by the Spring TestContext Framework:
- * </p>
- * <ul>
- * <li><strong>Spring IoC container caching</strong> which spares us unnecessary
- * set up time between test execution.</li>
- * <li><strong>Dependency Injection</strong> of test fixture instances, meaning
- * that we don't need to perform application context lookups. See the use of
- * {@link Autowired @Autowired} on the <code>{@link
- * ConcertServiceTests#clinicService clinicService}</code> instance variable,
- * which uses autowiring <em>by type</em>.
- * <li><strong>Transaction management</strong>, meaning each test method is
- * executed in its own transaction, which is automatically rolled back by
- * default. Thus, even if tests insert or otherwise change database state, there
- * is no need for a teardown or cleanup script.
- * <li>An {@link org.springframework.context.ApplicationContext
- * ApplicationContext} is also inherited and can be used for explicit bean
- * lookup if necessary.</li>
- * </ul>
- *
- * @author Ken Krebs
- * @author Rod Johnson
- * @author Juergen Hoeller
- * @author Sam Brannen
- * @author Michael Isvy
- * @author Dave Syer
- */
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 public class EntradaServiceTests {

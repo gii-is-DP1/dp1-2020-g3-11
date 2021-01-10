@@ -36,8 +36,7 @@ class ArtistValidatorTest {
 		GeneroType g = new GeneroType();
 		artista.setGenero(g);
 		artista.setTelefono("");
-		Set<FestivalArtista> fa = new HashSet<FestivalArtista>();
-		artista.setFestivales(fa);
+		//artista.setFestivales(fa);
 
 		Validator validator = this.createValidator();
 		Set<ConstraintViolation<Artista>> constraintViolations = validator.validate(artista);
@@ -59,8 +58,7 @@ class ArtistValidatorTest {
 		GeneroType g = new GeneroType();
 		artista.setGenero(g);
 		artista.setTelefono("678789888");
-		Set<FestivalArtista> fa = new HashSet<FestivalArtista>();
-		artista.setFestivales(fa);
+		//artista.setFestivales(fa);
 
 		Validator validator = this.createValidator();
 		Set<ConstraintViolation<Artista>> constraintViolations = validator.validate(artista);
@@ -82,8 +80,7 @@ class ArtistValidatorTest {
 		GeneroType g = new GeneroType();
 		artista.setGenero(g);
 		artista.setTelefono("678789888");
-		Set<FestivalArtista> fa = new HashSet<FestivalArtista>();
-		artista.setFestivales(fa);
+		//artista.setFestivales(fa);
 
 		Validator validator = this.createValidator();
 		Set<ConstraintViolation<Artista>> constraintViolations = validator.validate(artista);
