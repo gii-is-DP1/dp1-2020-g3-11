@@ -27,6 +27,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @EnableWebSecurity
@@ -227,36 +228,42 @@ public class FestivalController {
 		}
 	}
 
-	@GetMapping("/mifestival/edit")
-	public String editFestival(Principal principal, ModelMap model) {
-		Usuario usuario = usuarioLogueado(principal);
-		Integer festivalId = usuario.getFestival().getId();
-		Optional<Festival> festival = festivalService.findFestivalById(festivalId);
-		if (festival.isPresent()) {
-			model.addAttribute("festival", festival.get());
-			return FESTIVALES_FORM;
-		} else {
-			model.addAttribute("message", "No se encuentra el festival a editar.");
-			return showFestival(model, principal);
-		}
-	}
-
-	@PostMapping("/mifestival/edit")
-	public String editFestival(Principal principal, @Valid Festival modifiedFestival, BindingResult binding,
-			ModelMap model) {
-		Usuario usuario = usuarioLogueado(principal);
-		Integer festivalId = usuario.getFestival().getId();
-		Optional<Festival> festival = festivalService.findFestivalById(festivalId);
-
-		if (binding.hasErrors()) {
-			return FESTIVALES_FORM;
-		} else {
-			BeanUtils.copyProperties(modifiedFestival, festival.get(), "id", "festivalAdmin");
-			festivalService.save(festival.orElse(null));
-			model.addAttribute("message", "Festival editado correctamente.");
-			return showFestival(model, principal);
-		}
-	}
+//	@GetMapping("/mifestival/edit")
+//	public String editFestival(Principal principal, ModelMap model) {
+//		Usuario usuario = usuarioLogueado(principal);
+//		Integer festivalId = usuario.getFestival().getId();
+//		Optional<Festival> festival = festivalService.findFestivalById(festivalId);
+//		if (festival.isPresent()) {
+//			model.addAttribute("festival", festival.get());
+//			return FESTIVALES_FORM;
+//		} else {
+//			model.addAttribute("message", "No se encuentra el festival a editar.");
+//			return showFestival(model, principal);
+//		}
+//	}
+//
+//	@PostMapping("/mifestival/edit")
+//	public String editFestival(Principal principal, @Valid Festival modifiedFestival, BindingResult binding,
+//			@RequestParam(value = "version", required = false) Integer version, ModelMap model) {
+//		Usuario usuario = usuarioLogueado(principal);
+//		Integer festivalId = usuario.getFestival().getId();
+//		Optional<Festival> festival = festivalService.findFestivalById(festivalId);
+//
+//		if (binding.hasErrors()) {
+//			return FESTIVALES_FORM;
+//		} else {
+//			Festival festivalBD = this.festivalService.findFestivalById2(modifiedFestival.getId());
+//			if(festivalBD.getVersion() != version) {
+//				model.put("message", "Modificación concurrente del festival, inténtelo más tarde por favor.");
+//				return FESTIVALES_FORM;
+//			}
+//			BeanUtils.copyProperties(modifiedFestival, festival.get(), "id", "festivalAdmin");
+//			modifiedFestival.incrementVersion();
+//			festivalService.save(festival.orElse(null));
+//			model.addAttribute("message", "Festival editado correctamente.");
+//			return showFestival(model, principal);
+//		}
+//	}
 
 //	@GetMapping("/mifestival/delete")
 //	public String deleteFestival(Principal principal, ModelMap model) {

@@ -17,6 +17,7 @@
 	<form:form modelAttribute="recinto" class="form-horizontal"
 		id="add-recinto-form">
 		<div class="form-group has-feedback">
+			<input type="hidden" name="version" value="${recinto.version}"/>
 			<petclinic:inputField label="Nombre" name="name" />
 			<petclinic:inputField label="Nº huecos de puestos" name="huecos" />
 

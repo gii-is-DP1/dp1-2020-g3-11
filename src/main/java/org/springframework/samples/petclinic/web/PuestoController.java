@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PuestoController {
@@ -174,7 +175,7 @@ public class PuestoController {
 
 	@PostMapping("/mifestival/puestos/{id}/edit")
 	public String processUpdatePuesto(@PathVariable("id") int id, Principal principal, @Valid Puesto puesto,
-			BindingResult binding, ModelMap model) {
+			BindingResult binding, @RequestParam(value = "version", required = false) Integer version, ModelMap model) {
 
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
@@ -185,11 +186,17 @@ public class PuestoController {
 			return PUESTOS_FORM;
 
 		} else {
+			Puesto puestoBD = this.puestoService.findById(id).get();
+			if(puestoBD.getVersion() != version) {
+				model.put("message", "Modificación concurrente del puesto, inténtelo más tarde por favor.");
+				return PUESTOS_FORM;
+			}
 			BeanUtils.copyProperties(puesto, modifiedPuesto, "id");
 			modifiedPuesto.setTipoPuesto(this.puestoService.findPuestoType(puesto.getTipoPuesto().getName()));
 			modifiedPuesto.setTipoTamanio(this.puestoService.findTamañoType(puesto.getTipoTamanio().getName()));
 			modifiedPuesto.setFestival(festivalService.findFestivalById(festivalId).get());
 			modifiedPuesto.setRecinto(recintoService.findRecintoByName(puesto.getRecinto().getName()));
+			modifiedPuesto.incrementVersion();
 			this.puestoService.save(modifiedPuesto);
 			model.addAttribute("message", "Puesto actualizado correctamente!");
 			return "redirect:/mifestival/puestos";

@@ -14,6 +14,7 @@
 	<form:form modelAttribute="artista" class="form-horizontal"
 		id="add-artista-form">
 		<div class="form-group has-feedback">
+			<input type="hidden" name="version" value="${artista.version}"/>
 			<petclinic:inputField label="Nombre" name="name" />
 			<petclinic:inputField label="Correo Electrónico" name="correo" />
 			<div class="control-group">

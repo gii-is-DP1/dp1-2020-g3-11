@@ -15,7 +15,9 @@
 	<form:form modelAttribute="entrada" class="form-horizontal"
 		id="add-entrada-form">
 		<div class="form-group has-feedback">
-
+			
+			<input type="hidden" name="version" value="${entrada.version}"/>
+			
 			<petclinic:inputField label="Precio" name="precio" />
 			<div class="control-group">
 				<petclinic:selectField name="entradaType.name"

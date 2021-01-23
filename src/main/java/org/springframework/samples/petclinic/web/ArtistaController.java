@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ArtistaController {
@@ -98,15 +99,21 @@ public class ArtistaController {
 
 	@PostMapping(value = "/artistas/{artistaId}/edit")
 	public String processUpdateForm(@Valid Artista artista, BindingResult result, Festival festival,
-			@PathVariable("artistaId") int artistaId, ModelMap model) {
+			@PathVariable("artistaId") int artistaId, @RequestParam(value = "version", required = false) Integer version, ModelMap model) {
 		if (result.hasErrors()) {
 			model.put("artista", artista);
 			return ARTISTAS_FORM;
 		} else {
+			Artista artistaBD = this.artistaService.findArtistaById(artistaId);
+			if(artistaBD.getVersion() != version) {
+				model.put("message", "Modificación concurrente del artista, inténtelo más tarde por favor.");
+				return ARTISTAS_FORM;
+			}
 			Artista artistaToUpdate = this.artistaService.findArtistaById(artistaId);
 			BeanUtils.copyProperties(artista, artistaToUpdate, "id", "festival");
 			GeneroType genero = this.artistaService.findGeneroType(artistaToUpdate.getGenero().getName());
 			artistaToUpdate.setGenero(genero);
+			artistaToUpdate.incrementVersion();
 			this.artistaService.save(artistaToUpdate);
 		}
 		return listArtistas(model);

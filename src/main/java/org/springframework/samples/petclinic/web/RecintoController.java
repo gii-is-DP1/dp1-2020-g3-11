@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/mifestival/recintos")
@@ -85,16 +86,22 @@ public class RecintoController {
 
 	@PostMapping("/{id}/edit")
 	public String editRecinto(@PathVariable("id") int id, Principal principal, @Valid Recinto modifiedRecinto,
-			BindingResult binding, ModelMap model) {
+			BindingResult binding, @RequestParam(value = "version", required = false) Integer version, ModelMap model) {
 		Optional<Recinto> recinto = recintoService.findById(id);
 		if (binding.hasErrors()) {
 			return RECINTOS_FORM;
 		} else {
+			Recinto recintoBD = this.recintoService.findRecintoById(id);
+			if(recintoBD.getVersion() != version) {
+				model.put("message", "Modificación concurrente del recinto, inténtelo más tarde por favor.");
+				return RECINTOS_FORM;
+			}
 			BeanUtils.copyProperties(modifiedRecinto, recinto.get(), "id");
 			TipoRecinto tipoRecinto = this.recintoService.findRecintoType(modifiedRecinto.getTipoRecinto().getName());
 			modifiedRecinto.setTipoRecinto(tipoRecinto);
 			modifiedRecinto.setFestival(
 					this.festivalService.findFestivalById(usuarioLogueado(principal).getFestival().getId()).get());
+			modifiedRecinto.incrementVersion();
 			this.recintoService.save(modifiedRecinto);
 			model.addAttribute("message", "Recinto actualizado correctamente!");
 			return "redirect:/mifestival";

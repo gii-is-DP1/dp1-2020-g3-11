@@ -17,7 +17,7 @@
 			Los conciertos deben estar en esa franja horaria. </h4><br>
     <form:form modelAttribute="concert" class="form-horizontal" id="add-concert-form">
         <div class="form-group has-feedback">
-        
+        	<input type="hidden" name="version" value="${concert.version}"/>
 			<petclinic:localDate label="Fecha" name="fecha" id="fecha"></petclinic:localDate>            
 			<petclinic:localDateTime label="Hora comienzo" name="horaCom" id="horaCom"></petclinic:localDateTime>            
 			<petclinic:localDateTime label="Hora fin" name="horaFin" id="horaFin"></petclinic:localDateTime>            
