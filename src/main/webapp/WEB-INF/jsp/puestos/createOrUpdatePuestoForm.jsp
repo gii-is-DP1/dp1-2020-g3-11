@@ -17,7 +17,8 @@
 	<form:form modelAttribute="puesto" class="form-horizontal"
 		id="add-puesto-form">
 		<div class="form-group has-feedback">
-
+			
+			<input type="hidden" name="version" value="${puesto.version}"/>
 			<div class="control-group">
 				<petclinic:selectField name="tipoPuesto.name"
 					label="Tipo " names="${tipos_puesto}"

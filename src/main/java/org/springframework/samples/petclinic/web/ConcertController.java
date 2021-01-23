@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("mifestival/conciertos")
@@ -120,7 +121,7 @@ public class ConcertController {
 
 	@PostMapping("/{id}/edit")
 	public String processUpdateConcert(@PathVariable("id") int id, Principal principal, @Valid Concert concert,
-			BindingResult binding, ModelMap model)
+			BindingResult binding, @RequestParam(value = "version", required = false) Integer version, ModelMap model)
 			throws DataAccessException, ConcertOutOfDateException {
 
 		if (binding.hasErrors()) {
@@ -128,6 +129,12 @@ public class ConcertController {
 			return CONCERTS_FORM;
 
 		} else {
+			Concert concertDB = this.concertService.findById(id);
+			if(concertDB.getVersion() != version) {
+				model.put("message", "Modificación concurrente del concierto, inténtelo más tarde por favor.");
+				return CONCERTS_FORM;
+			}
+			
 			Concert modifiedConcert = concertService.findById(id);
 			BeanUtils.copyProperties(concert, modifiedConcert, "id", "festival");
 			Artista artista = this.artistService.findArtistaByName(modifiedConcert.getArtista().getName());
@@ -135,6 +142,7 @@ public class ConcertController {
 			try {
 				modifiedConcert.setArtista(artista);
 				modifiedConcert.setRecinto(recinto);
+				modifiedConcert.incrementVersion();
 				concertService.save(modifiedConcert);
 			} catch (ConcertOutOfDateException e) {
 				binding.rejectValue("fecha", "Tienes que crear un concierto en la franja horaria del festival.",

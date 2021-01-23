@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class EntradaController {
@@ -208,9 +209,22 @@ public class EntradaController {
 		dataBinder.setValidator(new EntradaValidator());
 	}
 
+	@GetMapping("mifestival/entradas/{id}/edit")
+	public String editEntrada(@PathVariable("id") int id, ModelMap model) {
+
+		Optional<Entrada> entrada = entradaService.findById(id);
+		if (entrada.isPresent()) {
+			model.addAttribute("entrada", entrada.get());
+			return ENTRADAS_FORM;
+		} else {
+			model.addAttribute("message", "No podemos encontrar la entrada que intentas editar!");
+			return listEntradas(model);
+		}
+	}
+	
 	@PostMapping("mifestival/entradas/{id}/edit")
 	public String editEntrada(@PathVariable("id") int id, @Valid Entrada modifiedEntrada, BindingResult binding,
-			ModelMap model, Principal principal) {
+			ModelMap model, Principal principal, @RequestParam(value="version", required = false) Integer version) {
 
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
@@ -218,14 +232,28 @@ public class EntradaController {
 		if (binding.hasErrors()) {
 			return ENTRADAS_FORM;
 		} else {
+			Entrada entradaBD = this.entradaService.findById(id).get();
+			if(entradaBD.getVersion() != version) {
+//				System.out.println("Version = " +version);
+				model.put("message", "Modificación concurrente de la entrada, inténtelo más tarde por favor.");
+				return ENTRADAS_FORM;
+			}
 			BeanUtils.copyProperties(modifiedEntrada, entrada.get(), "id");
 			EntradaType entradatype = this.entradaService.findEntradaType(modifiedEntrada.getEntradaType().getName());
 			modifiedEntrada.setEntradaType(entradatype);
 			modifiedEntrada.setFestival(this.festivalService.findFestivalById(festivalId).get());
+			modifiedEntrada.incrementVersion();
 			entradaService.save(modifiedEntrada);
 			model.addAttribute("message", "entrada actualizada correctamente!");
 			return "redirect:/mifestival";
 		}
+	}
+	
+	@GetMapping
+	public String listEntradas(ModelMap model) {
+
+		model.addAttribute("entradas", entradaService.findAll());
+		return ENTRADAS_LISTING;
 	}
 
 //	@GetMapping("/{id}/delete")
