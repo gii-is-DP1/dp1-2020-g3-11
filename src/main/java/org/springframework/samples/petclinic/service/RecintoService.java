@@ -9,14 +9,20 @@ import org.springframework.samples.petclinic.model.Concert;
 import org.springframework.samples.petclinic.model.Puesto;
 import org.springframework.samples.petclinic.model.Recinto;
 import org.springframework.samples.petclinic.model.TipoRecinto;
+import org.springframework.samples.petclinic.repository.ArtistaRepository;
 import org.springframework.samples.petclinic.repository.RecintoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class RecintoService {
-	@Autowired
+
 	RecintoRepository recintoRepo;
+	
+	@Autowired
+	public RecintoService(RecintoRepository recintoRepo) throws DataAccessException {
+		this.recintoRepo = recintoRepo;
+	}
 
 	public Collection<Recinto> findAll() throws DataAccessException {
 		return recintoRepo.findAll();

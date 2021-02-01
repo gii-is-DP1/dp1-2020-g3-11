@@ -20,6 +20,7 @@ public class OpinionService {
 	@Autowired
 	OpinionRepository opinionRepo;
 
+	@Transactional(readOnly = true)
 	public Collection<Opinion> findAll() throws DataAccessException {
 		return opinionRepo.findAll();
 	}
@@ -36,7 +37,7 @@ public class OpinionService {
 	}
 
 	@Transactional
-	public void save(@Valid Opinion opinion)
+	public void save(Opinion opinion)
 			throws DataAccessException, OpinionNotAllowedException, OpinionFestivalDateException {
 
 
@@ -58,7 +59,7 @@ public class OpinionService {
 			}
 		}
 
-	@Transactional
+	@Transactional(readOnly = true)
 	public Collection<Opinion> findOpinionsByFestivalId(int festivalId) {
 		Collection<Opinion> l = opinionRepo.findOpinionsByFestivalId(festivalId);
 		if (l.size() >= 5) {
