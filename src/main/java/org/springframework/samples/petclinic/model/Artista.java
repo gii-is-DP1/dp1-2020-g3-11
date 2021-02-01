@@ -4,12 +4,15 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +21,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "artista")
-public class Artista extends NamedEntity {
+public class Artista extends AuditableEntity {
 
 	@Column(name = "correo")
 	@NotBlank
