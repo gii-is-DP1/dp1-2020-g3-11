@@ -1,0 +1,272 @@
+2021-02-01 11:57:08,216 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Starting PetclinicApplication on DESKTOP-4I334SO with PID 19676 (C:\Users\Javi\git\springfest\target\classes started by Javi in C:\Users\Javi\git\springfest)
+2021-02-01 11:57:08,221 DEBUG org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2021-02-01 11:57:08,222 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-01 11:57:08,316 INFO org.springframework.boot.devtools.restart.ChangeableUrls [restartedMain] The Class-Path manifest attribute in C:\Users\Javi\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
+2021-02-01 11:57:08,317 INFO org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-02-01 11:57:08,317 INFO org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-02-01 11:57:10,945 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-01 11:57:11,132 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 170ms. Found 11 JPA repository interfaces.
+2021-02-01 11:57:11,750 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [restartedMain] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-02-01 11:57:12,766 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2021-02-01 11:57:13,161 INFO org.springframework.web.context.ContextLoader [restartedMain] Root WebApplicationContext: initialization completed in 4844 ms
+2021-02-01 11:57:13,695 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-02-01 11:57:16,497 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-01 11:57:16,536 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2021-02-01 11:57:16,931 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-01 11:57:18,559 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e91c4b0, org.springframework.security.web.context.SecurityContextPersistenceFilter@13c2b948, org.springframework.security.web.header.HeaderWriterFilter@34b5867a, org.springframework.security.web.csrf.CsrfFilter@45e54e19, org.springframework.security.web.authentication.logout.LogoutFilter@19849517, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@15b959e, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6a4967f3, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@23552df5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3f0483dc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1ea61e08, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@24ef0b3f, org.springframework.security.web.session.SessionManagementFilter@584b2a0d, org.springframework.security.web.access.ExceptionTranslationFilter@4338ef34, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@25fe4345]
+2021-02-01 11:57:18,770 INFO org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [restartedMain] Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-01 11:57:19,828 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [restartedMain] Exposing 13 endpoint(s) beneath base path '/manage'
+2021-02-01 11:57:19,928 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2021-02-01 11:57:19,930 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Started PetclinicApplication in 12.247 seconds (JVM running for 13.231)
+2021-02-01 11:58:35,916 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Starting PetclinicApplication on DESKTOP-4I334SO with PID 7820 (C:\Users\Javi\git\springfest\target\classes started by Javi in C:\Users\Javi\git\springfest)
+2021-02-01 11:58:35,919 DEBUG org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2021-02-01 11:58:35,919 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-01 11:58:36,005 INFO org.springframework.boot.devtools.restart.ChangeableUrls [restartedMain] The Class-Path manifest attribute in C:\Users\Javi\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
+2021-02-01 11:58:36,005 INFO org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-02-01 11:58:36,005 INFO org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-02-01 11:58:37,713 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-01 11:58:37,903 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 172ms. Found 11 JPA repository interfaces.
+2021-02-01 11:58:38,590 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [restartedMain] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-02-01 11:58:39,602 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2021-02-01 11:58:40,029 INFO org.springframework.web.context.ContextLoader [restartedMain] Root WebApplicationContext: initialization completed in 4023 ms
+2021-02-01 11:58:40,579 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-02-01 11:58:43,179 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-01 11:58:43,211 WARN org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] Unable to start LiveReload server
+2021-02-01 11:58:43,552 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-01 11:58:45,132 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@58394c23, org.springframework.security.web.context.SecurityContextPersistenceFilter@3a141a89, org.springframework.security.web.header.HeaderWriterFilter@51c87cf3, org.springframework.security.web.csrf.CsrfFilter@3dbecfc9, org.springframework.security.web.authentication.logout.LogoutFilter@30b8f189, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@39aca7d3, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@156ce62c, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@5150002c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@510fd4d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@628e0475, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3c30a30f, org.springframework.security.web.session.SessionManagementFilter@29eed182, org.springframework.security.web.access.ExceptionTranslationFilter@60e0bfde, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@753c5580]
+2021-02-01 11:58:45,312 INFO org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [restartedMain] Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-01 11:58:46,257 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [restartedMain] Exposing 13 endpoint(s) beneath base path '/manage'
+2021-02-01 11:58:46,347 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [restartedMain] 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-02-01 11:58:46,351 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter [restartedMain] 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2021-02-01 11:58:46,359 INFO org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [restartedMain] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-01 11:58:46,362 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [restartedMain] Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-01 11:58:46,367 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table artista if exists
+2021-02-01 11:58:46,378 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table entrada if exists
+2021-02-01 11:58:46,382 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table entradatypes if exists
+2021-02-01 11:58:46,382 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table festival if exists
+2021-02-01 11:58:46,383 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table generos if exists
+2021-02-01 11:58:46,384 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table oferta if exists
+2021-02-01 11:58:46,394 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table tabla_tipos_usuario if exists
+2021-02-01 11:58:46,394 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table tipos_oferta if exists
+2021-02-01 11:58:46,395 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table users if exists
+2021-02-01 11:58:46,395 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table usuario if exists
+2021-02-01 11:58:46,620 WARN org.springframework.beans.factory.support.DisposableBeanAdapter [restartedMain] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-02-01 11:59:08,006 INFO org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [Thread-5] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-01 11:59:08,016 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [Thread-5] Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-01 11:59:08,021 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table artista if exists
+2021-02-01 11:59:08,029 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table entrada if exists
+2021-02-01 11:59:08,031 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table entradatypes if exists
+2021-02-01 11:59:08,033 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table festival if exists
+2021-02-01 11:59:08,033 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table generos if exists
+2021-02-01 11:59:08,033 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table oferta if exists
+2021-02-01 11:59:08,042 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table tabla_tipos_usuario if exists
+2021-02-01 11:59:08,043 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table tipos_oferta if exists
+2021-02-01 11:59:08,043 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table users if exists
+2021-02-01 11:59:08,045 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table usuario if exists
+2021-02-01 11:59:08,269 WARN org.springframework.beans.factory.support.DisposableBeanAdapter [Thread-5] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-02-01 11:59:08,841 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Starting PetclinicApplication on DESKTOP-4I334SO with PID 19676 (C:\Users\Javi\git\springfest\target\classes started by Javi in C:\Users\Javi\git\springfest)
+2021-02-01 11:59:08,842 DEBUG org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2021-02-01 11:59:08,842 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-01 11:59:09,839 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-01 11:59:09,923 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 82ms. Found 11 JPA repository interfaces.
+2021-02-01 11:59:10,102 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [restartedMain] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-02-01 11:59:10,310 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2021-02-01 11:59:10,465 INFO org.springframework.web.context.ContextLoader [restartedMain] Root WebApplicationContext: initialization completed in 1609 ms
+2021-02-01 11:59:10,541 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-02-01 11:59:11,240 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-01 11:59:11,256 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2021-02-01 11:59:11,447 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-01 11:59:12,302 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2d97bf70, org.springframework.security.web.context.SecurityContextPersistenceFilter@767772e0, org.springframework.security.web.header.HeaderWriterFilter@6afb99e3, org.springframework.security.web.csrf.CsrfFilter@14dfa398, org.springframework.security.web.authentication.logout.LogoutFilter@7d78579b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6d1ac739, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@7eafd7c8, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@28ce0800, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@390ee75b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@f0c4518, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@43263050, org.springframework.security.web.session.SessionManagementFilter@1fddd1e0, org.springframework.security.web.access.ExceptionTranslationFilter@28dced58, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6f308677]
+2021-02-01 11:59:12,376 INFO org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [restartedMain] Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-01 11:59:12,726 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [restartedMain] Exposing 13 endpoint(s) beneath base path '/manage'
+2021-02-01 11:59:12,759 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2021-02-01 11:59:12,760 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Started PetclinicApplication in 3.99 seconds (JVM running for 126.061)
+2021-02-01 11:59:12,762 INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2021-02-01 11:59:45,723 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Starting PetclinicApplication on DESKTOP-4I334SO with PID 19644 (C:\Users\Javi\git\springfest\target\classes started by Javi in C:\Users\Javi\git\springfest)
+2021-02-01 11:59:45,726 DEBUG org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2021-02-01 11:59:45,727 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-01 11:59:45,803 INFO org.springframework.boot.devtools.restart.ChangeableUrls [restartedMain] The Class-Path manifest attribute in C:\Users\Javi\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
+2021-02-01 11:59:45,803 INFO org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-02-01 11:59:45,804 INFO org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-02-01 11:59:47,554 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-01 11:59:47,724 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 155ms. Found 11 JPA repository interfaces.
+2021-02-01 11:59:48,351 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [restartedMain] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-02-01 11:59:49,332 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2021-02-01 11:59:49,730 INFO org.springframework.web.context.ContextLoader [restartedMain] Root WebApplicationContext: initialization completed in 3925 ms
+2021-02-01 11:59:50,316 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-02-01 11:59:52,678 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-01 11:59:52,705 WARN org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] Unable to start LiveReload server
+2021-02-01 11:59:53,052 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-01 11:59:54,616 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1e55a795, org.springframework.security.web.context.SecurityContextPersistenceFilter@30b8f189, org.springframework.security.web.header.HeaderWriterFilter@7c869db8, org.springframework.security.web.csrf.CsrfFilter@3a141a89, org.springframework.security.web.authentication.logout.LogoutFilter@6f7aa23e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7a4021e2, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1af42c30, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@4580a19a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@db3ba61, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@f27c247, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4c09b579, org.springframework.security.web.session.SessionManagementFilter@701ca075, org.springframework.security.web.access.ExceptionTranslationFilter@16079bf6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@45da0249]
+2021-02-01 11:59:54,832 INFO org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [restartedMain] Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-01 11:59:55,853 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [restartedMain] Exposing 13 endpoint(s) beneath base path '/manage'
+2021-02-01 11:59:55,932 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [restartedMain] 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-02-01 11:59:55,935 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter [restartedMain] 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2021-02-01 11:59:55,941 INFO org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [restartedMain] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-01 11:59:55,946 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [restartedMain] Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-01 11:59:55,951 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table artista if exists
+2021-02-01 11:59:55,960 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table entrada if exists
+2021-02-01 11:59:55,964 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table entradatypes if exists
+2021-02-01 11:59:55,965 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table festival if exists
+2021-02-01 11:59:55,965 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table generos if exists
+2021-02-01 11:59:55,966 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table oferta if exists
+2021-02-01 11:59:55,970 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table tabla_tipos_usuario if exists
+2021-02-01 11:59:55,971 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table tipos_oferta if exists
+2021-02-01 11:59:55,971 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table users if exists
+2021-02-01 11:59:55,971 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [restartedMain] HHH000478: Unsuccessful: 
+    drop table usuario if exists
+2021-02-01 11:59:56,203 WARN org.springframework.beans.factory.support.DisposableBeanAdapter [restartedMain] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-02-01 12:00:43,762 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2021-02-01 12:00:43,781 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Completed initialization in 18 ms
+2021-02-01 12:01:26,730 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Starting PetclinicApplication on DESKTOP-4I334SO with PID 17036 (C:\Users\Javi\git\springfest\target\classes started by Javi in C:\Users\Javi\git\springfest)
+2021-02-01 12:01:26,734 DEBUG org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2021-02-01 12:01:26,736 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-01 12:01:26,831 INFO org.springframework.boot.devtools.restart.ChangeableUrls [restartedMain] The Class-Path manifest attribute in C:\Users\Javi\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/Javi/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
+2021-02-01 12:01:26,831 INFO org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-02-01 12:01:26,831 INFO org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-02-01 12:01:29,020 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-01 12:01:29,173 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 140ms. Found 11 JPA repository interfaces.
+2021-02-01 12:01:29,802 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [restartedMain] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-02-01 12:01:30,790 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2021-02-01 12:01:31,189 INFO org.springframework.web.context.ContextLoader [restartedMain] Root WebApplicationContext: initialization completed in 4358 ms
+2021-02-01 12:01:31,697 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-02-01 12:01:34,134 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-01 12:01:34,162 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2021-02-01 12:01:34,496 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-01 12:01:36,223 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7169916, org.springframework.security.web.context.SecurityContextPersistenceFilter@5f4060c6, org.springframework.security.web.header.HeaderWriterFilter@2d1b7d77, org.springframework.security.web.csrf.CsrfFilter@11b205ba, org.springframework.security.web.authentication.logout.LogoutFilter@68b85eb7, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4df42d13, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@5401b417, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@3aa42b7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@19f8245b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@72bebe09, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3096c76d, org.springframework.security.web.session.SessionManagementFilter@4b75aade, org.springframework.security.web.access.ExceptionTranslationFilter@460b5390, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@541595c6]
+2021-02-01 12:01:36,401 INFO org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [restartedMain] Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-01 12:01:37,409 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [restartedMain] Exposing 13 endpoint(s) beneath base path '/manage'
+2021-02-01 12:01:37,494 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2021-02-01 12:01:37,496 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Started PetclinicApplication in 11.228 seconds (JVM running for 12.037)
+2021-02-01 12:01:45,805 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2021-02-01 12:01:45,828 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Completed initialization in 22 ms
+2021-02-01 12:03:29,285 INFO org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [Thread-5] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-01 12:03:29,290 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [Thread-5] Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-01 12:03:29,293 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table artista if exists
+2021-02-01 12:03:29,300 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table entrada if exists
+2021-02-01 12:03:29,302 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table entradatypes if exists
+2021-02-01 12:03:29,303 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table festival if exists
+2021-02-01 12:03:29,303 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table generos if exists
+2021-02-01 12:03:29,303 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table oferta if exists
+2021-02-01 12:03:29,308 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table tabla_tipos_usuario if exists
+2021-02-01 12:03:29,309 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table tipos_oferta if exists
+2021-02-01 12:03:29,309 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table users if exists
+2021-02-01 12:03:29,310 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-5] HHH000478: Unsuccessful: 
+    drop table usuario if exists
+2021-02-01 12:03:29,522 WARN org.springframework.beans.factory.support.DisposableBeanAdapter [Thread-5] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2021-02-01 12:03:30,104 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Starting PetclinicApplication on DESKTOP-4I334SO with PID 17036 (C:\Users\Javi\git\springfest\target\classes started by Javi in C:\Users\Javi\git\springfest)
+2021-02-01 12:03:30,104 DEBUG org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2021-02-01 12:03:30,104 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-01 12:03:30,691 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-01 12:03:30,790 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 98ms. Found 11 JPA repository interfaces.
+2021-02-01 12:03:30,964 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [restartedMain] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-02-01 12:03:31,155 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2021-02-01 12:03:31,285 INFO org.springframework.web.context.ContextLoader [restartedMain] Root WebApplicationContext: initialization completed in 1177 ms
+2021-02-01 12:03:31,338 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-02-01 12:03:32,063 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-01 12:03:32,072 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2021-02-01 12:03:32,159 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-01 12:03:32,708 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4f7f9d5c, org.springframework.security.web.context.SecurityContextPersistenceFilter@3a54bf41, org.springframework.security.web.header.HeaderWriterFilter@59021e46, org.springframework.security.web.csrf.CsrfFilter@56b8263b, org.springframework.security.web.authentication.logout.LogoutFilter@5ed996f7, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@2f5c60b8, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@4bff213d, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@51f1ed4d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@799e707a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3027b121, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4e5d28f, org.springframework.security.web.session.SessionManagementFilter@2dcacd3d, org.springframework.security.web.access.ExceptionTranslationFilter@610441b0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5861b408]
+2021-02-01 12:03:32,763 INFO org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [restartedMain] Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-01 12:03:33,177 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [restartedMain] Exposing 13 endpoint(s) beneath base path '/manage'
+2021-02-01 12:03:33,201 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2021-02-01 12:03:33,202 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Started PetclinicApplication in 3.141 seconds (JVM running for 127.743)
+2021-02-01 12:03:33,204 INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2021-02-01 12:03:54,577 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2021-02-01 12:03:54,593 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Completed initialization in 15 ms
+2021-02-01 12:04:42,442 INFO org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [Thread-10] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-01 12:04:42,446 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [Thread-10] Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-01 12:04:42,449 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-10] HHH000478: Unsuccessful: 
+    drop table artista if exists
+2021-02-01 12:04:42,453 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-10] HHH000478: Unsuccessful: 
+    drop table entrada if exists
+2021-02-01 12:04:42,456 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-10] HHH000478: Unsuccessful: 
+    drop table entradatypes if exists
+2021-02-01 12:04:42,456 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-10] HHH000478: Unsuccessful: 
+    drop table festival if exists
+2021-02-01 12:04:42,456 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-10] HHH000478: Unsuccessful: 
+    drop table generos if exists
+2021-02-01 12:04:42,456 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-10] HHH000478: Unsuccessful: 
+    drop table oferta if exists
+2021-02-01 12:04:42,462 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-10] HHH000478: Unsuccessful: 
+    drop table tabla_tipos_usuario if exists
+2021-02-01 12:04:42,463 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-10] HHH000478: Unsuccessful: 
+    drop table tipos_oferta if exists
+2021-02-01 12:04:42,463 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-10] HHH000478: Unsuccessful: 
+    drop table users if exists
+2021-02-01 12:04:42,463 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-10] HHH000478: Unsuccessful: 
+    drop table usuario if exists
+2021-02-01 12:04:42,670 WARN org.springframework.beans.factory.support.DisposableBeanAdapter [Thread-10] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]

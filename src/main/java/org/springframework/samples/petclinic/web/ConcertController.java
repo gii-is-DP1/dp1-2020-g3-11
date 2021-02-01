@@ -2,6 +2,8 @@ package org.springframework.samples.petclinic.web;
 
 import java.security.Principal ;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -32,12 +34,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("mifestival/conciertos")
 public class ConcertController {
 
 	public static final String CONCERTS_FORM = "concerts/createOrUpdateConcertForm";
 	public static final String CONCERTS_LISTING = "concerts/concertListing";
+	
+	private static final Logger logger =
+			Logger.getLogger(ConcertController.class.getName());
 
 	@Autowired
 	ConcertService concertService;
@@ -145,6 +153,7 @@ public class ConcertController {
 				modifiedConcert.incrementVersion();
 				concertService.save(modifiedConcert);
 			} catch (ConcertOutOfDateException e) {
+				logger.log(Level.SEVERE, "Fallo haciendo", e);
 				binding.rejectValue("fecha", "Tienes que crear un concierto en la franja horaria del festival.",
 						"Tienes que crear un concierto en la franja horaria del festival.");
 				return CONCERTS_FORM;
@@ -181,12 +190,14 @@ public class ConcertController {
 			return CONCERTS_FORM;
 		} else {
 			try {
+				log.info("Creando concierto");
 				concert.setRecinto(this.recintoService.findRecintoByName(concert.getRecinto().getName()));
 				concert.setArtista(this.artistService.findArtistaByName(concert.getArtista().getName()));
 				concert.setFestival(this.festivalService.findFestivalById(festivalId).get());
 				this.concertService.save(concert);
 
 			} catch (ConcertOutOfDateException e) {
+				logger.log(Level.SEVERE, "Fallo haciendo", e);
 				binding.rejectValue("fecha", "Tienes que crear un concierto en la franja horaria del festival.",
 						"Tienes que crear un concierto en la franja horaria del festival.");
 				return CONCERTS_FORM;

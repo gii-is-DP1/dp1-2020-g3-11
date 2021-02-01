@@ -1,0 +1,42 @@
+2021-02-01 12:04:43,455 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Starting PetclinicApplication on DESKTOP-4I334SO with PID 17036 (C:\Users\Javi\git\springfest\target\classes started by Javi in C:\Users\Javi\git\springfest)
+2021-02-01 12:04:43,455 DEBUG org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Running with Spring Boot v2.2.4.RELEASE, Spring v5.2.3.RELEASE
+2021-02-01 12:04:43,457 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-02-01 12:04:44,241 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-01 12:04:44,334 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 92ms. Found 11 JPA repository interfaces.
+2021-02-01 12:04:44,512 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [restartedMain] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-02-01 12:04:44,690 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2021-02-01 12:04:44,863 INFO org.springframework.web.context.ContextLoader [restartedMain] Root WebApplicationContext: initialization completed in 1400 ms
+2021-02-01 12:04:44,932 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2021-02-01 12:04:45,506 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-01 12:04:45,513 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2021-02-01 12:04:45,587 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-01 12:04:46,069 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@167539ba, org.springframework.security.web.context.SecurityContextPersistenceFilter@70a57ab7, org.springframework.security.web.header.HeaderWriterFilter@7756772b, org.springframework.security.web.csrf.CsrfFilter@61519d42, org.springframework.security.web.authentication.logout.LogoutFilter@34ea21c8, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3a16f097, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@874ba54, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@3e1b0d3e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4bd590fc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@ffe5982, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@71e6f34b, org.springframework.security.web.session.SessionManagementFilter@1d734fd6, org.springframework.security.web.access.ExceptionTranslationFilter@1a342ff0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@629237d]
+2021-02-01 12:04:46,123 INFO org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [restartedMain] Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-01 12:04:46,515 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [restartedMain] Exposing 13 endpoint(s) beneath base path '/manage'
+2021-02-01 12:04:46,541 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2021-02-01 12:04:46,542 INFO org.springframework.samples.petclinic.PetclinicApplication [restartedMain] Started PetclinicApplication in 3.144 seconds (JVM running for 201.083)
+2021-02-01 12:04:46,544 INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2021-02-01 12:04:51,180 INFO org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [Thread-16] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-01 12:04:51,188 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [Thread-16] Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-01 12:04:51,190 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-16] HHH000478: Unsuccessful: 
+    drop table artista if exists
+2021-02-01 12:04:51,195 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-16] HHH000478: Unsuccessful: 
+    drop table entrada if exists
+2021-02-01 12:04:51,197 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-16] HHH000478: Unsuccessful: 
+    drop table entradatypes if exists
+2021-02-01 12:04:51,198 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-16] HHH000478: Unsuccessful: 
+    drop table festival if exists
+2021-02-01 12:04:51,198 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-16] HHH000478: Unsuccessful: 
+    drop table generos if exists
+2021-02-01 12:04:51,198 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-16] HHH000478: Unsuccessful: 
+    drop table oferta if exists
+2021-02-01 12:04:51,204 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-16] HHH000478: Unsuccessful: 
+    drop table tabla_tipos_usuario if exists
+2021-02-01 12:04:51,205 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-16] HHH000478: Unsuccessful: 
+    drop table tipos_oferta if exists
+2021-02-01 12:04:51,205 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-16] HHH000478: Unsuccessful: 
+    drop table users if exists
+2021-02-01 12:04:51,205 ERROR org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl [Thread-16] HHH000478: Unsuccessful: 
+    drop table usuario if exists
+2021-02-01 12:04:51,419 WARN org.springframework.beans.factory.support.DisposableBeanAdapter [Thread-16] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
