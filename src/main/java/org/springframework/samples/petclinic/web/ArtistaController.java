@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.web;
 
 import java.util.Collection;
+import java.util.logging.Logger;
 
 import javax.validation.Valid;
 
@@ -23,11 +24,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 @Controller
 public class ArtistaController {
 
 	public static final String ARTISTAS_FORM = "artistas/createOrUpdateArtistaForm";
 	public static final String ARTISTAS_LISTING = "artistas/artistasListing";
+	
+	private static final Logger logger =
+			Logger.getLogger(ArtistaController.class.getName());
 
 	@Autowired
 	ArtistaService artistaService;
@@ -37,6 +42,8 @@ public class ArtistaController {
 
 	@GetMapping("/artistas")
 	public String listArtistas(ModelMap model) {
+		
+		logger.entering(getClass().getName(), "doIt");
 		model.addAttribute("todosArtistas", artistaService.findAll());
 		return ARTISTAS_LISTING;
 	}
@@ -52,10 +59,6 @@ public class ArtistaController {
 		this.artistaService = artistaService;
 	}
 
-//	@InitBinder("owner")
-//	public void initOwnerBinder(WebDataBinder dataBinder) {
-//		dataBinder.setDisallowedFields("id");
-//	}
 	
 	@InitBinder("artista")
 	public void initArtistBinder(WebDataBinder dataBinder) {

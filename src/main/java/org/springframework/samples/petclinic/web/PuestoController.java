@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -32,12 +33,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class PuestoController {
 
 	public static final String PUESTOS_FORM = "puestos/createOrUpdatePuestoForm";
 	public static final String PUESTOS_LISTING = "puestos/puestosListing";
 	public static final String ALQUILAR_PUESTOS = "puestos/alquilarPuestos";
+	
+	
 	
 	@Autowired
 	FestivalService festivalService;
@@ -139,6 +145,7 @@ public class PuestoController {
 		if (binding.hasErrors()) {
 			return PUESTOS_FORM;
 		} else {
+			log.info("Creando nuevo puesto");
 			TipoPuesto tipoPuesto = puestoService.findPuestoType(puesto.getTipoPuesto().getName());
 			TipoTamaño tipoTamanio = puestoService.findTamañoType(puesto.getTipoTamanio().getName());
 			Recinto recinto = recintoService.findRecintoByName(puesto.getRecinto().getName());
