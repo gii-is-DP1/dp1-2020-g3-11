@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Festival;
+import org.springframework.samples.petclinic.repository.ArtistaRepository;
 import org.springframework.samples.petclinic.repository.FestivalRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,12 +17,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class FestivalService {
 
-	@Autowired
 	FestivalRepository festivalRepo;
 
-//	public Collection<Artista> findAllArtistasByFestivalId(int festivalId){
-//		return festivalRepo.findAllArtistasByFestivalId(festivalId);
-//	}
+	@Autowired
+	public FestivalService(FestivalRepository festivalRepo) throws DataAccessException {
+		this.festivalRepo = festivalRepo;
+	}
 
 	public Collection<Festival> findAll() {
 		return festivalRepo.findAll();

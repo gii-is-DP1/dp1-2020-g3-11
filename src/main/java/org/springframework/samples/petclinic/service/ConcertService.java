@@ -10,13 +10,14 @@ import org.springframework.samples.petclinic.model.Concert;
 import org.springframework.samples.petclinic.repository.ConcertRepository;
 import org.springframework.samples.petclinic.service.exceptions.ConcertOutOfDateException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ConcertService {
 
 	ConcertRepository concertRepository;
 
-	
+	@Transactional(readOnly = true)
 	public Collection<Concert> findAll() throws DataAccessException{
 		return concertRepository.findAll();
 	}
@@ -25,17 +26,20 @@ public class ConcertService {
 	public ConcertService(ConcertRepository concertRepository)  throws DataAccessException{
 		this.concertRepository = concertRepository;
 	}
-
+	
+	@Transactional(readOnly = true)
 	public Concert findById(int id) throws DataAccessException {
 		return concertRepository.findById(id).get();
 	}
 
+	@Transactional()
 	public void delete(Concert concierto) throws DataAccessException {
 		concertRepository.deleteById(concierto.getId());
 
 	}
 
-	public void save(@Valid Concert concert) throws DataAccessException, ConcertOutOfDateException {
+	@Transactional()
+	public void save(Concert concert) throws DataAccessException, ConcertOutOfDateException {
 		if(concert.getHoraCom().toLocalDate().isBefore(concert.getFestival().getFechaCom()) ||
 				concert.getHoraFin().toLocalDate().isAfter(concert.getFestival().getFechaFin())){
 			throw new ConcertOutOfDateException();
@@ -47,6 +51,7 @@ public class ConcertService {
 
 	}
 	
+	@Transactional(readOnly = true)
 	public Collection<Concert> findAllConcertsByFestivalId(int festivalId) throws DataAccessException {
 		return concertRepository.findAllConcertsByFestivalId(festivalId);
 	}

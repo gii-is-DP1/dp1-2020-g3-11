@@ -17,6 +17,7 @@ public class OfertaService {
 	@Autowired
 	OfertaRepository ofertaRepo;
 
+	@Transactional(readOnly = true)
 	public Collection<Oferta> findAll() throws DataAccessException {
 		return ofertaRepo.findAll();
 	}
@@ -48,7 +49,7 @@ public class OfertaService {
     } 
 	
 	@Transactional
-	public void save(@Valid Oferta oferta) throws DataAccessException{
+	public void save(Oferta oferta) throws DataAccessException{
 		ofertaRepo.save(oferta);
 
 	}
