@@ -3,10 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
 
-<petclinic:layout pageName="artistas">
+<springfest:layout pageName="artistas">
 
 
 	<h2>Artistas Disponibles</h2>
@@ -40,4 +40,4 @@
 	<a href="${fn:escapeXml(festivaUrl)}" class="btn btn-default">Volver
 		a mi festival</a>
 
-</petclinic:layout>
+</springfest:layout>

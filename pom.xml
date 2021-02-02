@@ -14,7 +14,7 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.4.RELEASE</version>
 	</parent>
-	<name>PET CLINIC - G3-11</name>
+	<name>SPRINGFEST - G3-11</name>
 
 	<properties>
 

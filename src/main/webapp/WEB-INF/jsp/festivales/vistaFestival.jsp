@@ -3,10 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
 
-<petclinic:layout pageName="MiFestival">
+<springfest:layout pageName="MiFestival">
 
 
 	<div style="width: 100%;">
@@ -162,4 +162,4 @@
 			</a>
 		</div>
 	</div>
-</petclinic:layout>
+</springfest:layout>

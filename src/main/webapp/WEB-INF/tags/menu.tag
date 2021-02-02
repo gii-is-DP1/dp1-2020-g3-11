@@ -1,6 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ attribute name="name" required="true" rtexprvalue="true"
@@ -25,96 +25,96 @@
 				<sec:authorize access="!isAuthenticated()">
 
 
-					<petclinic:menuItem active="${name eq 'home'}" url="/"
+					<springfest:menuItem active="${name eq 'home'}" url="/"
 						title="home page">
 						<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 
 						<span>Inicio</span>
-					</petclinic:menuItem>
+					</springfest:menuItem>
 
-					<petclinic:menuItem active="${name eq 'about'}" url="/about"
+					<springfest:menuItem active="${name eq 'about'}" url="/about"
 						title="about">
 						<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
 						<span>Sobre nosotros</span>
-					</petclinic:menuItem>
+					</springfest:menuItem>
 
-					<petclinic:menuItem active="${name eq 'login'}" url="/login"
+					<springfest:menuItem active="${name eq 'login'}" url="/login"
 						title="login">
 						<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
 						<span>Login</span>
-					</petclinic:menuItem>
+					</springfest:menuItem>
 					
-					<petclinic:menuItem active="${name eq 'registroSpringfest'}" url="/usuarios/new"
+					<springfest:menuItem active="${name eq 'registroSpringfest'}" url="/usuarios/new"
 						title="registroUsuario">
 						<span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
 						<span>Registro de SpringFest</span>
-					</petclinic:menuItem>
+					</springfest:menuItem>
 
 				</sec:authorize>
 				<!--LO QUE VE EL ADMIN			-->
 				<sec:authorize access="hasAuthority('admin')">
 
-					<petclinic:menuItem active="${name eq 'mifestival'}"
+					<springfest:menuItem active="${name eq 'mifestival'}"
 						url="/mifestival" title="find festival">
 						<span class="glyphicon glyphicon-music" aria-hidden="true"></span>
 						<span>Mi Festival</span>
-					</petclinic:menuItem>
+					</springfest:menuItem>
 
-					<petclinic:menuItem active="${name eq 'about'}" url="/about"
+					<springfest:menuItem active="${name eq 'about'}" url="/about"
 						title="about">
 						<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
 						<span>Sobre nosotros</span>
-					</petclinic:menuItem>
+					</springfest:menuItem>
 
-					<petclinic:menuItem active="${name eq 'artistas'}" url="/artistas"
+					<springfest:menuItem active="${name eq 'artistas'}" url="/artistas"
 						title="find artistas">
 						<span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>
 						<span>Artistas</span>
-					</petclinic:menuItem>
+					</springfest:menuItem>
 				</sec:authorize>
 
 				<!--LO QUE VE EL SPONSOR			-->
 				<sec:authorize access="hasAuthority('sponsor')">
 
-					<petclinic:menuItem active="${name eq 'festivales'}" url="/festivales"
+					<springfest:menuItem active="${name eq 'festivales'}" url="/festivales"
 						title="home page">
 						<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 						<span>Festivales</span>
-					</petclinic:menuItem>
+					</springfest:menuItem>
 					
-					<petclinic:menuItem active="${name eq 'mispuestos'}" url="/mispuestos"
+					<springfest:menuItem active="${name eq 'mispuestos'}" url="/mispuestos"
 						title="mis puestos">
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 						<span>Mis Puestos</span>
-					</petclinic:menuItem>
+					</springfest:menuItem>
 
-					<petclinic:menuItem active="${name eq 'about'}" url="/about"
+					<springfest:menuItem active="${name eq 'about'}" url="/about"
 						title="about">
 						<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
 						<span>Sobre nosotros</span>
-					</petclinic:menuItem>
+					</springfest:menuItem>
 
 				</sec:authorize>
 				<!--LO QUE VE EL USUARIO CLIENTE			-->
 				<sec:authorize access="hasAuthority('usuario')">			
 
-					<petclinic:menuItem active="${name eq 'festivales'}" url="/festivales"
+					<springfest:menuItem active="${name eq 'festivales'}" url="/festivales"
 						title="festivales">
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 						<span>Festivales</span>
-					</petclinic:menuItem>
+					</springfest:menuItem>
 					
-					<petclinic:menuItem active="${name eq 'misEntradas'}" url="/misEntradas"
+					<springfest:menuItem active="${name eq 'misEntradas'}" url="/misEntradas"
 						title="misEntradas">
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 						<span>Mis entradas</span>
-					</petclinic:menuItem>
+					</springfest:menuItem>
 
-					<petclinic:menuItem active="${name eq 'about'}" url="/about"
+					<springfest:menuItem active="${name eq 'about'}" url="/about"
 						title="about">
 						<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
 						<span>Sobre nosotros</span>
-					</petclinic:menuItem>
+					</springfest:menuItem>
 
 				</sec:authorize>
 				<!--AQUI ACABA LO QUE VE EL USUARIO CLIENTE			-->

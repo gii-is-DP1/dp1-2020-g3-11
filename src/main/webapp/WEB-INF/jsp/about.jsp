@@ -2,9 +2,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
-<petclinic:layout pageName="about">
+<springfest:layout pageName="about">
 
 	<h1>SpringFest</h1>
 	<h2>Integrantes</h2>
@@ -40,4 +40,4 @@
 	<p> Si quieres usar nuestra aplicación para gestionar tu festival, mándanos un correo a springfest@springfest.com </p>
 
 
-</petclinic:layout>
+</springfest:layout>

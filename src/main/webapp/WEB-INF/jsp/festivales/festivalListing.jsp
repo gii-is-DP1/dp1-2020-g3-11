@@ -3,12 +3,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
 
-<petclinic:layout pageName="festivales">
+<springfest:layout pageName="festivales">
 
 
 	<h2>Festivales</h2>
@@ -65,4 +65,4 @@
 			class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir
 			festival</a>
 	</sec:authorize>
-</petclinic:layout>
+</springfest:layout>

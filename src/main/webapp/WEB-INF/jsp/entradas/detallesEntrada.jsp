@@ -3,12 +3,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
 
-<petclinic:layout pageName="entradas">
+<springfest:layout pageName="entradas">
 
 
 	<h2>Detalles entrada</h2>
@@ -41,4 +41,4 @@
 	<spring:url value="/festivales" var="festivaUrl">
 	</spring:url>
 	<a href="${fn:escapeXml(festivaUrl)}" class="btn btn-default">Volver a festivales</a>
-</petclinic:layout>
+</springfest:layout>
