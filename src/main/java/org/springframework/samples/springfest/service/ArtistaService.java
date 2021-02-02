@@ -75,11 +75,6 @@ public class ArtistaService {
 		return artistaRepository.findArtistaByName(name);
 	}
 
-	@Transactional
-	public void delete(Artista artista) throws DataAccessException {
-		artistaRepository.deleteById(artista.getId());
-	}
-
 	@Transactional(readOnly = true)
 	public Collection<String> findGeneroTypes() throws DataAccessException {
 		return artistaRepository.findGeneroTypes();

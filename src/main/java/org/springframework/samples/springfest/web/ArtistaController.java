@@ -24,15 +24,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 public class ArtistaController {
 
 	public static final String ARTISTAS_FORM = "artistas/createOrUpdateArtistaForm";
 	public static final String ARTISTAS_LISTING = "artistas/artistasListing";
-	
-	private static final Logger logger =
-			Logger.getLogger(ArtistaController.class.getName());
+
+	private static final Logger logger = Logger.getLogger(ArtistaController.class.getName());
 
 	@Autowired
 	ArtistaService artistaService;
@@ -42,12 +40,12 @@ public class ArtistaController {
 
 	@GetMapping("/artistas")
 	public String listArtistas(ModelMap model) {
-		
+
 		logger.entering(getClass().getName(), "doIt");
 		model.addAttribute("todosArtistas", artistaService.findAll());
 		return ARTISTAS_LISTING;
 	}
-	
+
 	@ModelAttribute("generos")
 	public Collection<String> populateGeneroTypes() {
 		return this.artistaService.findGeneroTypes();
@@ -59,7 +57,6 @@ public class ArtistaController {
 		this.artistaService = artistaService;
 	}
 
-	
 	@InitBinder("artista")
 	public void initArtistBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new ArtistaValidator());
@@ -102,13 +99,14 @@ public class ArtistaController {
 
 	@PostMapping(value = "/artistas/{artistaId}/edit")
 	public String processUpdateForm(@Valid Artista artista, BindingResult result, Festival festival,
-			@PathVariable("artistaId") int artistaId, @RequestParam(value = "version", required = false) Integer version, ModelMap model) {
+			@PathVariable("artistaId") int artistaId,
+			@RequestParam(value = "version", required = false) Integer version, ModelMap model) {
 		if (result.hasErrors()) {
 			model.put("artista", artista);
 			return ARTISTAS_FORM;
 		} else {
 			Artista artistaBD = this.artistaService.findArtistaById(artistaId);
-			if(artistaBD.getVersion() != version) {
+			if (artistaBD.getVersion() != version) {
 				model.put("message", "Modificación concurrente del artista, inténtelo más tarde por favor.");
 				return ARTISTAS_FORM;
 			}
@@ -122,19 +120,5 @@ public class ArtistaController {
 		return listArtistas(model);
 
 	}
-
-//	@GetMapping("/artistas/{artistaId}/delete")
-//	public String deleteArtista(@PathVariable("artistaId") int artistaId, ModelMap model,
-//			@PathVariable("festivalId") int festivalId) {
-//
-//		Artista artista = this.artistaService.findArtistaById(artistaId).orElse(null);
-//		if (artista.isPresent()) {
-//			artistaService.delete(artista);
-//			model.addAttribute("message", "The artista was deleted successfully!");
-//		} else {
-//			model.addAttribute("message", "We cannot find that Artista you tried to delete!");
-//		}
-//		return listArtistas(model);
-//	}
 
 }

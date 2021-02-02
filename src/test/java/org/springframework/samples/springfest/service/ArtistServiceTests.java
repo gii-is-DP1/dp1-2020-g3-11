@@ -120,20 +120,6 @@ class ArtistServiceTests {
 
 	@Test
 	@Transactional
-	void shouldDeleteArtist() throws Exception {
-		Collection<Artista> listArtist = this.artistService.findAll();
-		int tamaño = listArtist.size();
-		Artista artist = this.artistService.findArtistaById(4);
-
-		this.artistService.delete(artist);
-
-		listArtist = this.artistService.findAll();
-		assertThat(listArtist.size()).isEqualTo(tamaño - 1);
-
-	}
-
-	@Test
-	@Transactional
 	void shouldThrowExceptionInsertingNewArtistBlankParameter() throws Exception {
 		GeneroType genre = this.artistService.findGeneroType("flamenco");
 
