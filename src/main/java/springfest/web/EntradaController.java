@@ -61,8 +61,11 @@ public class EntradaController {
 	public String comprarEntrada(ModelMap model, @PathVariable("festivalId") int festivalId,
 			@PathVariable("entradaId") int entradaId, Principal principal) {
 
-		Usuario usuario = usuarioLogueado(principal);
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
+		if(festival.getEntradasRestantes()>=1) {
+			
+		
+		Usuario usuario = usuarioLogueado(principal);
 		Entrada entrada = entradaService.findById(entradaId).orElse(null);
 		Period periodo = Period.between(usuario.getFechaNacimiento(), LocalDate.now());
 		Integer edad = periodo.getYears();
@@ -99,8 +102,11 @@ public class EntradaController {
 		Integer precioTotal = precio + precioOfertas;
 
 		model.addAttribute("precioTotal", precioTotal);
-
 		return "entradas/entradaComprada";
+		} else {
+			return "redirect:/festivales";
+		}
+		
 	}
 
 	@GetMapping(value = "/festivales/{festivalId}/entradas/{entradaId}/asociar/{ofertaId}")
@@ -148,28 +154,39 @@ public class EntradaController {
 	public String graciasPorComprarEntrada(ModelMap model, @PathVariable("festivalId") int festivalId,
 			@PathVariable("entradaId") int entradaId, Principal principal) {
 
-		Usuario usuario = usuarioLogueado(principal);
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
-		Entrada entrada = entradaService.findById(entradaId).orElse(null);
-		entrada.getUsuario().add(usuario);
-		usuario.getEntradas().add(entrada);
-		entradaService.save(entrada);
-
-		festivalService.reducirEntradasRestantes(festival);
-		festivalService.save(festival);
-
-		model.addAttribute("datosUsuario", usuario);
-		model.addAttribute("datosFestival", festival);
-		model.addAttribute("datosEntrada", entrada);
-
-		return "entradas/vistaGraciasPorTuCompra";
+		if( festival.getEntradasRestantes()>=1) {
+			
+			Usuario usuario = usuarioLogueado(principal);
+			Entrada entrada = entradaService.findById(entradaId).orElse(null);
+			entrada.getUsuario().add(usuario);
+			usuario.getEntradas().add(entrada);
+			entradaService.save(entrada);
+	
+			festivalService.reducirEntradasRestantes(festival);
+			festivalService.save(festival);
+	
+			model.addAttribute("datosUsuario", usuario);
+			model.addAttribute("datosFestival", festival);
+			model.addAttribute("datosEntrada", entrada);
+	
+			return "entradas/vistaGraciasPorTuCompra";
+		}else {
+			return "redirect:/festivales";
+		}
 	}
 
 	@GetMapping("festivales/{festivalId}/entradas")
 	public String listEntradasUsuario(ModelMap model, @PathVariable("festivalId") int festivalId) {
 
-		model.addAttribute("entradas", entradaService.findAllEntradasByFestivalId(festivalId));
-		return ENTRADAS_LISTING;
+		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
+		if(festival.getEntradasRestantes()>=1) {
+			model.addAttribute("entradas", entradaService.findAllEntradasByFestivalId(festivalId));
+			return ENTRADAS_LISTING;
+		}else {
+			return "redirect:/festivales"; 
+		}
+		
 	}
 
 	@GetMapping("/misEntradas")
