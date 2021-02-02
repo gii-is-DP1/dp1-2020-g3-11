@@ -55,18 +55,22 @@ public class ArtistaService {
 		return artistaRepository.findArtistasByFestivalId(festivalId);
 	}
 
-	public void save(@Valid Artista artista) throws DataAccessException {
+	@Transactional
+	public void save(Artista artista) throws DataAccessException {
 		artistaRepository.save(artista);
 	}
 
+	@Transactional(readOnly = true)
 	public GeneroType findGeneroType(String genero) throws DataAccessException {
 		return artistaRepository.findGeneroTypeByName(genero);
 	}
 
+	@Transactional(readOnly = true)
 	public Collection<String> findAllArtistas() throws DataAccessException {
 		return artistaRepository.findAllArtistas();
 	}
 
+	@Transactional(readOnly = true)
 	public Artista findArtistaByName(String name) throws DataAccessException {
 		return artistaRepository.findArtistaByName(name);
 	}
@@ -93,6 +97,4 @@ public class ArtistaService {
 		return artistaRepository.findArtistaByName2(name).isPresent();
 	}
 	
-
-
 }
