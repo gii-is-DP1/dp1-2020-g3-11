@@ -1,10 +1,8 @@
 package org.springframework.samples.petclinic.service;
 
-import java.util.Collection;
+import java.util.Collection; 
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -17,17 +15,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OpinionService {
-	@Autowired
+	
 	OpinionRepository opinionRepo;
 
+	@Autowired
+	public OpinionService(OpinionRepository opinionRepository) throws DataAccessException {
+		this.opinionRepo = opinionRepository;
+	}
+	
 	@Transactional(readOnly = true)
 	public Collection<Opinion> findAll() throws DataAccessException {
 		return opinionRepo.findAll();
 	}
 
 	@Transactional(readOnly = true)
-	public Optional<Opinion> findById(int id) throws DataAccessException {
-		return opinionRepo.findById(id);
+	public Opinion findById(int id) throws DataAccessException {
+		return opinionRepo.findById(id).get();
 	}
 
 	@Transactional

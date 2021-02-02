@@ -76,29 +76,6 @@ class FestivalServiceTest {
 		assertThat(festival.getName()).isEqualTo("Cabo de Plata");
 	}
 
-	// INSERT festival
-
-	@Test
-	@Transactional
-	void shouldInsertNewfestival() throws Exception {
-		Collection<Festival> listfestival = this.festivalService.findAll();
-		int tamaño = listfestival.size();
-
-		Festival festival = new Festival();
-		festival.setName("CumbioLand");
-		festival.setAforoMax(10);
-		festival.setLocalizacion("Murcia");
-		festival.setFechaCom(LocalDate.of(2022, 12, 20));
-		festival.setFechaFin(LocalDate.of(2022, 12, 23));
-		try {
-			this.festivalService.save(festival);
-		} catch (Exception ex) {
-			Logger.getLogger(FestivalServiceTest.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		listfestival = this.festivalService.findAll();
-		assertThat(listfestival.size()).isEqualTo(tamaño + 1);
-		assertThat(festival.getId()).isNotNull();
-	}
 
 	void shouldThrowExceptionInsertingNewfestivalBlankParameter() throws Exception {
 

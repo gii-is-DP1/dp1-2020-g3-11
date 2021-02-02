@@ -94,6 +94,10 @@ INSERT INTO entrada VALUES (3,1,50,1,1);
 INSERT INTO entrada VALUES (10,1,41,1,2);
 INSERT INTO entrada VALUES (11,1,31,2,2);
 INSERT INTO entrada VALUES (12,1,51,1,2);
+INSERT INTO entrada VALUES (13,1,50,2,3);
+
+INSERT INTO entrada_usuario VALUES (13,22);
+
 
 INSERT INTO tipos_oferta VALUES (1,1, 'Pack bebidas');
 INSERT INTO tipos_oferta VALUES (2,1, 'Camiseta');
@@ -146,7 +150,9 @@ INSERT INTO concierto VALUES (3,1,'2021-07-26','2021-07-26 16:00','2021-07-26 17
 INSERT INTO concierto VALUES (4,1,'2021-07-27','2021-07-27 18:00','2021-07-27 20:00',3,2,5);
 
 
-INSERT INTO opinion VALUES (1,1, 'Muy bueno','2021-07-25 17:00', 5, 2, 60);
+INSERT INTO opinion VALUES (1,1, 'Muy bueno, estupendo los dias que he estado en el festival','2021-07-25 17:00', 5, 2, 60);
 INSERT INTO opinion VALUES (2,1, 'Muy bueno pero bueno tu sabe','2021-08-25 17:00', 1, 2, 23);
 INSERT INTO opinion VALUES (3,1, 'Muy bueno. Conciertazo flammingo bro','2021-09-25 17:00',2, 2, 22);
+INSERT INTO opinion VALUES (4,1, 'Muy bueno. Guacamayo para toda la vidaa','2020-07-30 17:00',5, 3, 22);
+
 
