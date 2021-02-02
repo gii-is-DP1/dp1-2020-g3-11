@@ -93,7 +93,6 @@ public class OpinionController {
 			BindingResult binding, ModelMap model, Principal principal) throws DataAccessException, OpinionNotAllowedException, OpinionFestivalDateException{
 
 		if (binding.hasErrors()) {
-			System.out.println(binding.getAllErrors());
 			return OPINIONS_FORM;
 			
 		} else {

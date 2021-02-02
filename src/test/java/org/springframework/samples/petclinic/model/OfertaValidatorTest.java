@@ -50,30 +50,6 @@ class OfertaValidatorTest {
 
 	}
 
-	@Test
-	void shouldNotValidateWhenFestivalNull() {
-		LocaleContextHolder.setLocale(Locale.ENGLISH);
-
-		Oferta o = new Oferta();
-		TipoOferta to = new TipoOferta();
-		Set<Entrada> e = new HashSet<Entrada>();
-		o.setNombre("Camisetas");
-		o.setPrecioOferta(20);
-		;
-		o.setTipoOferta(to);
-		o.setEntradas(e);
-		o.setFestival(null);
-
-		Validator validator = this.createValidator();
-
-		Set<ConstraintViolation<Oferta>> constraintViolations = validator.validate(o);
-
-		assertThat(constraintViolations.size()).isEqualTo(1);
-		ConstraintViolation<Oferta> violation = constraintViolations.iterator().next();
-		assertThat(violation.getPropertyPath().toString()).isEqualTo("festival");
-		assertThat(violation.getMessage()).isEqualTo("must not be null");
-
-	}
 
 	@Test
 	void shouldNotValidateWhenTipoOfertaNull() {

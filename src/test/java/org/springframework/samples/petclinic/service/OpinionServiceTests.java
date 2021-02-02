@@ -35,13 +35,13 @@ public class OpinionServiceTests {
 	@Test
 	void shouldFindAllOpinions() {
 		Collection<Opinion> lop = this.opinionService.findAll();
-		assertThat(lop.size()).isEqualTo(3);
+		assertThat(lop.size()).isEqualTo(4);
 	}
 
 //	FIND OPINION BY ID 
 	@Test
 	void shouldFindEntradaById() throws Exception {
-		Opinion opinion = this.opinionService.findById(1).get();
+		Opinion opinion = this.opinionService.findById(1);
 		assertThat(opinion.getPuntuacion()).isEqualTo(5);
 		assertThat(opinion.getFestival().getId()).isEqualTo(2);
 		assertThat(opinion.getOpinionUsuario().getId()).isEqualTo(60);
@@ -61,7 +61,7 @@ public class OpinionServiceTests {
 	void shouldDeleteOpinion() throws Exception {
 		Collection<Opinion> lop = this.opinionService.findAll();
 		int size = lop.size();
-		Opinion o = this.opinionService.findById(1).get();
+		Opinion o = this.opinionService.findById(1);
 
 		this.opinionService.delete(o);
 
@@ -74,10 +74,10 @@ public class OpinionServiceTests {
 	@Test
 	@Transactional
 	void shouldInsertNewOpinion() throws Exception {
-		Collection<Opinion> lop = this.opinionService.findOpinionsByFestivalId(2);
+		Collection<Opinion> lop = this.opinionService.findOpinionsByFestivalId(3);
 		int size = lop.size();
-		Festival fest = this.festivalService.findFestivalById(2).get();
-		Usuario ou = this.usuarioService.findUsuarioById(24);
+		Festival fest = this.festivalService.findFestivalById(3).get();
+		Usuario ou = this.usuarioService.findUsuarioById(22);
 
 		Opinion o = new Opinion();
 		o.setFestival(fest);
@@ -91,7 +91,7 @@ public class OpinionServiceTests {
 		} catch (Exception ex) {
 			Logger.getLogger(ConcertServiceTests.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		Collection<Opinion> lop2 = this.opinionService.findOpinionsByFestivalId(2);
+		Collection<Opinion> lop2 = this.opinionService.findOpinionsByFestivalId(3);
 		assertThat(lop2.size()).isEqualTo(size + 1);
 		assertThat(o.getId()).isNotNull();
 	}

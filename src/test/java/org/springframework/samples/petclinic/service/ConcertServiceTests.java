@@ -90,7 +90,7 @@ class ConcertServiceTests {
 	@Test
 	void shouldFindConcertById() throws Exception {
 		Concert concert2 = this.concertService.findById(2);
-		assertThat(concert2.getFecha()).isEqualTo(LocalDate.of(2021, 7, 26));
+		assertThat(concert2.getFecha()).isEqualTo(LocalDate.of(2021, 7, 25));
 		assertThat(concert2.getFestival().getId()).isEqualTo(2);
 	}
 
@@ -99,7 +99,7 @@ class ConcertServiceTests {
 @Test
 void shoudFindAllConcert() throws Exception {
 	List<Concert> concerts = (List<Concert>) this.concertService.findAll();
-	assertThat((concerts.size() == 3)).isTrue();
+	assertThat((concerts.size() == 4)).isTrue();
 }
 
 //  FIND ALL CONCERTS BY FESTIVAL ID

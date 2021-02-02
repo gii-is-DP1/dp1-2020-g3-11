@@ -107,8 +107,8 @@ public class ArtistControllerTests {
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessUpdateArtistFormSuccess() throws Exception {
-		mockMvc.perform(post("/artistas/{artistaId}/edit", TEST_ARTIST_ID_1).with(csrf())
-				.param("name", "Los pepes").param("correo", "papafritas@grupo.com").param("telefono", "657412356").param("id", "1").param("genero.name", "pop"))
+		mockMvc.perform(post("/artistas/{artistaId}/edit", TEST_ARTIST_ID_1).with(csrf()).param("correo", "paco@grupo.com")
+				.param("name", "Los pepes").param("telefono", "657412356").param("id", "1").param("genero.name", "pop"))
 				.andExpect(status().is2xxSuccessful())
 				.andExpect(view().name("artistas/artistasListing"));
 	}
