@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.web;
+package springfest.web;
 //package org.springframework.samples.petclinic.web;
 //
 //import static org.mockito.BDDMockito.given;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.samples.petclinic.service;
+package springfest.service;
 
 import static org.assertj.core.api.Assertions.assertThat;   
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -95,7 +95,7 @@ class ConcertServiceTests {
 	@Test
 	void shouldFindConcertById() throws Exception {
 		Concert concert2 = this.concertService.findById(2);
-		assertThat(concert2.getFecha()).isEqualTo(LocalDate.of(2021, 7, 26));
+		assertThat(concert2.getFecha()).isEqualTo(LocalDate.of(2021, 7, 25));
 		assertThat(concert2.getFestival().getId()).isEqualTo(2);
 	}
 
