@@ -6,16 +6,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-/**
- * <code>Validator</code> for <code>Pet</code> forms.
- * <p>
- * We're not using Bean Validation annotations here because it is easier to
- * define such validation rule in Java.
- * </p>
- *
- * @author Ken Krebs
- * @author Juergen Hoeller
- */
 public class OfertaValidator implements Validator {
 
 	private static final String REQUIRED = "Campo requerido.";
@@ -49,9 +39,6 @@ public class OfertaValidator implements Validator {
 		}
 	}
 
-	/**
-	 * This Validator validates *just* Entrada instances
-	 */
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return Oferta.class.isAssignableFrom(clazz);

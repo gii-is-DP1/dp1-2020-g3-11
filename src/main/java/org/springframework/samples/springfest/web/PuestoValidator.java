@@ -40,9 +40,6 @@ public class PuestoValidator implements Validator {
 		}
 	}
 
-	/**
-	 * This Validator validates *just* Puesto instances
-	 */
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return Puesto.class.isAssignableFrom(clazz);

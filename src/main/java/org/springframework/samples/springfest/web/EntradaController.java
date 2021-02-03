@@ -251,7 +251,6 @@ public class EntradaController {
 		} else {
 			Entrada entradaBD = this.entradaService.findById(id).get();
 			if(entradaBD.getVersion() != version) {
-//				System.out.println("Version = " +version);
 				model.put("message", "Modificación concurrente de la entrada, inténtelo más tarde por favor.");
 				return ENTRADAS_FORM;
 			}
@@ -272,19 +271,6 @@ public class EntradaController {
 		model.addAttribute("entradas", entradaService.findAll());
 		return ENTRADAS_LISTING;
 	}
-
-//	@GetMapping("/{id}/delete")
-//	public String deleteEntrada(@PathVariable("id") int id,@PathVariable("festivalId") int festivalId, ModelMap model) {
-//		Optional<Entrada> entrada = entradaService.findById(id);
-//		if (entrada.isPresent()) {
-//			entradaService.delete(entrada.get());
-//			model.addAttribute("message", "La entrada fue borrada correctamente!");
-//			return "redirect:/festivales/{festivalId}";
-//		} else {
-//			model.addAttribute("message", "No podemos encontrar la entrada que intenta eliminar!");
-//			return "redirect:/festivales/{festivalId}";
-//		}
-//	}
 
 	@GetMapping("mifestival/entradas/new")
 	public String createNewentrada(ModelMap model) {

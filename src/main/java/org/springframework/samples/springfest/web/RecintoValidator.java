@@ -39,7 +39,6 @@ public class RecintoValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		// TODO Auto-generated method stub
 		return Recinto.class.isAssignableFrom(clazz);
 	}
 
