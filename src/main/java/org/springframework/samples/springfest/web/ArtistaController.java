@@ -1,7 +1,6 @@
 package org.springframework.samples.springfest.web;
 
 import java.util.Collection;
-import java.util.logging.Logger;
 
 
 import javax.validation.Valid;
@@ -9,7 +8,6 @@ import javax.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.springfest.model.Artista;
-import org.springframework.samples.springfest.model.Festival;
 import org.springframework.samples.springfest.model.GeneroType;
 import org.springframework.samples.springfest.service.ArtistaService;
 import org.springframework.samples.springfest.service.FestivalService;
@@ -25,13 +23,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class ArtistaController {
 
 	public static final String ARTISTAS_FORM = "artistas/createOrUpdateArtistaForm";
 	public static final String ARTISTAS_LISTING = "artistas/artistasListing";
 
-	private static final Logger logger = Logger.getLogger(ArtistaController.class.getName());
 
 	@Autowired
 	ArtistaService artistaService;
@@ -42,7 +42,7 @@ public class ArtistaController {
 	@GetMapping("/artistas")
 	public String listArtistas(ModelMap model) {
 
-		logger.entering(getClass().getName(), "doIt");
+		log.info("Accediendo al listado de artistas");
 		model.addAttribute("todosArtistas", artistaService.findAll());
 		return ARTISTAS_LISTING;
 	}
