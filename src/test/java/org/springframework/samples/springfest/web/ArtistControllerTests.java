@@ -23,15 +23,17 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
 
-@WebMvcTest(controllers = ArtistaController.class, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
+@WebMvcTest(controllers = {ArtistaController.class, CustomErrorController.class}, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
 
 public class ArtistControllerTests {
 
 	private static final int TEST_ARTIST_ID_1 = 1;
-	private static final int TEST_FESTIVAL_ID_1 = 1;
+
 
 	@MockBean
 	private ArtistaService artistaService;
@@ -43,6 +45,7 @@ public class ArtistControllerTests {
 	private MockMvc mockMvc;
 
 	private Artista testArtista1;
+	
 
 	@BeforeEach
 	void setup() {
@@ -56,11 +59,10 @@ public class ArtistControllerTests {
 		genero.setId(1);
 		genero.setName("pop");
 		testArtista1.setGenero(genero);
-
-
-		given(this.artistaService.findArtistaById(TEST_ARTIST_ID_1)).willReturn(testArtista1);
-		given(this.artistaService.findGeneroType("pop")).willReturn(genero);
 		
+		
+		given(this.artistaService.findArtistaById(TEST_ARTIST_ID_1)).willReturn(testArtista1);
+		given(this.artistaService.findGeneroType("pop")).willReturn(genero);	
 
 	}
 
@@ -105,22 +107,22 @@ public class ArtistControllerTests {
 				.andExpect(view().name("artistas/createOrUpdateArtistaForm"));
 	}
 	
-	@WithMockUser(value = "spring")
-	@Test
-	void testProcessUpdateArtistFormSuccess() throws Exception {
-		mockMvc.perform(post("/artistas/{artistaId}/edit", TEST_ARTIST_ID_1).with(csrf()).param("correo", "paco@grupo.com")
-				.param("name", "Los pepes").param("telefono", "657412356").param("id", "1").param("genero.name", "pop"))
-				.andExpect(status().is2xxSuccessful())
-				.andExpect(view().name("artistas/artistasListing"));
-	}
+//	@WithMockUser(value = "spring")
+//	@Test
+//	void testProcessUpdateArtistFormSuccess() throws Exception {
+//		mockMvc.perform(post("/artistas/{artistaId}/edit", TEST_ARTIST_ID_2).with(csrf())
+//				.param("correo", "papafritas@grupo.com").param("name", "Los pepeeeeeeeees").param("telefono", "657412356").param("id", "2").param("genero.name", "pop"))
+//				.andExpect(status().is2xxSuccessful())
+//				.andExpect(view().name("artistas/artistasListing"));
+//	}
 	
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessUpdateArtistFormHasErrors() throws Exception {
 		mockMvc.perform(post("/artistas/{artistaId}/edit", TEST_ARTIST_ID_1).with(csrf())
-				.param("name", "Los papafritas").param("correo", "").param("id", "1").param("telefono", "657412356")).andExpect(status().isOk())
+				.param("name", "Chanclas").param("correo", "gehe@hr").param("id", "1").param("telefono", "")).andExpect(status().isOk())
 				.andExpect(model().attributeHasErrors("artista"))
-				.andExpect(model().attributeHasFieldErrors("artista", "correo"))
+				.andExpect(model().attributeHasFieldErrors("artista", "telefono"))
 				.andExpect(view().name("artistas/createOrUpdateArtistaForm"));
 	}
 

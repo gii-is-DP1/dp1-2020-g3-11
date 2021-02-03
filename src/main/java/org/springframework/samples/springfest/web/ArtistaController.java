@@ -1,14 +1,13 @@
 package org.springframework.samples.springfest.web;
 
 import java.util.Collection;
-import java.util.logging.Logger;
+
 
 import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.springfest.model.Artista;
-import org.springframework.samples.springfest.model.Festival;
 import org.springframework.samples.springfest.model.GeneroType;
 import org.springframework.samples.springfest.service.ArtistaService;
 import org.springframework.samples.springfest.service.FestivalService;
@@ -24,15 +23,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 public class ArtistaController {
 
 	public static final String ARTISTAS_FORM = "artistas/createOrUpdateArtistaForm";
 	public static final String ARTISTAS_LISTING = "artistas/artistasListing";
-	
-	private static final Logger logger =
-			Logger.getLogger(ArtistaController.class.getName());
+
 
 	@Autowired
 	ArtistaService artistaService;
@@ -42,12 +41,12 @@ public class ArtistaController {
 
 	@GetMapping("/artistas")
 	public String listArtistas(ModelMap model) {
-		
-		logger.entering(getClass().getName(), "doIt");
+
+		log.info("Accediendo al listado de artistas");
 		model.addAttribute("todosArtistas", artistaService.findAll());
 		return ARTISTAS_LISTING;
 	}
-	
+
 	@ModelAttribute("generos")
 	public Collection<String> populateGeneroTypes() {
 		return this.artistaService.findGeneroTypes();
@@ -59,14 +58,13 @@ public class ArtistaController {
 		this.artistaService = artistaService;
 	}
 
-	
 	@InitBinder("artista")
 	public void initArtistBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new ArtistaValidator());
 	}
 
 	@GetMapping(value = "/artistas/new")
-	public String initCreationForm(Festival festival, ModelMap model) {
+	public String initCreationForm(ModelMap model) {
 		Artista artista = new Artista();
 		model.put("artista", artista);
 		return ARTISTAS_FORM;
@@ -101,14 +99,14 @@ public class ArtistaController {
 	}
 
 	@PostMapping(value = "/artistas/{artistaId}/edit")
-	public String processUpdateForm(@Valid Artista artista, BindingResult result, Festival festival,
-			@PathVariable("artistaId") int artistaId, @RequestParam(value = "version", required = false) Integer version, ModelMap model) {
+	public String processUpdateForm(@Valid Artista artista, BindingResult result, @PathVariable("artistaId") int artistaId,
+			@RequestParam(value = "version", required = false) Integer version, ModelMap model) {
 		if (result.hasErrors()) {
 			model.put("artista", artista);
 			return ARTISTAS_FORM;
 		} else {
 			Artista artistaBD = this.artistaService.findArtistaById(artistaId);
-			if(artistaBD.getVersion() != version) {
+			if (artistaBD.getVersion() != version) {
 				model.put("message", "Modificación concurrente del artista, inténtelo más tarde por favor.");
 				return ARTISTAS_FORM;
 			}
@@ -122,19 +120,5 @@ public class ArtistaController {
 		return listArtistas(model);
 
 	}
-
-//	@GetMapping("/artistas/{artistaId}/delete")
-//	public String deleteArtista(@PathVariable("artistaId") int artistaId, ModelMap model,
-//			@PathVariable("festivalId") int festivalId) {
-//
-//		Artista artista = this.artistaService.findArtistaById(artistaId).orElse(null);
-//		if (artista.isPresent()) {
-//			artistaService.delete(artista);
-//			model.addAttribute("message", "The artista was deleted successfully!");
-//		} else {
-//			model.addAttribute("message", "We cannot find that Artista you tried to delete!");
-//		}
-//		return listArtistas(model);
-//	}
 
 }
