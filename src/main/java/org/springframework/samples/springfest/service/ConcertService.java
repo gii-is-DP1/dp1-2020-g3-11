@@ -1,8 +1,6 @@
 package org.springframework.samples.springfest.service;
 
-import java.util.Collection;    
-
-import javax.validation.Valid;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -18,15 +16,15 @@ public class ConcertService {
 	ConcertRepository concertRepository;
 
 	@Transactional(readOnly = true)
-	public Collection<Concert> findAll() throws DataAccessException{
+	public Collection<Concert> findAll() throws DataAccessException {
 		return concertRepository.findAll();
 	}
-	
+
 	@Autowired
-	public ConcertService(ConcertRepository concertRepository)  throws DataAccessException{
+	public ConcertService(ConcertRepository concertRepository) throws DataAccessException {
 		this.concertRepository = concertRepository;
 	}
-	
+
 	@Transactional(readOnly = true)
 	public Concert findById(int id) throws DataAccessException {
 		return concertRepository.findById(id).get();
@@ -40,20 +38,19 @@ public class ConcertService {
 
 	@Transactional()
 	public void save(Concert concert) throws DataAccessException, ConcertOutOfDateException {
-		if(concert.getHoraCom().toLocalDate().isBefore(concert.getFestival().getFechaCom()) ||
-				concert.getHoraFin().toLocalDate().isAfter(concert.getFestival().getFechaFin())){
+		if (concert.getHoraCom().toLocalDate().isBefore(concert.getFestival().getFechaCom())
+				|| concert.getHoraFin().toLocalDate().isAfter(concert.getFestival().getFechaFin())) {
 			throw new ConcertOutOfDateException();
-		}
-		else {
+		} else {
 			concertRepository.save(concert);
 
 		}
 
 	}
-	
+
 	@Transactional(readOnly = true)
 	public Collection<Concert> findAllConcertsByFestivalId(int festivalId) throws DataAccessException {
 		return concertRepository.findAllConcertsByFestivalId(festivalId);
 	}
-	
+
 }
