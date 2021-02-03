@@ -22,9 +22,5 @@ public interface OfertaRepository extends CrudRepository<Oferta, Integer> {
 	@Query("SELECT t.name FROM TipoOferta t ORDER BY t.name")
 	List<String> findTiposOfertas() throws DataAccessException;
 
-//    @Query("select oe.oferta from OfertaEntradas oe where oe.entrada.id = ?1")
-//	public Collection<Oferta> findAllOfertasByEntradaId(int entradaId);
-//	
-	
 
 }

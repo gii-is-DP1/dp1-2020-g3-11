@@ -123,18 +123,4 @@ public class ArtistaController {
 
 	}
 
-//	@GetMapping("/artistas/{artistaId}/delete")
-//	public String deleteArtista(@PathVariable("artistaId") int artistaId, ModelMap model,
-//			@PathVariable("festivalId") int festivalId) {
-//
-//		Artista artista = this.artistaService.findArtistaById(artistaId).orElse(null);
-//		if (artista.isPresent()) {
-//			artistaService.delete(artista);
-//			model.addAttribute("message", "The artista was deleted successfully!");
-//		} else {
-//			model.addAttribute("message", "We cannot find that Artista you tried to delete!");
-//		}
-//		return listArtistas(model);
-//	}
-
 }

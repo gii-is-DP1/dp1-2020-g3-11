@@ -108,20 +108,6 @@ public class RecintoController {
 		}
 	}
 
-//	@GetMapping("/{id}/delete")
-//	public String deleteService(@PathVariable("id") int id, @PathVariable("festivalId") int festivalId,
-//			ModelMap model) {
-//		Optional<Recinto> recinto = recintoService.findById(id);
-//		if (recinto.isPresent()) {
-//			recintoService.delete(recinto.get());
-//			model.addAttribute("message", "El recinto se borró correctamente!");
-//			return "redirect:/festivales/{festivalId}";
-//		} else {
-//			model.addAttribute("message", "No podemos encontrar el recinto que intentas borar!");
-//			return "redirect:/festivales/{festivalId}";
-//		}
-//	}
-
 	@GetMapping("/{id}/detalles")
 	public String mostrarDetallesRecinto(ModelMap model, @PathVariable("id") int recintoId) {
 		model.addAttribute("recinto", this.recintoService.findById(recintoId).get());

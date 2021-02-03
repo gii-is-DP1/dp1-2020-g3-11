@@ -83,20 +83,6 @@ public class PuestoController {
 		dataBinder.setValidator(new PuestoValidator());
 	}
 
-//	@GetMapping("/festivales/{id_festival}/puestos")
-//	public String listPuestosSponsor(Principal principal, @PathVariable("id_festival") int festivalId, ModelMap model) {
-//		System.out.println("Hola buenas:"+festivalId);
-//		Usuario usuario = usuarioLogueado(principal);
-//		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
-//		Collection<Puesto> listaPuestos = puestoService.findAll();
-//		
-//		model.addAttribute("puestos", listaPuestos);
-//		model.addAttribute("datosUsuario", usuario);
-//		model.addAttribute("datosFestival", festival);
-//		
-//		return ALQUILAR_PUESTOS;
-//	}
-	
 	
 	@GetMapping("/mifestival/puestos")
 	public String listPuestos(Principal principal, ModelMap model) {

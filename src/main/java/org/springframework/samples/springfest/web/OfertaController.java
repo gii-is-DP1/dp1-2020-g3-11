@@ -108,7 +108,6 @@ public class OfertaController {
 		Integer festivalId = usuario.getFestival().getId();
 
 		if (binding.hasErrors()) {
-			System.out.println(binding.getAllErrors());
 			return OFERTAS_FORM;
 		} else {
 			
