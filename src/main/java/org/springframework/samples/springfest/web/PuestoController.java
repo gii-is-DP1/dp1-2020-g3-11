@@ -43,8 +43,6 @@ public class PuestoController {
 	public static final String PUESTOS_LISTING = "puestos/puestosListing";
 	public static final String ALQUILAR_PUESTOS = "puestos/alquilarPuestos";
 	
-	
-	
 	@Autowired
 	FestivalService festivalService;
 
@@ -82,7 +80,10 @@ public class PuestoController {
 	public void initPuestoBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new PuestoValidator());
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'fercaldurS4_2' of https://github.com/gii-is-DP1/dp1-2020-g3-11.git
 	
 	@GetMapping("/mifestival/puestos")
 	public String listPuestos(Principal principal, ModelMap model) {
