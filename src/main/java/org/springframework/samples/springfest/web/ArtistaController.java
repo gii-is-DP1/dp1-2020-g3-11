@@ -3,6 +3,7 @@ package org.springframework.samples.springfest.web;
 import java.util.Collection;
 import java.util.logging.Logger;
 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
@@ -63,7 +64,7 @@ public class ArtistaController {
 	}
 
 	@GetMapping(value = "/artistas/new")
-	public String initCreationForm(Festival festival, ModelMap model) {
+	public String initCreationForm(ModelMap model) {
 		Artista artista = new Artista();
 		model.put("artista", artista);
 		return ARTISTAS_FORM;
@@ -98,8 +99,7 @@ public class ArtistaController {
 	}
 
 	@PostMapping(value = "/artistas/{artistaId}/edit")
-	public String processUpdateForm(@Valid Artista artista, BindingResult result, Festival festival,
-			@PathVariable("artistaId") int artistaId,
+	public String processUpdateForm(@Valid Artista artista, BindingResult result, @PathVariable("artistaId") int artistaId,
 			@RequestParam(value = "version", required = false) Integer version, ModelMap model) {
 		if (result.hasErrors()) {
 			model.put("artista", artista);
