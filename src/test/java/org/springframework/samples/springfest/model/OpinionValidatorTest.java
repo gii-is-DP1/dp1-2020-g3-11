@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Locale;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -40,10 +41,12 @@ class OpinionValidatorTest {
 		Set<ConstraintViolation<Opinion>> constraintViolations = validator.validate(opinion);
 
 		assertThat(constraintViolations.size()).isEqualTo(2);
-		ConstraintViolation<Opinion> violation = constraintViolations.iterator().next();
+		ConstraintViolation<Opinion> violation = constraintViolations.stream().collect(Collectors.toList()).get(0);
 		assertThat(violation.getPropertyPath().toString()).isEqualTo("descripcion");
 		assertThat(violation.getMessage()).isEqualTo("size must be between 10 and 1024");
-
+		ConstraintViolation<Opinion> violation2 = constraintViolations.stream().collect(Collectors.toList()).get(1);
+		assertThat(violation2.getPropertyPath().toString()).isEqualTo("descripcion");
+		assertThat(violation2.getMessage()).isEqualTo("must not be blank");
 	}
 
 	@Test
