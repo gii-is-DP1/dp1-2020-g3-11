@@ -22,7 +22,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${todosArtistas}" var="artista">
+			<c:forEach items="${list}" var="artista">
 				<tr>
 					<td><c:out value="${artista.name}" /></td>
 					<td><c:out value="${artista.telefono}" /></td>
@@ -37,11 +37,20 @@
 		</tbody>
 
 	</table>
+	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			<c:forEach items="${pages}" var="pages">
+				<li class="page-item"><a class="page-link" href="?page=${pages}">${pages}</a></li>
+			</c:forEach>
+
+		</ul>
+	</nav>
 
 	<h3>
 		<spring:url value="/artistas/new" var="newArtistaUrl">
 		</spring:url>
-		<a href="${fn:escapeXml(newArtistaUrl)}" class="btn btn-default">Añadir artista</a>
+		<a href="${fn:escapeXml(newArtistaUrl)}" class="btn btn-default">Añadir
+			artista</a>
 		</td>
 	</h3>
 </springfest:layout>
