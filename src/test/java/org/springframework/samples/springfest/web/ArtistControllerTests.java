@@ -107,15 +107,6 @@ public class ArtistControllerTests {
 				.andExpect(view().name("artistas/createOrUpdateArtistaForm"));
 	}
 	
-//	@WithMockUser(value = "spring")
-//	@Test
-//	void testProcessUpdateArtistFormSuccess() throws Exception {
-//		mockMvc.perform(post("/artistas/{artistaId}/edit", TEST_ARTIST_ID_2).with(csrf())
-//				.param("correo", "papafritas@grupo.com").param("name", "Los pepeeeeeeeees").param("telefono", "657412356").param("id", "2").param("genero.name", "pop"))
-//				.andExpect(status().is2xxSuccessful())
-//				.andExpect(view().name("artistas/artistasListing"));
-//	}
-	
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessUpdateArtistFormHasErrors() throws Exception {
