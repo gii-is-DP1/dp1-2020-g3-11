@@ -138,4 +138,5 @@ public class EntradaServiceTests {
 		assertThat(entradas.size()).isEqualTo(size - 1);
 
 	}
+	//pruebas parametrizadas
 }
