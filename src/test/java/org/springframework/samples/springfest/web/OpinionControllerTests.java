@@ -33,7 +33,6 @@ public class OpinionControllerTests {
 	private static final int TEST_OPINION_ID_1 = 1;
 	private static final int TEST_FESTIVAL_ID_2 = 2;
 
-
 	@MockBean
 	private OpinionService opinionService;
 
@@ -47,8 +46,6 @@ public class OpinionControllerTests {
 	private MockMvc mockMvc;
 
 	private Opinion testOpinion1;
-	//private Usuario testUsuario1;
-
 
 	@BeforeEach
 	void setup() {
@@ -60,14 +57,11 @@ public class OpinionControllerTests {
 		testOpinion1.setPuntuacion(5);
 		testOpinion1.setVersion(1);
 	
-//		testUsuario1 = this.usuarioService.findUsuarioById(22);
-//		testOpinion1.setOpinionUsuario(testUsuario1);
 		given(this.opinionService.findById(TEST_OPINION_ID_1)).willReturn(testOpinion1);
 		
 	}
 
-	// INSERT OPINION
-
+	//INSERT OPINION
 	@WithMockUser(value = "spring")
 	@Test
 	void testInitNewOpinionForm() throws Exception {
@@ -84,14 +78,19 @@ public class OpinionControllerTests {
 		.andExpect(status().is2xxSuccessful());
 	}
 
+	//INSERT OPINION WITH DESCRIPTION TOO SHORT AND STRING SCORE
 	@WithMockUser(value = "spring")
 	@Test
-	void testProcessNewOpinionHasErrorsDescriptionShort() throws Exception {
-		mockMvc.perform(post("/festivales/{festivalId}/valoraciones/new", TEST_FESTIVAL_ID_2).with(csrf()).param("descripcion", "Bien").param("puntuacion", "5"))
-		.andExpect(status().is2xxSuccessful())
+	void testProcessNewOpinionHasErrorsDescriptionShortPuntuationString() throws Exception {
+		mockMvc.perform(post("/festivales/{festivalId}/valoraciones/new", TEST_FESTIVAL_ID_2).with(csrf())
+				.param("descripcion", "Muy corto")
+				.param("puntuacion", "x"))
+				.andExpect(model().attributeHasFieldErrors("opinion", "descripcion", "puntuacion"))
 				.andExpect(view().name("opinions/createOpinionForm"));
-	}
+
+	}	
 	
+	//LISTING OPINIONS 
 	@WithMockUser(value = "spring")
 	@Test
 	void testListOpinions() throws Exception {
