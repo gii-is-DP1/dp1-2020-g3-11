@@ -8,16 +8,16 @@ import java.util.Set;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.samples.springfest.model.Artista;
 import org.springframework.samples.springfest.model.GeneroType;
 import org.springframework.samples.springfest.model.Usuario;
 import org.springframework.samples.springfest.repository.ArtistaRepository;
 
 
-public interface ArtistaRepository extends CrudRepository<Artista, Integer> {
+public interface ArtistaRepository extends PagingAndSortingRepository<Artista, Integer> {
 
 	Collection<Artista> findAll();
-
 	
 	@Query("SELECT gtype.name FROM GeneroType gtype ORDER BY gtype.name")
 	List<String> findGeneroTypes() throws DataAccessException;

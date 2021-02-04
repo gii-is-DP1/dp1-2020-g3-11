@@ -79,8 +79,8 @@ public class ArtistControllerTests {
 	@Test
 	void testProcessNewArtistFormSuccess() throws Exception {
 		mockMvc.perform(post("/artistas/new").with(csrf()).param("name", "Paco Gaspar").param("correo", "paco@grupo.com")
-				.param("telefono", "657412356").param("genero.name", "pop")).andExpect(status().is2xxSuccessful())
-				.andExpect(view().name("artistas/artistasListing"));
+				.param("telefono", "657412356").param("genero.name", "pop")).andExpect(status().is3xxRedirection())
+				.andExpect(view().name("redirect:/artistas"));
 	}
 	
 	@WithMockUser(value = "spring")

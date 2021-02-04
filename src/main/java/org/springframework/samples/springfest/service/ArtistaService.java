@@ -24,6 +24,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.samples.springfest.model.Artista;
 import org.springframework.samples.springfest.model.GeneroType;
 import org.springframework.samples.springfest.repository.ArtistaRepository;
@@ -38,6 +40,11 @@ public class ArtistaService {
 	@Transactional(readOnly = true)
 	public Collection<Artista> findAll() throws DataAccessException {
 		return artistaRepository.findAll();
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<Artista> getAll(Pageable pageable) throws DataAccessException {
+		return artistaRepository.findAll(pageable);
 	}
 
 	@Autowired

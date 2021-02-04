@@ -1,12 +1,18 @@
 package org.springframework.samples.springfest.web;
 
 import java.util.Collection;
-
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import javax.validation.Valid;
 
+import org.hibernate.criterion.Order;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.samples.springfest.model.Artista;
 import org.springframework.samples.springfest.model.GeneroType;
 import org.springframework.samples.springfest.service.ArtistaService;
@@ -33,18 +39,31 @@ public class ArtistaController {
 	public static final String ARTISTAS_LISTING = "artistas/artistasListing";
 
 
+
 	@Autowired
 	ArtistaService artistaService;
 
 	@Autowired
 	FestivalService festivalService;
-
+	
 	@GetMapping("/artistas")
-	public String listArtistas(ModelMap model) {
-
+	public String findAll(@RequestParam(name = "page", defaultValue = "0") int page, ModelMap model) {
+		
 		log.info("Accediendo al listado de artistas");
-		model.addAttribute("todosArtistas", artistaService.findAll());
+
+		PageRequest pageRequest = PageRequest.of(page, 4);
+		
+		Page<Artista> pageArtista = artistaService.getAll(pageRequest);
+		
+		int totalPage = pageArtista.getTotalPages();
+		if(totalPage > 0) {
+			List<Integer> pages = IntStream.rangeClosed(0, totalPage-1).boxed().collect(Collectors.toList());
+			model.addAttribute("pages", pages);
+		}
+		model.addAttribute("list", pageArtista.getContent());
+		
 		return ARTISTAS_LISTING;
+		
 	}
 
 	@ModelAttribute("generos")
@@ -88,7 +107,7 @@ public class ArtistaController {
 			artista.setGenero(genero);
 			this.artistaService.save(artista);
 		}
-		return listArtistas(model);
+		return "redirect:/artistas";
 	}
 
 	@GetMapping(value = "/artistas/{artistaId}/edit")
@@ -117,7 +136,7 @@ public class ArtistaController {
 			artistaToUpdate.incrementVersion();
 			this.artistaService.save(artistaToUpdate);
 		}
-		return listArtistas(model);
+		return "redirect:/artistas";
 
 	}
 
