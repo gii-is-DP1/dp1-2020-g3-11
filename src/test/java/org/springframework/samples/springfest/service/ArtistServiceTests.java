@@ -1,13 +1,11 @@
 
 package org.springframework.samples.springfest.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat; 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,8 +21,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.springfest.model.Artista;
 import org.springframework.samples.springfest.model.GeneroType;
-import org.springframework.samples.springfest.service.ArtistaService;
-import org.springframework.samples.springfest.service.FestivalService;
 import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
@@ -106,7 +102,6 @@ class ArtistServiceTests {
 		artist.setCorreo("juanlu@gmail.com");
 		artist.setGenero(genre);
 		artist.setTelefono("689542122");
-		//artist.setFestivales(fa);
 
 		try {
 			this.artistService.save(artist);
@@ -128,7 +123,6 @@ class ArtistServiceTests {
 		artist.setCorreo("juanlu@gmail.com");
 		artist.setGenero(genre);
 		artist.setTelefono("689542122");
-		//artist.setFestivales(fa);
 		assertThrows(ConstraintViolationException.class, () -> {
 			this.artistService.save(artist);
 		});

@@ -67,7 +67,7 @@ class FestivalServiceTest {
 	void shouldFindFestivaltWithCorrectId() throws Exception {
 		Festival festival3 = this.festivalService.findFestivalById(2).get();
 		assertThat(festival3.getName()).isEqualTo("Dreambeach");
-		assertThat(festival3.getLocalizacion()).isEqualTo("Almería");
+		assertThat(festival3.getLocalizacion()).isEqualTo("Almeria");
 	}
 
 	// FIND FESTIVAL BY NAME
