@@ -1,6 +1,6 @@
 package org.springframework.samples.springfest.web;
 
-import static org.mockito.BDDMockito.given;  
+import static org.mockito.BDDMockito.given;   
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +14,6 @@ import org.springframework.samples.springfest.model.Opinion;
 import org.springframework.samples.springfest.service.FestivalService;
 import org.springframework.samples.springfest.service.OpinionService;
 import org.springframework.samples.springfest.service.UsuarioService;
-import org.springframework.samples.springfest.web.OpinionController;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;

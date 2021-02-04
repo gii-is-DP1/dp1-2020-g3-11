@@ -1,6 +1,6 @@
 package org.springframework.samples.springfest.model;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat; 
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -13,16 +13,8 @@ import javax.validation.Validator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.samples.springfest.model.Festival;
-import org.springframework.samples.springfest.model.Opinion;
-import org.springframework.samples.springfest.model.Usuario;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-/**
- * @author Michael Isvy Simple test to make sure that Bean Validation is working
- *         (useful when upgrading to a new version of Hibernate Validator/ Bean
- *         Validation)
- */
 class OpinionValidatorTest {
 
 	private Validator createValidator() {
@@ -31,28 +23,28 @@ class OpinionValidatorTest {
 		return localValidatorFactoryBean;
 	}
 
-//	@Test
-//	void shouldNotValidateWhenDescripcionEmpty() {
-//		LocaleContextHolder.setLocale(Locale.ENGLISH);
-//
-//		Opinion opinion = new Opinion();
-//		Festival festival = new Festival();
-//		opinion.setFestival(festival);
-//		opinion.setDescripcion("");
-//		opinion.setPuntuacion(3);
-//		opinion.setFecha(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
-//		Usuario ou = new Usuario();
-//		opinion.setOpinionUsuario(ou);
-//		Validator validator = this.createValidator();
-//
-//		Set<ConstraintViolation<Opinion>> constraintViolations = validator.validate(opinion);
-//
-//		assertThat(constraintViolations.size()).isEqualTo(1);
-//		ConstraintViolation<Opinion> violation = constraintViolations.iterator().next();
-//		assertThat(violation.getPropertyPath().toString()).isEqualTo("descripcion");
-//		assertThat(violation.getMessage()).isEqualTo("must not be blank");
-//
-//	}
+	@Test
+	void shouldNotValidateWhenDescripcionEmpty() {
+		LocaleContextHolder.setLocale(Locale.ENGLISH);
+
+		Opinion opinion = new Opinion();
+		Festival festival = new Festival();
+		opinion.setFestival(festival);
+		opinion.setDescripcion("");
+		opinion.setPuntuacion(3);
+		opinion.setFecha(LocalDateTime.of(LocalDate.now(), LocalTime.now()));
+		Usuario ou = new Usuario();
+		opinion.setOpinionUsuario(ou);
+		Validator validator = this.createValidator();
+
+		Set<ConstraintViolation<Opinion>> constraintViolations = validator.validate(opinion);
+
+		assertThat(constraintViolations.size()).isEqualTo(2);
+		ConstraintViolation<Opinion> violation = constraintViolations.iterator().next();
+		assertThat(violation.getPropertyPath().toString()).isEqualTo("descripcion");
+		assertThat(violation.getMessage()).isEqualTo("size must be between 10 and 1024");
+
+	}
 
 	@Test
 	void shouldNotValidateWhenFestivalNull() {
