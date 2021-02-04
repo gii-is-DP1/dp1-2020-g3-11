@@ -44,12 +44,12 @@ public class UsuarioController {
 	public String initCreationForm(ModelMap model) {
 		Usuario usuario = new Usuario();
 		model.put("usuario", usuario);
-
 		return VIEWS_USUARIO_CREATE_FORM;
 	}
 
 	@PostMapping(value = "/usuarios/new")
 	public String processCreationForm(@Valid Usuario usuario, BindingResult result) {
+		
 		if (usuarioService.checkCorreoExists(usuario.getCorreo())) {
 			result.addError(new FieldError("usuario", "correo", "El correo ya existe"));
 		}
