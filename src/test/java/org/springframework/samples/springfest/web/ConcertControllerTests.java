@@ -1,6 +1,6 @@
 package org.springframework.samples.springfest.web;
 
-import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.hasProperty; 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 
