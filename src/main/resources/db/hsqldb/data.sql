@@ -22,8 +22,8 @@ INSERT INTO authorities(id,username,authority) VALUES (40,'administrador3','admi
 INSERT INTO usuario VALUES (3,1, 'Juanlu', 'erere', '46899990X', 'javierefdo2@admin.com', '1998-02-20',null,'677888512', 3,'administrador3');
 
 INSERT INTO festival VALUES (1,1,'Cabo de Plata',100,100,'2021-06-06','2021-06-09','Cadiz', 1);
-INSERT INTO festival VALUES (2,1,'Dreambeach',200,200,'2021-07-25','2021-07-29','Almería', 2);
-INSERT INTO festival VALUES (3,1,'Guacamayo',200,200,'2020-07-25','2020-07-29','Almería', 3);
+INSERT INTO festival VALUES (2,1,'Dreambeach',200,200,'2021-07-25','2021-07-29','Almeria', 2);
+INSERT INTO festival VALUES (3,1,'Guacamayo',200,200,'2020-07-25','2020-07-29','Almeria', 3);
 
 --usuario --
 INSERT INTO users(username,password,enabled) VALUES ('usuarioPrueba','usuarioPrueba',TRUE);
