@@ -26,7 +26,6 @@ import org.springframework.samples.springfest.model.Usuario;
 import org.springframework.samples.springfest.service.AuthoritiesService;
 import org.springframework.samples.springfest.service.UserService;
 import org.springframework.samples.springfest.service.UsuarioService;
-import org.springframework.samples.springfest.web.UsuarioController;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -92,21 +91,23 @@ public class UsuarioControllerTests {
 
 	}
 
-//	@WithMockUser(value = "spring")
-//	@Test
-//	void testProcessNewUsuarioFormHasErrors() throws Exception {
-//		mockMvc.perform(post("/usuarios/new").with(csrf())
-//				.param("firstName", "PacoteElMalote")
-//				.param("lastName", "Bozassaa")
-//				.param("telefono", "")
-//				.param("correo", "paco@grupo.com")
-//				.param("DNI", "30778899G")
-//				.param("fechaNacimiento", "1999/06/22"))
-//				.andExpect(status().isOk())
-//				.andExpect(model().attributeHasErrors("usuario"))
-//				.andExpect(model().attributeHasFieldErrors("usuario",
-//						"telefono", "tipoUsuario.name", "user.username", "user.password"))
-//				.andExpect(view().name("usuarios/createOrUpdateUsuarioForm"));
-//	}
+	@WithMockUser(value = "spring")
+	@Test
+	void testProcessNewUsuarioFormHasErrors() throws Exception {
+		mockMvc.perform(post("/usuarios/new").with(csrf())
+				.param("firstName", "")
+				.param("lastName", "Bozassaa")
+				.param("telefono", "654453788")
+				.param("correo", "acusod@gmail.com")
+				.param("user.username", "")
+				.param("user.password", "")
+				.param("DNI", "45899990X")
+				.param("fechaNacimiento", "1999/06/22"))
+				.andExpect(status().isOk())
+				.andExpect(model().attributeHasErrors("usuario"))
+				.andExpect(model().attributeHasFieldErrors("usuario",
+						 "firstName", "user.username", "user.password"))
+				.andExpect(view().name("usuarios/createOrUpdateUsuarioForm"));
+	}
 
 }
