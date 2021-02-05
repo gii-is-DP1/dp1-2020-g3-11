@@ -19,12 +19,12 @@ public class PuestoService {
 	@Autowired
 	PuestoRepository puestoRepository;
 
-	@Transactional
+	@Transactional (readOnly = true)
 	public Collection<Puesto> findAll() throws DataAccessException {
 		return puestoRepository.findAll();
 	}
 
-	@Transactional
+	@Transactional (readOnly = true)
 	public Optional<Puesto> findById(int id) throws DataAccessException {
 		return puestoRepository.findById(id);
 	}
@@ -70,10 +70,12 @@ public class PuestoService {
 		return puestoRepository.findRecintoById(id);
 	}
 	
+	@Transactional(readOnly = true)
 	public Collection<Puesto> findPuestosLibres(Integer festivalId){
 		return puestoRepository.findPuestosLibres(festivalId);
 	}
 
+	@Transactional(readOnly = true)
 	public Collection<Puesto> findAllPuestosBySponsorId(Integer id) {
 		return puestoRepository.findAllPuestosBySponsorId(id);
 	}

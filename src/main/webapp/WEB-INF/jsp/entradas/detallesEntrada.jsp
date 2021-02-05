@@ -15,12 +15,9 @@
 	<table id="entradaTable" class="table table-striped">
 		<thead>
 			<tr>
-				<th style="width: 33%;">Festival</th>
-				<th style="width: 33%;">Precio Entrada + Oferta</th>
-				<th style="width: 33%;">Tipo de Entrada</th>
-				<th style="width: 33%;">Ofertas</th>
-				<th></th>
-				<th></th>
+				<th style="width: 20%;">Festival</th>
+				<th style="width: 15%;">Precio Entrada + Oferta</th>
+				<th style="width: 15%;">Tipo de Entrada</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,16 +26,24 @@
 				<td><c:out value="${festival.name}" /></td>
 				<td><c:out value="${precioTotal}" /></td>
 				<td><c:out value="${entrada.entradaType}" /></td>
-				<td><c:if test="${ofertas.size() == 0}">
-					<p>No hay ofertas para asociar</p>
-				</c:if></td>
-				<c:forEach items="${ofertas}" var="oferta">
-					<td><c:out value="${oferta.nombre}" /></td>
-				</c:forEach>
 			</tr>
 		</tbody>
 	</table>
+	
+	<h3>Ofertas</h3>
+	<c:if test="${ofertas.size() == 0}">
+		<p>No hay ofertas asociadas</p>
+	</c:if>
+	<c:forEach items="${ofertas}" var="oferta">
+		<ul>
+			<li>${oferta.nombre}</li>
+		</ul>
+	</c:forEach>
+	
+	<br>
+	
 	<spring:url value="/festivales" var="festivaUrl">
 	</spring:url>
-	<a href="${fn:escapeXml(festivaUrl)}" class="btn btn-default">Volver a festivales</a>
+	<a href="${fn:escapeXml(festivaUrl)}" class="btn btn-default">Volver
+		a festivales</a>
 </springfest:layout>

@@ -18,10 +18,9 @@
 				<sec:authorize access="hasAuthority('admin')">
 					<th style="width: 33%;">ID</th>
 				</sec:authorize>
-				<th style="width: 33%;">Precio</th>
-				<th style="width: 33%;">Tipos de Entrada</th>
-				<th></th>
-				<th></th>
+				<th style="width: 30%;">Precio</th>
+				<th style="width: 50%;">Tipos de Entrada</th>
+				<th  style="width: 20%;"></th>
 			</tr>
 		</thead>
 		<tbody>
