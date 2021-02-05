@@ -29,8 +29,8 @@ public class RecintoService {
 	}
 
 	@Transactional(readOnly = true)
-	public Optional<Recinto> findById(int id) throws DataAccessException {
-		return recintoRepo.findById(id);
+	public Recinto findById(int id) throws DataAccessException {
+		return recintoRepo.findById(id).get();
 	}
 
 	@Transactional
