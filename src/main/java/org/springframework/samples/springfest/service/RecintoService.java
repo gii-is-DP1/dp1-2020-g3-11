@@ -24,6 +24,7 @@ public class RecintoService {
 		this.recintoRepo = recintoRepo;
 	}
 
+	@Transactional(readOnly = true)
 	public Collection<Recinto> findAll() throws DataAccessException {
 		return recintoRepo.findAll();
 	}
