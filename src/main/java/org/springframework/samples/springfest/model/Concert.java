@@ -24,17 +24,17 @@ import lombok.Setter;
 @Table(name = "concierto")
 public class Concert extends BaseEntity {
 
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@JoinColumn(name = "recinto_id")
 	@NotNull
 	private Recinto recinto;
 	
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@JoinColumn(name = "festival_id")
 	@NotNull
 	private Festival festival;
 	
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@JoinColumn(name = "artista_id")
 	@NotNull
 	private Artista artista;

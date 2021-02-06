@@ -27,11 +27,11 @@ public class Entrada extends BaseEntity {
     @JoinColumn(name = "usuario_id")
     private Set<Usuario> usuario;
 	
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@JoinColumn(name = "festival_id")
 	private Festival festival;
 
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@JoinColumn(name = "entradaType")
 	@NotNull
 	private EntradaType entradaType;

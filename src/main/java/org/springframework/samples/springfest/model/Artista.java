@@ -29,7 +29,7 @@ public class Artista extends AuditableEntity {
 	@NotBlank
 	private String telefono;
 
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@JoinColumn(name = "genero_id")
 	@NotNull
 	private GeneroType genero;

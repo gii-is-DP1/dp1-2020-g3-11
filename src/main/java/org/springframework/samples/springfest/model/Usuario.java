@@ -37,7 +37,7 @@ public class Usuario extends Person {
 	@NotBlank
 	private String DNI;
 
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@JoinColumn(name = "tipos_usuario")
 	@NotNull
 	private TipoUsuario tipoUsuario;
@@ -54,11 +54,11 @@ public class Usuario extends Person {
 	@NotNull
 	private LocalDate fechaNacimiento;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	@JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
 
-	@OneToOne
+	@OneToOne(optional=true)
 	@JoinColumn(name = "id", referencedColumnName = "id")
 	private Festival festival;
 

@@ -16,12 +16,14 @@
 		<thead>
 			<tr>
 				<th style="width: 20%;">Nombre</th>
-				<th style="width: 20%;">Aforo Máximo</th>
+				<th style="width: 10%;">Aforo Máximo</th>
 				<th style="width: 20%;">Fecha Comienzo</th>
 				<th style="width: 20%;">Fecha Fin</th>
-				<th style="width: 20%;">Localización</th>
-				<th></th>
-				<th></th>
+				<th style="width: 10%;">Localización</th>
+				<sec:authorize access="hasAuthority('usuario')">
+					<th style="width: 10%;"></th>
+				</sec:authorize>
+				<th style="width: 10%;"></th>
 			</tr>
 		</thead>
 		<tbody>

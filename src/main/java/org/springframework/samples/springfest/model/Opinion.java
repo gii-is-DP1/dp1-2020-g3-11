@@ -25,7 +25,7 @@ import lombok.Setter;
 public class Opinion extends BaseEntity {
 
 	@NotNull
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@JoinColumn(name = "festival_id")
 	private Festival festival;
 

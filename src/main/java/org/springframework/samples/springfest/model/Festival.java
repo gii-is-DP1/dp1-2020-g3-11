@@ -64,7 +64,7 @@ public class Festival extends NamedEntity {
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "festivales")
 	private Set<Artista> artistas;
 
-	@OneToOne
+	@OneToOne(optional=false)
 	private Usuario festivalAdmin;
 
 }
