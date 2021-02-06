@@ -21,6 +21,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.springfest.model.Entrada;
 import org.springframework.samples.springfest.model.TipoUsuario;
+import org.springframework.samples.springfest.model.User;
 import org.springframework.samples.springfest.model.Usuario;
 import org.springframework.samples.springfest.service.UsuarioService;
 import org.springframework.stereotype.Service;
@@ -61,6 +62,7 @@ public class UsuarioServiceTests {
 		TipoUsuario tipo = this.usuarioService.findTipoUsuario("Usuario");
 
 		Usuario usuario = new Usuario();
+		usuario.setId(43);
 		usuario.setFirstName("Juanlu");
 		usuario.setLastName("Munoz");
 		usuario.setCorreo("juanlu@gmail.com");
@@ -70,6 +72,11 @@ public class UsuarioServiceTests {
 		Set<Entrada> entradas = new HashSet<Entrada>();
 		usuario.setEntradas(entradas);
 		usuario.setTipoUsuario(tipo);
+		
+		User user = new User();
+		user.setUsername("juanlu");
+		user.setPassword("vivaErBeti");
+		usuario.setUser(user);
 
 		try {
 			this.usuarioService.saveUsuario(usuario);
