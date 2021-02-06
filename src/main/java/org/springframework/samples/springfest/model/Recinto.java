@@ -27,7 +27,7 @@ public class Recinto extends NamedEntity {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recinto")
 	private Set<Puesto> puestos;
 
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@JoinColumn(name = "festival_id")
 	@NotNull
 	private Festival festival;
@@ -37,7 +37,7 @@ public class Recinto extends NamedEntity {
 	@Min(value = 1)
 	private Integer huecos;
 
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@NotNull
 	@JoinColumn(name = "tipos_recinto")
 	private TipoRecinto tipoRecinto;

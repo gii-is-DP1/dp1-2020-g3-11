@@ -37,7 +37,7 @@ public class Oferta extends BaseEntity {
 	private Integer precioOferta;
 	
     @NotNull
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@JoinColumn(name = "tipoOferta_id")
 	private TipoOferta tipoOferta;
 	
@@ -45,7 +45,7 @@ public class Oferta extends BaseEntity {
 	@NotBlank
 	private String nombre; 
 	
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@JoinColumn(name = "festival_id")
 	private Festival festival;	
 	

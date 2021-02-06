@@ -23,21 +23,21 @@ import lombok.Setter;
 @Table(name = "puesto")
 public class Puesto extends BaseEntity {	
 
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@JoinColumn(name = "festival_id")
 	private Festival festival;
 	
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@JoinColumn(name = "recinto_id")
 	@NotNull
 	private Recinto recinto;
 
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@NotNull
 	@JoinColumn(name = "tipos_puesto")
 	private TipoPuesto tipoPuesto;
 
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@NotNull
 	@JoinColumn(name = "tipos_tamaño")
 	private TipoTamaño tipoTamanio;
@@ -47,7 +47,7 @@ public class Puesto extends BaseEntity {
 	@Positive
 	private Integer precio;
 	
-	@ManyToOne
+	@ManyToOne(optional=true)
 	@JoinColumn(name = "sponsor_id")
     private Usuario sponsor;
 
