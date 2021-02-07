@@ -14,8 +14,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OfertaService {
+
+	private OfertaRepository ofertaRepo;
+
 	@Autowired
-	OfertaRepository ofertaRepo;
+	public OfertaService(OfertaRepository ofertaRepo) {
+		this.ofertaRepo = ofertaRepo;
+	}
 
 	@Transactional(readOnly = true)
 	public Collection<Oferta> findAll() throws DataAccessException {
@@ -26,30 +31,30 @@ public class OfertaService {
 	public Collection<Oferta> findAllOfertasByFestivalId(int festivalId) throws DataAccessException {
 		return ofertaRepo.findAllOfertasByFestivalId(festivalId);
 	}
-	
+
 	@Transactional(readOnly = true)
 	public Oferta findById(int id) throws DataAccessException {
 		return ofertaRepo.findById(id).get();
 	}
-	
+
 	@Transactional(readOnly = true)
 	public TipoOferta findTipoOfertaByName(String tipoOferta) throws DataAccessException {
 		return ofertaRepo.findTipoOfertaByName(tipoOferta);
 	}
-	
+
 	@Transactional
 	public void delete(Oferta oferta) throws DataAccessException {
 		ofertaRepo.deleteById(oferta.getId());
 
 	}
-	
+
 	@Transactional(readOnly = true)
-    public Collection<String> findTiposOfertas() throws DataAccessException {
-        return ofertaRepo.findTiposOfertas();
-    } 
-	
+	public Collection<String> findTiposOfertas() throws DataAccessException {
+		return ofertaRepo.findTiposOfertas();
+	}
+
 	@Transactional
-	public void save(Oferta oferta) throws DataAccessException{
+	public void save(Oferta oferta) throws DataAccessException {
 		ofertaRepo.save(oferta);
 
 	}
