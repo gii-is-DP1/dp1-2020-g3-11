@@ -15,11 +15,6 @@ public class EntradaValidator implements Validator {
 
 		if (precio == null) {
 			errors.rejectValue("precio", REQUIRED, REQUIRED);
-		}
-
-		if (precio == null) {
-			errors.rejectValue("precio", REQUIRED, REQUIRED);
-
 		} else {
 
 			if (precio <= 0) {
