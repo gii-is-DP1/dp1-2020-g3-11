@@ -112,8 +112,7 @@ public class PuestoController {
 
 	@GetMapping("/mifestival/puestos/new")
 	public String initCreationNewPuesto(ModelMap model) {
-		Puesto puesto = new Puesto();
-		model.put("puesto", puesto);
+		model.put("puesto", new Puesto());
 		return PUESTOS_FORM;
 	}
 
