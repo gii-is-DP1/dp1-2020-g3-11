@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.springfest.model.Entrada;
 import org.springframework.samples.springfest.model.EntradaType;
+import org.springframework.samples.springfest.model.Festival;
 import org.springframework.samples.springfest.repository.EntradaRepository;
 import org.springframework.samples.springfest.service.exceptions.OpinionFestivalDateException;
 import org.springframework.stereotype.Service;
@@ -64,6 +65,11 @@ public class EntradaService {
 	@Transactional(readOnly = true)
 	public Collection<String> findEntradaTypes() throws DataAccessException {
 		return entradaRepo.findEntradaTypes();
+	}
+	
+	@Transactional(readOnly = true)
+	public Entrada findEntradaById2(int id) throws DataAccessException {
+		return entradaRepo.findById(id).get();
 	}
 
 }
