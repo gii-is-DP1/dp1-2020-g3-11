@@ -85,7 +85,7 @@ public class OfertaControllerTests {
 		tipoE.setName("Completa");
 		entradaTest.setEntradaType(tipoE);
 		entradaTest.setFestival(testFestival1);
-		entradaTest.setPrecio(15);
+		entradaTest.setPrecio(345);
 		entradaTest.setVersion(1);
 
 		Set<Entrada> se = new HashSet<Entrada>();
