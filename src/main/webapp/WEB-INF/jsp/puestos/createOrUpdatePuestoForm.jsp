@@ -7,7 +7,7 @@
 <%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
 
-<springfest:layout pageName="puestos">
+<springfest:layout pageName="MiFestival">
 
 
 	<h2>

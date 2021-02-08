@@ -54,7 +54,7 @@
 				<!--LO QUE VE EL ADMIN			-->
 				<sec:authorize access="hasAuthority('admin')">
 
-					<springfest:menuItem active="${name eq 'mifestival'}"
+					<springfest:menuItem active="${name eq 'MiFestival'}"
 						url="/mifestival" title="find festival">
 						<span class="glyphicon glyphicon-music" aria-hidden="true"></span>
 						<span>Mi Festival</span>

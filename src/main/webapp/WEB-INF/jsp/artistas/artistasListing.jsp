@@ -6,7 +6,7 @@
 <%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
 
-<springfest:layout pageName="artistasRegistradosEnLaWeb">
+<springfest:layout pageName="artistas">
 
 
 	<h2>Artistas</h2>
