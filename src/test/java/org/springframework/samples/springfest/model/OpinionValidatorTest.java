@@ -41,12 +41,10 @@ class OpinionValidatorTest {
 		Set<ConstraintViolation<Opinion>> constraintViolations = validator.validate(opinion);
 
 		assertThat(constraintViolations.size()).isEqualTo(1);
-		ConstraintViolation<Opinion> violation = constraintViolations.stream().collect(Collectors.toList()).get(0);
+		ConstraintViolation<Opinion> violation = constraintViolations.iterator().next();
 		assertThat(violation.getPropertyPath().toString()).isEqualTo("descripcion");
 		assertThat(violation.getMessage()).isEqualTo("size must be between 10 and 1024");
-//		ConstraintViolation<Opinion> violation2 = constraintViolations.stream().collect(Collectors.toList()).get(1);
-//		assertThat(violation2.getPropertyPath().toString()).isEqualTo("descripcion");
-//		assertThat(violation2.getMessage()).isEqualTo("must not be blank");
+
 	}
 
 	@Test

@@ -1,6 +1,6 @@
 package org.springframework.samples.springfest.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDateTime; 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +30,6 @@ public class Opinion extends BaseEntity {
 
 	@Size(min=10,max = 1024)
 	@Column(name = "descripcion", length = 1024)
-//	@NotBlank
 	private String descripcion;
 
 	@Range(min = 0, max = 5)
