@@ -8,25 +8,6 @@
 
 <springfest:layout pageName="opinions">
 	
-<%-- 	<jsp:attribute name="customScript">
-	<script>     
-    var filtro = ['mierda', 'cabron', 'mojon'];
-    $("#descripcion").text(function(i, txt){
-      for(var i=0; i<filtro.length; i++){
-		if(txt.indexOf(filtro[i])!=-1){
-			var patron = new RegExp(filtro[i]);
-	    	  var s = '*'.repeat(filtro[i].length);
-	    	  txt = txt.replace(patron, s);
-	    	 
-		}		
-    	  
-      }
-      return txt;
-    });</script>
-	
-	</jsp:attribute>
-	<jsp:body> --%>
-
 	<h2>
 		<c:if test="${opinion['new']}">Nueva </c:if>
 		Valoración
@@ -71,6 +52,4 @@
 		<a href="${fn:escapeXml(festivaUrl)}" class="btn btn-default">Volver
 			a festivales</a>
 	</div>
-<%-- 	</jsp:body>
-
- --%></springfest:layout>
+</springfest:layout>

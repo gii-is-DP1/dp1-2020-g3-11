@@ -14,7 +14,6 @@ import org.springframework.samples.springfest.model.Artista;
 import org.springframework.samples.springfest.model.GeneroType;
 import org.springframework.samples.springfest.service.ArtistaService;
 import org.springframework.samples.springfest.service.FestivalService;
-import org.springframework.samples.springfest.web.ArtistaController;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;

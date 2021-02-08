@@ -1,7 +1,5 @@
 package org.springframework.samples.springfest.web;
 
-import static org.hamcrest.Matchers.hasProperty; 
-import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 
 import org.junit.jupiter.api.Test;
@@ -24,7 +22,6 @@ import org.springframework.samples.springfest.service.ConcertService;
 import org.springframework.samples.springfest.service.FestivalService;
 import org.springframework.samples.springfest.service.RecintoService;
 import org.springframework.samples.springfest.service.UsuarioService;
-import org.springframework.samples.springfest.web.ConcertController;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 

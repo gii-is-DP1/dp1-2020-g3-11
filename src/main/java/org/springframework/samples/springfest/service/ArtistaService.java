@@ -16,11 +16,8 @@
 package org.springframework.samples.springfest.service;
 
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.Optional;
 import java.util.Set;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
