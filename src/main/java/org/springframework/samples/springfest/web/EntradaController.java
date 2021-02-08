@@ -79,10 +79,6 @@ public class EntradaController {
 
 		List<Oferta> ofertasDisp = ofertas;
 
-//		if (edad < 18) {
-//			ofertasDisp.remove(ofertasDisp.stream().filter(o -> o.getTipoOferta().getName().equals("Pack bebidas")));
-//			
-//		}
 		for (int i = 0; i < ofertasDisp.size(); i++) {
 
 			if (entrada.getOfertas().contains(ofertasDisp.get(i))) {
