@@ -1,6 +1,7 @@
 package org.springframework.samples.springfest.service;
 
 import java.util.Collection; 
+
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OpinionService {
-	
+
 	OpinionRepository opinionRepo;
 
 	@Autowired
 	public OpinionService(OpinionRepository opinionRepository) throws DataAccessException {
 		this.opinionRepo = opinionRepository;
 	}
-	
+
 	@Transactional(readOnly = true)
 	public Collection<Opinion> findAll() throws DataAccessException {
 		return opinionRepo.findAll();
@@ -42,24 +43,16 @@ public class OpinionService {
 	public void save(Opinion opinion)
 			throws DataAccessException, OpinionNotAllowedException, OpinionFestivalDateException {
 
+		if (!opinion.getFecha().isAfter(opinion.getFestival().getFechaFin().plusDays(1).atTime(00, 00))) {
+			throw new OpinionFestivalDateException();
 
-			if (opinion.getFecha().isAfter(opinion.getFestival().getFechaFin().plusDays(1).atTime(00, 00))) {
-
-				opinionRepo.save(opinion);
-			} else {
-				throw new OpinionFestivalDateException();
-			}
-
-			if (opinion.getOpinionUsuario().getEntradas().stream()
-					.anyMatch(p -> p.getFestival().equals(opinion.getFestival()))) {
-
-				opinionRepo.save(opinion);
-
-			} else {
-
-				throw new OpinionNotAllowedException();
-			}
+		} else if (opinion.getOpinionUsuario().getEntradas().stream()
+				.anyMatch(p -> p.getFestival().equals(opinion.getFestival()))) {
+			opinionRepo.save(opinion);
+		} else {
+			throw new OpinionNotAllowedException();
 		}
+	}
 
 	@Transactional(readOnly = true)
 	public Collection<Opinion> findOpinionsByFestivalId(int festivalId) {

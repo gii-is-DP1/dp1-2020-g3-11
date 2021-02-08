@@ -3,7 +3,6 @@ package org.springframework.samples.springfest.web;
 import java.security.Principal;
 import java.util.Collection;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.springfest.model.Artista;
 import org.springframework.samples.springfest.model.Entrada;
@@ -62,6 +61,7 @@ public class FestivalController {
 
 	@GetMapping("/festivales")
 	public String listFestivales(ModelMap model) {
+		
 		model.addAttribute("festivales", festivalService.findAll());
 		return FESTIVALES_LISTING;
 	}
