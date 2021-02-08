@@ -31,7 +31,7 @@ public class Opinion extends BaseEntity {
 
 	@Size(min=10,max = 1024)
 	@Column(name = "descripcion", length = 1024)
-	@NotBlank
+//	@NotBlank
 	private String descripcion;
 
 	@Range(min = 0, max = 5)
