@@ -9,6 +9,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,9 +20,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.springfest.configuration.SecurityConfiguration;
+import org.springframework.samples.springfest.model.Entrada;
 import org.springframework.samples.springfest.model.Festival;
 import org.springframework.samples.springfest.model.Recinto;
 import org.springframework.samples.springfest.model.TipoRecinto;
+import org.springframework.samples.springfest.model.TipoUsuario;
+import org.springframework.samples.springfest.model.Usuario;
 import org.springframework.samples.springfest.service.AuthoritiesService;
 import org.springframework.samples.springfest.service.FestivalService;
 import org.springframework.samples.springfest.service.RecintoService;
@@ -36,6 +41,8 @@ public class RecintoControllerTest {
 	private static final int TEST_FESTIVAL_ID = 1;
 
 	private static final int TEST_RECINTO_ID = 1;
+	
+	private static final int TEST_USUARIO_ID = 1;
 
 	@MockBean
 	private FestivalService festivalService;
@@ -55,6 +62,8 @@ public class RecintoControllerTest {
 	private Festival testFestival1;
 
 	private Recinto testRecinto1;
+	
+	private Usuario testUsuario1;
 
 	@BeforeEach
 	void setup() {
@@ -79,9 +88,26 @@ public class RecintoControllerTest {
 		tipoR.setVersion(1);
 		tipoR.setName("Escenario");
 		testRecinto1.setTipoRecinto(tipoR);
+		
+		testUsuario1 = new Usuario();
+		testUsuario1.setId(TEST_USUARIO_ID);
+		testUsuario1.setFirstName("Paco");
+		testUsuario1.setLastName("Gaspar");
+		testUsuario1.setCorreo("paco@grupo.com");
+		testUsuario1.setTelefono("657412356");
+		testUsuario1.setFechaNacimiento(LocalDate.of(1999, 6, 22));
+		testUsuario1.setDNI("35578899D");
+		Set<Entrada> entradas = new HashSet<Entrada>();
+		testUsuario1.setEntradas(entradas);
+		TipoUsuario tipo = new TipoUsuario();
+		tipo.setId(1);
+		tipo.setName("Usuario");
+		testUsuario1.setTipoUsuario(tipo);
 
 		given(this.festivalService.findFestivalById2(TEST_FESTIVAL_ID)).willReturn(testFestival1);
 		given(this.recintoService.findRecintoById(TEST_RECINTO_ID)).willReturn(testRecinto1);
+		given(this.recintoService.findById(TEST_RECINTO_ID)).willReturn(testRecinto1);
+		given(this.usuarioService.findUsuarioByUsername("username")).willReturn(testUsuario1);
 		given(this.recintoService.findRecintoType("Escenario")).willReturn(tipoR);
 	}
 
@@ -115,15 +141,15 @@ public class RecintoControllerTest {
 
     @WithMockUser(value = "spring")
 	@Test
-	void testInitUpdateOwnerForm() throws Exception {
+	void testInitUpdateRecintoForm() throws Exception {
 		mockMvc.perform(get("/mifestival/recintos/{id}/edit", TEST_RECINTO_ID)).andExpect(status().isOk())
-//				.andExpect(model().attributeExists("recinto"))
+				.andExpect(model().attributeExists("recinto"))
 				.andExpect(view().name("recintos/createOrUpdateRecintoForm"));
 	}
     
     @WithMockUser(value = "spring")
 	@Test
-	void testProcessUpdateConcertFormSuccess() throws Exception {
+	void testProcessUpdateRecintoFormSuccess() throws Exception {
 		mockMvc.perform(post("/mifestival/recintos/{id}/edit", TEST_RECINTO_ID).with(csrf()))
 				.andExpect(status().is2xxSuccessful());
 	}
