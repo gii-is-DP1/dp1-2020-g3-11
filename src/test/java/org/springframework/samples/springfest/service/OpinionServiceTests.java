@@ -18,9 +18,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.springfest.model.Festival;
 import org.springframework.samples.springfest.model.Opinion;
 import org.springframework.samples.springfest.model.Usuario;
-import org.springframework.samples.springfest.service.FestivalService;
-import org.springframework.samples.springfest.service.OpinionService;
-import org.springframework.samples.springfest.service.UsuarioService;
 import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))

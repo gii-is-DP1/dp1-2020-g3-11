@@ -18,9 +18,6 @@ import org.springframework.samples.springfest.model.Entrada;
 import org.springframework.samples.springfest.model.Festival;
 import org.springframework.samples.springfest.model.Oferta;
 import org.springframework.samples.springfest.model.TipoOferta;
-import org.springframework.samples.springfest.service.FestivalService;
-import org.springframework.samples.springfest.service.OfertaService;
-import org.springframework.samples.springfest.service.UsuarioService;
 import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))

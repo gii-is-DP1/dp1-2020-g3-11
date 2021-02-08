@@ -10,10 +10,6 @@ import javax.validation.Validator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.samples.springfest.model.Entrada;
-import org.springframework.samples.springfest.model.Festival;
-import org.springframework.samples.springfest.model.Oferta;
-import org.springframework.samples.springfest.model.TipoOferta;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 /**

@@ -2,7 +2,6 @@ package org.springframework.samples.springfest.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 

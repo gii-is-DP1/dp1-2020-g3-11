@@ -1,7 +1,6 @@
 package org.springframework.samples.springfest.service;
 
 import java.util.Collection;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -9,7 +8,6 @@ import org.springframework.samples.springfest.model.Concert;
 import org.springframework.samples.springfest.model.Puesto;
 import org.springframework.samples.springfest.model.Recinto;
 import org.springframework.samples.springfest.model.TipoRecinto;
-import org.springframework.samples.springfest.repository.ArtistaRepository;
 import org.springframework.samples.springfest.repository.RecintoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

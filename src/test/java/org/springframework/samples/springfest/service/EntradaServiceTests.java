@@ -27,9 +27,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.springfest.model.Entrada;
 import org.springframework.samples.springfest.model.EntradaType;
 import org.springframework.samples.springfest.model.Festival;
-import org.springframework.samples.springfest.service.EntradaService;
-import org.springframework.samples.springfest.service.FestivalService;
-import org.springframework.samples.springfest.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
