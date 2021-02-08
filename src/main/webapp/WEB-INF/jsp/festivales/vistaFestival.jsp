@@ -91,9 +91,6 @@
 				</tbody>
 			</table>
 
-			<!-- 	<h2>Recintos</h2> -->
-			<%-- 	<a href="/festivales/${festival.id}/recintos" class="btn btn-default"><span --%>
-			<!-- 		aria-hidden="true"></span> Ver recintos</a> -->
 
 			<a href="/mifestival/recintos/new" class="btn btn-default"><span
 				class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir
@@ -132,9 +129,6 @@
 				</tbody>
 			</table>
 
-			<!-- 	<h3>Entradas</h3> -->
-			<%-- 	<a href="/festivales/${festival.id}/entradas" class="btn btn-default"><span --%>
-			<!-- 		aria-hidden="true"></span> Ver entradas</a> -->
 
 			<a href="/mifestival/entradas/new" class="btn btn-default"><span
 				class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir

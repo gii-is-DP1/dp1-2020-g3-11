@@ -47,6 +47,7 @@ public class ArtistControllerSecurityTest {
 	@Test
 	void testInitCreationForm() throws Exception {
 		mockMvc.perform(get("/artistas/new", TEST_ARTIST_ID)).andExpect(status().is2xxSuccessful())
-				.andExpect(view().name("artistas/createOrUpdateArtistaForm")).andExpect(model().attributeExists("artista"));
+				.andExpect(view().name("artistas/createOrUpdateArtistaForm"))
+				.andExpect(model().attributeExists("artista"));
 	}
 }

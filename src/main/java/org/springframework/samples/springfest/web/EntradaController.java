@@ -32,7 +32,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 public class EntradaController {
 	public static final String ENTRADAS_FORM = "entradas/createOrUpdateEntradaForm";
@@ -61,51 +60,49 @@ public class EntradaController {
 			@PathVariable("entradaId") int entradaId, Principal principal) {
 
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
-		if(festival.getEntradasRestantes()>=1) {
-			
-		
-		Usuario usuario = usuarioLogueado(principal);
-		Entrada entrada = entradaService.findById(entradaId).orElse(null);
-		Period periodo = Period.between(usuario.getFechaNacimiento(), LocalDate.now());
-		Integer edad = periodo.getYears();
-		model.addAttribute("edad", edad);
 
-		List<Oferta> ofertas = ofertaService.findAllOfertasByFestivalId(festivalId).stream()
-				.collect(Collectors.toList());
+		if (festival.getEntradasRestantes() >= 1) {
 
-		model.addAttribute("datosUsuario", usuario);
-		model.addAttribute("datosFestival", festival);
-		model.addAttribute("datosEntrada", entrada);
-
-		List<Oferta> ofertasDisp = ofertas;
-
-//		if (edad < 18) {
-//			ofertasDisp.remove(ofertasDisp.stream().filter(o -> o.getTipoOferta().getName().equals("Pack bebidas")));
-//			
-//		}
-		for (int i = 0; i < ofertasDisp.size(); i++) {
-
-			if (entrada.getOfertas().contains(ofertasDisp.get(i))) {
-				ofertasDisp.removeAll(entrada.getOfertas());
-
+			Usuario usuario = usuarioLogueado(principal);
+			Entrada entrada = entradaService.findById(entradaId).orElse(null);
+			Period periodo = Period.between(usuario.getFechaNacimiento(), LocalDate.now());
+			Integer edad = periodo.getYears();
+			model.addAttribute("edad", edad);
+			if (edad < 18) {
+				for (Oferta o : entrada.getOfertas()) {
+					if (o.getTipoOferta().getName().equals("Pack bebidas")) {
+						entrada.getOfertas().remove(o);
+						entradaService.save(entrada);
+					}
+				}
 			}
 
-		}
+			List<Oferta> ofertas = ofertaService.findAllOfertasByFestivalId(festivalId).stream()
+					.collect(Collectors.toList());
 
-		model.addAttribute("datosOferta", ofertasDisp);
+			model.addAttribute("datosUsuario", usuario);
+			model.addAttribute("datosFestival", festival);
+			model.addAttribute("datosEntrada", entrada);
 
-		Integer precio = entrada.getPrecio();
+			List<Oferta> ofertasDisp = ofertas;
+			for (int i = 0; i < ofertasDisp.size(); i++) {
+				if (entrada.getOfertas().contains(ofertasDisp.get(i))) {
+					ofertasDisp.removeAll(entrada.getOfertas());
+				}
+			}
 
-		Integer precioOfertas = entrada.getOfertas().stream().mapToInt(o -> o.getPrecioOferta()).sum();
+			model.addAttribute("datosOferta", ofertasDisp);
 
-		Integer precioTotal = precio + precioOfertas;
+			Integer precio = entrada.getPrecio();
+			Integer precioOfertas = entrada.getOfertas().stream().mapToInt(o -> o.getPrecioOferta()).sum();
+			Integer precioTotal = precio + precioOfertas;
 
-		model.addAttribute("precioTotal", precioTotal);
-		return "entradas/entradaComprada";
+			model.addAttribute("precioTotal", precioTotal);
+			return "entradas/entradaComprada";
 		} else {
 			return "redirect:/festivales";
 		}
-		
+
 	}
 
 	@GetMapping(value = "/festivales/{festivalId}/entradas/{entradaId}/asociar/{ofertaId}")
@@ -116,13 +113,14 @@ public class EntradaController {
 		Period periodo = Period.between(usuario.getFechaNacimiento(), LocalDate.now());
 		Integer edad = periodo.getYears();
 		model.addAttribute("edad", edad);
+		Entrada entrada = entradaService.findById(entradaId).orElse(null);
 		Oferta oferta = ofertaService.findById(ofertaId);
 
 		if (edad < 18 && oferta.getTipoOferta().getName().equals("Pack bebidas")) {
 			return "redirect:/festivales/{festivalId}/entradas/{entradaId}/comprar";
 
 		} else {
-			Entrada entrada = entradaService.findById(entradaId).orElse(null);
+
 			Oferta o = ofertaService.findById(ofertaId);
 			entrada.getOfertas().add(o);
 			o.getEntradas().add(entrada);
@@ -154,23 +152,23 @@ public class EntradaController {
 			@PathVariable("entradaId") int entradaId, Principal principal) {
 
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
-		if( festival.getEntradasRestantes()>=1) {
-			
+		if (festival.getEntradasRestantes() >= 1) {
+
 			Usuario usuario = usuarioLogueado(principal);
 			Entrada entrada = entradaService.findById(entradaId).orElse(null);
 			entrada.getUsuario().add(usuario);
 			usuario.getEntradas().add(entrada);
 			entradaService.save(entrada);
-	
+
 			festivalService.reducirEntradasRestantes(festival);
 			festivalService.save(festival);
-	
+
 			model.addAttribute("datosUsuario", usuario);
 			model.addAttribute("datosFestival", festival);
 			model.addAttribute("datosEntrada", entrada);
-	
+
 			return "entradas/vistaGraciasPorTuCompra";
-		}else {
+		} else {
 			return "redirect:/festivales";
 		}
 	}
@@ -179,13 +177,13 @@ public class EntradaController {
 	public String listEntradasUsuario(ModelMap model, @PathVariable("festivalId") int festivalId) {
 
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
-		if(festival.getEntradasRestantes()>=1) {
+		if (festival.getEntradasRestantes() >= 1) {
 			model.addAttribute("entradas", entradaService.findAllEntradasByFestivalId(festivalId));
 			return ENTRADAS_LISTING;
-		}else {
-			return "redirect:/festivales"; 
+		} else {
+			return "redirect:/festivales";
 		}
-		
+
 	}
 
 	@GetMapping("/misEntradas")
@@ -238,10 +236,10 @@ public class EntradaController {
 			return listEntradas(model);
 		}
 	}
-	
+
 	@PostMapping("mifestival/entradas/{id}/edit")
 	public String editEntrada(@PathVariable("id") int id, @Valid Entrada modifiedEntrada, BindingResult binding,
-			ModelMap model, Principal principal, @RequestParam(value="version", required = false) Integer version) {
+			ModelMap model, Principal principal, @RequestParam(value = "version", required = false) Integer version) {
 
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();
@@ -250,7 +248,7 @@ public class EntradaController {
 			return ENTRADAS_FORM;
 		} else {
 			Entrada entradaBD = this.entradaService.findById(id).get();
-			if(entradaBD.getVersion() != version) {
+			if (entradaBD.getVersion() != version) {
 				model.put("message", "Modificación concurrente de la entrada, inténtelo más tarde por favor.");
 				return ENTRADAS_FORM;
 			}
@@ -264,7 +262,7 @@ public class EntradaController {
 			return "redirect:/mifestival";
 		}
 	}
-	
+
 	@GetMapping
 	public String listEntradas(ModelMap model) {
 

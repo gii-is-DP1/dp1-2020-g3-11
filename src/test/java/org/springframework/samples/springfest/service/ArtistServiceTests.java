@@ -59,14 +59,12 @@ class ArtistServiceTests {
 		assertThat(newName.equals(artist.getName()));
 	}
 
-	// FIND ALL (COLLECTION ARTIST)
 	@Test
 	void shouldFindAllArtist() {
 		Collection<Artista> listArtist = this.artistService.findAll();
 		assertThat(listArtist.size()).isEqualTo(13);
 	}
 
-	// FIND ARTIST BY ID
 	@Test
 	void shouldFindArtistWithCorrectId() throws Exception {
 		Artista artist3 = this.artistService.findArtistaById(3);
@@ -74,21 +72,18 @@ class ArtistServiceTests {
 		assertThat(artist3.getTelefono()).isEqualTo("657411236");
 	}
 
-	// FIND ARTIST BY NAME
 	@Test
 	void shouldFindArtistWithCorrectName() throws Exception {
 		Artista artist2 = this.artistService.findArtistaByName("Canelones");
 		assertThat(artist2.getName()).isEqualTo("Canelones");
 	}
 
-	// FIND COLLECTION GENRES
 	@Test
 	void shouldFindGenres() throws Exception {
 		List<String> genres = (List<String>) this.artistService.findGeneroTypes();
 		assertThat(genres.contains("pop"));
 	}
 
-	// INSERT ARTIST
 
 	@Test
 	@Transactional

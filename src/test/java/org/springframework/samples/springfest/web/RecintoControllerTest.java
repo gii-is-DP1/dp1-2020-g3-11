@@ -33,7 +33,6 @@ import org.springframework.samples.springfest.service.UsuarioService;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.ui.Model;
 
 @WebMvcTest(controllers = RecintoController.class, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
 public class RecintoControllerTest {
@@ -41,7 +40,7 @@ public class RecintoControllerTest {
 	private static final int TEST_FESTIVAL_ID = 1;
 
 	private static final int TEST_RECINTO_ID = 1;
-	
+
 	private static final int TEST_USUARIO_ID = 1;
 
 	@MockBean
@@ -62,7 +61,7 @@ public class RecintoControllerTest {
 	private Festival testFestival1;
 
 	private Recinto testRecinto1;
-	
+
 	private Usuario testUsuario1;
 
 	@BeforeEach
@@ -88,7 +87,7 @@ public class RecintoControllerTest {
 		tipoR.setVersion(1);
 		tipoR.setName("Escenario");
 		testRecinto1.setTipoRecinto(tipoR);
-		
+
 		testUsuario1 = new Usuario();
 		testUsuario1.setId(TEST_USUARIO_ID);
 		testUsuario1.setFirstName("Paco");
@@ -118,40 +117,32 @@ public class RecintoControllerTest {
 				.andExpect(status().isOk()).andExpect(view().name("recintos/createOrUpdateRecintoForm"));
 	}
 
-//	@WithMockUser(value = "spring")
-//	@Test
-//	void testProcessCreationFormSuccess() throws Exception {
-//		mockMvc.perform(post("/mifestival/recintos/new").with(csrf()).param("id", "1").param("name", "Escenario Terra")
-//				.param("huecos", "30").param("tipoRecinto.name", "Escenario").param("festival.id", "1"))
-//				.andExpect(status().is3xxRedirection());
-//	}
-
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessCreationFormSuccess2() throws Exception {
 		mockMvc.perform(post("/mifestival/recintos/new").with(csrf())).andExpect(status().is2xxSuccessful());
 	}
-	
-	@WithMockUser(value = "spring")
-    @Test
-    void testDetailsSuccess() throws Exception {
-        mockMvc.perform(get("/mifestival/recintos/{id}/detalles", TEST_RECINTO_ID))
-                .andExpect(status().is2xxSuccessful());
-    }
 
-    @WithMockUser(value = "spring")
+	@WithMockUser(value = "spring")
 	@Test
-	void testInitUpdateOwnerForm() throws Exception {
+	void testDetailsSuccess() throws Exception {
+		mockMvc.perform(get("/mifestival/recintos/{id}/detalles", TEST_RECINTO_ID))
+				.andExpect(status().is2xxSuccessful());
+	}
+
+	@WithMockUser(value = "spring")
+	@Test
+	void testInitUpdateRecintoForm() throws Exception {
 		mockMvc.perform(get("/mifestival/recintos/{id}/edit", TEST_RECINTO_ID)).andExpect(status().isOk())
 				.andExpect(model().attributeExists("recinto"))
 				.andExpect(view().name("recintos/createOrUpdateRecintoForm"));
 	}
-    
-    @WithMockUser(value = "spring")
+
+	@WithMockUser(value = "spring")
 	@Test
-	void testProcessUpdateConcertFormSuccess() throws Exception {
+	void testProcessUpdateRecintoFormSuccess() throws Exception {
 		mockMvc.perform(post("/mifestival/recintos/{id}/edit", TEST_RECINTO_ID).with(csrf()))
 				.andExpect(status().is2xxSuccessful());
 	}
-	
+
 }

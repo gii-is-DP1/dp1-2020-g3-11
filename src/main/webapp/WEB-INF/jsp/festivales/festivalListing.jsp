@@ -56,7 +56,7 @@
 						<td><spring:url value="/festivales/{festivalId}/valoraciones"
 								var="valoracionUrl">
 								<spring:param name="festivalId" value="${festival.id}" />
-							</spring:url> <a href="${fn:escapeXml(valoracionUrl)}">Valorar</a></td>
+							</spring:url> <a href="${fn:escapeXml(valoracionUrl)}">Valoraciones</a></td>
 					</sec:authorize>
 				</tr>
 			</c:forEach>

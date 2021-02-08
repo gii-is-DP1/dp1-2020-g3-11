@@ -2,12 +2,7 @@ package org.springframework.samples.springfest.web;
 
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.samples.springfest.model.Person;
-import org.springframework.samples.springfest.model.User;
-import org.springframework.samples.springfest.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 

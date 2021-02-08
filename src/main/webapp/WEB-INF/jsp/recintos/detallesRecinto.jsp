@@ -6,7 +6,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
-<springfest:layout pageName="recintos">
+<springfest:layout pageName="MiFestival">
 	<h2>
 		<c:out value="${recinto.name}" />
 	</h2>

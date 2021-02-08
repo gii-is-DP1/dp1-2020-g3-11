@@ -18,9 +18,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.springfest.model.Festival;
 import org.springframework.samples.springfest.model.Opinion;
 import org.springframework.samples.springfest.model.Usuario;
-import org.springframework.samples.springfest.service.FestivalService;
-import org.springframework.samples.springfest.service.OpinionService;
-import org.springframework.samples.springfest.service.UsuarioService;
 import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
@@ -28,7 +25,7 @@ public class OpinionServiceTests {
 
 	@Autowired
 	protected FestivalService festivalService;
-	
+
 	@Autowired
 	protected UsuarioService usuarioService;
 
@@ -41,7 +38,6 @@ public class OpinionServiceTests {
 		assertThat(lop.size()).isEqualTo(4);
 	}
 
-//	FIND OPINION BY ID 
 	@Test
 	void shouldFindEntradaById() throws Exception {
 		Opinion opinion = this.opinionService.findById(1);
@@ -50,14 +46,11 @@ public class OpinionServiceTests {
 		assertThat(opinion.getOpinionUsuario().getId()).isEqualTo(60);
 	}
 
-	// FIND OPINIONS BY FESTIVAL ID
 	@Test
 	void shoudAllFindOpinionsByFestivalId() throws Exception {
 		Collection<Opinion> lop = this.opinionService.findOpinionsByFestivalId(2);
 		assertThat((lop.size() == 3)).isTrue();
 	}
-
-	// Delete
 
 	@Test
 	@Transactional
@@ -73,7 +66,6 @@ public class OpinionServiceTests {
 
 	}
 
-//		INSERT NEW OPINION 
 	@Test
 	@Transactional
 	void shouldInsertNewOpinion() throws Exception {
@@ -98,14 +90,12 @@ public class OpinionServiceTests {
 		assertThat(lop2.size()).isEqualTo(size + 1);
 		assertThat(o.getId()).isNotNull();
 	}
-	
-	//Average
-	
+
 	@Test
 	@Transactional
 	void shouldgetAverage() throws Exception {
 		Collection<Opinion> lop = this.opinionService.findOpinionsByFestivalId(2);
-		Double avg = lop.stream().mapToInt(o->o.getPuntuacion()).average().getAsDouble();
+		Double avg = lop.stream().mapToInt(o -> o.getPuntuacion()).average().getAsDouble();
 
 		assertThat(Math.floor(avg) == 2.0);
 

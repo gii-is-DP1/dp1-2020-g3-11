@@ -23,7 +23,6 @@ import org.springframework.samples.springfest.model.Entrada;
 import org.springframework.samples.springfest.model.TipoUsuario;
 import org.springframework.samples.springfest.model.User;
 import org.springframework.samples.springfest.model.Usuario;
-import org.springframework.samples.springfest.service.UsuarioService;
 import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
@@ -72,7 +71,7 @@ public class UsuarioServiceTests {
 		Set<Entrada> entradas = new HashSet<Entrada>();
 		usuario.setEntradas(entradas);
 		usuario.setTipoUsuario(tipo);
-		
+
 		User user = new User();
 		user.setUsername("juanlu");
 		user.setPassword("vivaErBeti");

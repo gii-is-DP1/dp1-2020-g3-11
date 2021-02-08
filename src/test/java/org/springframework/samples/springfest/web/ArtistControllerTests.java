@@ -14,7 +14,6 @@ import org.springframework.samples.springfest.model.Artista;
 import org.springframework.samples.springfest.model.GeneroType;
 import org.springframework.samples.springfest.service.ArtistaService;
 import org.springframework.samples.springfest.service.FestivalService;
-import org.springframework.samples.springfest.web.ArtistaController;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,16 +23,15 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
 
-@WebMvcTest(controllers = {ArtistaController.class, CustomErrorController.class}, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
+@WebMvcTest(controllers = { ArtistaController.class,
+		CustomErrorController.class }, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
 
 public class ArtistControllerTests {
 
 	private static final int TEST_ARTIST_ID_1 = 1;
-
 
 	@MockBean
 	private ArtistaService artistaService;
@@ -45,7 +43,6 @@ public class ArtistControllerTests {
 	private MockMvc mockMvc;
 
 	private Artista testArtista1;
-	
 
 	@BeforeEach
 	void setup() {
@@ -59,14 +56,11 @@ public class ArtistControllerTests {
 		genero.setId(1);
 		genero.setName("pop");
 		testArtista1.setGenero(genero);
-		
-		
+
 		given(this.artistaService.findArtistaById(TEST_ARTIST_ID_1)).willReturn(testArtista1);
-		given(this.artistaService.findGeneroType("pop")).willReturn(genero);	
+		given(this.artistaService.findGeneroType("pop")).willReturn(genero);
 
 	}
-
-	// INSERT ARTIST
 
 	@WithMockUser(value = "spring")
 	@Test
@@ -78,22 +72,20 @@ public class ArtistControllerTests {
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessNewArtistFormSuccess() throws Exception {
-		mockMvc.perform(post("/artistas/new").with(csrf()).param("name", "Paco Gaspar").param("correo", "paco@grupo.com")
-				.param("telefono", "657412356").param("genero.name", "pop")).andExpect(status().is3xxRedirection())
-				.andExpect(view().name("redirect:/artistas"));
+		mockMvc.perform(post("/artistas/new").with(csrf()).param("name", "Paco Gaspar")
+				.param("correo", "paco@grupo.com").param("telefono", "657412356").param("genero.name", "pop"))
+				.andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/artistas"));
 	}
-	
+
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessNewArtistFormHasErrors() throws Exception {
-		mockMvc.perform(post("/artistas/new").with(csrf()).param("name", "Paco Gaspar").param("correo", "paco@grupo.com").param("telefono", ""))
-				.andExpect(status().isOk())
+		mockMvc.perform(post("/artistas/new").with(csrf()).param("name", "Paco Gaspar")
+				.param("correo", "paco@grupo.com").param("telefono", "")).andExpect(status().isOk())
 				.andExpect(model().attributeHasFieldErrors("artista", "telefono", "genero.name"))
 				.andExpect(view().name("artistas/createOrUpdateArtistaForm"));
 	}
-	
-	// EDIT ARTIST
-	
+
 	@WithMockUser(value = "spring")
 	@Test
 	void testInitUpdateArtistForm() throws Exception {
@@ -106,12 +98,12 @@ public class ArtistControllerTests {
 				.andExpect(model().attribute("artista", hasProperty("genero", is(testArtista1.getGenero()))))
 				.andExpect(view().name("artistas/createOrUpdateArtistaForm"));
 	}
-	
+
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessUpdateArtistFormHasErrors() throws Exception {
-		mockMvc.perform(post("/artistas/{artistaId}/edit", TEST_ARTIST_ID_1).with(csrf())
-				.param("name", "Chanclas").param("correo", "gehe@hr").param("id", "1").param("telefono", "")).andExpect(status().isOk())
+		mockMvc.perform(post("/artistas/{artistaId}/edit", TEST_ARTIST_ID_1).with(csrf()).param("name", "Chanclas")
+				.param("correo", "gehe@hr").param("id", "1").param("telefono", "")).andExpect(status().isOk())
 				.andExpect(model().attributeHasErrors("artista"))
 				.andExpect(model().attributeHasFieldErrors("artista", "telefono"))
 				.andExpect(view().name("artistas/createOrUpdateArtistaForm"));

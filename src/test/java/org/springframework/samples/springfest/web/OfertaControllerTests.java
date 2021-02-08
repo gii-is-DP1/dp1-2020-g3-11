@@ -2,8 +2,8 @@ package org.springframework.samples.springfest.web;
 
 import static org.mockito.BDDMockito.given;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -111,45 +111,16 @@ public class OfertaControllerTests {
 
 	}
 
-	// INSERT OFERTA
 	@WithMockUser(username = "administrador1", password = "adm1n", authorities = { "admin" })
-//	@Test
-	void testInitCreationOferta() throws Exception {
-		mockMvc.perform(get("/mifestival/ofertas/new")).andExpect(model().attributeExists("oferta"))
-				.andExpect(status().isOk()).andExpect(view().name("ofertas/createOrUpdateOfertaForm"));
-	}
-
-	@WithMockUser(username = "administrador1", password = "adm1n", authorities = { "admin" })
-//	@Test
+	@Test
 	void testProcessCreationOferta() throws Exception {
 		mockMvc.perform(post("/mifestival/ofertas/new").with(csrf())).andExpect(status().is2xxSuccessful());
 	}
 
 	@WithMockUser(username = "administrador1", password = "adm1n", authorities = { "admin" })
-//	@Test
+	@Test
 	void testProcessDeleteOfertaFormSuccess() throws Exception {
-		mockMvc.perform(get("/mifestival/ofertas/{id}/delete", TEST_FESTIVAL_ID))
-				.andExpect(status().is2xxSuccessful());
-	}
-
-	// INSERT OFERTA WITH ERROR NAME AND NEGATIVE MONEY
-	@WithMockUser(value = "spring")
-//	@Test
-	void testProcessNewOfertaHasErrorsNameMoney() throws Exception {
-		mockMvc.perform(post("/mifestival/ofertas/new").with(csrf()).param("nombre", "manolote")
-				.param("precioOferta", "-34").param("tipoOferta.name", "").param("festival", "").param("entradas", ""))
-				.andExpect(model().attributeHasErrors("oferta"))
-				.andExpect(model().attributeHasFieldErrors("oferta", "festival", "entradas", "tipoOferta.name"))
-				.andExpect(view().name("ofertas/createOrUpdateOfertaForm"));
-
-	}
-
-	// LISTING OFERTAS
-	@WithMockUser(value = "spring")
-//	@Test
-	void testListOfertas() throws Exception {
-		mockMvc.perform(get("/mifestival/ofertas")).andExpect(status().isOk())
-				.andExpect(view().name("ofertas/ofertaListing"));
+		mockMvc.perform(get("/mifestival/ofertas/{id}/delete", TEST_FESTIVAL_ID)).andExpect(status().is2xxSuccessful());
 	}
 
 }

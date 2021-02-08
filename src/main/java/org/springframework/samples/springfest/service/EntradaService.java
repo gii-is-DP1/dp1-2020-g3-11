@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.springfest.model.Entrada;
 import org.springframework.samples.springfest.model.EntradaType;
-import org.springframework.samples.springfest.model.Festival;
 import org.springframework.samples.springfest.repository.EntradaRepository;
-import org.springframework.samples.springfest.service.exceptions.OpinionFestivalDateException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -7,7 +7,7 @@
 <%@ taglib prefix="springfest" tagdir="/WEB-INF/tags" %>
 
 
-<springfest:layout pageName="concerts">
+<springfest:layout pageName="MiFestival">
     
     <h2>
         <c:if test="${concert['new']}">Nuevo </c:if> Concierto

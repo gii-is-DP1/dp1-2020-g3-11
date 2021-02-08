@@ -10,10 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.samples.springfest.configuration.SecurityConfiguration;
-import org.springframework.samples.springfest.model.Artista;
 import org.springframework.samples.springfest.model.Festival;
-import org.springframework.samples.springfest.model.GeneroType;
-import org.springframework.samples.springfest.model.Usuario;
 import org.springframework.samples.springfest.service.ArtistaService;
 import org.springframework.samples.springfest.service.AuthoritiesService;
 import org.springframework.samples.springfest.service.EntradaService;
@@ -21,25 +18,14 @@ import org.springframework.samples.springfest.service.FestivalService;
 import org.springframework.samples.springfest.service.PuestoService;
 import org.springframework.samples.springfest.service.RecintoService;
 import org.springframework.samples.springfest.service.UsuarioService;
-import org.springframework.samples.springfest.web.ArtistaController;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import java.security.Principal;
 import java.time.LocalDate;
-import java.util.Collection;
-
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.is;
 
 @WebMvcTest(controllers = FestivalController.class, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
 
@@ -89,7 +75,6 @@ public class FestivalControllerTest {
 
 	}
 
-	// LISTING FESTIVAL
 	@WithMockUser(value = "spring")
 	@Test
 	void testListFestival() throws Exception {
@@ -97,16 +82,6 @@ public class FestivalControllerTest {
 				.andExpect(view().name("festivales/festivalListing"));
 	}
 
-	// LISTING ARTIST
-
-	@WithMockUser(value = "spring")
-//	@Test
-	void testListArtist() throws Exception {
-		mockMvc.perform(get("/mifestival/artistas/listdisponibles")).andExpect(status().isOk())
-				.andExpect(view().name("festivales/listArtistasAñadir"));
-	}
-
-	// DELETE ENTRADA
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessDeleteEntrada() throws Exception {

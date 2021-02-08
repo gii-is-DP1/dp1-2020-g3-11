@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.springfest.model.Festival;
-import org.springframework.samples.springfest.service.FestivalService;
 import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
@@ -55,14 +52,12 @@ class FestivalServiceTest {
 		});
 	}
 
-	// FIND ALL (COLLECTION FESTIVAL)
 	@Test
 	void shouldFindAllFestival() {
 		Collection<Festival> listFest = this.festivalService.findAll();
 		assertThat(listFest.size()).isEqualTo(3);
 	}
 
-	// FIND FESTIVAL BY ID
 	@Test
 	void shouldFindFestivaltWithCorrectId() throws Exception {
 		Festival festival3 = this.festivalService.findFestivalById(2).get();
@@ -70,13 +65,11 @@ class FestivalServiceTest {
 		assertThat(festival3.getLocalizacion()).isEqualTo("Almeria");
 	}
 
-	// FIND FESTIVAL BY NAME
 	@Test
 	void shouldFindFestivalWithCorrectName() throws Exception {
 		Festival festival = this.festivalService.findFestivalByName("Cabo de Plata");
 		assertThat(festival.getName()).isEqualTo("Cabo de Plata");
 	}
-
 
 	void shouldThrowExceptionInsertingNewfestivalBlankParameter() throws Exception {
 

@@ -2,11 +2,7 @@ package org.springframework.samples.springfest.web;
 
 import java.security.Principal;
 import java.util.Collection;
-import java.util.Optional;
 
-import javax.validation.Valid;
-
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.springfest.model.Artista;
 import org.springframework.samples.springfest.model.Entrada;
@@ -23,11 +19,8 @@ import org.springframework.samples.springfest.service.UsuarioService;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @EnableWebSecurity
@@ -68,6 +61,7 @@ public class FestivalController {
 
 	@GetMapping("/festivales")
 	public String listFestivales(ModelMap model) {
+		
 		model.addAttribute("festivales", festivalService.findAll());
 		return FESTIVALES_LISTING;
 	}

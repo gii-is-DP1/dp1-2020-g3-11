@@ -3,13 +3,11 @@ INSERT INTO tabla_tipos_Usuario VALUES (2, 1, 'Sponsor');
 INSERT INTO tabla_tipos_Usuario VALUES (3, 1, 'admin');
 
 
---admin1--
 INSERT INTO users(username,password,enabled) VALUES ('administrador1','adm1n',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (1,'administrador1','admin');
 INSERT INTO usuario VALUES (1,1, 'George', 'Franklin', '45899990X', 'jorgito@admin.com', '1995-02-20',null,'692874512', 3,'administrador1');
 
 
---admin2--
 INSERT INTO users(username,password,enabled) VALUES ('administrador2','adm1n',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (28,'administrador2','admin');
 INSERT INTO usuario VALUES (2,1, 'Javi', 'erere', '46899990X', 'javierefdo1@admin.com', '1998-02-20',null,'677888512', 3,'administrador2');
@@ -25,7 +23,6 @@ INSERT INTO festival VALUES (1,1,'Cabo de Plata',100,100,'2021-06-06','2021-06-0
 INSERT INTO festival VALUES (2,1,'Dreambeach',200,200,'2021-07-25','2021-07-29','Almeria', 2);
 INSERT INTO festival VALUES (3,1,'Guacamayo',200,200,'2020-07-25','2020-07-29','Almeria', 3);
 
---usuario --
 INSERT INTO users(username,password,enabled) VALUES ('usuarioPrueba','usuarioPrueba',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (13,'usuarioPrueba','usuario');
 INSERT INTO usuario VALUES (60,1, 'nombre', 'Apellido', '45987990X', 'ale@sponsor.com', '1993-08-10',null,'692771112', 1,'usuarioPrueba');
@@ -35,7 +32,6 @@ INSERT INTO authorities(id,username,authority) VALUES (18,'MenorEdad','usuario')
 INSERT INTO usuario VALUES (61,1, 'nombre', 'Apellido', '45987996X', 'menorEdad@sponsor.com', '2020-08-10',null,'692729112', 1,'MenorEdad');
 
 
---sponsor--
 INSERT INTO users(username,password,enabled) VALUES ('sponsorPrueba','sponsorPrueba',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (12,'sponsorPrueba','sponsor');
 INSERT INTO usuario VALUES (20,1, 'Manue', 'Frank', '45444990X', 'manue@user.com',  '1999-02-20','marcaPredeterminada','692811112',  2,'sponsorPrueba');
@@ -56,11 +52,6 @@ INSERT INTO users(username,password,enabled) VALUES ('user3','us3r',TRUE);
 INSERT INTO authorities(id,username,authority) VALUES (16,'user3','usuario');
 INSERT INTO usuario VALUES (24,1, 'Pablo', 'Cubero', '41111990B', 'pablo@user.com', '1999-02-20',null, '699911112', 1,'user3');
 
-
-
-
---INSERT INTO festival VALUES (3,'Mucha Cumbia BRO',200,'2021-03-15','2021-03-19','Puerto Rico', 2);--
---INSERT INTO festival VALUES (4,'Mucha Cumbia BRO 2.0',200,'2021-03-15','2021-03-19','Puerto Rico', 2);--
 
 INSERT INTO generos VALUES (1,1, 'pop');
 INSERT INTO generos VALUES (2,1, 'reggaeton');
