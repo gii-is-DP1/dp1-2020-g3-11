@@ -1,11 +1,9 @@
 package org.springframework.samples.springfest.model;
 
-
 import java.util.Set;    
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -26,7 +24,7 @@ import lombok.Setter;
 public class Oferta extends BaseEntity {
 	
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name = "oferta_entradas", joinColumns = @JoinColumn(name = "oferta_id"),
 			inverseJoinColumns = @JoinColumn(name = "entrada_id"))
 	private Set<Entrada> entradas;

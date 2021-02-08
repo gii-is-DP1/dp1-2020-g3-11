@@ -112,14 +112,14 @@ public class PuestoControllerTest {
 	}
 	
 	@WithMockUser(value = "spring")
-//	@Test
+	@Test
 	void testInitCreationForm() throws Exception {
 		mockMvc.perform(get("/mifestival/puestos/new")).andExpect(model().attributeExists("puesto"))
 				.andExpect(status().isOk()).andExpect(view().name("puestos/createOrUpdatePuestoForm"));
 	}
 	
 	@WithMockUser(value = "spring")
-//	@Test
+	@Test
 	void testListPuestos() throws Exception {
 		mockMvc.perform(get("/mifestival/puestos")).andExpect(model().attributeExists("puestos"))
 				.andExpect(status().isOk()).andExpect(view().name("puestos/puestosListing"));

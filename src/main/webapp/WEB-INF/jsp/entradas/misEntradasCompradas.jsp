@@ -15,7 +15,7 @@
 	<table id="entradaTable" class="table table-striped">
 		<thead>
 			<tr>
-				<th style="width: 30%;">Precio</th>
+				<th style="width: 30%;">Festival</th>
 				<th style="width: 50%;">Tipos de Entrada</th>
 				<th style="width: 20%;"></th>
 			</tr>
@@ -24,7 +24,7 @@
 			<c:forEach items="${entradas}" var="entrada">
 				<tr>
 
-					<td><c:out value="${entrada.precio}" /></td>
+					<td><c:out value="${entrada.festival}" /></td>
 					<td><c:out value="${entrada.entradaType}" /></td>
 					<td><spring:url value="/misEntradas/${entrada.id}"
 							var="entradaUrl">
