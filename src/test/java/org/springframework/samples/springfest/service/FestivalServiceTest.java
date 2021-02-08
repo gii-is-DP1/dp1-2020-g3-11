@@ -52,14 +52,12 @@ class FestivalServiceTest {
 		});
 	}
 
-	// FIND ALL (COLLECTION FESTIVAL)
 	@Test
 	void shouldFindAllFestival() {
 		Collection<Festival> listFest = this.festivalService.findAll();
 		assertThat(listFest.size()).isEqualTo(3);
 	}
 
-	// FIND FESTIVAL BY ID
 	@Test
 	void shouldFindFestivaltWithCorrectId() throws Exception {
 		Festival festival3 = this.festivalService.findFestivalById(2).get();
@@ -67,13 +65,11 @@ class FestivalServiceTest {
 		assertThat(festival3.getLocalizacion()).isEqualTo("Almeria");
 	}
 
-	// FIND FESTIVAL BY NAME
 	@Test
 	void shouldFindFestivalWithCorrectName() throws Exception {
 		Festival festival = this.festivalService.findFestivalByName("Cabo de Plata");
 		assertThat(festival.getName()).isEqualTo("Cabo de Plata");
 	}
-
 
 	void shouldThrowExceptionInsertingNewfestivalBlankParameter() throws Exception {
 

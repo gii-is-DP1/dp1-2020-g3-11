@@ -27,7 +27,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.time.LocalDate;
 
-
 @WebMvcTest(controllers = FestivalController.class, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
 
 public class FestivalControllerTest {
@@ -76,7 +75,6 @@ public class FestivalControllerTest {
 
 	}
 
-	// LISTING FESTIVAL
 	@WithMockUser(value = "spring")
 	@Test
 	void testListFestival() throws Exception {
@@ -84,21 +82,10 @@ public class FestivalControllerTest {
 				.andExpect(view().name("festivales/festivalListing"));
 	}
 
-
-	// DELETE ENTRADA
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessDeleteEntrada() throws Exception {
 		mockMvc.perform(get("/mifestival/entradas/{id}/delete", 1)).andExpect(status().is2xxSuccessful());
 	}
 
-	
-	// LISTING ARTIST
-
-	@WithMockUser(value = "spring")
-//	@Test
-	void testListArtist() throws Exception {
-		mockMvc.perform(get("/mifestival/artistas/listdisponibles")).andExpect(status().isOk())
-				.andExpect(view().name("festivales/listArtistasAñadir"));
-	}
 }

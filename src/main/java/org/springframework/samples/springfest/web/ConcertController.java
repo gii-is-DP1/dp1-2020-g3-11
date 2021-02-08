@@ -1,6 +1,6 @@
 package org.springframework.samples.springfest.web;
 
-import java.security.Principal ;
+import java.security.Principal;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,9 +43,8 @@ public class ConcertController {
 
 	public static final String CONCERTS_FORM = "concerts/createOrUpdateConcertForm";
 	public static final String CONCERTS_LISTING = "concerts/concertListing";
-	
-	private static final Logger logger =
-			Logger.getLogger(ConcertController.class.getName());
+
+	private static final Logger logger = Logger.getLogger(ConcertController.class.getName());
 
 	@Autowired
 	ConcertService concertService;
@@ -104,7 +103,6 @@ public class ConcertController {
 				.collect(Collectors.toList());
 	}
 
-
 	@InitBinder("concert")
 	public void initConcertBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new ConcertValidator());
@@ -138,11 +136,11 @@ public class ConcertController {
 
 		} else {
 			Concert concertDB = this.concertService.findById(id);
-			if(concertDB.getVersion() != version) {
+			if (concertDB.getVersion() != version) {
 				model.put("message", "Modificación concurrente del concierto, inténtelo más tarde por favor.");
 				return CONCERTS_FORM;
 			}
-			
+
 			Concert modifiedConcert = concertService.findById(id);
 			BeanUtils.copyProperties(concert, modifiedConcert, "id", "festival");
 			Artista artista = this.artistService.findArtistaByName(modifiedConcert.getArtista().getName());
