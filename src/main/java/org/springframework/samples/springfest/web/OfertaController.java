@@ -102,7 +102,7 @@ public class OfertaController {
 
 	@PostMapping("/new")
 	public String processCreationOferta(Principal principal, @Valid Oferta oferta, BindingResult binding,
-			ModelMap model) throws DataAccessException, ConcertOutOfDateException {
+			ModelMap model) throws DataAccessException {
 
 		Usuario usuario = usuarioLogueado(principal);
 		Integer festivalId = usuario.getFestival().getId();

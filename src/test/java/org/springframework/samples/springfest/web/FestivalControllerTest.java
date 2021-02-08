@@ -97,14 +97,6 @@ public class FestivalControllerTest {
 				.andExpect(view().name("festivales/festivalListing"));
 	}
 
-	// LISTING ARTIST
-
-	@WithMockUser(value = "spring")
-//	@Test
-	void testListArtist() throws Exception {
-		mockMvc.perform(get("/mifestival/artistas/listdisponibles")).andExpect(status().isOk())
-				.andExpect(view().name("festivales/listArtistasAñadir"));
-	}
 
 	// DELETE ENTRADA
 	@WithMockUser(value = "spring")
@@ -113,4 +105,13 @@ public class FestivalControllerTest {
 		mockMvc.perform(get("/mifestival/entradas/{id}/delete", 1)).andExpect(status().is2xxSuccessful());
 	}
 
+	
+	// LISTING ARTIST
+
+	@WithMockUser(value = "spring")
+//	@Test
+	void testListArtist() throws Exception {
+		mockMvc.perform(get("/mifestival/artistas/listdisponibles")).andExpect(status().isOk())
+				.andExpect(view().name("festivales/listArtistasAñadir"));
+	}
 }
