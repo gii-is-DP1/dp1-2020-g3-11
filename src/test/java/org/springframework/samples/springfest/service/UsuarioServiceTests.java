@@ -71,7 +71,7 @@ public class UsuarioServiceTests {
 		Set<Entrada> entradas = new HashSet<Entrada>();
 		usuario.setEntradas(entradas);
 		usuario.setTipoUsuario(tipo);
-		
+
 		User user = new User();
 		user.setUsername("juanlu");
 		user.setPassword("vivaErBeti");

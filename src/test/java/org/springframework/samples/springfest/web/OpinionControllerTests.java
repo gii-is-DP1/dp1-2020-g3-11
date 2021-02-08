@@ -61,7 +61,6 @@ public class OpinionControllerTests {
 		
 	}
 
-	//INSERT OPINION
 	@WithMockUser(value = "spring")
 	@Test
 	void testInitNewOpinionForm() throws Exception {
@@ -78,7 +77,6 @@ public class OpinionControllerTests {
 		.andExpect(status().is2xxSuccessful());
 	}
 
-	//INSERT OPINION WITH DESCRIPTION TOO SHORT AND STRING SCORE
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessNewOpinionHasErrorsDescriptionShortPuntuationString() throws Exception {
@@ -90,7 +88,6 @@ public class OpinionControllerTests {
 
 	}	
 	
-	//LISTING OPINIONS 
 	@WithMockUser(value = "spring")
 	@Test
 	void testListOpinions() throws Exception {
