@@ -2,6 +2,7 @@ package org.springframework.samples.springfest.web;
 
 import java.security.Principal;
 import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.springfest.model.Artista;
 import org.springframework.samples.springfest.model.Entrada;

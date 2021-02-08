@@ -6,7 +6,7 @@
 <%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
 
-<springfest:layout pageName="artistasRegistradosEnLaWeb">
+<springfest:layout pageName="artistas">
 
 
 	<h2>Artistas</h2>
@@ -51,6 +51,5 @@
 		</spring:url>
 		<a href="${fn:escapeXml(newArtistaUrl)}" class="btn btn-default">Añadir
 			artista</a>
-		</td>
 	</h3>
 </springfest:layout>

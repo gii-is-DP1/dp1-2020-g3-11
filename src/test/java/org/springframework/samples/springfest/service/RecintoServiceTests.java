@@ -17,7 +17,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.springfest.model.Concert;
 import org.springframework.samples.springfest.model.Recinto;
 import org.springframework.samples.springfest.model.TipoRecinto;
-import org.springframework.samples.springfest.service.RecintoService;
 import org.springframework.stereotype.Service;
 
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))

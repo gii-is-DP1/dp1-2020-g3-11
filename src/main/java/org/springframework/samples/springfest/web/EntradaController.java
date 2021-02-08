@@ -60,6 +60,7 @@ public class EntradaController {
 			@PathVariable("entradaId") int entradaId, Principal principal) {
 
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
+
 		if (festival.getEntradasRestantes() >= 1) {
 
 			Usuario usuario = usuarioLogueado(principal);

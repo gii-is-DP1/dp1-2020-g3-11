@@ -11,11 +11,6 @@ import javax.validation.Validator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.samples.springfest.model.Concert;
-import org.springframework.samples.springfest.model.Festival;
-import org.springframework.samples.springfest.model.Puesto;
-import org.springframework.samples.springfest.model.Recinto;
-import org.springframework.samples.springfest.model.TipoRecinto;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 public class RecintoValidatorTest {

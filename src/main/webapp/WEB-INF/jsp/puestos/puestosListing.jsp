@@ -7,7 +7,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
-<springfest:layout pageName="puestos">
+<springfest:layout pageName="mispuestos">
 
 
 	<h2>Puestos</h2>

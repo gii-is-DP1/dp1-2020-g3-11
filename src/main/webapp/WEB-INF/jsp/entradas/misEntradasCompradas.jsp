@@ -8,7 +8,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 
 
-<springfest:layout pageName="entradas">
+<springfest:layout pageName="misEntradas">
 
 
 	<h2>Mis entradas</h2>
