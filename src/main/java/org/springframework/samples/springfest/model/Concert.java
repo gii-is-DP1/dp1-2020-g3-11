@@ -1,9 +1,8 @@
 package org.springframework.samples.springfest.model;
 
 
-import java.time.LocalDate;     
+import java.time.LocalDate;      
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
