@@ -141,7 +141,7 @@ public class RecintoControllerTest {
 
     @WithMockUser(value = "spring")
 	@Test
-	void testInitUpdateOwnerForm() throws Exception {
+	void testInitUpdateRecintoForm() throws Exception {
 		mockMvc.perform(get("/mifestival/recintos/{id}/edit", TEST_RECINTO_ID)).andExpect(status().isOk())
 				.andExpect(model().attributeExists("recinto"))
 				.andExpect(view().name("recintos/createOrUpdateRecintoForm"));
@@ -149,7 +149,7 @@ public class RecintoControllerTest {
     
     @WithMockUser(value = "spring")
 	@Test
-	void testProcessUpdateConcertFormSuccess() throws Exception {
+	void testProcessUpdateRecintoFormSuccess() throws Exception {
 		mockMvc.perform(post("/mifestival/recintos/{id}/edit", TEST_RECINTO_ID).with(csrf()))
 				.andExpect(status().is2xxSuccessful());
 	}
