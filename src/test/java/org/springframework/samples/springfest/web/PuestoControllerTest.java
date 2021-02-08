@@ -117,8 +117,8 @@ public class PuestoControllerTest {
 				.andExpect(status().isOk()).andExpect(view().name("puestos/createOrUpdatePuestoForm"));
 	}
 	
-	@WithMockUser(value = "spring")
-//	@Test
+	@WithMockUser(value = "admin")
+	@Test
 	void testListPuestos() throws Exception {
 		mockMvc.perform(get("/mifestival/puestos")).andExpect(model().attributeExists("puestos"))
 				.andExpect(status().isOk()).andExpect(view().name("puestos/puestosListing"));

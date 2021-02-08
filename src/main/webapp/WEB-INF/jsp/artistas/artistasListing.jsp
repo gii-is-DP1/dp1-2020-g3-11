@@ -51,6 +51,5 @@
 		</spring:url>
 		<a href="${fn:escapeXml(newArtistaUrl)}" class="btn btn-default">Añadir
 			artista</a>
-		</td>
 	</h3>
 </springfest:layout>
