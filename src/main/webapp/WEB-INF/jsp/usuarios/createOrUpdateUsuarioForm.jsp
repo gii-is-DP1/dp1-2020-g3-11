@@ -6,7 +6,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
-<springfest:layout pageName="sponsor">
+<springfest:layout pageName="registroSpringfest">
 
 	<jsp:attribute name="customScript">
 	<script type="text/javascript">
