@@ -32,11 +32,6 @@ public class FestivalService {
 		return festivalRepo.findFestivalByAdminId(id);
 	}
 
-	public void delete(Festival festival) throws DataAccessException {
-		festivalRepo.deleteById(festival.getId());
-
-	}
-
 	public void save(@Valid Festival festival) {
 		festivalRepo.save(festival);
 	}

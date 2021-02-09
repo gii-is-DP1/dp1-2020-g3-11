@@ -104,8 +104,6 @@
 						<th style="width: 40%;">Tipo de Entrada</th>
 						<th style="width: 33%;">Precio</th>
 						<th style="width: 12, 5%;"></th>
-						<th style="width: 12, 5%;"></th>
-
 					</tr>
 				</thead>
 				<tbody>
@@ -118,12 +116,6 @@
 									value="/mifestival/entradas/{entradaId}/edit" var="entradaUrl">
 									<spring:param name="entradaId" value="${entrada.id}" />
 								</spring:url> <a href="${fn:escapeXml(entradaUrl)}" class="glyphicon glyphicon-pencil"></a></td>
-
-							<td><spring:url
-									value="/mifestival/entradas/{entradaId}/delete"
-									var="entradaUrl">
-									<spring:param name="entradaId" value="${entrada.id}" />
-								</spring:url> <a href="${fn:escapeXml(entradaUrl)}" class="glyphicon glyphicon-trash"></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

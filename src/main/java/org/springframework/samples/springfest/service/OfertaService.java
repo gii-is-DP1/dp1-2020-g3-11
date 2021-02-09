@@ -41,12 +41,6 @@ public class OfertaService {
 		return ofertaRepo.findTipoOfertaByName(tipoOferta);
 	}
 
-	@Transactional
-	public void delete(Oferta oferta) throws DataAccessException {
-		ofertaRepo.deleteById(oferta.getId());
-
-	}
-
 	@Transactional(readOnly = true)
 	public Collection<String> findTiposOfertas() throws DataAccessException {
 		return ofertaRepo.findTiposOfertas();

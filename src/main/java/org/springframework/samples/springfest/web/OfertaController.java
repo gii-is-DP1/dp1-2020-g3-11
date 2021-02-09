@@ -21,7 +21,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -82,14 +81,6 @@ public class OfertaController {
 	public Collection<String> entradaTypes() {
 		return ofertaService.findTiposOfertas();
 
-	}
-
-	@GetMapping("/{id}/delete")
-	public String deleteOferta(@PathVariable("id") int id, Principal principal, ModelMap model) {
-
-		Oferta oferta = ofertaService.findById(id);
-		ofertaService.delete(oferta);
-		return "redirect:/mifestival/ofertas";
 	}
 
 	@GetMapping("/new")

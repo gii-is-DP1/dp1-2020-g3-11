@@ -17,7 +17,6 @@
 				<th style="width: 33%;">Nombre</th>
 				<th style="width: 33%;">Tipo de oferta</th>
 				<th style="width: 33%;">Precio</th>
-				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,9 +27,6 @@
 					<td><c:out value="${oferta.nombre}" /></td>
 					<td><c:out value="${oferta.tipoOferta}" /></td>
 					<td><c:out value="${oferta.precioOferta}" /></td>
-					<td><a href="ofertas/${oferta.id}/delete"> <span
-							class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-					</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
