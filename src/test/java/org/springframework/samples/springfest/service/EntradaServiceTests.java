@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.springfest.model.Entrada;
 import org.springframework.samples.springfest.model.EntradaType;
 import org.springframework.samples.springfest.model.Festival;
+import org.springframework.samples.springfest.model.Usuario;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +39,7 @@ public class EntradaServiceTests {
 		assertThat(newPrecio.equals(entrada.getPrecio()));
 	}
 
+
 	@Test
 	void shouldFindEntradaById() throws Exception {
 		Entrada entrada2 = this.entradaService.findById(2).get();
@@ -56,7 +58,6 @@ public class EntradaServiceTests {
 			assertThat(entradaTypes.contains("camping"));
 		}
 	
-
 	@Test
 	@Transactional
 	void shouldInsertNewEntrada() throws Exception {

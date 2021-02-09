@@ -1,7 +1,5 @@
 package org.springframework.samples.springfest.model;
 
-
-
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -15,7 +13,6 @@ import javax.validation.constraints.Positive;
 
 import lombok.Getter;
 import lombok.Setter;
-
 
 @Entity
 @Getter
@@ -45,7 +42,4 @@ public class Entrada extends BaseEntity {
     @JoinColumn(name = "oferta_id")
 	private Set<Oferta> ofertas;
 	
-
-
-
 }
