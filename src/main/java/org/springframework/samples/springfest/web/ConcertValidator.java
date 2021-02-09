@@ -46,7 +46,6 @@ public class ConcertValidator implements Validator {
 				errors.rejectValue("fecha", "La fecha tiene que ser posterior a la actualidad",
 						"La fecha tiene que ser posterior a la actualidad");
 			}
-
 		}
 
 		if (concierto.isNew() && concierto.getRecinto() == null) {
@@ -56,7 +55,6 @@ public class ConcertValidator implements Validator {
 
 		if (concierto.isNew() && concierto.getArtista() == null) {
 			errors.rejectValue("artista.name", "Elige un artista", "Elige un artista");
-
 		}
 	}
 

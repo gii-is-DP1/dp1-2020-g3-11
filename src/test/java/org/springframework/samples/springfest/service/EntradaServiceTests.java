@@ -1,18 +1,3 @@
-/*
- * Copyright 2002-2013 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package org.springframework.samples.springfest.service;
 
 import static org.assertj.core.api.Assertions.assertThat; 
@@ -54,28 +39,25 @@ public class EntradaServiceTests {
 		assertThat(newPrecio.equals(entrada.getPrecio()));
 	}
 
-	//	FIND TICKET BY ID 
+
 	@Test
 	void shouldFindEntradaById() throws Exception {
 		Entrada entrada2 = this.entradaService.findById(2).get();
 		assertThat(entrada2.getPrecio()).isEqualTo(30);
 	}
-	
-	// FIND ALL ENTRADAS BY FESTIVAL ID	
+
 	@Test
 	void shoudAllFindEntradaByFestivalId() throws Exception {
 		List<Entrada> entradas = (List<Entrada>) this.entradaService.findAllEntradasByFestivalId(2);
 		assertThat((entradas.size() == 3)).isTrue();
 	}
 	
-	// FIND COLLECTION EntradaTypes
 		@Test
 		void shouldFindEntradaTypes() throws Exception {
 			List<String> entradaTypes = (List<String>) this.entradaService.findEntradaTypes();
 			assertThat(entradaTypes.contains("camping"));
 		}
 	
-	//	INSERT NEW ENTRADA 
 	@Test
 	@Transactional
 	void shouldInsertNewEntrada() throws Exception {
@@ -98,6 +80,7 @@ public class EntradaServiceTests {
 		assertThat(entradas.size()).isEqualTo(size + 1);
 		assertThat(entrada.getId()).isNotNull();
 	}
+
 	@Test
 	@Transactional
 	void shouldUpdateEntrada() {

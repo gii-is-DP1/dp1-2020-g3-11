@@ -39,7 +39,6 @@ class ConcertServiceTests {
 	@Autowired
 	protected FestivalService festivalService;	
 
-//      FIND CONCERT BY ID
 
 	@Test
 	void shouldFindConcertById() throws Exception {
@@ -48,7 +47,6 @@ class ConcertServiceTests {
 		assertThat(concert2.getFestival().getId()).isEqualTo(2);
 	}
 
-//  FIND ALL CONCERTS
 
 @Test
 void shoudFindAllConcert() throws Exception {
@@ -56,7 +54,6 @@ void shoudFindAllConcert() throws Exception {
 	assertThat((concerts.size() == 4)).isTrue();
 }
 
-//  FIND ALL CONCERTS BY FESTIVAL ID
 
 @Test
 void shoudFindAllConcertFestivalId() throws Exception {
@@ -65,7 +62,6 @@ void shoudFindAllConcertFestivalId() throws Exception {
 }
 
 
-// 		INSERT NEW CONCERT 
 	@Test
 	@Transactional
 	void shouldInsertNewConcert() throws Exception {
@@ -93,7 +89,6 @@ void shoudFindAllConcertFestivalId() throws Exception {
 		assertThat(concert.getId()).isNotNull();
 	}
 
-//		INSERT NEW NULL CONCERT 
 
 	@Test
 	@Transactional
@@ -114,7 +109,6 @@ void shoudFindAllConcertFestivalId() throws Exception {
 			this.concertService.save(concert);
 		});
 	}
-//	INSERT NEW CONCERT WITH EXCEPTION 
 
 	@Test
 	@Transactional
@@ -151,7 +145,6 @@ void shoudFindAllConcertFestivalId() throws Exception {
 		});		
 	}
 
-//UPDATE CONCERT
 	@Test
 	@Transactional
 	void shouldUpdateConcert() throws DataAccessException, ConcertOutOfDateException {
@@ -166,7 +159,6 @@ void shoudFindAllConcertFestivalId() throws Exception {
 		assertThat(concert.getHoraCom()).isEqualTo(horaCom);
 	}
 	
-	//UPDATE CONCERT WITH EXCEPTION
 
 	@Test
 	@Transactional
@@ -180,7 +172,6 @@ void shoudFindAllConcertFestivalId() throws Exception {
 		});		
 	}
 	
-	//DELETE CONCERT
 
 	@Test
 	@Transactional

@@ -37,47 +37,44 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest(controllers = EntradaController.class, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
 
-
 public class EntradaControllerTests {
 
 	private static final int TEST_ENTRADA_ID_1 = 1;
-	
+
 	private static final int TEST_FESTIVAL_ID = 1;
-	
+
 	private static final int TEST_USUARIO_ID = 1;
 
 	private static final int TEST_OFERTA_ID = 1;
 	
 	private static final int TEST_USUARIO_ID_1 = 1;
 
-	
 	@MockBean
 	private EntradaService entradaService;
-	
+
 	@MockBean
 	private UsuarioService usuarioService;
-	
+
 	@MockBean
 	private FestivalService festivalService;
-	
+
 	@MockBean
 	private OfertaService ofertaService;
 
 	@Autowired
 	private MockMvc mockMvc;
-	
+
 	private Entrada testEntrada1;
-		
+
 	private Usuario testUsuario1;
-	
+
 	private Festival testFestival1;
-	
+
 	private Oferta testOferta1;
 
-	
 	@BeforeEach
 	void setup() {
-		
+
 		testEntrada1 = new Entrada();
 		testEntrada1.setId(TEST_ENTRADA_ID_1);
 		EntradaType entradaType = new EntradaType();
@@ -87,17 +84,17 @@ public class EntradaControllerTests {
 		testEntrada1.setEntradaType(entradaType);
 		testEntrada1.setFestival(testFestival1);
 		testEntrada1.setPrecio(30);
-		
+
 		testFestival1 = new Festival();
 		testFestival1.setId(TEST_FESTIVAL_ID);
 		testFestival1.setName("Cabo de Plata");
-		testFestival1.setAforoMax(100);		
+		testFestival1.setAforoMax(100);
 		testFestival1.setEntradasRestantes(100);
 		testFestival1.setFechaCom(LocalDate.of(2021, 06, 06));
 		testFestival1.setFechaFin(LocalDate.of(2021, 06, 9));
 		testFestival1.setLocalizacion("Cadiz");
 		testFestival1.setVersion(1);
-		
+
 		testOferta1 = new Oferta();
 		testOferta1.setFestival(testFestival1);
 		testOferta1.setId(TEST_OFERTA_ID);
@@ -142,9 +139,10 @@ public class EntradaControllerTests {
 		mockMvc.perform(get("/mifestival/entradas/new")).andExpect(model().attributeExists("entrada"))
 				.andExpect(status().isOk()).andExpect(view().name("entradas/createOrUpdateEntradaForm"));
 	}
-	
+
 	@WithMockUser(value = "spring")
 	@Test
+
 	void testProcessNewEntradaFormSuccess() throws Exception {
 		mockMvc.perform(post("/mifestival/entradas/new").with(csrf())
 				.param("precio", "30")
@@ -153,7 +151,7 @@ public class EntradaControllerTests {
 	}
 	
 	//Editar entrada
-	
+  
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessUpdateEntradaFormSuccess() throws Exception {
@@ -166,9 +164,9 @@ public class EntradaControllerTests {
 	@WithMockUser(value = "spring")
 	@Test
 	void testComprarEntradaFormSuccess() throws Exception {
-		mockMvc.perform(post("/festivales/{festivalId}/entradas/{entradaId}/comprar", TEST_FESTIVAL_ID, TEST_ENTRADA_ID_1).with(csrf()))
+		mockMvc.perform(
+				post("/festivales/{festivalId}/entradas/{entradaId}/comprar", TEST_FESTIVAL_ID, TEST_ENTRADA_ID_1)
+						.with(csrf()))
 				.andExpect(status().is2xxSuccessful());
 	}
-	
-
 }
