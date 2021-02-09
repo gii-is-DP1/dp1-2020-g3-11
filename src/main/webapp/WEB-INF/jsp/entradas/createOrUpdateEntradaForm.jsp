@@ -4,9 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
-<petclinic:layout pageName="entradas">
+<springfest:layout pageName="MiFestival">
 
 	<h2>
 		<c:if test="${entrada['new']}">Nueva </c:if>
@@ -15,10 +15,12 @@
 	<form:form modelAttribute="entrada" class="form-horizontal"
 		id="add-entrada-form">
 		<div class="form-group has-feedback">
-
-			<petclinic:inputField label="Precio" name="precio" />
+			
+			<input type="hidden" name="version" value="${entrada.version}"/>
+			
+			<springfest:inputField label="Precio" name="precio" />
 			<div class="control-group">
-				<petclinic:selectField name="entradaType.name"
+				<springfest:selectField name="entradaType.name"
 					label="Tipo de entrada " names="${entradatype}"
 					size="${entradatype.size()}" />
 			</div>
@@ -47,4 +49,4 @@
 	</form:form>
 
 
-</petclinic:layout>
+</springfest:layout>

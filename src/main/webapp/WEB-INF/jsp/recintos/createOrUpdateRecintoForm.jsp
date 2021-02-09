@@ -4,9 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
-<petclinic:layout pageName="recintos">
+<springfest:layout pageName="MiFestival">
 
 
 
@@ -17,8 +17,9 @@
 	<form:form modelAttribute="recinto" class="form-horizontal"
 		id="add-recinto-form">
 		<div class="form-group has-feedback">
-			<petclinic:inputField label="Nombre" name="name" />
-			<petclinic:inputField label="Nº huecos de puestos" name="huecos" />
+			<input type="hidden" name="version" value="${recinto.version}"/>
+			<springfest:inputField label="Nombre" name="name" />
+			<springfest:inputField label="Nº huecos de puestos" name="huecos" />
 
 			<h4>Tipo del recinto</h4>
 			Escenario <input type="radio" name="tipoRecinto.name"
@@ -50,4 +51,4 @@
 	</form:form>
 
 
-</petclinic:layout>
+</springfest:layout>

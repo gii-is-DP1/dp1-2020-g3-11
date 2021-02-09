@@ -4,10 +4,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags" %>
 
 
-<petclinic:layout pageName="concerts">
+<springfest:layout pageName="MiFestival">
     
     <h2>
         <c:if test="${concert['new']}">Nuevo </c:if> Concierto
@@ -17,18 +17,18 @@
 			Los conciertos deben estar en esa franja horaria. </h4><br>
     <form:form modelAttribute="concert" class="form-horizontal" id="add-concert-form">
         <div class="form-group has-feedback">
-        
-			<petclinic:localDate label="Fecha" name="fecha" id="fecha"></petclinic:localDate>            
-			<petclinic:localDateTime label="Hora comienzo" name="horaCom" id="horaCom"></petclinic:localDateTime>            
-			<petclinic:localDateTime label="Hora fin" name="horaFin" id="horaFin"></petclinic:localDateTime>            
+        	<input type="hidden" name="version" value="${concert.version}"/>
+			<springfest:localDate label="Fecha" name="fecha" id="fecha"></springfest:localDate>            
+			<springfest:localDateTime label="Hora comienzo" name="horaCom" id="horaCom"></springfest:localDateTime>            
+			<springfest:localDateTime label="Hora fin" name="horaFin" id="horaFin"></springfest:localDateTime>            
 			<div class="control-group">
 
-				<petclinic:selectField name="artista.name" label="Artista " names="${artistas}"
+				<springfest:selectField name="artista.name" label="Artista " names="${artistas}"
 					size="${artistas.size()}" />
 			</div>
 			<div class="control-group">
 			
-				<petclinic:selectField name="recinto.name" label="Recinto " names="${recintos}"
+				<springfest:selectField name="recinto.name" label="Recinto " names="${recintos}"
 					size="${recintos.size()}" />
 			</div>
             
@@ -46,4 +46,4 @@
             </div>
         </div>
     </form:form>
-    </petclinic:layout> 
+    </springfest:layout> 

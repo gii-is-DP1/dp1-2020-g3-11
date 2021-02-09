@@ -3,10 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
 
-<petclinic:layout pageName="recintos">
+<springfest:layout pageName="recintos">
 
 
 	<h2>Recintos</h2>
@@ -36,4 +36,4 @@
 	<a href="recintos/new" class="btn btn-default"><span
 		class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añair
 		recinto</a>
-</petclinic:layout>
+</springfest:layout>

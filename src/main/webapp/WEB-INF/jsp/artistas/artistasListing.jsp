@@ -3,10 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
 
-<petclinic:layout pageName="artistasRegistradosEnLaWeb">
+<springfest:layout pageName="artistas">
 
 
 	<h2>Artistas</h2>
@@ -22,7 +22,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${todosArtistas}" var="artista">
+			<c:forEach items="${list}" var="artista">
 				<tr>
 					<td><c:out value="${artista.name}" /></td>
 					<td><c:out value="${artista.telefono}" /></td>
@@ -37,11 +37,19 @@
 		</tbody>
 
 	</table>
+	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			<c:forEach items="${pages}" var="pages">
+				<li class="page-item"><a class="page-link" href="?page=${pages}">${pages}</a></li>
+			</c:forEach>
+
+		</ul>
+	</nav>
 
 	<h3>
 		<spring:url value="/artistas/new" var="newArtistaUrl">
 		</spring:url>
-		<a href="${fn:escapeXml(newArtistaUrl)}" class="btn btn-default">Añadir artista</a>
-		</td>
+		<a href="${fn:escapeXml(newArtistaUrl)}" class="btn btn-default">Añadir
+			artista</a>
 	</h3>
-</petclinic:layout>
+</springfest:layout>

@@ -3,12 +3,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
 
-<petclinic:layout pageName="festivales">
+<springfest:layout pageName="festivales">
 
 
 	<h2>Festivales</h2>
@@ -16,12 +16,14 @@
 		<thead>
 			<tr>
 				<th style="width: 20%;">Nombre</th>
-				<th style="width: 20%;">Aforo Máximo</th>
+				<th style="width: 10%;">Aforo Máximo</th>
 				<th style="width: 20%;">Fecha Comienzo</th>
 				<th style="width: 20%;">Fecha Fin</th>
-				<th style="width: 20%;">Localización</th>
-				<th></th>
-				<th></th>
+				<th style="width: 10%;">Localización</th>
+				<sec:authorize access="hasAuthority('usuario')">
+					<th style="width: 10%;"></th>
+				</sec:authorize>
+				<th style="width: 10%;"></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -54,7 +56,7 @@
 						<td><spring:url value="/festivales/{festivalId}/valoraciones"
 								var="valoracionUrl">
 								<spring:param name="festivalId" value="${festival.id}" />
-							</spring:url> <a href="${fn:escapeXml(valoracionUrl)}">Valorar</a></td>
+							</spring:url> <a href="${fn:escapeXml(valoracionUrl)}">Valoraciones</a></td>
 					</sec:authorize>
 				</tr>
 			</c:forEach>
@@ -65,4 +67,4 @@
 			class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir
 			festival</a>
 	</sec:authorize>
-</petclinic:layout>
+</springfest:layout>

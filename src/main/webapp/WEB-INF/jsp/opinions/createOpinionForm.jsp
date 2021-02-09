@@ -4,29 +4,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
-<petclinic:layout pageName="opinions">
+<springfest:layout pageName="opinions">
 	
-<%-- 	<jsp:attribute name="customScript">
-	<script>     
-    var filtro = ['mierda', 'cabron', 'mojon'];
-    $("#descripcion").text(function(i, txt){
-      for(var i=0; i<filtro.length; i++){
-		if(txt.indexOf(filtro[i])!=-1){
-			var patron = new RegExp(filtro[i]);
-	    	  var s = '*'.repeat(filtro[i].length);
-	    	  txt = txt.replace(patron, s);
-	    	 
-		}		
-    	  
-      }
-      return txt;
-    });</script>
-	
-	</jsp:attribute>
-	<jsp:body> --%>
-
 	<h2>
 		<c:if test="${opinion['new']}">Nueva </c:if>
 		Valoración
@@ -36,7 +17,7 @@
 	<form:form modelAttribute="opinion" class="form-horizontal"
 		id="add-festival-form">
 		<div class="form-group has-feedback">
-			<petclinic:richTextArea label="Descripción" name="descripcion"
+			<springfest:richTextArea label="Descripción" name="descripcion"
 				id="description" />
 			<label class="col-sm-2 control-label">Puntuación</label> <span
 				class="star-rating star-5"> <input type="radio"
@@ -71,6 +52,4 @@
 		<a href="${fn:escapeXml(festivaUrl)}" class="btn btn-default">Volver
 			a festivales</a>
 	</div>
-<%-- 	</jsp:body>
-
- --%></petclinic:layout>
+</springfest:layout>

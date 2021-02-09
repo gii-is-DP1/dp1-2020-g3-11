@@ -4,9 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
-<petclinic:layout pageName="recintos">
+<springfest:layout pageName="MiFestival">
 	<h2>
 		<c:out value="${recinto.name}" />
 	</h2>
@@ -59,4 +59,4 @@
 	<a href="${fn:escapeXml(festivaUrl)}" class="btn btn-default">Volver
 		a mi festival</a>
 	
-</petclinic:layout>
+</springfest:layout>

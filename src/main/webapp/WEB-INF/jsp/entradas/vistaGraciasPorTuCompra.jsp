@@ -4,9 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
-<petclinic:layout pageName="gracias">
+<springfest:layout pageName="gracias">
 
 	<div class="col-sm-6">
 		<div class="card">
@@ -28,6 +28,6 @@
 		<a href="/festivales" class="btn btn-primary btn-sm"> Seguir comprando</a>
 	</form>
 
-</petclinic:layout>
+</springfest:layout>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>

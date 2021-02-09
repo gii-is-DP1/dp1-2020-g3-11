@@ -3,12 +3,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
 
-<petclinic:layout pageName="entradas">
+<springfest:layout pageName="entradas">
 
 
 	<h2>Entradas</h2>
@@ -18,10 +18,9 @@
 				<sec:authorize access="hasAuthority('admin')">
 					<th style="width: 33%;">ID</th>
 				</sec:authorize>
-				<th style="width: 33%;">Precio</th>
-				<th style="width: 33%;">Tipos de Entrada</th>
-				<th></th>
-				<th></th>
+				<th style="width: 30%;">Precio</th>
+				<th style="width: 50%;">Tipos de Entrada</th>
+				<th  style="width: 20%;"></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -61,4 +60,4 @@
 		<a href="${fn:escapeXml(festivaUrl)}" class="btn btn-default">Volver
 			a festivales</a>
 	</div>
-</petclinic:layout>
+</springfest:layout>

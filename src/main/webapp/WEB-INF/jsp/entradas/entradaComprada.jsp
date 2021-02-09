@@ -4,9 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
-<petclinic:layout pageName="entradaComprada">
+<springfest:layout pageName="entradaComprada">
 
 	<script type="text/javascript">
 		function yesnoCheck() {
@@ -163,8 +163,6 @@
 									<spring:url
 										value="/festivales/${datosFestival.id}/entradas/{entradaId}/quitar/${oferta.id}"
 										var="asociarOfertaUrl">
-										<%-- 						<spring:param name="festivalId" value="${datosFestival.id}" /> --%>
-										<%--						<spring:param name="ofertaId" value="${datosOferta.id}" />  --%>
 										<spring:param name="entradaId" value="${datosEntrada.id}" />
 									</spring:url>
 									<a href="${fn:escapeXml(asociarOfertaUrl)}">Eliminar oferta</a>
@@ -195,6 +193,6 @@
 			<spring:param name="entradaId" value="${datosEntrada.id}" />
 		</spring:url> <a href="${fn:escapeXml(festivalIdUrl)}"
 		class="btn btn-primary btn-sm"> Confirmar compra</a></td>
-</petclinic:layout>
+</springfest:layout>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>

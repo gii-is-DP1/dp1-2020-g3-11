@@ -4,9 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="springfest" tagdir="/WEB-INF/tags"%>
 
-<petclinic:layout pageName="sponsor">
+<springfest:layout pageName="registroSpringfest">
 
 	<jsp:attribute name="customScript">
 	<script type="text/javascript">
@@ -45,17 +45,17 @@
 			Usuario <input type="radio" onclick="javascript:yesnoCheck();"
 						name="tipoUsuario.name" id="noCheck" value="Usuario"><br>
 </div>
-			<petclinic:inputField label="Nombre" name="firstName" />
-			<petclinic:inputField label="Apellidos" name="lastName" />
-			<petclinic:inputField label="Correo" name="correo" />
-			<petclinic:inputField label="DNI" name="DNI" />
-			<petclinic:inputField label="Telefono" name="telefono" />
-			<petclinic:inputField label="Fecha de Nacimiento"
+			<springfest:inputField label="Nombre" name="firstName" />
+			<springfest:inputField label="Apellidos" name="lastName" />
+			<springfest:inputField label="Correo" name="correo" />
+			<springfest:inputField label="DNI" name="DNI" />
+			<springfest:inputField label="Telefono" name="telefono" />
+			<springfest:inputField label="Fecha de Nacimiento"
 					name="fechaNacimiento" />
-			<petclinic:inputField label="Usuario" name="user.username" />
-			<petclinic:inputField label="Contraseña" name="user.password" />
+			<springfest:inputField label="Usuario" name="user.username" />
+			<springfest:inputField label="Contraseña" name="user.password" />
 			<div id="ifYes" style="visibility: hidden">
-				<petclinic:inputField label="Marca" name="marca" />
+				<springfest:inputField label="Marca" name="marca" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -73,4 +73,4 @@
 		</div>
 	</form:form>
 	 </jsp:body>
-</petclinic:layout>
+</springfest:layout>
