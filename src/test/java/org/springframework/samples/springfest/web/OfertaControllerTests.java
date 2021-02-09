@@ -33,7 +33,8 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-@WebMvcTest(controllers = OfertaController.class, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
+@WebMvcTest(controllers = { OfertaController.class,
+		CustomErrorController.class }, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
 
 public class OfertaControllerTests {
 

@@ -34,7 +34,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@WebMvcTest(controllers = ConcertController.class, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
+@WebMvcTest(controllers = { ConcertController.class,
+		CustomErrorController.class }, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
 
 public class ConcertControllerTests {
 

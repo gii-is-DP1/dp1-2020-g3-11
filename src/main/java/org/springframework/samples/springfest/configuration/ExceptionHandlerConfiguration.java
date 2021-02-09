@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ExceptionHandlerConfiguration 
 {
 	@Autowired
-	private ErrorController errorController;
+	private CustomErrorController errorController;
 
    @ExceptionHandler(Exception.class)
    public String defaultErrorHandler(HttpServletRequest request,  Exception ex)  {

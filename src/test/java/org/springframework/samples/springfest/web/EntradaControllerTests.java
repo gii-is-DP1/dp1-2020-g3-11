@@ -35,7 +35,8 @@ import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(controllers = EntradaController.class, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
+@WebMvcTest(controllers = { EntradaController.class,
+		CustomErrorController.class }, excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = WebSecurityConfigurer.class), excludeAutoConfiguration = SecurityConfiguration.class)
 
 public class EntradaControllerTests {
 
@@ -46,7 +47,7 @@ public class EntradaControllerTests {
 	private static final int TEST_USUARIO_ID = 1;
 
 	private static final int TEST_OFERTA_ID = 1;
-	
+
 	private static final int TEST_USUARIO_ID_1 = 1;
 
 	@MockBean
@@ -106,7 +107,7 @@ public class EntradaControllerTests {
 		tipoOferta.setVersion(1);
 		testOferta1.setTipoOferta(tipoOferta);
 		testOferta1.setVersion(1);
-		
+
 		testUsuario1 = new Usuario();
 		testUsuario1.setId(TEST_USUARIO_ID_1);
 		testUsuario1.setFirstName("Paco");
@@ -121,7 +122,7 @@ public class EntradaControllerTests {
 		tipo.setId(1);
 		tipo.setName("Usuario");
 		testUsuario1.setTipoUsuario(tipo);
-		
+
 		given(this.entradaService.findEntradaById2(TEST_ENTRADA_ID_1)).willReturn(testEntrada1);
 		given(this.festivalService.findFestivalById2(TEST_FESTIVAL_ID)).willReturn(testFestival1);
 		given(this.usuarioService.findUsuarioById(TEST_USUARIO_ID)).willReturn(testUsuario1);
@@ -130,9 +131,7 @@ public class EntradaControllerTests {
 		given(this.usuarioService.findTipoUsuario("Usuario")).willReturn(tipo);
 
 	}
-	
-	//INSERT ENTRADA
-	
+
 	@WithMockUser(value = "spring")
 	@Test
 	void testInitNewEntradaForm() throws Exception {
@@ -142,24 +141,17 @@ public class EntradaControllerTests {
 
 	@WithMockUser(value = "spring")
 	@Test
-
 	void testProcessNewEntradaFormSuccess() throws Exception {
-		mockMvc.perform(post("/mifestival/entradas/new").with(csrf())
-				.param("precio", "30")
-				.param("entradaType.name", "Completa"))
-		.andExpect(status().is2xxSuccessful());
+		mockMvc.perform(post("/mifestival/entradas/new").with(csrf()).param("precio", "30").param("entradaType.name",
+				"Completa")).andExpect(status().is2xxSuccessful());
 	}
-	
-	//Editar entrada
-  
+
 	@WithMockUser(value = "spring")
 	@Test
 	void testProcessUpdateEntradaFormSuccess() throws Exception {
 		mockMvc.perform(post("/mifestival/entradas/{id}/edit", TEST_ENTRADA_ID_1).with(csrf()))
 				.andExpect(status().is2xxSuccessful());
 	}
-	
-	//Comprar entrada
 
 	@WithMockUser(value = "spring")
 	@Test
