@@ -41,13 +41,11 @@ public class EntradaService {
 	@Transactional
 	public void delete(Entrada entrada) throws DataAccessException {
 		entradaRepo.deleteById(entrada.getId());
-
 	}
 
 	@Transactional
 	public void save(@Valid Entrada entrada) throws DataAccessException {
 		entradaRepo.save(entrada);
-
 	}
 
 	@Transactional(readOnly = true)
@@ -69,5 +67,4 @@ public class EntradaService {
 	public Entrada findEntradaById2(int id) throws DataAccessException {
 		return entradaRepo.findById(id).get();
 	}
-
 }

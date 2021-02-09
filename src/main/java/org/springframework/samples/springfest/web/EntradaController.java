@@ -62,7 +62,6 @@ public class EntradaController {
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
 
 		if (festival.getEntradasRestantes() >= 1) {
-
 			Usuario usuario = usuarioLogueado(principal);
 			Entrada entrada = entradaService.findById(entradaId).orElse(null);
 			Period periodo = Period.between(usuario.getFechaNacimiento(), LocalDate.now());
@@ -76,7 +75,6 @@ public class EntradaController {
 					}
 				}
 			}
-
 			List<Oferta> ofertas = ofertaService.findAllOfertasByFestivalId(festivalId).stream()
 					.collect(Collectors.toList());
 

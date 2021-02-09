@@ -27,6 +27,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.samples.springfest.model.Entrada;
 import org.springframework.samples.springfest.model.EntradaType;
 import org.springframework.samples.springfest.model.Festival;
+import org.springframework.samples.springfest.model.Usuario;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,22 +54,14 @@ public class EntradaServiceTests {
 		assertThat(newPrecio.equals(entrada.getPrecio()));
 	}
 
-//	FIND TICKET BY ID 
+	//	FIND TICKET BY ID 
 	@Test
 	void shouldFindEntradaById() throws Exception {
 		Entrada entrada2 = this.entradaService.findById(2).get();
 		assertThat(entrada2.getPrecio()).isEqualTo(30);
 	}
-
-//  FIND ALL ENTRADAS 
-
-//	@Test
-//	void shoudAllFindEntrada() throws Exception {
-//		List<Entrada> entradas = (List<Entrada>) this.entradaService.findAll();
-//		assertThat((entradas.size() == 1)).isTrue();
-//	}
 	
-// FIND ALL ENTRADAS BY FESTIVAL ID	
+	// FIND ALL ENTRADAS BY FESTIVAL ID	
 	@Test
 	void shoudAllFindEntradaByFestivalId() throws Exception {
 		List<Entrada> entradas = (List<Entrada>) this.entradaService.findAllEntradasByFestivalId(2);
@@ -82,7 +75,6 @@ public class EntradaServiceTests {
 			assertThat(entradaTypes.contains("camping"));
 		}
 	
-	//Revisar usuario prox sprint
 	//	INSERT NEW ENTRADA 
 	@Test
 	@Transactional
@@ -91,13 +83,11 @@ public class EntradaServiceTests {
 		int size = entradas.size();
 		EntradaType tipoEntrada = this.entradaService.findEntradaType("camping");
 		Festival fest = this.festivalService.findFestivalById(2).get();
-//		Usuario usuario = this.usuarioService.findUsuarioByID(2).get();
 
 		Entrada entrada = new Entrada();
 		entrada.setPrecio(30);
 		entrada.setEntradaType(tipoEntrada);
 		entrada.setFestival(fest);
-//		entrada.setUsuario(usuario);
 
 		try {
 			this.entradaService.save(entrada);
@@ -108,7 +98,6 @@ public class EntradaServiceTests {
 		assertThat(entradas.size()).isEqualTo(size + 1);
 		assertThat(entrada.getId()).isNotNull();
 	}
-//DUDA 
 	@Test
 	@Transactional
 	void shouldUpdateEntrada() {
@@ -117,7 +106,6 @@ public class EntradaServiceTests {
 		precio = 40;
 		this.entradaService.save(entrada);
 
-		// retrieving new name from database
 		entrada = this.entradaService.findById(1).get();
 		assertThat(entrada.getPrecio()).isEqualTo(precio);
 	}
@@ -135,5 +123,4 @@ public class EntradaServiceTests {
 		assertThat(entradas.size()).isEqualTo(size - 1);
 
 	}
-	//pruebas parametrizadas
 }
