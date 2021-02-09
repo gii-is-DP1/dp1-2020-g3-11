@@ -83,10 +83,4 @@ public class FestivalControllerTest {
 				.andExpect(view().name("festivales/festivalListing"));
 	}
 
-	@WithMockUser(value = "spring")
-	@Test
-	void testProcessDeleteEntrada() throws Exception {
-		mockMvc.perform(get("/mifestival/entradas/{id}/delete", 1)).andExpect(status().is2xxSuccessful());
-	}
-
 }
