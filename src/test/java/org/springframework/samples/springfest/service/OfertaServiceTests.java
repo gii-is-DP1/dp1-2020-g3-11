@@ -68,20 +68,6 @@ public class OfertaServiceTests {
 
 	@Test
 	@Transactional
-	void shouldDeleteOferta() throws Exception {
-		Collection<Oferta> co = this.ofertaService.findAll();
-		int size = co.size();
-		Oferta o = this.ofertaService.findById(1);
-
-		this.ofertaService.delete(o);
-
-		Collection<Oferta> co2 = this.ofertaService.findAll();
-		assertThat(co2.size()).isEqualTo(size - 1);
-
-	}
-
-	@Test
-	@Transactional
 	void shouldInsertNewOferta() throws Exception {
 		Collection<Oferta> co = this.ofertaService.findAllOfertasByFestivalId(2);
 		int size = co.size();

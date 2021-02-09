@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.springfest.model.Artista;
-import org.springframework.samples.springfest.model.Entrada;
 import org.springframework.samples.springfest.model.Festival;
 import org.springframework.samples.springfest.model.Puesto;
 import org.springframework.samples.springfest.model.Recinto;
@@ -61,7 +60,7 @@ public class FestivalController {
 
 	@GetMapping("/festivales")
 	public String listFestivales(ModelMap model) {
-		
+
 		model.addAttribute("festivales", festivalService.findAll());
 		return FESTIVALES_LISTING;
 	}
@@ -84,17 +83,17 @@ public class FestivalController {
 			@PathVariable("puestoId") int puestoId, ModelMap model) {
 		Usuario usuario = usuarioLogueado(principal);
 		Festival festival = festivalService.findFestivalById(festivalId).orElse(null);
-		
+
 		Puesto puesto = puestoService.findById(puestoId).get();
 		puesto.setSponsor(usuario);
 		puestoService.save(puesto);
-		
+
 		Collection<Puesto> listaPuestos = puestoService.findPuestosLibres(festivalId);
 		model.addAttribute("puestos", listaPuestos);
 		model.addAttribute("datosUsuario", usuario);
 		model.addAttribute("datosFestival", festival);
 		model.addAttribute("message", "El puesto se asoció correctamente.");
-		
+
 		return ALQUILAR_PUESTOS;
 	}
 
@@ -105,7 +104,7 @@ public class FestivalController {
 		model.addAttribute("puestos", puestoService.findAllPuestosBySponsorId(usuario.getId()));
 		return PUESTOS_LISTING;
 	}
-	
+
 	@GetMapping("/festivales/{festivalId}/cartel")
 	public String listCartel(ModelMap model, @PathVariable("festivalId") int festivalId) {
 
@@ -200,24 +199,6 @@ public class FestivalController {
 			return showFestival(model, principal);
 		} else {
 			model.addAttribute("message", "No se encuentra el recinto a borrar.");
-			return showFestival(model, principal);
-		}
-	}
-
-	@GetMapping("/mifestival/entradas/{entradaId}/delete")
-	public String deleteEntradaDeFestival(@PathVariable("entradaId") int entradaId, ModelMap model,
-			Principal principal) {
-
-		Usuario usuario = usuarioLogueado(principal);
-		Integer festivalId = usuario.getFestival().getId();
-
-		Entrada entrada = festivalEntradaService.findByEntradaIdFestivalId(festivalId, entradaId);
-		if (entrada != null) {
-			festivalEntradaService.delete(entrada);
-			model.addAttribute("message", "La entrada fue borrada.");
-			return showFestival(model, principal);
-		} else {
-			model.addAttribute("message", "No se encuentra la entrada a borrar.");
 			return showFestival(model, principal);
 		}
 	}
